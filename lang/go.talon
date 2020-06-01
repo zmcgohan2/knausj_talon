@@ -20,7 +20,12 @@ state comment: "// "
 # "[state] context: insert("ctx")
 state (funk | func | fun): "func "
 function (Annette | init) [over]: "func init() {\n"
-function <phrase> [over]:
+public function <phrase> [over]:
+    insert("func ")
+    insert(user.formatted_text(phrase, "PUBLIC_CAMEL_CASE"))
+    insert("(")
+    sleep(100ms)
+[private] function <phrase> [over]:
     insert("func ")
     insert(user.formatted_text(phrase, "PRIVATE_CAMEL_CASE"))
     insert("(")
@@ -42,6 +47,7 @@ of type [<phrase>] [over]:
     insert(" ")
     insert(user.formatted_text(phrase, "PRIVATE_CAMEL_CASE"))
 
+set to: insert(" := ")
 # "set <phrase> [over]:
 #     insert(user.formatted_text(phrase, "PRIVATE_CAMEL_CASE"))
 #     insert(" := ")
@@ -107,7 +113,10 @@ case <phrase> [over]:
     insert(user.formatted_text(phrase, "PRIVATE_CAMEL_CASE"))
 
 state type: " type "
-type <phrase> [over]:
+private type <phrase> [over]:
+    insert("type ")
+    insert(user.formatted_text(phrase, "PRIVATE_CAMEL_CASE"))
+[public] type <phrase> [over]:
     insert("type ")
     insert(user.formatted_text(phrase, "PUBLIC_CAMEL_CASE"))
 state true: " true "

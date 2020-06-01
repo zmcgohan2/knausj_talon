@@ -8,3 +8,8 @@ phrase <user.text> over: insert(user.text)
 word <user.word>: insert(user.word)
 list formatters: user.list_formatters()
 hide formatters: user.hide_formatters()
+
+
+more <phrase>$:
+  insert(' ')
+  dictate.natural(phrase)

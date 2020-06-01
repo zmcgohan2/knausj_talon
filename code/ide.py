@@ -461,6 +461,9 @@ class Actions:
     def ide_step_into():
         """Step into current statement"""
 
+    def ide_step_out():
+        """Step out of the current statement"""
+
     def ide_step_smart():
         """Trigger smart step into"""
 

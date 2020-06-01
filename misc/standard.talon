@@ -19,7 +19,7 @@ M D five: "md5"
 args: 
 	insert("()")
 	key(left)
-[inside] (index | array): 
+[inside] (index | array) [of]: 
 	insert("[]") 
 	key(left)
 block: 
@@ -27,17 +27,25 @@ block:
 	key(left enter enter up tab)
 empty array: "[]"
 comment see: "// "
-word queue: "queue"
-word eye: "eye"
-word iter: "iter"
-word no: "NULL"
-word cmd: "cmd"
-word dup: "dup"
-word streak: 
+jargon cube control: "kubectl"
+jargon queue: "queue"
+jargon eye: "eye"
+jargon bson: "bson"
+jargon git: "git"
+jargon iter: "iter"
+jargon no: "NULL"
+jargon cmd: "cmd"
+jargon control: "ctrl"
+jargon dup: "dup"
+jargon streak: 
 	insert("streq()") 
 	key(left)
-word printf: "printf"
-word shell: "shell"
+jargon printf: "printf"
+jargon shell: "shell"
+jargon Point two D: "Point2d"
+jargon Point three D: "Point3d"
+title Point: "Point"
+jargon angle: "angle"
 dunder in it: "__init__"
 self taught: "self."
 (dickt in it | inside bracket | in bracket): 
@@ -67,7 +75,7 @@ undo that: edit.undo()
 redo that: edit.redo()
 volume up: key(volup)
 volume down: key(voldown)
-mute: key(mute)
+mute mute: key(mute)
 play next: key(next)
 play previous: key(prev)
 (play | pause): key(play_pause)  

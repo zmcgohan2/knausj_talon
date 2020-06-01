@@ -123,9 +123,9 @@ formatters_words = {
     "sentence": formatters_dict["CAPITALIZE_FIRST_WORD"],
     "title": formatters_dict["CAPITALIZE_ALL_WORDS"],
     #disable a few formatters for now
-    #"tree": formatters_dict["FIRST_THREE"],
-    #"quad": formatters_dict["FIRST_FOUR"],
-    #"fiver": formatters_dict["FIRST_FIVE"],
+    "tree": formatters_dict["FIRST_THREE"],
+    "quad": formatters_dict["FIRST_FOUR"],
+    "fiver": formatters_dict["FIRST_FIVE"],
 }
 
 

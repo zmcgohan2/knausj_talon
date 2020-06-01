@@ -3,7 +3,7 @@ from typing import Set
 from talon import Module, Context, actions
 import sys
     
-default_alphabet = 'air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip'.split(' ')
+default_alphabet = 'air bat cap drum each fine gust harp sit jury kiss look made near odd pit quench red sun trap urge vest whale plex yank zip'.split(' ')
 letters_string = 'abcdefghijklmnopqrstuvwxyz'
 
 default_digits = 'zero one two three four five six seven eight nine'.split(' ')
@@ -74,11 +74,11 @@ ctx.lists['self.modifier'] = {
 
 ctx.lists['self.letter'] = dict(zip(default_alphabet, letters_string))
 ctx.lists['self.symbol'] = {
-    'back tick': '`', '`':'`',
+    'grave': '`', '`':'`',
     'comma': ',', ',': ',',
     'dot': '.', 'period': '.',
     'semi': ';', 'semicolon': ';',
-    'quote': "'",
+    'tick': "'",
     'L square': '[', 'left square': '[', 'square': '[',
     'R square': ']', 'right square': ']',
     'forward slash': '/', 'slash': '/',
@@ -118,14 +118,24 @@ ctx.lists['self.arrow'] = {
 
 simple_keys = [
     'tab', 'escape', 'enter', 'space',
-    'home', 'pageup', 'pagedown', 'end',
+    'home', 'pageup', 'pagedown',# 'end',
     'insert',
 ]
 
 alternate_keys = {
     'delete': 'backspace', 
     #'junk': 'backspace',
+    'wipe': 'backspace',
     'forward delete': 'delete',
+    'gone': 'g',
+    'zed': 'z',
+    'yes': 'y',
+    'endo': 'end',
+    'pa': 'space',
+    'cape': 'escape',
+    'shock': 'enter',
+    'grave': '`',
+
 }
 keys = {k: k for k in simple_keys}
 keys.update(alternate_keys)
