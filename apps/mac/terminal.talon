@@ -34,4 +34,5 @@ suspend:
 resume:
   insert("fg")
   key(enter)
-
+clear:
+  key(cmd-k)
