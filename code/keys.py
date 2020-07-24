@@ -177,7 +177,7 @@ simple_keys = [
 
 alternate_keys = {
     "delete": "backspace",
-    #'junk': 'backspace',
+    "junk": "backspace",
     "forward delete": "delete",
 }
 keys = {k: k for k in simple_keys}
