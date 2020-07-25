@@ -72,3 +72,15 @@ action(browser.submit_form):
 
 action(browser.toggle_dev_tools):
 	key(cmd-alt-i)
+
+action(app.tab_previous):
+	key(cmd-shift-[)
+
+action(app.tab_next):
+	key(cmd-shift-])
+
+action(app.tab_close):
+	key(cmd-w)
+
+action(app.tab_reopen):
+	key(cmd-shift-t)

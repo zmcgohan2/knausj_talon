@@ -13,4 +13,5 @@ class user_actions:
             actions.key("cmd-{}".format(number))
 
     def tab_final():
+        # XXX not sure why this doesn't work in safari.talon
         actions.key("cmd-9")
