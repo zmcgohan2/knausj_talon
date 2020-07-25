@@ -25,6 +25,8 @@ rerun search:
 run last:
   key(up)
   key(enter)
+action(edit.line_end):
+  key(ctrl-e)
 action(edit.page_down):
   key(command-pagedown)
 action(edit.page_up):
