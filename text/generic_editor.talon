@@ -28,6 +28,12 @@ go line start:
 go line end:
     edit.line_end()
 
+go paragraph start:
+    edit.paragraph_start()
+
+go paragraph end:
+    edit.paragraph_end()
+
 go way left:
     edit.line_start()
     edit.line_start()

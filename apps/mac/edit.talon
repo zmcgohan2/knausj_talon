@@ -136,10 +136,14 @@ action(edit.page_down):
 action(edit.page_up):
 	key(pageup)
 
-#action(edit.paragraph_end):
+action(edit.paragraph_end):
+	key(ctrl-e)
+
 #action(edit.paragraph_next):
 #action(edit.paragraph_previous):
-#action(edit.paragraph_start):
+
+action(edit.paragraph_start):
+	key(ctrl-a)
 
 action(edit.paste):
 	key(cmd-v)
