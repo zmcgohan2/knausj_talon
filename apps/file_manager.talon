@@ -13,7 +13,7 @@ go profile: user.file_manager_open_user_directory("")
 go docks: user.file_manager_open_user_directory("Documents")
 go back: user.file_manager_go_back()
 go forward: user.file_manager_go_forward()
-daddy: user.file_manager_open_parent()
+go parent: user.file_manager_open_parent()
 
 ^follow <number>$: user.file_manager_open_directory(number - 1)
 ^open <number>$: user.file_manager_open_file(number - 1)
