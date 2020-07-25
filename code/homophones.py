@@ -211,7 +211,7 @@ class Actions:
 
     def homophones_format_selection(word: str, fmtrs: list):
         """Formats the selection using Formatters"""
-        actions.user.formatters_format_text(word, fmtrs)
+        actions.user.formatted_text(word, fmtrs)
 
 
 @ctx.capture(rule="{self.homophones_canonicals}")
@@ -229,7 +229,7 @@ def homophones_selection(m):
 def homophones_formatted_selection(m):
     global active_word_list
     selection = active_word_list[(selection_map[m.homophones_selections])]
-    return actions.user.formatters_format_text(selection, m.formatters)
+    return actions.user.formatted_text(selection, m.formatters)
 
 
 ctx.lists["self.homophones_canonicals"] = canonical_list
