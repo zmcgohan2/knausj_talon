@@ -3,4 +3,4 @@ run remove dear: "rmdir "
 run symlink: "ln -s "
 run hard link: "ln "
 run ditto: "ditto "
-
+run rip (grip | rep): "rg "
