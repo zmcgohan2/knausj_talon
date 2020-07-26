@@ -16,6 +16,9 @@ mapping_vocabulary = {
     "i've": "I've",
     "i'll": "I'll",
     "i'd": "I'd",
+    "home assistant": "Home Assistant",
+    "unify": "UniFi",
+    "one password": "1Password",
 }
 
 mapping_vocabulary.update(dict(zip(simple_vocabulary, simple_vocabulary)))
