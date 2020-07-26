@@ -44,6 +44,9 @@ list in it:
 block: 
 	insert("{}") 
 	key(left enter enter up tab)
+(in | inside) angle:
+	insert("<>")
+	key(left)
 (in | inside) percent: 
 	insert("%%") 
 	key(left)
