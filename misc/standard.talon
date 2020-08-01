@@ -75,5 +75,5 @@ play previous: key(prev)
 (pad | padding): 
 	insert("  ") 
 	key(left)
-funny: "ha ha"
+funny: "heh, "
 #menu: key(alt)
