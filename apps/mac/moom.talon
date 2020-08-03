@@ -105,6 +105,34 @@ window shrink bottom:
 	key("return")
 	sleep(300ms)
 
+window move left:
+	key("ctrl-alt-m")
+	sleep(50ms)
+	key("left")
+	key("return")
+	sleep(300ms)
+
+window move right:
+	key("ctrl-alt-m")
+	sleep(50ms)
+	key("right")
+	key("return")
+	sleep(300ms)
+
+window move up:
+	key("ctrl-alt-m")
+	sleep(50ms)
+	key("up")
+	key("return")
+	sleep(300ms)
+
+window move down:
+	key("ctrl-alt-m")
+	sleep(50ms)
+	key("down")
+	key("return")
+	sleep(300ms)
+
 window undo:
 	key("ctrl-alt-m")
 	sleep(50ms)
