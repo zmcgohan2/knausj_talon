@@ -163,10 +163,6 @@ class Actions:
         actions.sleep("100ms")
         raise_homophones(clip.get(), True, True)
 
-    def homophones_format_selection(word: str, fmtrs: list):
-        """Formats the selection using Formatters"""
-        actions.user.formatted_text(word, fmtrs)
-
     def homophones_select(number: int):
         """selects the homophone by number"""
         if number <= len(active_word_list) and number > 0:
@@ -182,21 +178,3 @@ class Actions:
 @ctx.capture(rule="{self.homophones_canonicals}")
 def homophones_canonical(m):
     return m.homophones_canonicals
-
-
-@ctx.capture(rule="{self.homophones_selections}")
-def homophones_selection(m):
-    global active_word_list
-    return active_word_list[(selection_map[m.homophones_selections])]
-
-
-@ctx.capture(rule="<user.formatters> {self.homophones_selections}")
-def homophones_formatted_selection(m):
-    global active_word_list
-    selection = active_word_list[(selection_map[m.homophones_selections])]
-    return actions.user.formatted_text(selection, m.formatters)
-
-
-ctx.lists["self.homophones_canonicals"] = canonical_list
-ctx.lists["self.homophones_selections"] = []
-
