@@ -2,13 +2,15 @@ from talon import Context, Module, actions, grammar
 
 
 simple_vocabulary = [
-    "nmap",
     "admin",
     "Cisco",
     "Citrix",
-    "VPN",
+    "Costco",
     "DNS",
+    "informatics",
     "minecraft",
+    "nmap",
+    "VPN",
 ]
 
 mapping_vocabulary = {
@@ -17,6 +19,16 @@ mapping_vocabulary = {
     "i've": "I've",
     "i'll": "I'll",
     "i'd": "I'd",
+    "calwber": "Kaelber",
+    "calbers": "Kaelber's",
+    "doctor": "Dr.",
+    "fantastic to tell": "Fantastical",
+    "gary": "Gary",
+    "garry": "Gary",
+    "en ria": "Enrica",
+    "riley": "Riley",
+    "rightly": "Riley",
+    "Nickolas": "Nicholas",
     "home assistant": "Home Assistant",
     "unify": "UniFi",
     "one password": "1Password",
