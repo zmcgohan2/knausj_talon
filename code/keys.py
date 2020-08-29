@@ -153,6 +153,8 @@ ctx.lists["self.symbol"] = {
     "pipe": "|",
     "dubquote": '"',
     "double quote": '"',
+    "em dash": "—",
+    "ellipsis": "…",
 }
 
 ctx.lists["self.number"] = dict(zip(default_digits, numbers))
