@@ -186,6 +186,7 @@ alternate_keys = {
     "wipe": "backspace",
     "forward delete": "delete",
     #'junk': 'backspace',
+    "return": "enter"
 }
 keys = {k: k for k in simple_keys}
 keys.update(alternate_keys)
