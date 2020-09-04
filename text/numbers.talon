@@ -1,0 +1,1 @@
+numb <number>: insert("{number}")
