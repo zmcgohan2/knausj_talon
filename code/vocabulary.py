@@ -34,6 +34,8 @@ mapping_vocabulary = {
     "home assistant": "Home Assistant",
     "sight": "site",
     "sights": "sites",
+    "ta": "Talon",
+    "talent": "Talon",
     "unify": "UniFi",
     "one password": "1Password",
 }
