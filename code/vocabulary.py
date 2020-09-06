@@ -3,6 +3,8 @@ from talon import Context, Module, actions, grammar
 
 simple_vocabulary = [
     "admin",
+    "BPA",
+    "BPAs",
     "Cisco",
     "Citrix",
     "Costco",
@@ -30,6 +32,8 @@ mapping_vocabulary = {
     "rightly": "Riley",
     "Nickolas": "Nicholas",
     "home assistant": "Home Assistant",
+    "sight": "site",
+    "sights": "sites",
     "unify": "UniFi",
     "one password": "1Password",
 }
