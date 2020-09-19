@@ -28,6 +28,7 @@ mapping_vocabulary = {
     "gary": "Gary",
     "garry": "Gary",
     "en ria": "Enrica",
+    "impatient": "inpatient",
     "riley": "Riley",
     "rightly": "Riley",
     "Nickolas": "Nicholas",
@@ -36,6 +37,7 @@ mapping_vocabulary = {
     "sights": "sites",
     "ta": "Talon",
     "talent": "Talon",
+    "tara vici": "Tarabichi",
     "unify": "UniFi",
     "one password": "1Password",
 }
