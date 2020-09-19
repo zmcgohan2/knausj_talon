@@ -9,7 +9,11 @@ words_to_keep_lowercase = "a,an,the,at,by,for,in,is,of,on,to,up,and,as,but,or,no
     ","
 )
 
+# last_phrase has the last phrase spoken, WITHOUT formatting.
+# This is needed for reformatting.
 last_phrase = ""
+
+# formatted_phrase_history keeps the most recent formatted phrases, WITH formatting.
 formatted_phrase_history = []
 formatted_phrase_history_length = 20
 
@@ -25,7 +29,7 @@ def surround(by):
     return func
 
 
-def FormatText(m: Union[str, Phrase], fmtrs: str):
+def format_phrase(m: Union[str, Phrase], fmtrs: str):
     global last_phrase
     last_phrase = m
     words = []
@@ -38,34 +42,30 @@ def FormatText(m: Union[str, Phrase], fmtrs: str):
         words = actions.dictate.parse_words(m)
         words = actions.dictate.replace_words(words)
 
-    return format_text_helper(words, fmtrs, True)
+    result = format_phrase_no_history(words, fmtrs)
 
-
-def format_text_helper(word_list, fmtrs: str, tracked: bool):
+    # Add result to history.
     global formatted_phrase_history
+    formatted_phrase_history.insert(0, result)
+    formatted_phrase_history = formatted_phrase_history[
+        :formatted_phrase_history_length
+    ]
+
+    return result
+
+
+def format_phrase_no_history(word_list, fmtrs: str):
     fmtr_list = fmtrs.split(",")
-    tmp = []
+    words = []
     spaces = True
     for i, w in enumerate(word_list):
         for name in reversed(fmtr_list):
             smash, func = all_formatters[name]
             w = func(i, w, i == len(word_list) - 1)
             spaces = spaces and not smash
-        tmp.append(w)
-    words = tmp
-
-    sep = " "
-    if not spaces:
-        sep = ""
-    result = sep.join(words)
-
-    if tracked:
-        formatted_phrase_history.insert(0, result)
-        formatted_phrase_history = formatted_phrase_history[
-            -formatted_phrase_history_length:
-        ]
-
-    return result
+        words.append(w)
+    sep = " " if spaces else ""
+    return sep.join(words)
 
 
 NOSEP = True
@@ -122,6 +122,10 @@ formatters_dict = {
     ),
     "NO_SPACES": (NOSEP, every_word(lambda w: w)),
     "DASH_SEPARATED": words_with_joiner("-"),
+    "TERMINAL_DASH_SEPARATED": (
+        NOSEP,
+        first_vs_rest(lambda w: " --" + w.lower(), lambda w: "-" + w.lower()),
+    ),
     "DOUBLE_COLON_SEPARATED": words_with_joiner("::"),
     "ALL_CAPS": (SEP, every_word(lambda w: w.upper())),
     "ALL_LOWERCASE": (SEP, every_word(lambda w: w.lower())),
@@ -129,6 +133,7 @@ formatters_dict = {
     "SINGLE_QUOTED_STRING": (SEP, surround("'")),
     "SPACE_SURROUNDED_STRING": (SEP, surround(" ")),
     "DOT_SEPARATED": words_with_joiner("."),
+    "DOT_SNAKE": (NOSEP, lambda i, word, _: "." + word if i == 0 else "_" + word),
     "SLASH_SEPARATED": (NOSEP, every_word(lambda w: "/" + w)),
     "CAPITALIZE_FIRST_WORD": (SEP, first_vs_rest(lambda w: w.capitalize())),
     "CAPITALIZE_ALL_WORDS": (
@@ -190,7 +195,7 @@ def format_text(m) -> str:
 class Actions:
     def formatted_text(phrase: Union[str, Phrase], formatters: str) -> str:
         """Formats a phrase according to formatters. formatters is a comma-separated string of formatters (e.g. 'CAPITALIZE_ALL_WORDS,DOUBLE_QUOTED_STRING')"""
-        return FormatText(phrase, formatters)
+        return format_phrase(phrase, formatters)
 
     def formatters_help_toggle():
         """Lists all formatters"""
@@ -221,7 +226,7 @@ class Actions:
     def formatters_reformat_last(formatters: str) -> str:
         """Reformats last formatted phrase"""
         global last_phrase
-        return FormatText(last_phrase, formatters)
+        return format_phrase(last_phrase, formatters)
 
 
 @ctx.capture(rule="{self.formatters}+")
@@ -231,7 +236,7 @@ def formatters(m):
 
 @ctx.capture(rule="<self.formatters> <user.text>")
 def format_text(m):
-    return FormatText(m.text, m.formatters)
+    return format_phrase(m.text, m.formatters)
 
 
 ctx.lists["self.formatters"] = formatters_words.keys()
@@ -242,7 +247,7 @@ def gui(gui: imgui.GUI):
     gui.text("List formatters")
     gui.line()
     for name in sorted(set(formatters_words.keys())):
-        gui.text(f"{name} | {format_text_helper(['one', 'two', 'three'], name, False)}")
+        gui.text(f"{name} | {format_phrase_no_history(['one', 'two', 'three'], name)}")
 
 
 @imgui.open(software=False)
