@@ -18,7 +18,7 @@ def devices_changed(device_type):
     if device_type is cubeb.DeviceType.INPUT:
         for device in ctx.inputs():
             if device.name in PREFERRED_MICROPHONES:
-                scripting.global_speech_system.set_microphone(device)
+                scripting.global_speech_system.engine.set_microphone(device)
                 return
 
 ctx.register('devices_changed', devices_changed)
