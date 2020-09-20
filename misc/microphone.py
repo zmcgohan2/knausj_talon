@@ -11,7 +11,7 @@ manager.register('mic_change', mic_changed_to)
 
 # note: cubeb API may not be stable; don't rely on this
 from talon.lib import cubeb
-from talon import scripting
+from talon import speech_system
 
 update_speech_registered = True
 
@@ -24,7 +24,7 @@ def devices_changed(device_type):
             update_speech_registered = False
         for device in ctx.inputs():
             if device.name in PREFERRED_MICROPHONES:
-                scripting.global_speech_system.engine.set_microphone(device)
+                speech_system.engine.set_microphone(device)
                 actions.speech.enable()
                 return
         try:
