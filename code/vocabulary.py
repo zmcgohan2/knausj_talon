@@ -35,6 +35,7 @@ capitalize = [
     "November",
     "December",
     "Gary",
+    "Mary",
     "Riley",
 ]
 
@@ -50,6 +51,7 @@ word_map = {
     "Nickolas": "Nicholas",
     "sight": "site",
     "sights": "sites",
+    "surely": "Shirley",
     "ta": "Talon",
     "talent": "Talon",
     "unify": "UniFi",
