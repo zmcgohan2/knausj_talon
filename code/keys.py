@@ -155,8 +155,6 @@ ctx.lists["self.symbol"] = {
     "pipe": "|",
     "dubquote": '"',
     "double quote": '"',
-    "em dash": "—",
-    "ellipsis": "…",
 }
 
 
