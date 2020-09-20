@@ -1,11 +1,18 @@
-import win32api
-import win32com.client
+import sys
 
-win32api.SetDllDirectory(r'C:\MModal\Server')
+fda = None
 
-fda = win32com.client.Dispatch("FDLink.Application")
+if sys.platform == 'win32':
+	import win32api
+	import win32com.client
+
+	win32api.SetDllDirectory(r'C:\MModal\Server')
+	fda = win32com.client.Dispatch("FDLink.Application")
 
 def disable_fd():
+	if fda is None:
+		return
+
 	fdas = fda.Connect()
 	if fdas is None:
 		return # unable to connect
