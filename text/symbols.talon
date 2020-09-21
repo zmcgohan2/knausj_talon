@@ -1,4 +1,5 @@
 question: "?"
+dash: "-"
 double dash: "--"
 (bracket | brack | left bracket): "{"
 (rbrack | are bracket | right bracket): "}"
