@@ -1,8 +1,6 @@
 question: "?"
 dash: "-"
 double dash: "--"
-(bracket | brack | left bracket): "{"
-(rbrack | are bracket | right bracket): "}"
 triple quote: "'''"
 (dot dot | dotdot): ".."
 ellipsis: "…"
@@ -30,10 +28,10 @@ empty escaped string:
 (inside parens | args):
 	insert("()")
 	key(left)
-inside (squares | list): 
+inside (list | brackets):
 	insert("[]") 
 	key(left)
-inside (bracket | braces): 
+inside braces:
 	insert("{}") 
 	key(left)
 inside percent: 
