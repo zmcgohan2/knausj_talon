@@ -82,6 +82,9 @@ mapping_vocabulary = {
     "home assistant": "Home Assistant",
     "tara vici": "Tarabichi",
     "one password": "1Password",
+    "smart link": "SmartLink",
+    "smart phrase": "SmartPhrase",
+    "smart text": "SmartText",
 }
 mapping_vocabulary.update(dict(zip(simple_vocabulary, simple_vocabulary)))
 
