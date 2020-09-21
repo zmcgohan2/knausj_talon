@@ -25,7 +25,10 @@ def devices_changed(device_type):
         for device in ctx.inputs():
             if device.name in PREFERRED_MICROPHONES:
                 speech_system.engine.set_microphone(device)
-                actions.speech.enable()
+                try:
+                    actions.speech.enable()
+                except TypeError:
+                    pass # if fails due to it being too early, speech is already enabled
                 return
         try:
             # XXX can't figure out how to run this late enough that this works:
