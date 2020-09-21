@@ -23,7 +23,13 @@ def devices_changed(device_type):
             registry.unregister('update_speech', speech_updated)
             update_speech_registered = False
         for device in ctx.inputs():
-            if device.name in PREFERRED_MICROPHONES:
+            if device.state is not cubeb.DeviceState.ENABLED:
+                continue
+            name = device.name
+            # Windows microphone device names are of the format "Microphone (...)"
+            if name.startswith('Microphone (') and name.endswith(')'):
+                name = name[12:-1]
+            if name in PREFERRED_MICROPHONES:
                 speech_system.engine.set_microphone(device)
                 try:
                     actions.speech.enable()
