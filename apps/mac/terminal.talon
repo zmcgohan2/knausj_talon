@@ -22,6 +22,24 @@ rerun search:
 run last:
   key(up)
   key(enter)
+action(edit.delete):
+  key(ctrl-w)
+action(edit.extend_word_left):
+  key(ctrl-space)
+  key(alt-b)
+action(edit.extend_word_right):
+  key(ctrl-space)
+  key(alt-f)
+action(edit.delete_line): 
+  key(ctrl-u)
+action(edit.delete_word):
+  key(alt-d)
+action(edit.word_left):
+  key(alt-b)
+action(edit.word_right):
+  key(alt-f)
+action(edit.line_start):
+  key(ctrl-a)
 action(edit.line_end):
   key(ctrl-e)
 action(edit.page_down):
@@ -35,3 +53,7 @@ resume:
   key(enter)
 clear:
   key(cmd-k)
+clear word left:
+  key(alt-backspace)
+clear word right:
+  key(alt-d)
