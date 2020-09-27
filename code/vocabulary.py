@@ -54,6 +54,7 @@ word_map = {
     "surely": "Shirley",
     "ta": "Talon",
     "talent": "Talon",
+    "thee": "the",
     "unify": "UniFi",
 }
 word_map.update({x.lower(): x for x in capitalize})
@@ -62,6 +63,7 @@ word_map.update({x.lower(): x for x in capitalize})
 # recognize them at all.
 simple_vocabulary = [
     "admin",
+    "app",
     "BPA",
     "BPAs",
     "Cisco",
