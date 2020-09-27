@@ -80,6 +80,7 @@ mapping_vocabulary = {
     "fantastic to tell": "Fantastical",
     "en ria": "Enrica",
     "home assistant": "Home Assistant",
+    "launch bar": "LaunchBar",
     "tara vici": "Tarabichi",
     "one password": "1Password",
     "smart link": "SmartLink",
