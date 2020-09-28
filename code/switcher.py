@@ -198,7 +198,7 @@ def update_launch_list():
         ctx.lists["user.launch"] = launch
 
 
-def ui_event(event, arg):
+def ui_event(event, arg=None):
     if event in ("app_launch", "app_close"):
         update_lists()
 
