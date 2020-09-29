@@ -42,6 +42,7 @@ capitalize = [
 # Add single words here if Talon recognizes them, but they need to have their
 # spelling adjusted.
 word_map = {
+    "arc": "Arq",
     "calwber": "Kaelber",
     "calbers": "Kaelber's",
     "doctor": "Dr.",
@@ -72,6 +73,7 @@ simple_vocabulary = [
     "DNS",
     "informatics",
     "minecraft",
+    "Minio",
     "nmap",
     "VPN",
 ]
