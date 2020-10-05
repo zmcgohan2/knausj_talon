@@ -83,8 +83,11 @@ simple_vocabulary = [
 mapping_vocabulary = {
     "fantastic to tell": "Fantastical",
     "en ria": "Enrica",
+    "fable": "Furrball",
     "home assistant": "Home Assistant",
+    "iowas": "iOS",
     "launch bar": "LaunchBar",
+    "macs": "macOS",
     "tara vici": "Tarabichi",
     "one password": "1Password",
     "smart link": "SmartLink",
