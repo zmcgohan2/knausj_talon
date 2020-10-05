@@ -3,6 +3,7 @@ was_enabled = False
 def fn(_):
     global was_enabled
     if ui.active_app().bundle in (
+        'com.apple.FaceTime',
         'com.citrix.XenAppViewer',
         'com.webex.meetingmanager',
         'com.microsoft.teams'
