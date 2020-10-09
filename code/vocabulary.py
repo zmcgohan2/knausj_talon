@@ -90,8 +90,10 @@ mapping_vocabulary = {
     "macs": "macOS",
     "tara vici": "Tarabichi",
     "one password": "1Password",
+    "smart group": "SmartGroup",
     "smart link": "SmartLink",
     "smart phrase": "SmartPhrase",
+    "smart set": "SmartSet",
     "smart text": "SmartText",
 }
 mapping_vocabulary.update(dict(zip(simple_vocabulary, simple_vocabulary)))
