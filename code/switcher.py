@@ -137,6 +137,7 @@ class Actions:
     def switcher_focus(name: str):
         """Focus a new application by  name"""
         app = actions.self.get_running_app(name)
+        print('Attempting to focus', name, app)
         app.focus()
 
         # Hacky solution to do this reliably on Mac.
