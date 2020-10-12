@@ -99,6 +99,8 @@ mapping_vocabulary = {
     "smart phrase": "SmartPhrase",
     "smart set": "SmartSet",
     "smart text": "SmartText",
+    "work cu": "workqueues",
+    "work use": "workqueues",
 }
 mapping_vocabulary.update(dict(zip(simple_vocabulary, simple_vocabulary)))
 
