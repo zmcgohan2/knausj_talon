@@ -81,9 +81,9 @@ simple_vocabulary = [
 # Add vocabulary words (or phrases you want treated as words) here that aren't
 # recognized by Talon and are written differently than they're pronounced.
 mapping_vocabulary = {
-    "fantastic to tell": "Fantastical",
     "en ria": "Enrica",
     "fable": "Furrball",
+    "fantastic to tell": "Fantastical",
     "home assistant": "Home Assistant",
     "iowas": "iOS",
     "launch bar": "LaunchBar",
