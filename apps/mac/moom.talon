@@ -117,6 +117,18 @@ window move down:
 	key(down return)
 	sleep(300ms)
 
+window screen up:
+	key(ctrl-alt-m)
+	sleep(50ms)
+	key(- return)
+	sleep(300ms)
+
+window screen down:
+	key(ctrl-alt-m)
+	sleep(50ms)
+	key(l return)
+	sleep(300ms)
+
 window undo:
 	key(ctrl-alt-m)
 	sleep(50ms)
