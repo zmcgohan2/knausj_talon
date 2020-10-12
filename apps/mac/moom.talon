@@ -63,14 +63,14 @@ window grow right:
 	key("return")
 	sleep(300ms)
 
-window grow top:
+window grow up:
 	key("ctrl-alt-m")
 	sleep(50ms)
 	key("ctrl-up")
 	key("return")
 	sleep(300ms)
 
-window grow bottom:
+window grow down:
 	key("ctrl-alt-m")
 	sleep(50ms)
 	key("ctrl-down")
