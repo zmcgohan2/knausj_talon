@@ -76,11 +76,15 @@ simple_vocabulary = [
     "Minio",
     "nmap",
     "VPN",
+    "Webex",
 ]
 
 # Add vocabulary words (or phrases you want treated as words) here that aren't
 # recognized by Talon and are written differently than they're pronounced.
 mapping_vocabulary = {
+    "data career": "Data Courier",
+    "data courier": "Data Courier",
+    "date a career": "Data Courier",
     "en ria": "Enrica",
     "fable": "Furrball",
     "fantastic to tell": "Fantastical",
