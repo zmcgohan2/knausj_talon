@@ -71,10 +71,10 @@ select left:
 select right:
     edit.extend_right()
 
-select up:
+select [line] up:
     edit.extend_line_up()
 
-select down:
+select [line] down:
     edit.extend_line_down()
 
 select word left:
