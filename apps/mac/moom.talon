@@ -129,6 +129,18 @@ window screen down:
 	key(l return)
 	sleep(300ms)
 
+window screen left:
+	key(ctrl-alt-m)
+	sleep(50ms)
+	key(o return)
+	sleep(300ms)
+
+window screen right:
+	key(ctrl-alt-m)
+	sleep(50ms)
+	key(p return)
+	sleep(300ms)
+
 window undo:
 	key(ctrl-alt-m)
 	sleep(50ms)
