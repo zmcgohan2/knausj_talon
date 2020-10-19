@@ -10,4 +10,5 @@ launch bar:
 
 launch bar running:
 	key("cmd-space")
+	sleep(50ms)
 	key("cmd-r")
