@@ -48,6 +48,8 @@ word_map = {
     "doctor": "Dr.",
     "garry": "Gary",
     "impatient": "inpatient",
+    "ipad": "iPad",
+    "iphone": "iPhone",
     "rightly": "Riley",
     "Nickolas": "Nicholas",
     "sight": "site",
@@ -57,6 +59,7 @@ word_map = {
     "talent": "Talon",
     "thee": "the",
     "unify": "UniFi",
+    "unified": "UniFi",
 }
 word_map.update({x.lower(): x for x in capitalize})
 
@@ -86,10 +89,12 @@ mapping_vocabulary = {
     "data courier": "Data Courier",
     "date a career": "Data Courier",
     "en ria": "Enrica",
+    "in ria": "Enrica",
     "fable": "Furrball",
     "fantastic to tell": "Fantastical",
     "home assistant": "Home Assistant",
     "iowas": "iOS",
+    "i pat": "iPad",
     "launch bar": "LaunchBar",
     "macs": "macOS",
     "tara vici": "Tarabichi",
@@ -99,6 +104,7 @@ mapping_vocabulary = {
     "smart phrase": "SmartPhrase",
     "smart set": "SmartSet",
     "smart text": "SmartText",
+    "verbal": "Furrball",
     "work cu": "workqueues",
     "work use": "workqueues",
 }
