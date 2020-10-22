@@ -30,7 +30,10 @@ def devices_changed(device_type):
             if name.startswith('Microphone (') and name.endswith(')'):
                 name = name[12:-1]
             if name in PREFERRED_MICROPHONES:
+                print(f'Setting microphone to {device.name} (even if the menu says otherwise)')
                 speech_system.engine.set_microphone(device)
+                # XXX can't figure out how to update the UI
+                # print(f'Current microphone is {manager.active_mic().name}')
                 try:
                     actions.speech.enable()
                 except TypeError:
