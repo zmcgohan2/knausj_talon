@@ -5,3 +5,6 @@ archive:
 
 flag:
 	key(cmd-shift-l)
+
+junk:
+	key(cmd-shift-j)

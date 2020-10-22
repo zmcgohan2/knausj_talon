@@ -8,3 +8,6 @@ flag:
 
 unflag:
 	key(cmd-opt-')
+
+junk:
+	key(cmd-shift-j)
