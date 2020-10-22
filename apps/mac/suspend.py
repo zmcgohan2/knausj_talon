@@ -14,6 +14,8 @@ last_active_app_bundle_id = None
 def fn(_):
     global was_enabled_globally, last_active_app_bundle_id
     active_app_bundle_id = ui.active_app().bundle
+    # print(f'was_enabled_globally: {was_enabled_globally}; active_app_bundle_id: {active_app_bundle_id}')
+    # print(f'was_enabled_in_app: {was_enabled_in_app}')
     if actions.speech.enabled():
         if active_app_bundle_id in DEFAULT_DISABLE_BUNDLE_IDS:
             was_enabled_globally = True
@@ -26,12 +28,15 @@ def fn(_):
                 actions.speech.disable()
         elif last_active_app_bundle_id in DEFAULT_DISABLE_BUNDLE_IDS:
             was_enabled_in_app.add(last_active_app_bundle_id)
-    elif last_active_app_bundle_id in DEFAULT_DISABLE_BUNDLE_IDS:
-        was_enabled_in_app.discard(last_active_app_bundle_id)
-        was_enabled_globally = False
-    elif was_enabled_globally:
-        was_enabled_globally = False
-        actions.speech.enable()
+    else:
+        if was_enabled_globally:
+            was_enabled_globally = False
+            # print(f'enabling...')
+            actions.speech.enable()
+            actions.user.mouse_wake()
+        if last_active_app_bundle_id in DEFAULT_DISABLE_BUNDLE_IDS:
+            was_enabled_in_app.discard(last_active_app_bundle_id)
+            was_enabled_globally = False
     last_active_app_bundle_id = active_app_bundle_id
     
 ui.register('app_activate', fn)
