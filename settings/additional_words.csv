@@ -6,33 +6,34 @@ BPAs
 Cisco
 Citrix
 Costco
-data career,Data Courier
-data courier,Data Courier
-date a career,Data Courier
+Data Courier,data career
+Data Courier,data courier
+Data Courier,date a career
 DNS
-en ria,Enrica
-fable,Furrball
-fantastic to tell,Fantastical
-home assistant,Home Assistant
-i pat,iPad
-in ria,Enrica
+Enrica,en ria
+Furrball,fable
+Fantastical,fantastic to tell
+Home Assistant,home assistant
+iPad,i pat
+Enrica,in ria
 informatics
-iowas,iOS
-launch bar,LaunchBar
-macs,macOS
+iOS,iowas
+LaunchBar,launch bar
+macOS,macs
 Minecraft
 Minio
-nmap,N map
-one password,1Password
-smart group,SmartGroup
-smart link,SmartLink
-smart phrase,SmartPhrase
-smart set,SmartSet
-smart text,SmartText
-tara vici,Tarabichi
-under-documented,under documented
-verbal,Furrball
+N map,nmap
+OneNote,one note
+1Password,one password
+SmartGroup,smart group
+SmartLink,smart link
+SmartPhrase,smart phrase
+SmartSet,smart set
+SmartText,smart text
+Tarabichi,tara vici
+under documented,under-documented
+Furrball,verbal
 VPN
 Webex
-work cu,workqueues
-work use,workqueues
+workqueues,work cu
+workqueues,work use
