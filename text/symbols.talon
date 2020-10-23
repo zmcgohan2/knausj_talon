@@ -26,6 +26,9 @@ empty escaped string:
     "\\'\\'"
     key(left)
     key(left)
+inside angle brackets:
+    insert("<>")
+    key(left)
 (inside parens | args):
 	insert("()")
 	key(left)
