@@ -186,10 +186,10 @@ def number(m):
     return int("".join(str(i) for i in list(m)))
 
 
-@ctx.capture("number_signed", rule=f"[negative | minus] <number>")
+@ctx.capture("number_signed", rule=f"[negative] <number>")
 def number_signed(m):
     number = m[-1]
-    if m[0]:
+    if m[0] == "negative":
         return -number
     return number
 
