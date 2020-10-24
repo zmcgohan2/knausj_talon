@@ -24,7 +24,6 @@ def fn(_):
                 actions.user.history_disable()
                 actions.user.homophones_hide()
                 actions.user.help_hide()
-                actions.user.mouse_sleep()
                 actions.speech.disable()
         elif last_active_app_bundle_id in DEFAULT_DISABLE_BUNDLE_IDS:
             was_enabled_in_app.add(last_active_app_bundle_id)
@@ -33,7 +32,6 @@ def fn(_):
             was_enabled_globally = False
             # print(f'enabling...')
             actions.speech.enable()
-            actions.user.mouse_wake()
         if last_active_app_bundle_id in DEFAULT_DISABLE_BUNDLE_IDS:
             was_enabled_in_app.discard(last_active_app_bundle_id)
             was_enabled_globally = False
