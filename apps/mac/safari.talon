@@ -83,3 +83,6 @@ action(app.tab_close):
 
 action(app.tab_reopen):
 	key(cmd-shift-t)
+
+action(user.tab_overview):
+	key(cmd-shift-\)

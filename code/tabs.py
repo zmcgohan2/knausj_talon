@@ -10,3 +10,6 @@ class tab_actions:
 
     def tab_final():
         """Jumps to the final tab"""
+
+    def tab_overview():
+        """Shows tab thumbnails"""

@@ -2,6 +2,7 @@ app: apple_terminal
 -
 tag(): terminal
 tag(): user.file_manager
+tag(): user.tabs
 action(user.file_manager_open_parent):
     insert("cd ..")
     key(enter)
@@ -13,6 +14,8 @@ action(app.tab_next):
   key(ctrl-tab)
 action(app.tab_previous):
   key(ctrl-shift-tab)
+action(user.tab_overview):
+  key(cmd-shift-\)
 action(app.window_open):
   key(cmd-n)
 kill all:
