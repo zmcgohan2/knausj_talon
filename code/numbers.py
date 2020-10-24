@@ -58,6 +58,7 @@ scales_map = {scales[0]: 100}
 scales_map.update({n: 10 ** ((i + 1) * 3) for i, n in enumerate(scales[1:])})
 
 alt_digits = "(" + ("|".join(digits_map.keys())) + ")"
+alt_nonzero_digits = "(" + ("|".join(k for k, v in digits_map.items() if v != 0)) + ")"
 alt_teens = "(" + ("|".join(teens_map.keys())) + ")"
 alt_tens = "(" + ("|".join(tens_map.keys())) + ")"
 alt_scales = "(" + ("|".join(scales_map.keys())) + ")"
@@ -147,7 +148,7 @@ assert(test_num([1, 'million', 10, 10]) == 100001010)
 ctx = Context()
 
 
-@ctx.capture("digits", rule=f"{alt_digits}+")
+@ctx.capture("digits", rule=f"{alt_nonzero_digits} {alt_digits}*")
 def digits(m):
     return int("".join([str(digits_map[n]) for n in m]))
 
