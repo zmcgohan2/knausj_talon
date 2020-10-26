@@ -105,6 +105,7 @@ ctx.lists["self.symbol_key"] = {
     "semi": ";",
     "semicolon": ";",
     "quote": "'",
+    "apostrophe": "’",
     "left bracket": "[",
     "open bracket": "[",
     "right bracket": "]",
