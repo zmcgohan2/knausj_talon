@@ -13,6 +13,6 @@ ctx.lists["self.ampm"] = {
 	"PM": " PM"
 }
 
-@ctx.capture(rule="{self.ampm}")
+@mod.capture(rule="{self.ampm}")
 def ampm(m) -> str:
     return m.ampm
