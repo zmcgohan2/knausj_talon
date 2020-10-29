@@ -11,3 +11,16 @@ heading one:
 
 heading two:
 	key(cmd-alt-2)
+
+move up:
+	key(cmd-alt-up)
+
+move down:
+	key(cmd-alt-down)
+
+move right:
+	key(cmd-])
+
+move left:
+	key(cmd-[)
+	
