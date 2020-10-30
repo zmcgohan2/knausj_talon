@@ -36,5 +36,7 @@ def fn(_):
             was_enabled_in_app.discard(last_active_app_bundle_id)
             was_enabled_globally = False
     last_active_app_bundle_id = active_app_bundle_id
-    
-ui.register('app_activate', fn)
+
+# if we try to do this on module load at startup, the action speech.enabled is not yet defined
+from talon import app
+app.register('launch', lambda: ui.register('app_activate', fn))
