@@ -14,7 +14,6 @@ from talon.lib import cubeb
 
 ctx = cubeb.Context()
 def devices_changed(device_type):
-    global update_speech_registered        
     if device_type is cubeb.DeviceType.INPUT:
         for device in ctx.inputs():
             if device.state is not cubeb.DeviceState.ENABLED:
