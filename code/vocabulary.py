@@ -35,9 +35,6 @@ _capitalize_defaults = [
     "October",
     "November",
     "December",
-    "Gary",
-    "Mary",
-    "Riley",
 ]
 
 # Default words that need to be remapped.
