@@ -1,4 +1,4 @@
-from talon import actions, registry
+from talon import actions, noise, registry
 from talon.microphone import manager
 
 PREFERRED_MICROPHONES = ('Jabra Link 370', 'Jabra Evolve 75')
@@ -31,7 +31,9 @@ def devices_changed(device_type):
                 name = name[12:-1]
             if name in PREFERRED_MICROPHONES:
                 print(f'Setting microphone to {device.name} (even if the menu says otherwise)')
+                # XXX this API is not designed for this, but I can't find a better one
                 speech_system.engine.set_microphone(device)
+                noise.noise.mic_change(device)
                 # XXX can't figure out how to update the UI
                 # print(f'Current microphone is {manager.active_mic().name}')
                 try:
