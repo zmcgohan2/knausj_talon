@@ -24,10 +24,6 @@ def on_phrase(j):
         history.append(val)
         history = history[-hist_len:]
 
-        if gui.showing:
-            gui.show()
-
-
 # todo: dynamic rect?
 @imgui.open(y=0, software=False)
 def gui(gui: imgui.GUI):
