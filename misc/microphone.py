@@ -5,7 +5,7 @@ PREFERRED_MICROPHONES = ('Jabra Link 370', 'Jabra Evolve 75')
 
 def mic_changed_to(device):
     if device and device.name not in PREFERRED_MICROPHONES:
-        actions.speech.disable()
+        actions.speech.set_microphone(None)
 
 manager.register('mic_change', mic_changed_to)
 
@@ -27,7 +27,8 @@ def devices_changed(device_type):
                 actions.speech.set_microphone(device.name)
                 actions.speech.enable()
                 return
-        actions.speech.disable()
+        print(f'Setting microphone to None')
+        actions.speech.set_microphone(None)
 
 ctx.register('devices_changed', devices_changed)
 
