@@ -3,8 +3,15 @@ from talon.microphone import manager
 
 PREFERRED_MICROPHONES = ('Jabra Link 370', 'Jabra Evolve 75')
 
+def device_name(device):
+    name = device.name
+    # Windows microphone device names are of the format "Microphone (...)"
+    if name.startswith('Microphone (') and name.endswith(')'):
+        name = name[12:-1]
+    return name
+
 def mic_changed_to(device):
-    if device and device.name not in PREFERRED_MICROPHONES:
+    if device and device_name(device) not in PREFERRED_MICROPHONES:
         actions.speech.set_microphone(None)
 
 manager.register('mic_change', mic_changed_to)
@@ -18,12 +25,9 @@ def devices_changed(device_type):
         for device in ctx.inputs():
             if device.state is not cubeb.DeviceState.ENABLED:
                 continue
-            name = device.name
-            # Windows microphone device names are of the format "Microphone (...)"
-            if name.startswith('Microphone (') and name.endswith(')'):
-                name = name[12:-1]
+            name = device_name(device)
             if name in PREFERRED_MICROPHONES:
-                print(f'Setting microphone to {device.name}')
+                print(f'Setting microphone to {name}')
                 actions.speech.set_microphone(device.name)
                 actions.speech.enable()
                 return
