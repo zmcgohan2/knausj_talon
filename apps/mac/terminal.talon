@@ -60,7 +60,7 @@ resume:
   key(enter)
 clear:
   key(cmd-k)
-clear word left:
+clear word (left | previous):
   key(alt-backspace)
-clear word right:
+clear word (right | next):
   key(alt-d)
