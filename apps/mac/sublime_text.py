@@ -39,3 +39,13 @@ class user_actions:
 		actions.key("cmd-i")
 		actions.insert(text)
 		actions.key("enter")
+
+@ctx.action_class("win")
+class win_actions:
+	def filename():
+		title = actions.win.title()
+		result = title.split(" — ")[0]
+		return result if "." in result else ""
+
+	def file_ext():
+		return actions.win.filename().split(".")[-1]
