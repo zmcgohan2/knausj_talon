@@ -13,6 +13,7 @@ sleep all:
     user.mouse_sleep()
     speech.disable()
     user.engine_sleep()
+key(ctrl-`): speech.toggle()
 (talon|talent|talents|towns) sleep: speech.disable()
 (talon|talent|talents|towns) wake: speech.enable()
 # begin: these commands are really for windows & mac with Dragon.
