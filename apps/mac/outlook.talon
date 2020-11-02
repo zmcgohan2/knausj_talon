@@ -18,3 +18,6 @@ move:
 move to [<user.text>]:
 	key(cmd-shift-m)
 	insert(user.text or "")
+
+reply:
+	key(cmd-r)
