@@ -34,10 +34,15 @@ Siff
 sig
 sigs
 SmartGroup,smart group
+SmartGroups,smart groups
 SmartLink,smart link
+SmartLinks,smart links
 SmartPhrase,smart phrase
+SmartPhrases,smart phrases
 SmartSet,smart set
+SmartSets,smart sets
 SmartText,smart text
+SmartTexts,smart texts
 startup,start up
 Tarabichi,tara vici
 under documented,under-documented
