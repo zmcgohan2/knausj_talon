@@ -26,3 +26,9 @@ move right:
 
 move left:
 	key(cmd-[)
+
+collapse:
+	key(ctrl-shift--)
+
+expand:
+	key(ctrl-shift-+)
