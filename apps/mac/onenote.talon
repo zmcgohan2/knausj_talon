@@ -1,5 +1,8 @@
 app: com.microsoft.onenote.mac
 -
+bullet:
+	key(cmd-.)
+
 check:
 	key(cmd-1)
 
@@ -23,4 +26,3 @@ move right:
 
 move left:
 	key(cmd-[)
-	
