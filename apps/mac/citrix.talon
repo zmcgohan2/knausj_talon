@@ -9,7 +9,7 @@ workspace setup:
 	key(ctrl-esc)
 	sleep(200ms)
 	insert("h:m")
-	sleep(50ms)
+	sleep(100ms)
 	key(return)
 
 chart search <user.text>:
