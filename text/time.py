@@ -11,7 +11,9 @@ def ampm(m) -> str:
 ctx = Context()
 ctx.lists["self.ampm"] = {
 	"AM": " AM",
-	"PM": " PM"
+	"PM": " PM",
+	"A": " AM",
+	"P": " PM"
 }
 
 @mod.capture(rule="{self.ampm}")
