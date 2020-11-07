@@ -18,3 +18,6 @@ time one thousand:
 
 time two thousand:
 	insert("20:00")
+
+insert time:
+	user.insert_time_ampm()
