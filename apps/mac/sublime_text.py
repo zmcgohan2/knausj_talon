@@ -4,7 +4,7 @@ mod = Module()
 ctx = Context()
 
 ctx.matches = r"""
-app: com.sublimetext.4
+app.bundle: com.sublimetext.4
 """
 
 @ctx.action_class("edit")
