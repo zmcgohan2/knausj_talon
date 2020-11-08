@@ -137,11 +137,11 @@ formatters_dict = {
     "DOT_SEPARATED": words_with_joiner("."),
     "DOT_SNAKE": (NOSEP, lambda i, word, _: "." + word if i == 0 else "_" + word),
     "SLASH_SEPARATED": (NOSEP, every_word(lambda w: "/" + w)),
-    "CAPITALIZE_FIRST_WORD": (SEP, first_vs_rest(lambda w: w.capitalize())),
+    "CAPITALIZE_FIRST_WORD": (SEP, first_vs_rest(lambda w: w.capitalize() if w.islower() else w)),
     "CAPITALIZE_ALL_WORDS": (
         SEP,
         lambda i, word, _: word.capitalize()
-        if i == 0 or word not in words_to_keep_lowercase
+        if word.islower() and (i == 0 or word not in words_to_keep_lowercase)
         else word,
     ),
     "FIRST_THREE": (NOSEP, lambda i, word, _: word[0:3]),
