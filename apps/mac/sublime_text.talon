@@ -36,11 +36,6 @@ action(edit.line_swap_down):
 action(edit.line_clone):
 	key(cmd-shift-d)
 
-action(edit.jump_line):
-	key(ctrl-g)
-	actions.insert(str(n))
-	key(enter)
-
 # user.find_and_replace
 action(user.find_toggle_match_by_case):
 	key(cmd-alt-c)
