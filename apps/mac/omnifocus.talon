@@ -23,9 +23,11 @@ due today:
 due tomorrow:
 	key(ctrl-cmd-m)
 
-postpone [by] [<number_small>] days:
+postpone [by] <number_small> days:
+	user.postpone(number_small)
+
+postpone:
 	key(ctrl-cmd-l)
-	insert(number_small or "")
 
 clear dates:
 	key(ctrl-cmd-\)
