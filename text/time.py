@@ -24,4 +24,4 @@ def ampm(m) -> str:
 class Actions:
 	def insert_time_ampm():
 		"""Inserts the current time in 12-hour format"""
-		actions.insert(time.strftime('%I:%M %p'))
+		actions.insert(time.strftime('%-I:%M %p'))
