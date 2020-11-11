@@ -21,3 +21,6 @@ move to [<user.text>]:
 
 reply:
 	key(cmd-r)
+
+reply all:
+	key(cmd-shift-r)
