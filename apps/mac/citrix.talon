@@ -7,7 +7,7 @@ start:
 
 workspace setup:
 	key(ctrl-esc)
-	sleep(200ms)
+	sleep(500ms)
 	insert("h:m")
 	sleep(100ms)
 	key(return)
