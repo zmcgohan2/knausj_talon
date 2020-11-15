@@ -25,15 +25,14 @@ project symbol [<user.text>]:
 	key(cmd-shift-r)
 	insert(user.text or "")
 
-# more direct word/line processing
-action(edit.select_word): key(cmd-d)
-action(edit.select_line): key(cmd-l)
+# more direct word/line processing - actions are in core,
+# but voice commands are enabled with tag(user.line_commands)
 action(edit.delete_line): key(ctrl-shift-k)
-
-# user.line_commands
+action(edit.line_clone): key(cmd-shift-d)
 action(edit.line_swap_up): key(cmd-ctrl-up)
 action(edit.line_swap_down): key(cmd-ctrl-down)
-action(edit.line_clone): key(cmd-shift-d)
+action(edit.select_word): key(cmd-d)
+action(edit.select_line): key(cmd-l)
 
 # user.find_and_replace
 action(user.find_toggle_match_by_case): key(cmd-alt-c)
@@ -42,6 +41,12 @@ action(user.find_toggle_match_by_regex): key(cmd-alt-r)
 action(user.find_next): key(cmd-g)
 action(user.find_previous): key(cmd-shift-g)
 action(user.replace_confirm): key(cmd-alt-e)
+
+# user.line_commands
+action(user.extend_camel_left): key(ctrl-shift-left)
+action(user.extend_camel_right): key(ctrl-shift-right)
+action(user.camel_left): key(ctrl-left)
+action(user.camel_right): key(ctrl-right)
 
 # user.multiple_cursors
 action(user.multi_cursor_add_above): key(ctrl-shift-up)
