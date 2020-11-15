@@ -2,7 +2,7 @@ app: com.sublimetext.4
 -
 tag(): user.find_and_replace
 tag(): user.line_commands
-# tag(): user.multiple_cursors
+tag(): user.multiple_cursors
 # tag(): user.snippets
 tag(): user.tabs
 
@@ -42,3 +42,13 @@ action(user.find_toggle_match_by_regex): key(cmd-alt-r)
 action(user.find_next): key(cmd-g)
 action(user.find_previous): key(cmd-shift-g)
 action(user.replace_confirm): key(cmd-alt-e)
+
+# user.multiple_cursors
+action(user.multi_cursor_add_above): key(ctrl-shift-up)
+action(user.multi_cursor_add_below): key(ctrl-shift-down)
+action(user.multi_cursor_add_to_line_ends): key(cmd-shift-l)
+action(user.multi_cursor_disable): key(escape)
+action(user.multi_cursor_enable): skip()
+action(user.multi_cursor_select_all_occurrences): key(ctrl-cmd-g)
+action(user.multi_cursor_select_fewer_occurrences): key(cmd-u)
+action(user.multi_cursor_select_more_occurrences): key(cmd-d)
