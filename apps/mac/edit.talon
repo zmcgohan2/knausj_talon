@@ -164,7 +164,7 @@ action(edit.save):
 	key(cmd-s)
 
 action(edit.save_all):
-	key(cmd-shift-s)
+	key(cmd-opt-s)
 	
 action(edit.select_all):
 	key(cmd-a)
