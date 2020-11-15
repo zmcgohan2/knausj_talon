@@ -77,7 +77,7 @@ def word_neck(word_index, valid_characters=alphanumeric):
         actions.edit.copy()
         actions.edit.left()
         time.sleep(0.25)
-        text_right = clip.get().lower()
+        text_right = clip.text().lower()
 
     print(text_right)
     print(word_index, type(word_index))
@@ -123,7 +123,7 @@ def word_prev(word_index, valid_characters=alphanumeric):
         actions.edit.copy()
         actions.edit.right()
         time.sleep(0.25)
-        text_right = clip.get().lower()
+        text_right = clip.text().lower()
 
     text_right = list(reversed(text_right))
 
