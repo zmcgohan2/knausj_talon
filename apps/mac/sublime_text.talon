@@ -26,6 +26,16 @@ project symbol [<user.text>]:
 	key(cmd-shift-r)
 	insert(user.text or "")
 
+# more direct word/line processing
+action(edit.select_word):
+	key(cmd-d)
+
+action(edit.select_line):
+	key(cmd-l)
+
+action(edit.delete_line): 
+	key(ctrl-shift-k)
+
 # user.line_commands
 action(edit.line_swap_up):
 	key(cmd-ctrl-up)
