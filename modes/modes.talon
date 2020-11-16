@@ -14,8 +14,12 @@ sleep all:
     speech.disable()
     user.engine_sleep()
 key(ctrl-`): speech.toggle()
-(talon|talent|talents|towns) sleep: speech.disable()
-(talon|talent|talents|towns) wake: speech.enable()
+(talon|talent|talents|towns) sleep:
+    speech.disable()
+    user.enable_fd()
+(talon|talent|talents|towns) wake:
+    user.disable_fd()
+    speech.enable()
 # begin: these commands are really for windows & mac with Dragon.
 dragon mode: user.dragon_mode()
 talon mode: user.talon_mode()
