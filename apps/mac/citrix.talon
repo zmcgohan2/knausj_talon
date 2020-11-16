@@ -22,3 +22,12 @@ hyperspace nonproduction:
 chart search [<user.text>]:
 	key(ctrl-space)
 	insert(text or "")
+
+alt menu:
+	key(cmd)
+
+home drive:
+	key(ctrl-esc)
+	insert("h:")
+	sleep(100ms)
+	key(return)
