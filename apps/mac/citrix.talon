@@ -4,7 +4,6 @@ app: com.citrix.XenAppViewer
 
 start [<user.text>]:
 	key(ctrl-esc)
-	sleep(500ms)
 	insert(text or "")
 
 workspace setup:
@@ -16,9 +15,8 @@ workspace setup:
 
 hyperspace nonproduction:
 	key(ctrl-esc)
-	sleep(500ms)
-	insert("H:\\Hyperspace nonproduction.RDP")
 	sleep(100ms)
+	insert("H:\\Hyperspace nonproduction.RDP")
 	key(return)
 
 chart search [<user.text>]:
