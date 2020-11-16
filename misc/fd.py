@@ -43,6 +43,8 @@ class Actions:
 
 	def enable_fd():
 		"""Enable Fluency Direct via a keyboard shortcut."""
+		if not actions.user.fd_is_running():
+			return
 		# start out with FD in a known state
 		actions.user.disable_fd()
 		actions.key("`")
