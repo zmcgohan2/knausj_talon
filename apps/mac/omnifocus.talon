@@ -5,6 +5,12 @@ open [<phrase>]:
 	key(cmd-o)
 	insert(user.formatted_text(phrase or "", "ALL_LOWERCASE,NO_SPACES"))
 
+edit:
+	key(cmd-')
+
+view:
+	key(cmd-alt-')
+
 go in box:
 	key(cmd-1)
 
