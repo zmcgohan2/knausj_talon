@@ -49,4 +49,4 @@ funk wrap <user.code_functions>:
     user.code_insert_function(code_functions, edit.selected_text())
 funk wrap <number>:
     user.code_select_function(number - 1, edit.selected_text())
-dock string: user.code_document_string()
+(dock string | dockstring): user.code_document_string()
