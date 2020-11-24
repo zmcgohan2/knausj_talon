@@ -44,6 +44,7 @@ action(user.find_toggle_match_by_regex): key(cmd-alt-r)
 action(user.find_next): key(cmd-g)
 action(user.find_previous): key(cmd-shift-g)
 action(user.replace_confirm): key(cmd-alt-e)
+action(user.replace_confirm_all): key(ctrl-alt-enter)
 
 # user.line_commands
 action(user.extend_camel_left): key(ctrl-shift-left)
