@@ -6,6 +6,9 @@ app hide:
 app hide others:
 	app.window_hide_others()
 
+app quit:
+	key(cmd-q)
+
 full screen:
 	key(cmd-ctrl-f)
 
