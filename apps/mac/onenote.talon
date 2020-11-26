@@ -1,34 +1,30 @@
 app: com.microsoft.onenote.mac
 -
-bullet:
-	key(cmd-.)
+bullet: key(cmd-.)
+check: key(cmd-1)
 
-check:
-	key(cmd-1)
+insert date: key(cmd-d)
 
-insert date:
-	key(cmd-d)
+heading one: key(cmd-alt-1)
+heading two: key(cmd-alt-2)
 
-heading one:
-	key(cmd-alt-1)
+move up: key(cmd-alt-up)
+move down: key(cmd-alt-down)
+move right: key(cmd-])
+move left: key(cmd-[)
 
-heading two:
-	key(cmd-alt-2)
+collapse: key(ctrl-shift--)
+expand: key(ctrl-shift-+)
 
-move up:
-	key(cmd-alt-up)
+go title: key(cmd-shift-t)
 
-move down:
-	key(cmd-alt-down)
+go (notebook | notebooks): key(ctrl-g)
 
-move right:
-	key(cmd-])
+go (section | sections): key(ctrl-shift-g)
+section previous: key(cmd-{)
+section next: key(cmd-})
 
-move left:
-	key(cmd-[)
-
-collapse:
-	key(ctrl-shift--)
-
-expand:
-	key(ctrl-shift-+)
+go (page | pages): key(ctrl-cmd-g)
+page new: key(cmd-n)
+page previous: key(ctrl-cmd-g up)
+page next: key(ctrl-cmd-g down)
