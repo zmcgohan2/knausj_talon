@@ -25,6 +25,10 @@ project symbol [<user.text>]:
 	key(cmd-shift-r)
 	insert(user.text or "")
 
+# navigate through multifile search results
+result next: key(f4 cmd-g)
+result previous: key(shift-f4 cmd-g)
+
 action(app.window_open): key(cmd-shift-n)
 action(app.window_close): key(cmd-shift-w)
 
