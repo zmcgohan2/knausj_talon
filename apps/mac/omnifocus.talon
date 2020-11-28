@@ -29,6 +29,14 @@ due today:
 due tomorrow:
 	key(ctrl-cmd-m)
 
+skip:
+	key(alt-space)
+
+clean up:
+	key(cmd-k)
+
+# Using plugins from https://github.com/nriley/OmniFocus-Plug-Ins
+
 postpone [by] <number_small> days:
 	user.postpone(number_small)
 
