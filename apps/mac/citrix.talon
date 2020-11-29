@@ -31,3 +31,10 @@ home drive:
 	insert("h:")
 	sleep(100ms)
 	key(return)
+
+# Chronicles navigation
+exit: key(shift-f7)
+previous: key(pageup)
+next: key(pagedown)
+chronicles item:
+	key(home f9 i enter)
