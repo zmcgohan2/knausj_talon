@@ -1,5 +1,10 @@
 app: com.microsoft.onenote.mac
 -
+bold: key(cmd-b)
+italic: key(cmd-i)
+strike through: key(ctrl-cmd--)
+highlight: key(ctrl-cmd-h)
+
 bullet: key(cmd-.)
 check: key(cmd-1)
 
@@ -7,6 +12,8 @@ insert date: key(cmd-d)
 
 heading one: key(cmd-alt-1)
 heading two: key(cmd-alt-2)
+normal: key(cmd-shift-n)
+code: key(shift-k)
 
 move up: key(cmd-alt-up)
 move down: key(cmd-alt-down)
