@@ -2,6 +2,7 @@ os: mac
 app: com.citrix.XenAppViewer
 -
 
+# Windows
 start [<user.text>]:
 	key(ctrl-esc)
 	insert(text or "")
@@ -19,20 +20,24 @@ hyperspace nonproduction:
 	insert("H:\\Hyperspace nonproduction.RDP")
 	key(return)
 
-chart search [<user.text>]:
-	key(ctrl-space)
-	insert(text or "")
-
-alt menu:
-	key(cmd)
-
 home drive:
 	key(ctrl-esc)
 	insert("h:")
 	sleep(100ms)
 	key(return)
 
-# Chronicles navigation
+# Hyperspace
+alt menu:
+	key(cmd)
+
+chart search [<user.text>]:
+	key(ctrl-space)
+	insert(text or "")
+
+master navigation:
+	key(ctrl-space ctrl-home)
+
+# Chronicles
 exit: key(shift-f7)
 previous: key(pageup)
 next: key(pagedown)
