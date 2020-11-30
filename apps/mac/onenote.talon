@@ -35,3 +35,13 @@ go (page | pages): key(ctrl-cmd-g)
 page new: key(cmd-n)
 page previous: key(ctrl-cmd-g up)
 page next: key(ctrl-cmd-g down)
+
+copy link:
+	key(cmd-ctrl-c)
+
+paste link:
+	key(cmd-k)
+	sleep(100ms)
+	key(cmd-v)
+	sleep(100ms)
+	key(enter)
