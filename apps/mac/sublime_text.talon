@@ -25,6 +25,8 @@ project symbol [<user.text>]:
 	key(cmd-shift-r)
 	insert(user.text or "")
 
+slap: key(cmd-enter)
+
 # navigate through multifile search results
 result next: key(f4 cmd-g)
 result previous: key(shift-f4 cmd-g)
