@@ -1,6 +1,6 @@
 from typing import Set
 
-from talon import Module, Context, actions
+from talon import app, Module, Context, actions
 import sys
 
 default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
@@ -114,6 +114,10 @@ ctx.lists["self.modifier_key"] = {
     "shift": "shift",  #'sky':     'shift',
     "win": "super",
 }
+# for use when remote controlling Windows machines
+if app.platform == 'mac':
+    ctx.lists["self.modifier_key"]['alt'] = 'cmd'
+
 alphabet = dict(zip(default_alphabet, letters_string))
 ctx.lists["self.letter"] = alphabet
 ctx.lists["self.symbol_key"] = {
