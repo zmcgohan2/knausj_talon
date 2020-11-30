@@ -8,5 +8,7 @@ message: key(cmd-9)
 commit: key(cmd-enter)
 push: key(cmd-alt-up)
 pull: key(cmd-alt-down)
-stage all: key(cmd-shift-a)
+stage all:
+	key(cmd-shift-a)
+	sleep(100ms)
 stage untracked: key(cmd-k cmd-a)
