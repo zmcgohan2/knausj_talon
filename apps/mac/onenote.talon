@@ -13,7 +13,7 @@ insert date: key(cmd-d)
 heading one: key(cmd-alt-1)
 heading two: key(cmd-alt-2)
 normal: key(cmd-shift-n)
-code: key(shift-k)
+code: key(cmd-shift-k)
 
 move up: key(cmd-alt-up)
 move down: key(cmd-alt-down)
