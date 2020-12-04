@@ -44,3 +44,20 @@ go back[ward]: key(alt-left)
 edit link: key(ctrl-k)
 copy link: key(shift-f10 p)
 paste link: key(ctrl-k alt-e ctrl-v enter)
+
+# in window_management.talon on Mac
+full screen: key(f11)
+
+# not standard OneNote; triggers AutoHotKey macros I wrote
+time: key(super-alt-i)
+today: key(super-alt-d)
+
+tomorrow:
+	key(super-alt-shift-d)
+	sleep(300ms)
+	key(1)
+
+<digit_string> days:
+	key(super-alt-shift-d)
+	sleep(300ms)
+	insert(digit_string)
