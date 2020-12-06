@@ -58,12 +58,10 @@ select word:
     edit.select_word()
 
 select line:
-    edit.line_start()
-    edit.extend_line_end()
+    edit.select_line()
 
 select all:
     edit.select_all()
-
 
 select left:
     edit.extend_left()
@@ -76,6 +74,9 @@ select [line] up:
 
 select [line] down:
     edit.extend_line_down()
+
+select word:
+    edit.select_word()
 
 select word (left | previous):
     edit.extend_word_left()
@@ -120,6 +121,9 @@ clear down:
     edit.extend_line_down()
     edit.delete()
 
+clear word:
+    edit.delete_word()
+
 clear word (left | previous):
     edit.extend_word_left()
     edit.delete()
@@ -145,48 +149,69 @@ clear way down:
     edit.delete()
 
 #copy commands
-copy all: 
+copy all:
     edit.select_all()
     edit.copy()
 #to do: do we want these variants, seem to conflict
-# copy left: 
+# copy left:
 #      edit.extend_left()
 #      edit.copy()
-# copy right: 
+# copy right:
 #     edit.extend_right()
 #     edit.copy()
-# copy up: 
+# copy up:
 #     edit.extend_up()
 #     edit.copy()
-# copy down: 
+# copy down:
 #     edit.extend_down()
 #     edit.copy()
+
+copy word:
+    edit.select_word()
+    edit.copy()
+
 copy word (left | previous):
     edit.extend_word_left()
     edit.copy()
+
 copy word (right | next): 
     edit.extend_word_right()
     edit.copy()
+
+copy line:
+    edit.select_line()
+    edit.copy()
+
 #cut commands
-cut everything: 
+cut everything:
     edit.select_all()
     edit.cut()
 #to do: do we want these variants
-# cut left: 
+# cut left:
 #      edit.select_all()
 #      edit.cut()
-# cut right: 
+# cut right:
 #      edit.select_all()
 #      edit.cut()
-# cut up: 
+# cut up:
 #      edit.select_all()
 #     edit.cut()
-# cut down: 
+# cut down:
 #     edit.select_all()
 #     edit.cut()
+
+cut word:
+    edit.select_word()
+    edit.cut()
+
 cut word (left | previous): 
     edit.extend_word_left()
     edit.cut()
+
 cut word (right | next): 
     edit.extend_word_right()
+    edit.cut()
+
+cut line:
+    edit.select_line()
     edit.cut()
