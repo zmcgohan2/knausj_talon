@@ -12,7 +12,6 @@ class launchbar_actions:
 	def launchbar_action(action: str):
 		from talon.mac import applescript
 		action = action.replace('"', '\"')
-		print(f'action: {action}')
 		applescript.run(f'tell app id "at.obdev.LaunchBar" to perform action "{action}"')
 
 @mod.action_class
