@@ -8,7 +8,7 @@ launch <phrase>:
 launch bar:
 	key(cmd-space)
 
-launch bar running:
+launch running:
 	user.launchbar_action('Running Applications')
 
 web search <phrase>:
