@@ -9,9 +9,7 @@ launch bar:
 	key(cmd-space)
 
 launch bar running:
-	key(cmd-space)
-	sleep(50ms)
-	key(cmd-r)
+	user.launchbar_action('Running Applications')
 
 web search <phrase>:
 	user.launchbar_action('Google')
