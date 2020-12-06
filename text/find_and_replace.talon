@@ -47,18 +47,32 @@ comment next clip:
     user.select_next_occurrence(clip.text())
     sleep(100ms)
     code.toggle_comment()
-go last <user.text> [over]: 
+go before last <user.text> [over]: 
+    user.select_previous_occurrence(text)
+    sleep(100ms)
+    edit.left()
+go [after] last <user.text> [over]: 
     user.select_previous_occurrence(text)
     sleep(100ms)
     edit.right()
-go last clip: 
+go before last clip: 
+    user.select_previous_occurrence(clip.text())
+    sleep(100ms)
+    edit.left()
+go [after] last clip: 
     user.select_previous_occurrence(clip.text())
     sleep(100ms)
     edit.right()
-go next <user.text> [over]: 
+go before next <user.text> [over]: 
+    user.select_next_occurrence(text)
+    edit.left()
+go [after] next <user.text> [over]: 
     user.select_next_occurrence(text)
     edit.right()
-go next clip: 
+go before next clip: 
+    user.select_next_occurrence(clip.text())
+    edit.left()
+go [after] next clip: 
     user.select_next_occurrence(clip.text())
     edit.right()
 paste last <user.text> [over]: 
