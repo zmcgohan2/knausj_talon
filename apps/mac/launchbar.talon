@@ -12,3 +12,8 @@ launch bar running:
 	key(cmd-space)
 	sleep(50ms)
 	key(cmd-r)
+
+web search <phrase>:
+	user.launchbar_action('Google')
+	key(backspace)
+	insert("{phrase}")
