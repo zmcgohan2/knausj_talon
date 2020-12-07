@@ -49,7 +49,7 @@ paste link: key(ctrl-k alt-e ctrl-v enter)
 full screen: key(f11)
 
 # not standard OneNote; triggers AutoHotKey macros I wrote
-time: key(super-alt-i)
+now: key(super-alt-i)
 today: key(super-alt-d)
 
 tomorrow:
