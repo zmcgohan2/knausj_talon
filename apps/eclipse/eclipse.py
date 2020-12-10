@@ -32,7 +32,6 @@ class win_actions:
         if "." in result:
             return result
 
-        print(result)
         return ""
 
     def file_ext():
@@ -169,7 +168,7 @@ class user_actions:
     def select_next_occurrence(text: str):
         actions.edit.find(text)
         actions.sleep("100ms")
-        actions.key("alt-f alt-o enter esc")
+        actions.key("alt-f alt-o esc")
 
     # find_and_replace.py support end
 
