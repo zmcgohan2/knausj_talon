@@ -34,6 +34,8 @@ result previous: key(shift-f4 cmd-g)
 action(app.window_open): key(cmd-shift-n)
 action(app.window_close): key(cmd-shift-w)
 
+action(code.toggle_comment): key(cmd-/)
+
 # more direct word/line processing - actions are in core,
 # but voice commands are enabled with tag(user.line_commands)
 action(edit.delete_line): key(ctrl-shift-k)
