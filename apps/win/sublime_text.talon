@@ -28,6 +28,8 @@ project symbol [<user.text>]:
 
 slap: key(ctrl-enter)
 
+definition show: key(f12)
+
 # navigate through multifile search results
 result next: key(f4 f3)
 result previous: key(shift-f4 f3)
