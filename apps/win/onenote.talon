@@ -41,6 +41,7 @@ page next: key(ctrl-pagedown)
 go forward: key(alt-right)
 go back[ward]: key(alt-left)
 
+[open] link: key(shift-f10 l)
 edit link: key(ctrl-k)
 copy link: key(shift-f10 p)
 paste link: key(ctrl-k alt-e ctrl-v enter)
