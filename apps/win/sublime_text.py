@@ -45,7 +45,9 @@ class user_actions:
 class win_actions:
 	def filename():
 		title = actions.win.title()
-		result = title.split(" — ")[0]
+		result = title.rsplit(" - Sublime Text", 1)[0]
+		result = result.rsplit(" (", 1)[0]
+		result = result.rsplit(" •", 1)[0]
 		return result if "." in result else ""
 
 	def file_ext():
