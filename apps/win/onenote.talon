@@ -44,6 +44,7 @@ go back[ward]: key(alt-left)
 edit link: key(ctrl-k)
 copy link: key(shift-f10 p)
 paste link: key(ctrl-k alt-e ctrl-v enter)
+remove link: key(shift-f10 r)
 
 # in window_management.talon on Mac
 full screen: key(f11)
