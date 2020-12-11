@@ -36,7 +36,7 @@ page new: key(cmd-n)
 page previous: key(ctrl-cmd-g up)
 page next: key(ctrl-cmd-g down)
 
-forward: key(cmd-ctrl-right)
+go forward: key(cmd-ctrl-right)
 go back[ward]: key(cmd-ctrl-left)
 
 edit link: key(cmd-k)

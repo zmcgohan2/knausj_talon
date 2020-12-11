@@ -38,7 +38,7 @@ page new: key(ctrl-n)
 page previous: key(ctrl-pageup)
 page next: key(ctrl-pagedown)
 
-forward: key(alt-right)
+go forward: key(alt-right)
 go back[ward]: key(alt-left)
 
 edit link: key(ctrl-k)
