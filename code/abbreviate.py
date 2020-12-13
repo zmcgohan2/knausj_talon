@@ -157,6 +157,7 @@ ctx.lists["user.abbreviation"] = {
     "position independent code": "pic",
     "position independent executable": "pie",
     "previous": "prev",
+    "production": "PRD",
     "property": "prop",
     "public": "pub",
     "python": "py",
