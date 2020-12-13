@@ -2,7 +2,6 @@ from talon import actions, ui
 
 DEFAULT_DISABLE_BUNDLE_IDS = frozenset({
     'com.apple.FaceTime',
-    'com.citrix.XenAppViewer',
     'com.webex.meetingmanager',
     'com.microsoft.teams'
 })
