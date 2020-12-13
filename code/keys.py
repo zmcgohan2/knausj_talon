@@ -106,10 +106,12 @@ def letters(m) -> str:
 ctx = Context()
 ctx.lists["self.modifier_key"] = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
-    "alt": "alt",  #'alter': 'alt',
+    "alt": "alt",
+    "alter": "alt",
     "man": "cmd",  # I keep getting "comma" or "coma" when I say "command"
     "command": "cmd",
-    "control": "ctrl",  #'troll':   'ctrl',
+    "control": "ctrl",
+    "troll": "ctrl",
     "option": "alt",
     "shift": "shift",  #'sky':     'shift',
     "win": "super",
@@ -117,6 +119,7 @@ ctx.lists["self.modifier_key"] = {
 # for use when remote controlling Windows machines
 if app.platform == 'mac':
     ctx.lists["self.modifier_key"]['alt'] = 'cmd'
+    ctx.lists["self.modifier_key"]['alter'] = 'cmd'
 
 alphabet = dict(zip(default_alphabet, letters_string))
 ctx.lists["self.letter"] = alphabet
