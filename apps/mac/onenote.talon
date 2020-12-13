@@ -39,6 +39,7 @@ page next: key(ctrl-cmd-g down)
 go forward: key(cmd-ctrl-right)
 go back[ward]: key(cmd-ctrl-left)
 
+[open] link: key(enter)
 edit link: key(cmd-k)
 copy link: key(cmd-ctrl-c)
 
