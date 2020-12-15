@@ -54,9 +54,6 @@ go page up:
     edit.page_up()
 
 # selecting
-select word:
-    edit.select_word()
-
 select line:
     edit.select_line()
 
