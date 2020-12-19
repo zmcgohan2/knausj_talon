@@ -1,4 +1,4 @@
-app: com.microsoft.Outlook
+app.bundle: com.microsoft.Outlook
 -
 archive: key(ctrl-e)
 flag: key(ctrl-5)
@@ -15,5 +15,6 @@ move to [<user.text>]:
 reply: key(cmd-r)
 reply all: key(cmd-shift-r)
 
-reply all:
-	key(cmd-shift-r)
+go [to] inbox: user.outlook_set_selected_folder('inbox')
+go to drafts: user.outlook_set_selected_folder('drafts')
+go to sent: user.outlook_set_selected_folder('sent items')
