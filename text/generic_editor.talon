@@ -54,7 +54,7 @@ go page up:
     edit.page_up()
 
 # selecting
-select line$:
+select line:
     edit.select_line()
 
 select all:
@@ -101,7 +101,7 @@ indent [more]:
     edit.indent_less()
 
 # deleting
-clear line$:
+clear line:
     edit.delete_line()
 
 clear left:
@@ -175,7 +175,7 @@ copy word (right | next):
     edit.extend_word_right()
     edit.copy()
 
-copy line$:
+copy line:
     edit.select_line()
     edit.copy()
 
@@ -209,6 +209,6 @@ cut word (right | next):
     edit.extend_word_right()
     edit.cut()
 
-cut line$:
+cut line:
     edit.select_line()
     edit.cut()
