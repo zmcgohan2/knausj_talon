@@ -1,5 +1,7 @@
 app: com.microsoft.onenote.mac
 -
+action(edit.select_line): key(cmd-a)
+
 bold: key(cmd-b)
 italic: key(cmd-i)
 strike through: key(ctrl-cmd--)
