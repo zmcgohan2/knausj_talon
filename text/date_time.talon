@@ -1,8 +1,16 @@
+# Note: Dates are in US format (month/day[/year])
+
 date <number_small> (o | zero) <number_small>$:
 	insert("{number_small_1}/0{number_small_2}")
 
 date <number_small> <number>$:
 	insert("{number_small}/{number}")
+
+date <number_small> twenty <digits>$:
+	insert("{number_small}/2{digits}")
+
+date <number_small> thirty <digits>$:
+	insert("{number_small}/3{digits}")
 
 date <number_small> <number_small> <number_small>:
 	insert("{number_small_1}/{number_small_2}/{number_small_3}")
