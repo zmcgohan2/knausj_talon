@@ -104,7 +104,7 @@ def letters(m) -> str:
 
 
 ctx = Context()
-ctx.lists["self.modifier_key"] = {
+modifier_key = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
     "alt": "alt",
     "alter": "alt",
@@ -118,8 +118,9 @@ ctx.lists["self.modifier_key"] = {
 }
 # for use when remote controlling Windows machines
 if app.platform == 'mac':
-    ctx.lists["self.modifier_key"]['alt'] = 'cmd'
-    ctx.lists["self.modifier_key"]['alter'] = 'cmd'
+    modifier_key['alt'] = 'cmd'
+    modifier_key['alter'] = 'cmd'
+ctx.lists["self.modifier_key"] = modifier_key
 
 alphabet = dict(zip(default_alphabet, letters_string))
 ctx.lists["self.letter"] = alphabet
