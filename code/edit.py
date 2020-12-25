@@ -8,16 +8,6 @@ mod = Module()
 @ctx.action_class("edit")
 class edit_actions:
     def selected_text() -> str:
-        if ui.active_app().bundle == 'com.microsoft.onenote.mac':
-            for attempt in range(20):
-                with clip.capture() as s:
-                    actions.edit.copy()
-                try:
-                    result = s.get()
-                    if result != '':
-                        return result
-                except clip.NoChange:
-                    pass
         with clip.capture() as s:
             actions.edit.copy()
         try:
