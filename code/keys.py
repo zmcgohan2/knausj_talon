@@ -22,6 +22,7 @@ mod.list("number_key", desc="All number keys")
 mod.list("modifier_key", desc="All modifier keys")
 mod.list("function_key", desc="All function keys")
 mod.list("special_key", desc="All special keys")
+mod.list("punctuation", desc="words for inserting punctuation into text")
 
 
 @mod.capture(rule="{self.modifier_key}+")
@@ -124,15 +125,34 @@ ctx.lists["self.modifier_key"] = modifier_key
 
 alphabet = dict(zip(default_alphabet, letters_string))
 ctx.lists["self.letter"] = alphabet
-ctx.lists["self.symbol_key"] = {
+
+# `punctuation_words` is for words you want available BOTH in dictation and as
+# key names in command mode. `symbol_key_words` is for key names that should be
+# available in command mode, but NOT during dictation.
+punctuation_words = {
+    # TODO: I'm not sure why we need these, I think it has something to do with
+    # Dragon. Possibly it has been fixed by later improvements to talon? -rntz
+    "`": "`", ",": ",", # <== these things
     "back tick": "`",
-    "`": "`",
     "comma": ",",
-    ",": ",",
-    "dot": ".",
     "period": ".",
-    "semi": ";",
     "semicolon": ";",
+    "colon": ":",
+    "forward slash": "/",
+    "question mark": "?",
+    "exclamation mark": "!",
+    "exclamation point": "!",
+    "dollar sign": "$",
+    "asterisk": "*",
+    "hash sign": "#",
+    "number sign": "#",
+    "percent sign": "%",
+    "at sign": "@",
+    "and sign": "&",
+    "ampersand": "&",
+}
+symbol_key_words = {
+    "dot": ".",
     "quote": "'",
     "apostrophe": "’",
     "left bracket": "[",
@@ -146,15 +166,11 @@ ctx.lists["self.symbol_key"] = {
     "hyphen": "-",
     "equals": "=",
     "plus": "+",
-    "question mark": "?",
     "tilde": "~",
     "bang": "!",
-    "exclamation point": "!",
     "dollar": "$",
-    "dollar sign": "$",
     "down score": "_",
     "under score": "_",
-    "colon": ":",
     "paren": "(",
     "L paren": "(",
     "left paren": "(",
@@ -178,24 +194,20 @@ ctx.lists["self.symbol_key"] = {
     "right angle": ">",
     "greater than": ">",
     "star": "*",
-    "asterisk": "*",
     "pound": "#",
     "hash": "#",
-    "hash sign": "#",
-    "number sign": "#",
     "percent": "%",
-    "percent sign": "%",
     "caret": "^",
-    "at sign": "@",
-    "and sign": "&",
-    "ampersand": "&",
     "amper": "&",
     "pipe": "|",
     "dubquote": '"',
     "double quote": '"',
 }
 
-
+# make punctuation words also included in {user.symbol_keys}
+symbol_key_words.update(punctuation_words)
+ctx.lists["self.punctuation"] = punctuation_words
+ctx.lists["self.symbol_key"] = symbol_key_words
 ctx.lists["self.number_key"] = dict(zip(default_digits, numbers))
 ctx.lists["self.arrow_key"] = {
     "down": "down",
