@@ -47,3 +47,7 @@ time two thousand:
 
 insert time:
 	user.insert_time_ampm()
+
+time stamp:
+	user.insert_time_ampm()
+	insert(" - ")
