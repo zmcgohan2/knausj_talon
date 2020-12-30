@@ -117,10 +117,12 @@ action(edit.line_end):
 	key(cmd-right)
 
 action(edit.line_insert_down):
-	key(end enter)
+	edit.line_end()
+	key(enter)
 
 action(edit.line_insert_up):
-	key(cmd-left enter up)
+	edit.line_start()
+	key(enter up)
 
 action(edit.line_start):
 	key(cmd-left)

@@ -100,6 +100,13 @@ indent [more]:
 (indent less | out dent):
     edit.indent_less()
 
+insert (above | up):
+    edit.line_insert_up()
+
+insert (below | down):
+    # same as "slap"; include for consistency
+    edit.line_insert_down()
+
 # deleting
 clear line:
     edit.delete_line()
