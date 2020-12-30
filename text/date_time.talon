@@ -24,6 +24,9 @@ date <number_small> <number_small> two thousand:
 date <number_small> <number_small> (twenty | two thousand) <number_small>:
 	insert("{number_small_1}/{number_small_2}/{2000 + number_small_3}")
 
+time <number_small> <user.ampm>:
+	insert("{number_small}{ampm}")
+
 time <number_small> <number> [<user.ampm>]:
 	insert("{number_small}:{number}")
 	insert(ampm or "")
