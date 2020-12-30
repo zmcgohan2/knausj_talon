@@ -45,6 +45,9 @@ time one thousand:
 time two thousand:
 	insert("20:00")
 
+insert date:
+	user.insert_date()
+
 insert time:
 	user.insert_time_ampm()
 
