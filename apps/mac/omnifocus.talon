@@ -1,6 +1,11 @@
 os: mac
 app.bundle: com.omnigroup.OmniFocus3.MacAppStore
 -
+action [<phrase>]:
+	# Quick Entry (keyboard shortcut is customizable)
+	key(ctrl-alt-o)
+	insert(user.formatted_text(phrase or "", "CAPITALIZE_FIRST_WORD"))
+
 open [<phrase>]:
 	key(cmd-o)
 	insert(user.formatted_text(phrase or "", "ALL_LOWERCASE,NO_SPACES"))
