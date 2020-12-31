@@ -13,6 +13,10 @@ open [<phrase>]:
 edit: key(cmd-')
 view: key(cmd-alt-')
 
+move up: key(ctrl-cmd-up)
+move down: key(ctrl-cmd-down)
+move right: key(ctrl-cmd-right)
+move left: key(ctrl-cmd-left)
 
 go in box: key(cmd-1)
 go projects: key(cmd-2)
