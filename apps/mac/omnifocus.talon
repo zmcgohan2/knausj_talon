@@ -10,35 +10,20 @@ open [<phrase>]:
 	key(cmd-o)
 	insert(user.formatted_text(phrase or "", "ALL_LOWERCASE,NO_SPACES"))
 
-edit:
-	key(cmd-')
+edit: key(cmd-')
+view: key(cmd-alt-')
 
-view:
-	key(cmd-alt-')
 
-go in box:
-	key(cmd-1)
+go in box: key(cmd-1)
+go projects: key(cmd-2)
+go tags: key(cmd-3)	
+go forecast: key(cmd-4)
 
-go projects:
-	key(cmd-2)
+due today: key(ctrl-cmd-t)
+due tomorrow: key(ctrl-cmd-m)
 
-go tags:
-	key(cmd-3)	
-
-go forecast:
-	key(cmd-4)
-
-due today:
-	key(ctrl-cmd-t)
-
-due tomorrow:
-	key(ctrl-cmd-m)
-
-skip:
-	key(alt-space)
-
-clean up:
-	key(cmd-k)
+skip: key(alt-space)
+clean up: key(cmd-k)
 
 # Using plugins from https://github.com/nriley/OmniFocus-Plug-Ins
 
