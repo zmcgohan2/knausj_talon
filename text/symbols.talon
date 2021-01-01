@@ -1,4 +1,5 @@
 question: "?"
+check mark: "✓"
 dash: "-"
 double dash: "--"
 triple quote: "'''"
