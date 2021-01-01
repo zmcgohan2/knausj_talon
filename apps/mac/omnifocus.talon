@@ -6,6 +6,9 @@ action [<phrase>]:
 	key(ctrl-alt-o)
 	insert(user.formatted_text(phrase or "", "CAPITALIZE_FIRST_WORD"))
 
+action first: user.select_tree("item 1 of leaves")
+tree first: user.select_tree("item 1 of trees")
+
 open [<phrase>]:
 	key(cmd-o)
 	insert(user.formatted_text(phrase or "", "ALL_LOWERCASE,NO_SPACES"))
