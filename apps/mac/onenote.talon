@@ -1,4 +1,4 @@
-app: com.microsoft.onenote.mac
+app.bundle: com.microsoft.onenote.mac
 -
 action(edit.select_line): key(cmd-a)
 
