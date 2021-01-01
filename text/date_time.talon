@@ -1,20 +1,20 @@
 # Note: Dates are in US format (month[/day][/year])
 
 # mm/0x
-date <number_small> (o | zero) <digits>$:
-	insert("{number_small}/0{digits}")
+date <user.month> (o | zero) <digits>$:
+	insert("{month}/0{digits}")
 
 # mm/dd or mm/yy
-date <number_small> <number_small>$:
-	insert("{number_small_1}/{number_small_2}")
+date <user.month> <number_small>$:
+	insert("{month}/{number_small}")
 
 # mm/dd/0x
-date <number_small> <user.day> (o | zero) <digits>$:
-	insert("{number_small}/{day}/0{digits}")
+date <user.month> <user.day> (o | zero) <digits>$:
+	insert("{month}/{day}/0{digits}")
 
 # mm/dd/yy[yy]
-date <number_small> <user.day> <user.year>:
-	insert("{number_small}/{day}/{year}")
+date <user.month> <user.day> <user.year>:
+	insert("{month}/{day}/{year}")
 
 time <number_small> <user.ampm>:
 	insert("{number_small}{ampm}")

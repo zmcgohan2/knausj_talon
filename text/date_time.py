@@ -20,6 +20,13 @@ ctx.lists["self.ampm"] = {
 def ampm(m) -> str:
 	return m.ampm
 
+month_words = 'one two three four five six seven eight nine ten eleven twelve'.split()
+months = {word: number for number, word in enumerate(month_words, 1)}
+
+@mod.capture(rule=f'({"|".join(month_words)})')
+def month(m) -> int:
+	return months[m[0]]
+
 @mod.capture(rule="<number_small> | (twenty | thirty [<digits>])")
 def day(m) -> int:
 	if hasattr(m, 'number_small'): return m.number_small
