@@ -6,8 +6,8 @@ action [<phrase>]:
 	key(ctrl-alt-o)
 	insert(user.formatted_text(phrase or "", "CAPITALIZE_FIRST_WORD"))
 
-action first: user.select_tree("item 1 of leaves")
-tree first: user.select_tree("item 1 of trees")
+action first: user.omnifocus_select_tree("first tree's first descendant tree")
+tree first: user.omnifocus_select_tree("item 1 of trees")
 
 open [<phrase>]:
 	key(cmd-o)
@@ -35,7 +35,7 @@ clean up: key(cmd-k)
 # Using plugins from https://github.com/nriley/OmniFocus-Plug-Ins
 
 postpone [by] <number_small> days:
-	user.postpone(number_small)
+	user.omnifocus_postpone(number_small)
 
 postpone:
 	key(ctrl-cmd-l)
