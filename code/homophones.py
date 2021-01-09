@@ -63,8 +63,6 @@ def raise_homophones(word, forced=False, selection=False):
     global show_help
     global force_raise
     global is_selection
-    global prefix
-    global suffix
 
     force_raise = forced
     is_selection = selection
