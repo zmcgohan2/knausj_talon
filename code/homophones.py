@@ -63,12 +63,18 @@ def raise_homophones(word, forced=False, selection=False):
     global show_help
     global force_raise
     global is_selection
+    global prefix
+    global suffix
 
     force_raise = forced
     is_selection = selection
 
     if is_selection:
+        selected_word = word
         word = word.strip()
+        word_start = selected_word.index(word)
+        prefix = selected_word[:word_start]
+        suffix = selected_word[word_start + len(word):]
 
     is_capitalized = word == word.capitalize()
     is_upper = word.isupper()
@@ -96,10 +102,16 @@ def raise_homophones(word, forced=False, selection=False):
         elif is_upper:
             new = new.upper()
 
-        clip.set_text(new)
+        clip.set_text(f'{prefix}{new}{suffix}')
         actions.edit.paste()
 
         return
+    elif is_selection and (prefix or suffix):
+        if is_capitalized:
+            active_word_list = [new.capitalize() for new in active_word_list]
+        elif is_upper:
+            active_word_list = [new.upper() for new in active_word_list]
+        active_word_list = [f'{prefix}{new}{suffix}' for new in active_word_list]
 
     actions.mode.enable("user.homophones")
     show_help = False
