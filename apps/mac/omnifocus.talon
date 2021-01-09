@@ -37,8 +37,6 @@ due tomorrow: key(ctrl-cmd-m)
 postpone [by] <number_small> days:
 	user.omnifocus_postpone(number_small)
 
-postpone:
-	key(ctrl-cmd-l)
+postpone: key(ctrl-cmd-l)
 
-clear dates:
-	key(ctrl-cmd-\)
+clear dates: key(ctrl-cmd-\)
