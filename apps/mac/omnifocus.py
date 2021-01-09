@@ -28,4 +28,4 @@ class Action:
 		"""Postpone by a number of days"""
 
 	def omnifocus_select_tree(tree: str):
-		"""Select a tree in the outline (specified as AppleScript scoped to window content)."""
+		"""Select a tree in the outline (specified as AppleScript scoped to window content)"""
