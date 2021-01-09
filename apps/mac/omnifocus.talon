@@ -26,13 +26,13 @@ go projects: key(cmd-2)
 go tags: key(cmd-3)	
 go forecast: key(cmd-4)
 
-due today: key(ctrl-cmd-t)
-due tomorrow: key(ctrl-cmd-m)
-
 skip: key(alt-space)
 clean up: key(cmd-k)
 
 # Using plugins from https://github.com/nriley/OmniFocus-Plug-Ins
+
+due today: key(ctrl-cmd-t)
+due tomorrow: key(ctrl-cmd-m)
 
 postpone [by] <number_small> days:
 	user.omnifocus_postpone(number_small)
