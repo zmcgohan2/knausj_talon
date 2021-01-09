@@ -26,6 +26,7 @@ go projects: key(cmd-2)
 go tags: key(cmd-3)	
 go forecast: key(cmd-4)
 
+done: user.omnifocus_complete()
 skip: key(alt-space)
 clean up: key(cmd-k)
 

@@ -13,6 +13,14 @@ and app.bundle: com.omnigroup.OmniFocus3.MacAppStore
 
 @ctx.action_class("user")
 class user_actions:
+	def omnifocus_complete():
+		applescript.run("""tell application id "com.omnigroup.OmniFocus3.MacAppStore"
+			set _content to window 1's content
+			set _selectedTrees to _content's selected trees
+			mark complete (_content's selected trees's value)
+			set _content's selected trees to _selectedTrees
+		end tell""")
+
 	def omnifocus_postpone(days: Optional[int]):
 		actions.key("ctrl-cmd-l")
 		if days:
@@ -24,6 +32,9 @@ class user_actions:
 
 @mod.action_class
 class Action:
+	def omnifocus_complete():
+		"""Mark the selection as completed while preserving the selection"""
+
 	def omnifocus_postpone(days: Optional[int]):
 		"""Postpone by a number of days"""
 
