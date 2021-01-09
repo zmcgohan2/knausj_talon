@@ -154,7 +154,7 @@ punctuation_words = {
 symbol_key_words = {
     "dot": ".",
     "quote": "'",
-    "apostrophe": "’",
+    "apostrophe": "'",
     "left bracket": "[",
     "open bracket": "[",
     "right bracket": "]",
