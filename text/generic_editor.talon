@@ -4,10 +4,10 @@ find it:
 next one:
     edit.find_next()
 
-go word (left | previous):
+go (word (left | previous) | west):
     edit.word_left()
 
-go word (right | next):
+go (word (right | next) | east):
     edit.word_right()
 
 go left:
@@ -75,10 +75,10 @@ select [line] down:
 select word:
     edit.select_word()
 
-select word (left | previous):
+select (word (left | previous) | west):
     edit.extend_word_left()
 
-select word (right | next):
+select (word (right | next) | east):
     edit.extend_word_right()
 
 select way left:
@@ -128,11 +128,11 @@ clear down:
 clear word:
     edit.delete_word()
 
-clear word (left | previous):
+clear (word (left | previous) | west):
     edit.extend_word_left()
     edit.delete()
 
-clear word (right | next):
+clear (word (right | next) | east):
     edit.extend_word_right()
     edit.delete()
 
@@ -174,11 +174,11 @@ copy word:
     edit.select_word()
     edit.copy()
 
-copy word (left | previous):
+copy (word (left | previous) | west):
     edit.extend_word_left()
     edit.copy()
 
-copy word (right | next): 
+copy (word (right | next) | east): 
     edit.extend_word_right()
     edit.copy()
 
@@ -208,11 +208,11 @@ cut word:
     edit.select_word()
     edit.cut()
 
-cut word (left | previous): 
+cut (word (left | previous) | west): 
     edit.extend_word_left()
     edit.cut()
 
-cut word (right | next): 
+cut (word (right | next) | east): 
     edit.extend_word_right()
     edit.cut()
 
