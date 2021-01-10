@@ -51,3 +51,25 @@ paste link:
 	key(cmd-v)
 	sleep(100ms)
 	key(enter)
+
+# not standard OneNote; approximate equivalents of AutoHotKey
+now:
+	key(ctrl-e enter)
+	# custom shortcut for "Remove Tag"
+	key(cmd-alt-0)
+	key(cmd-/ cmd-.)
+	key(shift-tab:5 tab:2)
+	user.insert_time_ampm()
+	insert(" - ")
+
+today:
+	key(ctrl-e enter)
+	# custom shortcut for "Remove Tag"
+	key(cmd-alt-0)
+	# neither bullets nor numbering
+	key(cmd-/ cmd-. cmd-.)
+	key(shift-tab:5)
+	key(cmd-alt-1)
+	key(cmd-d)
+	insert('- ')
+	key(enter tab cmd-1 up ctrl-e)
