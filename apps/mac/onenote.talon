@@ -73,3 +73,9 @@ today:
 	key(cmd-d)
 	insert('- ')
 	key(enter tab cmd-1 up ctrl-e)
+
+# back to progress (first notebook, first section)
+go progress:
+	key(ctrl-g alt-up enter)
+	sleep(100ms)
+	key(alt-up enter:2 tab)
