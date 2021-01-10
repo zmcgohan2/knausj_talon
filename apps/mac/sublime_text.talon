@@ -69,3 +69,9 @@ action(user.multi_cursor_enable): skip()
 action(user.multi_cursor_select_all_occurrences): key(ctrl-cmd-g)
 action(user.multi_cursor_select_fewer_occurrences): key(cmd-u)
 action(user.multi_cursor_select_more_occurrences): key(cmd-d)
+
+# Sublime Merge integration
+repository:
+	key(cmd-shift-p)
+	insert("Sublime Merge: Open Repository")
+	key(enter)
