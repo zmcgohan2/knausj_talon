@@ -43,6 +43,10 @@ page next: key(ctrl-cmd-g down tab)
 page move right: key(cmd-alt-])
 page move left: key(cmd-alt-[)
 
+# navigating in notebook/section/page lists
+go top: key(alt-up)
+go bottom: key(alt-down)
+
 go forward: key(cmd-ctrl-right)
 go back[ward]: key(cmd-ctrl-left)
 
