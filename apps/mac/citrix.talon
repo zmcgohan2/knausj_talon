@@ -43,3 +43,10 @@ previous: key(pageup)
 next: key(pagedown)
 chronicles item:
 	key(home f9 i enter)
+
+# Lookitt
+routine do: insert("d ^")
+routine save: insert("d ^%ZeRSAVE")
+routine load: insert("d ^%ZeRLOAD")
+routine find: insert("d ^%ZRFIND")
+clinical admin: insert(";l")
