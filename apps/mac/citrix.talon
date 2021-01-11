@@ -31,7 +31,7 @@ alt menu:
 	key(cmd)
 
 chart search [<user.text>]:
-	key(ctrl-space)
+	key(ctrl-space ctrl-a)
 	insert(text or "")
 
 master navigation:
