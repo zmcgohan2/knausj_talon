@@ -35,8 +35,8 @@ section next: key(cmd-})
 
 go (page | pages): key(ctrl-cmd-g)
 page new: key(cmd-n)
-page previous: key(ctrl-cmd-g up)
-page next: key(ctrl-cmd-g down)
+page previous: key(ctrl-cmd-g up tab)
+page next: key(ctrl-cmd-g down tab)
 
 go forward: key(cmd-ctrl-right)
 go back[ward]: key(cmd-ctrl-left)
