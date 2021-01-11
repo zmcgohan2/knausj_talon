@@ -34,9 +34,14 @@ section previous: key(cmd-{)
 section next: key(cmd-})
 
 go (page | pages): key(ctrl-cmd-g)
-page new: key(cmd-n)
+page new:
+	key(cmd-n)
+	sleep(100ms)
+page delete: key(ctrl-cmd-g cmd-delete)
 page previous: key(ctrl-cmd-g up tab)
 page next: key(ctrl-cmd-g down tab)
+page move right: key(cmd-alt-])
+page move left: key(cmd-alt-[)
 
 go forward: key(cmd-ctrl-right)
 go back[ward]: key(cmd-ctrl-left)
