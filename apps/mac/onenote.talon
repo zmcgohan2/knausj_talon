@@ -86,5 +86,5 @@ today:
 # back to progress (first notebook, first section)
 go progress:
 	key(ctrl-g alt-up enter)
-	sleep(100ms)
-	key(alt-up enter:2 tab)
+	sleep(200ms)
+	key(alt-up tab:2)
