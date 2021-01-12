@@ -50,7 +50,7 @@ go bottom: key(alt-down)
 go forward: key(cmd-ctrl-right)
 go back[ward]: key(cmd-ctrl-left)
 
-[open] link: key(enter)
+[open] link: key(right left enter)
 edit link: key(cmd-k)
 copy link: key(cmd-ctrl-c)
 
