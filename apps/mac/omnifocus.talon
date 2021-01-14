@@ -6,8 +6,23 @@ action [<phrase>]:
 	key(ctrl-alt-o)
 	insert(user.formatted_text(phrase or "", "CAPITALIZE_FIRST_WORD"))
 
-action first: user.omnifocus_select_tree("first tree's first descendant tree")
-tree first: user.omnifocus_select_tree("item 1 of trees")
+action first:
+	key(home)
+	user.omnifocus_select_tree("first tree's first descendant tree")
+	# work around OmniFocus bug?
+	sleep(100ms)
+	key(home)
+
+tree first:
+	key(home)
+	user.omnifocus_select_tree("item 1 of trees")
+	# work around OmniFocus bug?
+	sleep(100ms)
+	key(home)
+
+action (last | lost | lust):
+	key(end)
+	user.omnifocus_select_tree("last tree's last descendant tree")
 
 open [<phrase>]:
 	key(cmd-o)
