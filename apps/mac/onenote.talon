@@ -1,6 +1,8 @@
 app.bundle: com.microsoft.onenote.mac
 -
-action(edit.select_line): key(cmd-a)
+action(edit.select_line):
+	key(cmd-a)
+	sleep(100ms)
 
 bold: key(cmd-b)
 italic: key(cmd-i)
