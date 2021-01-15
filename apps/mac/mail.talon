@@ -11,6 +11,7 @@ reply all: key(cmd-shift-r)
 move:
 	key(ctrl-s)
 
-move to [<user.text>]:
+(move to | folder) [<user.text>]:
 	key(ctrl-s)
+	sleep(200ms)
 	insert(user.text or "")
