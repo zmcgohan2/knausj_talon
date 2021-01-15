@@ -5,6 +5,8 @@ flag: key(ctrl-5)
 unflag:	key(cmd-alt-')
 junk: key(cmd-shift-j)
 
+send [this] message: key(cmd-enter)
+
 move:
 	key(cmd-shift-m)
 

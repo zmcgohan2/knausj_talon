@@ -7,6 +7,8 @@ junk: key(cmd-shift-j)
 reply: key(cmd-r)
 reply all: key(cmd-shift-r)
 
+send [this] message: key(cmd-shift-d)
+
 # MsgFiler
 move:
 	key(ctrl-s)
