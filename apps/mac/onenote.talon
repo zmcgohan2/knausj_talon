@@ -25,7 +25,10 @@ move left: key(cmd-[)
 collapse: key(ctrl-shift--)
 expand: key(ctrl-shift-+)
 
-go title: key(cmd-shift-t)
+title [<user.prose>]$:
+	key(cmd-shift-t)
+	sleep(100ms)
+	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
 
 go (notebook | notebooks): key(ctrl-g)
 
