@@ -48,9 +48,12 @@ inside quotes:
 angle that: 
     text = edit.selected_text()
     user.paste("<{text}>")
-(bracket | brace) that: 
+brace that: 
     text = edit.selected_text()
     user.paste("{{{text}}}")
+bracket that: 
+    text = edit.selected_text()
+    user.paste("[{text}]")
 (parens | args) that: 
     text = edit.selected_text()
     user.paste("({text})")
