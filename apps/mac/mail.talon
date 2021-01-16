@@ -1,4 +1,4 @@
-app: com.apple.mail
+app.bundle: com.apple.mail
 -
 archive: key(ctrl-cmd-a)
 delete: key(backspace)
@@ -8,6 +8,11 @@ reply: key(cmd-r)
 reply all: key(cmd-shift-r)
 
 send [this] message: key(cmd-shift-d)
+
+# uses my favorite mailboxes
+go [to] inbox: key(cmd-1)
+go to drafts: key(cmd-4)
+go to sent: key(cmd-2)
 
 # MsgFiler
 move:
