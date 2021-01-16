@@ -71,7 +71,7 @@ action(user.multi_cursor_select_fewer_occurrences): key(cmd-u)
 action(user.multi_cursor_select_more_occurrences): key(cmd-d)
 
 # Sublime Merge integration
-repository:
+[do] repository:
 	key(cmd-shift-p)
 	insert("Sublime Merge: Open Repository")
 	key(enter)
