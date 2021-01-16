@@ -27,16 +27,6 @@ move left: key(cmd-[)
 collapse: key(ctrl-shift--)
 expand: key(ctrl-shift-+)
 
-title date [<user.prose>]$:
-	key(cmd-shift-t cmd-d)
-	sleep(200ms)
-	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
-
-title [<user.prose>]$:
-	key(cmd-shift-t)
-	sleep(100ms)
-	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
-
 go (notebook | notebooks): key(ctrl-g)
 
 go (section | sections): key(ctrl-shift-g)
@@ -52,6 +42,16 @@ page previous: key(ctrl-cmd-g up tab)
 page next: key(ctrl-cmd-g down tab)
 page move right: key(cmd-alt-])
 page move left: key(cmd-alt-[)
+
+[page] rename date [<user.prose>]$:
+	key(cmd-shift-t cmd-d)
+	sleep(200ms)
+	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
+
+[page] rename [<user.prose>]$:
+	key(cmd-shift-t)
+	sleep(100ms)
+	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
 
 # navigating in notebook/section/page lists
 go top: key(alt-up)
