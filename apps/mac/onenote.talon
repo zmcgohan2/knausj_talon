@@ -29,7 +29,7 @@ expand: key(ctrl-shift-+)
 
 title date [<user.prose>]$:
 	key(cmd-shift-t cmd-d)
-	sleep(100ms)
+	sleep(200ms)
 	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
 
 title [<user.prose>]$:
