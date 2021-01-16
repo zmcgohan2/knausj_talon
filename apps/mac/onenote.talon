@@ -69,7 +69,7 @@ paste link:
 	sleep(100ms)
 	key(cmd-v)
 	sleep(100ms)
-	key(enter)
+	key(enter cmd-shift-n)
 
 # not standard OneNote; approximate equivalents of AutoHotKey
 now:
