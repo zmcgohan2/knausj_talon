@@ -85,11 +85,12 @@ today:
 	key(ctrl-e enter)
 	# custom shortcut for "Remove Tag"
 	key(cmd-alt-0)
+	key(shift-tab:5)
 	# neither bullets nor numbering
 	key(cmd-/ cmd-. cmd-.)
-	key(shift-tab:5)
-	key(cmd-alt-1)
-	key(cmd-d)
+	# outdent one more time as the above may indent
+	key(shift-tab)
+	key(cmd-alt-1 cmd-d)
 	insert('- ')
 	key(enter tab cmd-1 up ctrl-e)
 
