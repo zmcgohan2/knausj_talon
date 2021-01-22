@@ -1,6 +1,9 @@
 os: windows
 and app.name: ONENOTE.EXE
 -
+action(edit.select_line):
+	key(ctrl-a)
+
 bold: key(ctrl-b)
 italic: key(ctrl-i)
 strike through: key(ctrl--)
@@ -25,8 +28,6 @@ move left: key(alt-shift-left)
 collapse: key(alt-shift--)
 expand: key(alt-shift-+)
 
-go title: key(ctrl-shift-t)
-
 go (notebook | notebooks): key(ctrl-g)
 
 go (section | sections): key(ctrl-shift-g)
@@ -35,8 +36,19 @@ section next: key(ctrl-tab)
 
 go (page | pages): key(ctrl-alt-g)
 page new: key(ctrl-n)
+page delete: key(ctrl-alt-g delete)
 page previous: key(ctrl-pageup)
 page next: key(ctrl-pagedown)
+page move right: key(ctrl-alt-g shift-f10 s)
+page move left: key(ctrl-alt-g shift-f10 o enter)
+
+[page] rename date [<user.prose>]$:
+	key(ctrl-shift-t alt-shift-d)
+	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
+
+[page] rename [<user.prose>]$:
+	key(ctrl-shift-t)
+	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
 
 go forward: key(alt-right)
 go back[ward]: key(alt-left)
@@ -63,3 +75,7 @@ tomorrow:
 	key(super-alt-shift-d)
 	sleep(300ms)
 	insert(digit_string)
+
+# back to progress (first notebook, first section)
+go progress:
+	key(ctrl-g home enter tab:2 down enter esc)
