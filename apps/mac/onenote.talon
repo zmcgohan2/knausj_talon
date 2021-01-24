@@ -72,15 +72,6 @@ paste link:
 	key(enter cmd-shift-n)
 
 # not standard OneNote; approximate equivalents of AutoHotKey
-now:
-	key(ctrl-e enter)
-	# custom shortcut for "Remove Tag"
-	key(cmd-alt-0)
-	key(cmd-/ cmd-.)
-	key(shift-tab:5 tab:2)
-	user.insert_time_ampm()
-	insert(" - ")
-
 today:
 	key(ctrl-e enter)
 	# custom shortcut for "Remove Tag"
