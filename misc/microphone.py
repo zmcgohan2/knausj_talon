@@ -1,7 +1,7 @@
 from talon import actions, noise, registry
 from talon.microphone import manager
 
-PREFERRED_MICROPHONES = ('Jabra Link 370', 'Jabra Evolve 75')
+PREFERRED_MICROPHONES = ('Jabra Link 370', 'Jabra Evolve 75', 'SpeechMike III')
 
 def device_name(device):
     name = device.name
