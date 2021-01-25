@@ -59,9 +59,6 @@ copy link: key(shift-f10 p)
 paste link: key(ctrl-k alt-e ctrl-v enter)
 remove link: key(shift-f10 r)
 
-# in window_management.talon on Mac
-full screen: key(f11)
-
 # not standard OneNote; triggers AutoHotKey macros I wrote
 now: key(super-alt-i)
 today: key(super-alt-d)
