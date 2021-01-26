@@ -39,6 +39,10 @@ class user_actions:
 		actions.key("cmd-i")
 		actions.insert(text)
 		actions.key("enter")
+	
+	def tab_jump(number: int):
+		if number < 9:
+			actions.key("cmd-{}".format(number))
 
 @ctx.action_class("win")
 class win_actions:
