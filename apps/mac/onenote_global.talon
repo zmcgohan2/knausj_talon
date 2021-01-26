@@ -9,4 +9,5 @@ now (<phrase> | <user.number_string>):
 	key(cmd-/ cmd-.)
 	key(shift-tab:5 tab:2)
 	user.insert_time_ampm()
-	insert(" - {phrase or number_string}")
+	number = number_string or ""
+	insert(" - {phrase or number}")
