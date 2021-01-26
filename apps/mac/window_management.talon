@@ -7,3 +7,5 @@ full screen: key(cmd-ctrl-f)
 window minimize: key(cmd-m)
 zoom: key(cmd-ctrl-z)
 
+# XXX unlike app Exposé, this is not keyboard navigable
+window switch: user.launch_bundle('com.apple.exposelauncher')
