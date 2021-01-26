@@ -34,4 +34,4 @@ new paragraph:
 	edit.line_end()
 	key(enter)
 	key(enter)
-	
+cancel: key(cmd-.)
