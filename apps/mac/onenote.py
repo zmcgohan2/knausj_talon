@@ -30,3 +30,5 @@ class Actions:
 				return
 			actions.sleep("50ms")
 
+	def onenote_now():
+		"""Insert timestamped bullet list item into OneNote."""
