@@ -10,7 +10,7 @@ strike through: key(ctrl--)
 highlight: key(ctrl-alt-h)
 
 bullet: key(ctrl-.)
-check: key(ctrl-1)
+check | done: key(ctrl-1)
 tag clear: key(ctrl-0)
 
 insert date: key(alt-shift-d)

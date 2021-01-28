@@ -10,7 +10,7 @@ strike through: key(ctrl-cmd--)
 highlight: key(ctrl-cmd-h)
 
 bullet: key(cmd-.)
-check: key(cmd-1)
+check | done: key(cmd-1)
 
 insert date: key(cmd-d)
 
