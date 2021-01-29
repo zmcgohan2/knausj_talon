@@ -20,6 +20,9 @@ tree first:
 	sleep(100ms)
 	key(home)
 
+action previous: key(cmd-alt-2 cmd-. up)
+action next: key(cmd-alt-2 cmd-. down)
+
 action (last | lost | lust):
 	key(end)
 	user.omnifocus_select_tree("last tree's last descendant tree")
@@ -31,10 +34,16 @@ open [<phrase>]:
 edit: key(cmd-')
 view: key(cmd-alt-')
 
-move up: key(ctrl-cmd-up)
-move down: key(ctrl-cmd-down)
-move right: key(ctrl-cmd-right)
-move left: key(ctrl-cmd-left)
+project [<phrase>]:
+	key(cmd-alt-2 cmd-. tab:2)
+	insert(user.formatted_text(phrase or "", "ALL_LOWERCASE,NO_SPACES"))
+defer: key(cmd-alt-2 cmd-. tab:3)
+due: key(cmd-alt-2 cmd-. tab:4)
+
+move up: key(cmd-alt-2 cmd-. ctrl-cmd-up)
+move down: key(cmd-alt-2 cmd-. ctrl-cmd-down)
+move right: key(cmd-alt-2 cmd-. ctrl-cmd-right)
+move left: key(cmd-alt-2 cmd-. ctrl-cmd-left)
 
 go in box: key(cmd-1)
 go projects: key(cmd-2)
@@ -49,6 +58,7 @@ clean up: key(cmd-k)
 
 due today: key(ctrl-cmd-t)
 due tomorrow: key(ctrl-cmd-m)
+due this weekend: key(ctrl-cmd-w)
 
 postpone [by] <number_small> days:
 	user.omnifocus_postpone(number_small)
