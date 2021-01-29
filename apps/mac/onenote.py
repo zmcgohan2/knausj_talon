@@ -32,3 +32,15 @@ class Actions:
 
 	def onenote_now():
 		"""Insert timestamped bullet list item into OneNote."""
+
+@ctx.action_class("user")
+class user_actions:
+	def find(text: str):
+		actions.key("ctrl-g cmd-f")
+		actions.sleep("100ms")
+		actions.insert(text)
+
+	def find_everywhere(text: str):
+		actions.key("ctrl-g cmd-alt-f")
+		actions.sleep("100ms")
+		actions.insert(text)

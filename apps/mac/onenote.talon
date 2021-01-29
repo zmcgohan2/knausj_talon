@@ -1,5 +1,7 @@
 app.bundle: com.microsoft.onenote.mac
 -
+tag(): user.find_and_replace
+
 action(edit.select_line):
 	key(cmd-a)
 	sleep(100ms)
@@ -70,6 +72,10 @@ paste link:
 	key(cmd-v)
 	sleep(100ms)
 	key(enter cmd-shift-n)
+
+# user.find_and_replace
+action(user.find_next): key(cmd-g)
+action(user.find_previous): key(cmd-shift-g)
 
 # not standard OneNote; approximate equivalents of AutoHotKey
 today:
