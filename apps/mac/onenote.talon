@@ -85,6 +85,9 @@ today:
 	insert('- ')
 	key(enter tab cmd-1 up ctrl-e)
 
+key(ctrl-cmd-t):
+	mimic('today')
+
 # back to progress (first notebook, first section)
 go progress:
 	key(ctrl-g alt-up enter)
