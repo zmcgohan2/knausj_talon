@@ -32,6 +32,7 @@ expand: key(ctrl-shift-+)
 go (notebook | notebooks): key(ctrl-g)
 
 go (section | sections): key(ctrl-shift-g)
+section new: key(cmd-t)
 section previous: key(cmd-{)
 section next: key(cmd-})
 
