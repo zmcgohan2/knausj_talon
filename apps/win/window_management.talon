@@ -1,4 +1,4 @@
-os: win
+os: windows
 -
 # not universal but common enough
 full screen: key(f11)
