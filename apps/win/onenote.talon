@@ -25,7 +25,8 @@ move down: key(alt-shift-down)
 move right: key(alt-shift-right)
 move left: key(alt-shift-left)
 
-collapse: key(alt-shift--)
+# For consistency with Mac version, where collapsing will collapse to level 1
+collapse: key(alt-shift-1)
 expand: key(alt-shift-+)
 
 go (notebook | notebooks): key(ctrl-g)
