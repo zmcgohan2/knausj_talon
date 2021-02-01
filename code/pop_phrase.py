@@ -16,7 +16,6 @@ def on_phrase(j):
     phrase = " ".join(word.split("\\")[0] for word in phrase)
     global last_phrase
     last_phrase = phrase
-    print(f'*** Storing last phrase: {last_phrase} ***')
     # auto-set pop_phrase if the last phrase is in the auto_pop_that_phrases list
 
     global auto_pop_that_phrases
