@@ -13,7 +13,6 @@ action(user.code_operator_division): " / "
 action(user.code_operator_assignment): " = "
 action(user.code_comment): "#"
 
-dot talon: insert(".talon")
 #defintion blocks for the context
 action block:
 	insert("action():")
@@ -30,8 +29,14 @@ lunix require:
 	insert("os: linux\n")
 title require:
 	insert("win.title: ")
-app require:
-	insert("app: ")
+mode require:
+	insert("mode: ")
+name require:
+	insert("app.name: ")
+executable require:
+	insert("app.exe: ")
+bundle require:
+	insert("app.bundle: ")
 tag require:
 	insert("tag: ")
 tag set:

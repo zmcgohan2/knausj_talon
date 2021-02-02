@@ -1,36 +1,36 @@
 tag: user.code_comment
 -
-comment: user.code_comment()
-comment line:
+note: user.code_comment()
+note line:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
 	edit.line_start()
     user.code_comment()
-#adds comment to the start of the line
-comment line <user.text> over:
+#adds note to the start of the line
+note line <user.text> over:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
     edit.line_start()
     user.code_comment()
 	insert(user.text)
     insert(" ")
-comment <user.text> over:
+note <user.text> over:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
 	user.code_comment()
     insert(user.text)
-comment <user.text>$:
+note <user.text>$:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
     user.code_comment()
     insert(user.text)
-(line | inline) comment <user.text> over:
+(line | inline) note <user.text> over:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
 	edit.line_end()
    	user.code_comment()
     insert(user.text)
-(line | inline) comment <user.text>$:
+(line | inline) note <user.text>$:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
 	edit.line_end()

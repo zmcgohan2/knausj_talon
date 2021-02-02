@@ -20,7 +20,6 @@ class Actions:
     def talon_mode():
         """For windows and Mac with Dragon, enables Talon commands and Dragon's command mode."""
         actions.speech.enable()
-
         engine = speech_system.engine.name
         # app.notify(engine)
         if "dragon" in engine:

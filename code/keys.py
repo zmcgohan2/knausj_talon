@@ -123,7 +123,8 @@ ctx.lists["self.letter"] = alphabet
 punctuation_words = {
     # TODO: I'm not sure why we need these, I think it has something to do with
     # Dragon. Possibly it has been fixed by later improvements to talon? -rntz
-    "`": "`", ",": ",", # <== these things
+    "`": "`",
+    ",": ",",  # <== these things
     "back tick": "`",
     "comma": ",",
     "period": ".",
@@ -201,11 +202,11 @@ ctx.lists["self.arrow_key"] = {
 }
 
 simple_keys = [
-    "end",
+    # "end",
     "enter",
     "escape",
-    "home",
-    "insert",
+    # "home",
+    # "insert",
     "pagedown",
     "pageup",
     "space",
@@ -214,8 +215,10 @@ simple_keys = [
 
 alternate_keys = {
     "delete": "backspace",
-    "forward delete": "delete",
-    #'junk': 'backspace',
+    "junk": "delete",
+    # 'junk': 'backspace',
+    "lend": "end",
+    "bend": "home",
 }
 # mac apparently doesn't have the menu key.
 if app.platform in ("windows", "linux"):

@@ -5,7 +5,10 @@ mod = Module()
 
 mod.apps.chrome = "app.name: Google Chrome"
 mod.apps.chrome = "app.name: chrome.exe"
-
+mod.apps.google_chrome = """
+os: mac
+and app.bundle: com.google.Chrome
+"""
 ctx.matches = r"""
 app: chrome
 """

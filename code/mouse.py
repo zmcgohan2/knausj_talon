@@ -2,7 +2,19 @@ import os
 import pathlib
 import subprocess
 
-from talon import Context, Module, actions, app, cron, ctrl, imgui, noise, settings, ui
+from talon import (
+    Context,
+    Module,
+    actions,
+    app,
+    cron,
+    ctrl,
+    imgui,
+    noise,
+    settings,
+    ui,
+    tap,
+)
 from talon_plugins import eye_mouse, eye_zoom_mouse, speech
 from talon_plugins.eye_mouse import config, toggle_camera_overlay, toggle_control
 
@@ -83,7 +95,7 @@ setting_mouse_wheel_down_amount = mod.setting(
 continuous_scoll_mode = ""
 
 
-@imgui.open(x=700, y=0, software=app.platform == "linux")
+@imgui.open(x=700, y=0, software=False)
 def gui_wheel(gui: imgui.GUI):
     gui.text("Scroll mode: {}".format(continuous_scoll_mode))
     gui.line()
@@ -247,6 +259,26 @@ def show_cursor_helper(show):
         ctrl.cursor_visible(show)
 
 
+def custom_zoom_enable(self):
+    if self.enabled:
+        return
+    # noise.register("pop", self.on_pop)
+
+    if self.enable_hiss_for_right_click:
+        noise.register("hiss", self.on_hiss)
+
+    tap.register(tap.MCLICK | tap.KEY | tap.HOOK, self.on_key)
+    # app.register('overlay', self.draw_gaze)
+    self.enabled = True
+
+
+# monkey patch for allowing continuous scrolling to be stopped via a pop
+# and coexist well with the zoom mouse.
+eye_zoom_mouse.ZoomMouse.enable = custom_zoom_enable
+if eye_zoom_mouse.zoom_mouse.enabled:
+    noise.unregister("pop", eye_zoom_mouse.zoom_mouse.on_pop)
+
+
 def on_pop(active):
     if gaze_job or scroll_job:
         if setting_mouse_enable_pop_stops_scroll.get() >= 1:
@@ -257,6 +289,11 @@ def on_pop(active):
     ):
         if setting_mouse_enable_pop_click.get() >= 1:
             ctrl.mouse_click(button=0, hold=16000)
+    elif (
+        eye_zoom_mouse.zoom_mouse.enabled
+        and eye_mouse.mouse.attached_tracker is not None
+    ):
+        eye_zoom_mouse.zoom_mouse.on_pop(eye_zoom_mouse.zoom_mouse.state)
 
 
 noise.register("pop", on_pop)
