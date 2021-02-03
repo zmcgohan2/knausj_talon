@@ -4,7 +4,7 @@
 # next one:
 #     edit.find_next()
 
-fall:
+draw:
     edit.word_left()
 
 spring:
@@ -68,11 +68,11 @@ sell down:
 
 sell word:
     edit.select_word()
-
-sell word left:
+    
+sell draw:
     edit.extend_word_left()
 
-sell word right:
+sell spring:
     edit.extend_word_right()
 
 sell far left:
@@ -115,7 +115,7 @@ junk down:
 junk word:
     edit.delete_word()
 
-junk fall:
+junk draw:
     edit.extend_word_left()
     edit.delete()
 
@@ -161,11 +161,11 @@ copy word:
     edit.select_word()
     edit.copy()
 
-copy word left:
+copy draw:
     edit.extend_word_left()
     edit.copy()
 
-copy word right:
+copy spring:
     edit.extend_word_right()
     edit.copy()
 
@@ -195,11 +195,11 @@ cut word:
     edit.select_word()
     edit.cut()
 
-cut word left:
+cut draw:
     edit.extend_word_left()
     edit.cut()
 
-cut word right:
+cut spring:
     edit.extend_word_right()
     edit.cut()
 
