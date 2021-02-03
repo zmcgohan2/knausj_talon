@@ -1,13 +1,13 @@
-find it:
-    edit.find()
+# find it:
+#     edit.find()
 
-next one:
-    edit.find_next()
+# next one:
+#     edit.find_next()
 
-go word left:
+fall:
     edit.word_left()
 
-go word right:
+spring:
     edit.word_right()
 
 go left:
@@ -28,63 +28,63 @@ go line start:
 go line end:
     edit.line_end()
 
-go way left:
+far left:
     edit.line_start()
     edit.line_start()
 
-go way right:
+far right:
     edit.line_end()
 
-go way down:
+far down:
     edit.file_end()
 
-go way up:
+far up:
     edit.file_start()
 
-go page down:
-    edit.page_down()
+# go page down:
+#     edit.page_down()
 
-go page up:
-    edit.page_up()
+# go page up:
+#     edit.page_up()
 
 # selecting
-select line:
+sell line:
     edit.select_line()
 
-select all:
+sell all:
     edit.select_all()
 
-select left:
+sell left:
     edit.extend_left()
 
-select right:
+sell right:
     edit.extend_right()
 
-select up:
+sell up:
     edit.extend_line_up()
 
-select down:
+sell down:
     edit.extend_line_down()
 
-select word:
+sell word:
     edit.select_word()
 
-select word left:
+sell word left:
     edit.extend_word_left()
 
-select word right:
+sell word right:
     edit.extend_word_right()
 
-select way left:
+sell far left:
     edit.extend_line_start()
 
-select way right:
+sell far right:
     edit.extend_line_end()
 
-select way up:
+sell far up:
     edit.extend_file_start()
 
-select way down:
+sell far down:
     edit.extend_file_end()
 
 # editing
@@ -95,47 +95,47 @@ indent [more]:
     edit.indent_less()
 
 # deleting
-clear line:
+junk line:
     edit.delete_line()
 
-clear left:
-    key(backspace)
+# junk left:
+#     key(backspace)
 
-clear right:
-    key(delete)
+# junk right:
+#     key(delete)
 
-clear up:
+junk up:
     edit.extend_line_up()
     edit.delete()
 
-clear down:
+junk down:
     edit.extend_line_down()
     edit.delete()
 
-clear word:
+junk word:
     edit.delete_word()
 
-clear word left:
+junk fall:
     edit.extend_word_left()
     edit.delete()
 
-clear word right:
+junk spring:
     edit.extend_word_right()
     edit.delete()
 
-clear way left:
+junk far left:
     edit.extend_line_start()
     edit.delete()
 
-clear way right:
+junk far right:
     edit.extend_line_end()
     edit.delete()
 
-clear way up:
+junk far up:
     edit.extend_file_start()
     edit.delete()
 
-clear way down:
+junk far down:
     edit.extend_file_end()
     edit.delete()
 

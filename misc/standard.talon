@@ -9,14 +9,14 @@
 #word no: "NULL"
 #word cmd: "cmd"
 #word dup: "dup"
-#word shell: "shell".
+#word shell: "shell"
 zoom in: edit.zoom_in()
 zoom out: edit.zoom_out()
 (page | scroll) up: key(pgup)
 (page | scroll) down: key(pgdown)
 copy that: edit.copy()
 cut that: edit.cut()
-paste that: edit.paste()
+paste now: edit.paste()
 undo that: edit.undo()
 redo that: edit.redo()
 paste match: edit.paste_match_style()
