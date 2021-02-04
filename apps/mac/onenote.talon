@@ -99,4 +99,6 @@ key(ctrl-cmd-t):
 go progress:
 	key(ctrl-g alt-up enter)
 	sleep(200ms)
-	key(alt-up tab:2)
+	# esc is custom shortcut for "Hide Navigation" AppleScript using accessibility
+	# to hide the sidebar - happy to provide it on request if anyone else is using this
+	key(alt-up tab:2 escape)
