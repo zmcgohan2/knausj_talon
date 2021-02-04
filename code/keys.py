@@ -164,7 +164,7 @@ symbol_key_words = {
     "paren": "(",
     # "L paren": "(",
     # "left paren": "(",
-    # "R paren": ")",
+    "R paren": ")",
     "right paren": ")",
     "brace": "{",
     # "left brace": "{",
