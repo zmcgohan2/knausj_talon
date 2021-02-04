@@ -13,11 +13,11 @@ note [line] <number>:
 note <number> through <number>: 
     user.select_range(number_1, number_2)
     code.toggle_comment()
-clear [line] <number>:
+void [line] <number>:
     edit.jump_line(number)
     user.select_range(number, number)
     edit.delete()
-clear <number> through <number>: 
+void <number> through <number>: 
     user.select_range(number_1, number_2)
     edit.delete()
 copy [line] <number>: 
