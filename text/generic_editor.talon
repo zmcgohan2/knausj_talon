@@ -95,47 +95,47 @@ indent [more]:
     edit.indent_less()
 
 # deleting
-junk line:
+void line:
     edit.delete_line()
 
-# junk left:
+# void left:
 #     key(backspace)
 
-# junk right:
+# void right:
 #     key(delete)
 
-junk up:
+void up:
     edit.extend_line_up()
     edit.delete()
 
-junk down:
+void down:
     edit.extend_line_down()
     edit.delete()
 
-junk word:
+void word:
     edit.delete_word()
 
-junk draw:
+void draw:
     edit.extend_word_left()
     edit.delete()
 
-junk spring:
+void spring:
     edit.extend_word_right()
     edit.delete()
 
-junk far left:
+void far left:
     edit.extend_line_start()
     edit.delete()
 
-junk far right:
+void far right:
     edit.extend_line_end()
     edit.delete()
 
-junk far up:
+void far up:
     edit.extend_file_start()
     edit.delete()
 
-junk far down:
+void far down:
     edit.extend_file_end()
     edit.delete()
 
