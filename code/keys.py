@@ -214,7 +214,7 @@ simple_keys = [
 
 alternate_keys = {
     "delete": "backspace",
-    "junk": "delete",
+    "void": "delete",
     # 'junk': 'backspace',
     "lend": "end",
     "bend": "home",
