@@ -45,7 +45,10 @@ inside quotes:
     key(left)
 inside ticks:
 	insert('``')
-	key(left)
+    key(left)
+inside angle:
+    insert('<>')
+    key(left)
 angle that: 
     text = edit.selected_text()
     user.paste("<{text}>")

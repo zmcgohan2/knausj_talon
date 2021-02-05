@@ -50,6 +50,9 @@ action(user.multi_cursor_select_fewer_occurrences): user.vscode("Cursor Undo")
 action(user.multi_cursor_select_more_occurrences): user.vscode("Add Selection To Next Find Match")
 #multiple_cursor.py support end
 
+jump to: key(alt-/)
+jump to <user.unmodified_key>: key(alt-/ unmodified_key)
+
 please [<user.text>]: 
   user.vscode("Show All Commands")
   insert(user.text or "")
