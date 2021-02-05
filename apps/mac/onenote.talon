@@ -85,7 +85,7 @@ today:
 	key(cmd-alt-0)
 	key(shift-tab:5)
 	# neither bullets nor numbering
-	key(cmd-/ cmd-. cmd-.)
+	key(cmd-. cmd-/ cmd-/)
 	# outdent one more time as the above may indent
 	key(shift-tab)
 	key(cmd-alt-1 cmd-d)
