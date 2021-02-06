@@ -1,3 +1,5 @@
+from os.path import join
+from subprocess import call
 from talon import Context, actions, Module
 
 mod = Module()
@@ -53,3 +55,11 @@ class win_actions:
 
 	def file_ext():
 		return actions.win.filename().split(".")[-1]
+
+@mod.action_class
+class Actions:
+	def subl(paths: list[str]):
+		"""Open the specified paths in Sublime Text."""
+		sublime_text = actions.user.launch_or_focus_bundle('com.sublimetext.4')
+		subl_path = join(sublime_text.path, 'Contents/SharedSupport/bin/subl')
+		call([subl_path, '--'] + paths)
