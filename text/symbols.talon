@@ -1,4 +1,4 @@
-question [mark]: "?"
+question | questionmark: "?"
 (downscore | underscore): "_"
 double dash: "--"
 (bracket | brack | left bracket): "{"
@@ -67,3 +67,6 @@ quote that:
 tick that:
     text = edit.selected_text()
     user.paste('`{text}`')
+square that:
+    text = edit.selected_text()
+    user.paste('[{text}]')
