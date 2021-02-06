@@ -1,14 +1,12 @@
-question | questionmark: "?"
-(downscore | underscore): "_"
+# question [mark]: "?"
+# (downscore | underscore): "_"
 double dash: "--"
-(bracket | brack | left bracket): "{"
-(rbrack | are bracket | right bracket): "}"
-triple quote: "'''"
-(dot dot | dotdot): ".."
+# (bracket | brack | left bracket): "{"
+# (rbrack | are bracket | right bracket): "}"
 #ellipses: "…"
 ellipses: "..."
-(comma and | spamma): ", "
-plus: "+"
+spamma: ", "
+# plus: "+"
 arrow: "->"
 dub arrow: "=>"
 new line: "\\n"
@@ -17,7 +15,7 @@ line feed: "\\r\\n"
 empty dubstring:
     '""'
     key(left)
-empty escaped (dubstring|dub quotes):
+empty escaped dubstring:
     '\\"\\"'
     key(left)
     key(left)
@@ -28,13 +26,13 @@ empty escaped string:
     "\\'\\'"
     key(left)
     key(left)
-(inside parens | args):
+args:
 	insert("()")
 	key(left)
-inside (squares | list): 
+inside squares: 
 	insert("[]") 
 	key(left)
-inside (bracket | braces): 
+inside bracket: 
 	insert("{}") 
 	key(left)
 inside percent: 
@@ -55,7 +53,7 @@ angle that:
 bracket that: 
     text = edit.selected_text()
     user.paste("{{{text}}}")
-(parens | args) that: 
+args that: 
     text = edit.selected_text()
     user.paste("({text})")
 percent that: 

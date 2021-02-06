@@ -43,7 +43,7 @@ op power: user.code_operator_exponent()
 #bitwise operators
 [op] bitwise and: user.code_operator_bitwise_and()
 [op] bitwise or: user.code_operator_bitwise_or()
-(op | logical | bitwise) (ex | exclusive) or: user.code_operator_bitwise_exclusive_or()
+op exclusive or: user.code_operator_bitwise_exclusive_or()
 (op | logical | bitwise) (left shift | shift left): user.code_operator_bitwise_left_shift()
 (op | logical | bitwise) (right shift | shift right): user.code_operator_bitwise_right_shift()
 (op | logical | bitwise) (ex | exclusive) or equals: user.code_operator_bitwise_exclusive_or_equals()
