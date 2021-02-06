@@ -38,8 +38,8 @@ paste <number> through <number>:
 replace <number> through <number>: 
     user.select_range(number_1, number_2)
     edit.paste()
-(select | cell | sell) [line] <number>: user.select_range(number, number)
-(select | cell | sell) <number> through <number>: user.select_range(number_1, number_2)
+sell [line] <number>: user.select_range(number, number)
+sell <number> through <number>: user.select_range(number_1, number_2)
 tab that: edit.indent_more()
 tab [line] <number>:
     edit.jump_line(number)
