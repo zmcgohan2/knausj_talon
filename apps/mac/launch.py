@@ -1,4 +1,4 @@
-from talon import Module, ui
+from talon import actions, Module, ui
 
 mod = Module()
 
@@ -7,3 +7,33 @@ class Actions:
 	def launch_bundle(bundle: str):
 		"""Launch an application by bundle ID."""
 		ui.launch(bundle=bundle)
+
+	def focus_bundle(bundle: str):
+		"""Focus and return an application by bundle ID, or None if unable to do so."""
+		active_app = ui.active_app()
+		if active_app.bundle == bundle:
+			return active_app
+		try:
+			next(a for a in ui.apps() if a.bundle == bundle).focus()
+		except StopIteration:
+			return None
+		for attempt in range(10):
+			active_app = ui.active_app()
+			if active_app.bundle == bundle:
+				return active_app
+			actions.sleep("50ms")
+		return None
+
+	def launch_or_focus_bundle(bundle: str):
+		"""Launch or focus and return an application by bundle ID, or None if unable to do so."""
+		app = actions.user.focus_bundle(bundle)
+		if app is not None:
+			return app
+		actions.user.launch_bundle(bundle)
+		for attempt in range(100):
+			active_app = ui.active_app()
+			if active_app.bundle == bundle:
+				return active_app
+			actions.sleep("50ms")
+		return actions.user.focus_bundle(bundle)
+ 

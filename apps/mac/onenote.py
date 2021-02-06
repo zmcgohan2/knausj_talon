@@ -22,13 +22,7 @@ class edit_actions:
 class Actions:
 	def onenote_focus():
 		"""Bring OneNote to the front."""
-		if ui.active_app().bundle == 'com.microsoft.onenote.mac':
-			return
-		next(a for a in ui.apps() if a.bundle == 'com.microsoft.onenote.mac').focus()
-		for attempt in range(10):
-			if ui.active_app().bundle == 'com.microsoft.onenote.mac':
-				return
-			actions.sleep("50ms")
+		actions.user.launch_or_focus_bundle('com.microsoft.onenote.mac')
 
 	def onenote_now():
 		"""Insert timestamped bullet list item into OneNote."""
