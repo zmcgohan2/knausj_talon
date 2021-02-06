@@ -176,7 +176,7 @@ symbol_key_words = {
     "rangle": ">",
     # "R angle": ">",
     # "right angle": ">",
-    "greater than": ">",
+    # "greater than": ">",
     "asterisk": "*",
     # "pound": "#",
     "hash": "#",
