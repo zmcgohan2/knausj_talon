@@ -14,8 +14,8 @@ class Actions:
 		if active_app.bundle == bundle:
 			return active_app
 		try:
-			next(a for a in ui.apps() if a.bundle == bundle).focus()
-		except StopIteration:
+			ui.apps(bundle=bundle)[0].focus()
+		except IndexError:
 			return None
 		for attempt in range(10):
 			active_app = ui.active_app()
