@@ -37,6 +37,8 @@ class Actions:
 
 def on_pop(active):
     global pop_phrase
+    if pop_phrase == "":
+        return
     actions.mimic(pop_phrase) 
 
 noise.register("pop", on_pop)
