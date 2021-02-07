@@ -73,6 +73,12 @@ def function_key(m) -> str:
     return m.function_key
 
 
+@mod.capture(rule="( <self.letter> | <self.number_key> | <self.symbol_key> )")
+def any_alphanumeric_key(m) -> str:
+    "any single alphanumeric key"
+    return str(m)
+
+
 @mod.capture(
     rule="( <self.letter> | <self.number_key> | <self.symbol_key> "
     "| <self.arrow_key> | <self.function_key> | <self.special_key> )"
@@ -131,7 +137,7 @@ punctuation_words = {
     "semicolon": ";",
     "colon": ":",
     "slash": "/",
-    "question mark": "?",
+    "questionmark": "?",
     "exclamation mark": "!",
     # "exclamation point": "!",
     "dollar sign": "$",
