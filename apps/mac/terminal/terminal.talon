@@ -23,14 +23,6 @@ action(user.tab_overview):
   key(cmd-shift-\)
 action(app.window_open):
   key(cmd-n)
-<<<<<<< variant A
-kill all:
-  key(ctrl-c)
-rerun search:
-  key(ctrl-r)
-run last:
-  key(up)
-  key(enter)
 action(edit.delete):
   key(ctrl-w)
 action(edit.extend_word_left):
@@ -51,8 +43,6 @@ action(edit.line_start):
   key(ctrl-a)
 action(edit.line_end):
   key(ctrl-e)
->>>>>>> variant B
-======= end
 action(edit.page_down):
   key(command-pagedown)
 action(edit.page_up):
