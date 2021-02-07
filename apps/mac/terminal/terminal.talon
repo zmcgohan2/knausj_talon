@@ -31,10 +31,8 @@ action(edit.extend_word_left):
 action(edit.extend_word_right):
   key(ctrl-space)
   key(alt-f)
-action(edit.delete_line): 
+action(edit.delete_line):
   key(ctrl-u)
-action(edit.delete_word):
-  key(alt-d)
 action(edit.word_left):
   key(alt-b)
 action(edit.word_right):
@@ -47,6 +45,8 @@ action(edit.page_down):
   key(command-pagedown)
 action(edit.page_up):
   key(command-pageup)
+action(edit.undo):
+  key(ctrl-_)
 rerun search:
   key(ctrl-r)
 suspend:
@@ -56,7 +56,7 @@ resume:
   key(enter)
 clear:
   key(cmd-k)
-clear word (left | previous):
+clear (word (left | previous) | west):
   key(alt-backspace)
-clear word (right | next):
+clear (word (right | next) | east):
   key(alt-d)
