@@ -2,6 +2,7 @@ app: apple_terminal
 -
 #comment or remove tags for command sets you don't want
 tag(): user.file_manager
+tag(): user.generic_terminal
 tag(): user.git
 tag(): user.kubectl
 tag(): user.tabs
@@ -22,6 +23,7 @@ action(user.tab_overview):
   key(cmd-shift-\)
 action(app.window_open):
   key(cmd-n)
+<<<<<<< variant A
 kill all:
   key(ctrl-c)
 rerun search:
@@ -49,10 +51,14 @@ action(edit.line_start):
   key(ctrl-a)
 action(edit.line_end):
   key(ctrl-e)
+>>>>>>> variant B
+======= end
 action(edit.page_down):
   key(command-pagedown)
 action(edit.page_up):
   key(command-pageup)
+rerun search:
+  key(ctrl-r)
 suspend:
   key(ctrl-z)
 resume:
