@@ -66,3 +66,8 @@ postpone [by] <number_small> days:
 postpone: key(ctrl-cmd-l)
 
 clear dates: key(ctrl-cmd-\)
+
+# Using AppleScripts (to migrate to plugins)
+
+move way up: key(ctrl-alt-cmd-up home)
+move way down: key(ctrl-alt-cmd-down end)
