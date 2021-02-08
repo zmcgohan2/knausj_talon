@@ -36,12 +36,12 @@ midclick:
 	key("{modifiers}:up")
 	# close the mouse grid
 	user.grid_close()
-(dubclick | duke): 
+dubclick: 
 	mouse_click()
 	mouse_click()
 	# close the mouse grid
 	user.grid_close()
-(tripclick | triplick): 
+tripclick:
 	mouse_click()
 	mouse_click()
 	mouse_click()
@@ -98,6 +98,6 @@ wheel tiny right: mouse_scroll(0, 20)
 wheel tiny right here:
     user.mouse_move_center_active_window()
     mouse_scroll(0, 20)
-curse yes: user.mouse_show_cursor()
-curse no: user.mouse_hide_cursor()
+# curse yes: user.mouse_show_cursor()
+# curse no: user.mouse_hide_cursor()
 copy mouse position: user.copy_mouse_position()
