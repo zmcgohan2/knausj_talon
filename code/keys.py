@@ -111,15 +111,28 @@ def letters(m) -> str:
 
 
 ctx = Context()
-ctx.lists["self.modifier_key"] = {
-    # If you find 'alt' is often misrecognized, try using 'alter'.
-    "alt": "alt",  #'alter': 'alt',
-    "command": "cmd",
-    "control": "ctrl",  #'troll':   'ctrl',
-    "option": "alt",
-    "shift": "shift",  #'sky':     'shift',
-    "super": "super",
-}
+
+if app.platform == "mac":
+    ctx.lists["self.modifier_key"] = {
+        # If you find 'alt' is often misrecognized, try using 'alter'.
+        "alt": "alt",  #'alter': 'alt',
+        "command": "cmd",
+        "control": "ctrl",  #'troll':   'ctrl',
+        "option": "alt",
+        "shift": "shift",  #'sky':     'shift',
+        # "super": "super",
+    }
+else:
+    ctx.lists["self.modifier_key"] = {
+        # If you find 'alt' is often misrecognized, try using 'alter'.
+        "alt": "alt",  #'alter': 'alt',
+        # "command": "cmd",
+        "control": "ctrl",  #'troll':   'ctrl',
+        "option": "alt",
+        "shift": "shift",  #'sky':     'shift',
+        "super": "super",
+    }
+
 alphabet = dict(zip(default_alphabet, letters_string))
 ctx.lists["self.letter"] = alphabet
 
@@ -210,7 +223,7 @@ simple_keys = [
     # "end",
     "enter",
     "escape",
-    # "home",
+    "home",
     # "insert",
     "pagedown",
     "pageup",
