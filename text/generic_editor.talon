@@ -88,10 +88,10 @@ sell far down:
     edit.extend_file_end()
 
 # editing
-indent [more]:
+dent:
     edit.indent_more()
 
-(indent less | out dent):
+retab:
     edit.indent_less()
 
 # deleting
@@ -174,9 +174,10 @@ copy line:
     edit.copy()
 
 #cut commands
-cut everything:
+cut all:
     edit.select_all()
     edit.cut()
+
 #to do: do we want these variants
 # cut left:
 #      edit.select_all()

@@ -1,8 +1,8 @@
 tag: user.line_commands
 -
 #this defines some common line commands. More may be defined that are ide-specific.
-lend: edit.line_end()
-bend: edit.line_start()
+# lend: edit.line_end()
+# bend: edit.line_start()
 line <number>: edit.jump_line(number)
 line <number> end: 
     edit.jump_line(number)
@@ -40,14 +40,14 @@ replace <number> through <number>:
     edit.paste()
 sell [line] <number>: user.select_range(number, number)
 sell <number> through <number>: user.select_range(number_1, number_2)
-tab that: edit.indent_more()
-tab [line] <number>:
+# tab that: edit.indent_more()
+dent [line] <number>:
     edit.jump_line(number)
     edit.indent_more()
-tab <number> through <number>:
+dent <number> through <number>:
     user.select_range(number_1, number_2)
     edit.indent_more()
-retab that: edit.indent_less()
+# retab that: edit.indent_less()
 retab [line] <number>:
     user.select_range(number, number)
     edit.indent_less()
