@@ -43,7 +43,7 @@ sell <number> through <number>: user.select_range(number_1, number_2)
 # tab that: edit.indent_more()
 dent [line] <number>:
     edit.jump_line(number)
-    edit.indent_more()
+    edit.indent_more() 
 dent <number> through <number>:
     user.select_range(number_1, number_2)
     edit.indent_more()
@@ -68,4 +68,4 @@ drag down [line] <number>:
 drag down <number> through <number>: 
     user.select_range(number_1, number_2)
     edit.line_swap_down()
-clone (line|that): edit.line_clone()
+clone line: edit.line_clone()
