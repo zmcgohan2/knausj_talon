@@ -7,6 +7,7 @@ ctx = Context()
 digits = "zero one two three four five six seven eight nine".split()
 teens = "eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
 tens = "ten twenty thirty forty fifty sixty seventy eighty ninety".split()
+small_tens = "ten twenty".split()
 scales = "hundred thousand million billion trillion quadrillion quintillion sextillion septillion octillion nonillion decillion".split()
 
 digits_map = {n: i for i, n in enumerate(digits)}
@@ -14,6 +15,8 @@ digits_map["oh"] = 0
 teens_map = {n: i + 11 for i, n in enumerate(teens)}
 tens_map = {n: 10 * (i + 1) for i, n in enumerate(tens)}
 scales_map = {n: 10 ** (3 * (i + 1)) for i, n in enumerate(scales[1:])}
+tens_small_map = {n: 10 * (i + 1) for i, n in enumerate(small_tens)}
+
 scales_map["hundred"] = 100
 
 numbers_map = digits_map.copy()
@@ -160,6 +163,9 @@ def split_list(value, l: list) -> Iterator:
 alt_digits = "(" + ("|".join(digits_map.keys())) + ")"
 alt_teens = "(" + ("|".join(teens_map.keys())) + ")"
 alt_tens = "(" + ("|".join(tens_map.keys())) + ")"
+
+
+alt_tens_small = "(" + ("|".join(tens_small_map.keys())) + ")"
 alt_scales = "(" + ("|".join(scales_map.keys())) + ")"
 number_word = "(" + "|".join(numbers_map.keys()) + ")"
 
@@ -194,7 +200,8 @@ def number_signed(m):
 
 
 @ctx.capture(
-    "number_small", rule=f"({alt_digits} | {alt_teens} | {alt_tens} [{alt_digits}])"
+    "number_small",
+    rule=f"({alt_digits} | {alt_teens} | {alt_tens_small} [{alt_digits}])",
 )
 def number_small(m):
     return int(parse_number(list(m)))

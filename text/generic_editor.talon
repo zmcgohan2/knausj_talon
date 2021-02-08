@@ -173,6 +173,22 @@ copy line:
     edit.select_line()
     edit.copy()
 
+copy far left:
+    edit.extend_line_start()
+    edit.delete()
+
+copy far right:
+    edit.extend_line_end()
+    edit.copy()
+
+copy far up:
+    edit.extend_file_start()
+    edit.copy()
+
+copy far down:
+    edit.extend_file_end()
+    edit.copy()
+
 #cut commands
 cut all:
     edit.select_all()
