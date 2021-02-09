@@ -47,24 +47,24 @@ inside ticks:
 inside angle:
     insert('<>')
     key(left)
-angle that: 
+angle sell: 
     text = edit.selected_text()
     user.paste("<{text}>")
-bracket that: 
+bracket sell: 
     text = edit.selected_text()
     user.paste("{{{text}}}")
-args that: 
+args sell: 
     text = edit.selected_text()
     user.paste("({text})")
-percent that: 
+percent sell: 
     text = edit.selected_text()
     user.paste("%{text}%")
-quote that:
+quote sell:
     text = edit.selected_text()
     user.paste('"{text}"')
-tick that:
+tick sell:
     text = edit.selected_text()
     user.paste('`{text}`')
-square that:
+square sell:
     text = edit.selected_text()
     user.paste('[{text}]')

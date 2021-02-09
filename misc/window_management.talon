@@ -4,8 +4,7 @@ window last: app.window_previous()
 window close: app.window_close()
 focus <user.running_applications>: user.switcher_focus(running_applications)
 running list: user.switcher_toggle_running()
-launch <user.launch_applications>: user.switcher_launch(launch_applications)
-
+start <user.launch_applications>: user.switcher_launch(launch_applications)
 snap <user.window_snap_position>: user.snap_window(window_snap_position)
 snap next screen: user.move_window_next_screen()
 snap last screen: user.move_window_previous_screen()
@@ -14,3 +13,4 @@ snap <user.running_applications> <user.window_snap_position>:
     user.snap_app(running_applications, window_snap_position)
 snap <user.running_applications> [screen] <number>:
     user.move_app_to_screen(running_applications, number)
+desktop show: key(super-d)

@@ -12,19 +12,19 @@
 #word shell: "shell"
 zoom in: edit.zoom_in()
 zoom out: edit.zoom_out()
-(page | scroll) up: key(pgup)
-(page | scroll) down: key(pgdown)
-copy that: edit.copy()
-cut that: edit.cut()
+# (page | scroll) up: key(pgup)
+# (page | scroll) down: key(pgdown)
+copy sell: edit.copy()
+cut sell: edit.cut()
 paste now: edit.paste()
 undo that: edit.undo()
 redo that: edit.redo()
 paste match: edit.paste_match_style()
 file save: edit.save()
-wipe: key(backspace)    
-(pad | padding): 
-	insert("  ") 
-	key(left)
+# wipe: key(backspace)    
+# (pad | padding): 
+# 	insert("  ") 
+# 	key(left)
 slap:
 	edit.line_end()
 	key(enter)
