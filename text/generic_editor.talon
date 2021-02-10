@@ -88,7 +88,7 @@ sell far down:
     edit.extend_file_end()
 
 # editing
-dent:
+tab:
     edit.indent_more()
 
 retab:

@@ -41,10 +41,10 @@ replace <number> by <number>:
 sell [line] <number>: user.select_range(number, number)
 sell <number> by <number>: user.select_range(number_1, number_2)
 # tab that: edit.indent_more()
-dent [line] <number>:
+tab [line] <number>:
     edit.jump_line(number)
     edit.indent_more() 
-dent <number> by <number>:
+tab <number> by <number>:
     user.select_range(number_1, number_2)
     edit.indent_more()
 # retab that: edit.indent_less()
