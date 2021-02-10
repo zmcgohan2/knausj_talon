@@ -113,7 +113,7 @@ class MouseSnapNine:
     def draw(self, canvas):
         if self.wants_capture == 1:
             self.wants_capture = 2
-            self.mcanvas.freeze()
+            # self.mcanvas.freeze()
             return
         elif self.wants_capture == 2:
 
@@ -121,8 +121,8 @@ class MouseSnapNine:
                 print("capture finished")
                 self.mcanvas.allows_capture = True
                 self.wants_capture = 0
-                self.mcanvas.register("paint", self.draw)
-                self.mcanvas.freeze()
+                # self.mcanvas.register("paint", self.draw)
+                # self.mcanvas.freeze()
 
             def do_capture():
                 print(
@@ -140,7 +140,7 @@ class MouseSnapNine:
             self.mcanvas.allows_capture = False
             cron.after("5ms", do_capture)
             self.wants_capture = 3
-            self.mcanvas.freeze()
+            # self.mcanvas.freeze()
             self.mcanvas.unregister("paint", self.draw)
         elif self.wants_capture == 3:
             return
@@ -262,8 +262,9 @@ class MouseSnapNine:
                     text_rect = canvas.paint.measure_text(text_string)[1]
                     background_rect = text_rect.copy()
                     background_rect.center = Point2d(
-                            offset_x + width / 6 + col * width / 3,
-                            offset_y + height / 6 + row * height / 3)
+                        offset_x + width / 6 + col * width / 3,
+                        offset_y + height / 6 + row * height / 3,
+                    )
                     background_rect = background_rect.inset(-4)
                     paint.color = "9999995f"
                     paint.style = Paint.Style.FILL
@@ -335,12 +336,12 @@ class MouseSnapNine:
         if move:
             ctrl.mouse_move(*self.pos())
         self.count += 1
-        self.mcanvas.freeze()
+        # self.mcanvas.freeze()
         if self.count >= 2:
             self.wants_capture = 1
         # if self.count >= 4:
         # self.reset(None)
-        self.mcanvas.freeze()
+        # self.mcanvas.freeze()
 
     def draw_zoom(self, c, x, y, w, h):
         if self.img:
@@ -363,7 +364,7 @@ class MouseSnapNine:
                 self.screen = ui.screen_containing(x, y)
 
             # print(screens)
-            # self.screen = screens[self.screen_index]
+            # self.screen = screens[self.screen_in.rdex]
             self.offset_x = self.screen.x
             self.offset_y = self.screen.y
             self.width = self.screen.width
@@ -382,7 +383,7 @@ class MouseSnapNine:
                 # self.narrow_to_pos(x, y)
             # print(self.offset_x, self.offset_y, self.width, self.height)
             # print(*self.pos())
-            self.mcanvas.freeze()
+            # self.mcanvas.freeze()
 
         return _reset
 
