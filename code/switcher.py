@@ -314,7 +314,7 @@ def gui(gui: imgui.GUI):
 def update_launch_list():
     launch = {}
     if app.platform == "mac":
-        for base in "/Applications", "/Applications/Utilities":
+        for base in mac_application_directories:
             for name in os.listdir(base):
                 path = os.path.join(base, name)
                 name = name.rsplit(".", 1)[0].lower()
@@ -367,4 +367,4 @@ def on_ready():
 
 
 # NOTE: please update this from "launch" to "ready" in Talon v0.1.5
-app.register("launch", on_ready)
+app.register("ready", on_ready)
