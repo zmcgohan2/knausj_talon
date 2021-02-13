@@ -4,7 +4,10 @@ do [<user.text>]:
 	key(cmd-shift-p)
 	insert(user.text or "")
 
-message: key(cmd-9)
+message [<user.prose>]:
+	key(cmd-9)
+	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
+
 commit: key(cmd-enter)
 push: key(cmd-alt-up)
 pull: key(cmd-alt-down)
