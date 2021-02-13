@@ -49,10 +49,13 @@ go in box: key(cmd-1)
 go projects: key(cmd-2)
 go tags: key(cmd-3)	
 go forecast: key(cmd-4)
+go flagged: key(cmd-5)
+go review: key(cmd-6)
 
 done: user.omnifocus_complete()
 skip: key(alt-space)
 clean up: key(cmd-k)
+mark reviewed: key(cmd-shift-r)
 
 # Using plugins from https://github.com/nriley/OmniFocus-Plug-Ins
 
