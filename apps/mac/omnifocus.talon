@@ -53,6 +53,7 @@ go flagged: key(cmd-5)
 go review: key(cmd-6)
 
 done: user.omnifocus_complete()
+flag: key(cmd-shift-l)
 skip: key(alt-space)
 clean up: key(cmd-k)
 mark reviewed: key(cmd-shift-r)
