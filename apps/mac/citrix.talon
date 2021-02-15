@@ -1,5 +1,6 @@
 os: mac
 app: com.citrix.XenAppViewer
+app: com.citrix.receiver.icaviewer.mac
 -
 
 # Windows
