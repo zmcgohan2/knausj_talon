@@ -29,6 +29,8 @@ settings():
     user.command_history_size = 50
     # record everything to ~/.talon/recordings
     # speech.record_all = 1
+    # default wav2letter timeout changed in 0.1.5 from 150 to 300 ms
+    speech.timeout = 0.12
 
 # uncomment tag to enable mouse grid
 # tag(): user.mouse_grid_enabled
