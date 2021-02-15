@@ -55,6 +55,8 @@ action(user.replace_confirm): key(cmd-alt-e)
 action(user.replace_confirm_all): key(ctrl-alt-enter)
 
 # user.line_commands
+action(user.delete_camel_left): key(ctrl-backspace)
+action(user.delete_camel_right): key(ctrl-delete)
 action(user.extend_camel_left): key(ctrl-shift-left)
 action(user.extend_camel_right): key(ctrl-shift-right)
 action(user.camel_left): key(ctrl-left)
