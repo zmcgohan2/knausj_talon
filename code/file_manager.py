@@ -347,7 +347,7 @@ def update_lists():
     files = {}
     folder_selections = []
     file_selections = []
-    print(path)
+    # print(path)
     try:
         current_path = Path(path)
         is_valid_path = current_path.is_dir()
@@ -355,7 +355,7 @@ def update_lists():
         is_valid_path = False
 
     if is_valid_path:
-        print("valid..." + str(current_path))
+        # print("valid..." + str(current_path))
         try:
             directories = get_directory_map(current_path)
             files = get_file_map(current_path)
@@ -383,7 +383,7 @@ def win_event_handler(window):
         return
 
     path = actions.user.file_manager_current_path()
-    print(path)
+    # print(path)
     if not "user.file_manager" in registry.tags:
         actions.user.file_manager_hide_pickers()
         clear_lists()
@@ -404,5 +404,5 @@ def register_events():
 
 # prevent scary errors in the log by waiting for talon to be fully loaded
 # before registering the events
-app.register("launch", register_events)
+app.register("ready", register_events)
 
