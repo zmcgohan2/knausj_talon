@@ -15,7 +15,7 @@ format repeat <number>:
 format copy <number>:
   result = user.formatters_recent_select(number)
   clip.set_text(result)
-^nope that$: user.formatters_clear_last()
-^nope that was <user.formatters>$:
+^scratch that$: user.formatters_clear_last()
+^scratch that was <user.formatters>$:
   user.formatters_clear_last()
   insert(user.formatters_reformat_last(user.formatters))

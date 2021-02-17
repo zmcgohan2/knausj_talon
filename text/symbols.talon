@@ -1,17 +1,17 @@
 # question [mark]: "?"
 # (downscore | underscore): "_"
-double dash: "--"
+# double dash: "--"
 # (bracket | brack | left bracket): "{"
 # (rbrack | are bracket | right bracket): "}"
 #ellipses: "…"
-ellipses: "..."
+# ellipses: "..."
 spamma: ", "
 # plus: "+"
-arrow: "->"
-dub arrow: "=>"
+# arrow: "->"
+# dub arrow: "=>"
 new line: "\\n"
-carriage return: "\\r"
-line feed: "\\r\\n"
+# carriage return: "\\r"
+# line feed: "\\r\\n"
 empty dubstring:
     '""'
     key(left)
@@ -26,7 +26,7 @@ empty escaped string:
     "\\'\\'"
     key(left)
     key(left)
-args:
+[inside] +args:
 	insert("()")
 	key(left)
 inside squares: 
