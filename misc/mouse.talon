@@ -47,10 +47,14 @@ tripclick:
 	mouse_click()
 	# close the mouse grid
 	user.grid_close()
-drag: 
+# <user.modifiers> stupid test: 
+# 	key("{modifiers}:down")
+# 	user.mouse_drag()
+# <user.modifiers> drag release: 
+# 	user.mouse_drag()
+# 	key("{modifiers}:up")
+drag:
 	user.mouse_drag()
-	# close the mouse grid
-	user.grid_close()
 wheel down: user.mouse_scroll_down()
 wheel down here:
     user.mouse_move_center_active_window()
