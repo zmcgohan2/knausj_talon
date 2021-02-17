@@ -7,6 +7,7 @@ from talon import (
     Module,
     actions,
     app,
+    clip,
     cron,
     ctrl,
     imgui,
@@ -155,7 +156,6 @@ class Actions:
         if app.platform == "mac":
             button = 0
 
-        print(str(ctrl.mouse_buttons_down()))
         if button not in ctrl.mouse_buttons_down():
             # print("start drag...")
             ctrl.mouse_click(button=button, down=True)
@@ -172,10 +172,10 @@ class Actions:
         toggle_control(False)
         show_cursor_helper(True)
         stop_scroll()
-        button = 1
-        if app.platform == "mac":
-            button = 0
-        if button in ctrl.mouse_buttons_down():
+        # button = 1
+        # if app.platform == "mac":
+        #     button = 0
+        if ctrl.mouse_buttons_down():
             actions.user.mouse_drag()
 
     def mouse_scroll_down():
