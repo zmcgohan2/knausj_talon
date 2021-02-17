@@ -16,34 +16,34 @@ replace confirm that: user.replace_confirm()
 replace confirm all: user.replace_confirm_all()
 
 #quick replace commands, modeled after jetbrains
-clear last <user.text> [over]: 
+void last <user.text> [over]: 
     user.select_previous_occurrence(text)
     sleep(100ms)
     edit.delete()
-clear next <user.text> [over]: 
+void next <user.text> [over]: 
     user.select_next_occurrence(text)
     sleep(100ms)
     edit.delete()
-clear last clip: 
+void last clip: 
     user.select_previous_occurrence(clip.text())
     edit.delete()
-clear next clip: 
+void next clip: 
     user.select_next_occurrence(clip.text())
     sleep(100ms)
     edit.delete()
-comment last <user.text> [over]: 
+note last <user.text> [over]: 
     user.select_previous_occurrence(text)
     sleep(100ms)
     code.toggle_comment()
-comment last clip: 
+note last clip: 
     user.select_previous_occurrence(clip.text())
     sleep(100ms)
     code.toggle_comment()
-comment next <user.text> [over]: 
+note next <user.text> [over]: 
     user.select_next_occurrence(text)
     sleep(100ms)
     code.toggle_comment()
-comment next clip: 
+note next clip: 
     user.select_next_occurrence(clip.text())
     sleep(100ms)
     code.toggle_comment()
@@ -79,10 +79,10 @@ replace next <user.text> [over]:
     user.select_next_occurrence(text)
     sleep(100ms)
     edit.paste()
-select last <user.text> [over]: user.select_previous_occurrence(text)
-select next <user.text> [over]: user.select_next_occurrence(text)
-select last clip: user.select_previous_occurrence(clip.text())
-select next clip: user.select_next_occurrence(clip.text())
+sell last <user.text> [over]: user.select_previous_occurrence(text)
+sell next <user.text> [over]: user.select_next_occurrence(text)
+sell last clip: user.select_previous_occurrence(clip.text())
+sell next clip: user.select_next_occurrence(clip.text())
 
 
 
