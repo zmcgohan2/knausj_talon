@@ -5,7 +5,7 @@
 # (rbrack | are bracket | right bracket): "}"
 #ellipses: "…"
 # ellipses: "..."
-spamma: ", "
+spamma: ", " 
 # plus: "+"
 # arrow: "->"
 # dub arrow: "=>"
@@ -26,7 +26,7 @@ empty escaped string:
     "\\'\\'"
     key(left)
     key(left)
-[inside] +args:
+[inside] args:
 	insert("()")
 	key(left)
 inside squares: 
@@ -47,9 +47,15 @@ inside ticks:
 inside angle:
     insert('<>')
     key(left)
+inside pad:
+    insert('   ')
+    key(left)
 angle sell: 
     text = edit.selected_text()
     user.paste("<{text}>")
+pad sell: 
+    text = edit.selected_text()
+    user.paste(" {text} ")    
 bracket sell: 
     text = edit.selected_text()
     user.paste("{{{text}}}")
