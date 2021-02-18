@@ -1,6 +1,6 @@
 #extensions
 dot pie: ".py"
-dot talon: ".talon"
+dot talent: ".talon"
 dot mark down: ".md"
 dot shell: ".sh"
 dot vim: ".vim"
@@ -9,6 +9,8 @@ dot see sharp: ".cs"
 dot com: ".com"
 dot net: ".net"
 dot org: ".org"
-dot exe: ".exe"
+#these two are Dragon specific
+.exe: ".exe"
+.com: ".com"
 dot (bin | bend): ".bin"	
 dot (jason | jay son): ".json"
