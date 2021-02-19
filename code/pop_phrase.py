@@ -1,6 +1,6 @@
 # from mankoff on Talon Slack
 
-from talon import Module, Context, app, speech_system, actions, noise
+from talon import Module, Context, app, speech_system, actions, noise, ui
 
 ctx = Context()
 mod = Module()
@@ -42,3 +42,13 @@ def on_pop(active):
     actions.mimic(pop_phrase) 
 
 noise.register("pop", on_pop)
+
+def ui_event(event, arg=None):
+    global pop_phrase 
+    pop_phrase = ""
+
+def on_ready():
+    ui.register("app_activate", ui_event)
+    ui.register("win_focus", ui_event)
+
+app.register("ready", on_ready)
