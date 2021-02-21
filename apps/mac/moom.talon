@@ -126,7 +126,7 @@ window screen up:
 window screen down:
 	key(ctrl-alt-m)
 	sleep(50ms)
-	key(l return)
+	key(; return)
 	sleep(300ms)
 
 window screen left:
