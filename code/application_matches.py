@@ -64,8 +64,18 @@ os: windows
 and app.name: Windows Explorer
 os: windows
 and app.exe: explorer.exe
+os: windows
+and app: windows_file_browser
 """
 
+apps.windows_file_browser = """
+#many commands should work in most save/open dialog. 
+#note the "show options" stuff won't work unless work 
+#unless the path is displayed in the title, which is rare for those
+os: windows
+and app: /.*/
+and title: /(Save|Open|Browse|Select)/
+"""
 apps.windows_command_processor = """
 os: windows
 and app.name: Windows Command Processor
