@@ -2,6 +2,27 @@ from talon import Context, Module, actions, imgui, settings, ui, app
 
 import os
 
+mod = Module()
+apps = mod.apps
+
+apps.windows_explorer = """
+os: windows
+and app.name: Windows Explorer
+os: windows
+and app.exe: explorer.exe
+os: windows
+and app: windows_file_browser
+"""
+
+apps.windows_file_browser = """
+#many commands should work in most save/open dialog. 
+#note the "show options" stuff won't work unless work 
+#unless the path is displayed in the title, which is rare for those
+os: windows
+and app: /.*/
+and title: /(Save|Open|Browse|Select)/
+"""
+
 ctx = Context()
 ctx.matches = r"""
 app: windows_explorer
