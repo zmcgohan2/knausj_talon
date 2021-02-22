@@ -21,7 +21,26 @@ show history: browser.show_history()
 show cache: browser.show_clear_cache()
 
 dev tools: browser.toggle_dev_tools()
-
+go Gmail:
+  browser.go("Gmail.com")
+go get hub:
+  browser.go("github.com")
+go Google:
+  browser.go("Google.com")
+go NPR:
+  browser.go("npr.com")
+go Amazon:
+  browser.go("Amazon.com")
+go bulwark:
+  browser.go("https://thebulwark.com/")
+go supreme:
+  browser.go("https://www.scotusblog.com/")
+go public:
+  browser.go("https://www.propublica.org/")
+go mint:
+  browser.go("mint.com")
+go fidelity:
+  browser.go("fidelity.com")
 #todo - port to apps
 # navigating current page
 # help: key(?)

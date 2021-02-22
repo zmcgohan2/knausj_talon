@@ -3,7 +3,7 @@ from typing import Set
 from talon import Module, Context, actions, app
 import sys
 
-default_alphabet = "air bat cap drum each fine gout harp sit jury crunch look made near opt pit quench red sun trap urge vest whale plex yank zip".split(
+default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near opt pit quench red sun trap urge vest whale plex yank zip".split(
     " "
 )
 letters_string = "abcdefghijklmnopqrstuvwxyz"
@@ -75,7 +75,7 @@ def function_key(m) -> str:
 
 @mod.capture(rule="( <self.letter> | <self.number_key> | <self.symbol_key> )")
 def any_alphanumeric_key(m) -> str:
-    "any single alphanumeric key"
+    "any alphanumeric key"
     return str(m)
 
 

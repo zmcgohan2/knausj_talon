@@ -271,7 +271,7 @@ def get_file_map(current_path):
     return dict(zip(spoken_forms, [f for f in files]))
 
 
-@imgui.open(y=0, x=158, software=app.platform == "linux")
+@imgui.open(y=0, x=158)
 def gui_folders(gui: imgui.GUI):
     global current_folder_page, total_folder_pages
     total_folder_pages = math.ceil(
@@ -402,7 +402,7 @@ def win_event_handler(window):
         return
 
     path = actions.user.file_manager_current_path()
-    # print(path)
+
     if not "user.file_manager" in registry.tags:
         actions.user.file_manager_hide_pickers()
         clear_lists()
@@ -423,5 +423,5 @@ def register_events():
 
 # prevent scary errors in the log by waiting for talon to be fully loaded
 # before registering the events
-app.register("ready", register_events)
+app.register("launch", register_events)
 
