@@ -38,4 +38,4 @@ def fn(_):
 
 # if we try to do this on module load at startup, the action speech.enabled is not yet defined
 from talon import app
-app.register('launch', lambda: ui.register('app_activate', fn))
+app.register('ready', lambda: ui.register('app_activate', fn))
