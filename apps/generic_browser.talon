@@ -41,6 +41,20 @@ go mint:
   browser.go("mint.com")
 go fidelity:
   browser.go("fidelity.com")
+go bank:
+  browser.go("usbank.com")
+go Netflix:
+  browser.go("Netflix.com")  
+go Hulu:
+  browser.go("Hulu.com")
+go Disney:
+  browser.go("https://www.disneyplus.com")
+go LinkedIn:
+  browser.go("https://www.LinkedIn.com")
+go patron:
+  browser.go("https://www.patreon.com")
+go meet up:
+  browser.go("https://www.Meetup.com")
 #todo - port to apps
 # navigating current page
 # help: key(?)
