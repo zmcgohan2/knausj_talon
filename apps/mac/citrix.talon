@@ -42,8 +42,8 @@ master navigation:
 exit: key(shift-f7)
 previous: key(pageup)
 next: key(pagedown)
-chronicles item:
-	key(home f9 i enter)
+chronicles item: key(home f9 i enter)
+chronicles screen: key(home f9 s enter)
 
 # Lookitt
 routine do: insert("d ^")
