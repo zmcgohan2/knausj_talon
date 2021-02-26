@@ -49,7 +49,7 @@ page move left: key(cmd-alt-[)
 [page] rename date [<user.prose>]$:
 	key(cmd-shift-t cmd-d)
 	sleep(200ms)
-	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
+	insert(prose)
 
 [page] rename [<user.prose>]$:
 	key(cmd-shift-t)
