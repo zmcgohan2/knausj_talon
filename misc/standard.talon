@@ -23,7 +23,6 @@ clear that: key(backspace)
 (read do | redo) that: edit.redo()
 paste match: edit.paste_match_style()
 file save: edit.save()
-wipe: key(backspace)    
 (pad | padding): 
 	insert("  ") 
 	key(left)
