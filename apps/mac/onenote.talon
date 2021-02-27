@@ -46,12 +46,12 @@ page next: key(ctrl-cmd-g down tab)
 page move right: key(cmd-alt-])
 page move left: key(cmd-alt-[)
 
-[page] rename date [<user.prose>]$:
+[page] name date [<user.prose>]$:
 	key(cmd-shift-t cmd-d)
 	sleep(200ms)
 	insert(prose or "")
 
-[page] rename [<user.prose>]$:
+[page] name [<user.prose>]$:
 	key(cmd-shift-t)
 	sleep(100ms)
 	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
