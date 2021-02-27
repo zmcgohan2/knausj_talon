@@ -270,7 +270,7 @@ def custom_zoom_enable(self):
         return
     # noise.register("pop", self.on_pop)
 
-    if self.enable_hiss_for_right_click:
+    if eye_zoom_mouse.config.enable_hiss_for_right_click:
         noise.register("hiss", self.on_hiss)
 
     # tap.register(tap.MCLICK | tap.KEY | tap.HOOK, self.on_key)
