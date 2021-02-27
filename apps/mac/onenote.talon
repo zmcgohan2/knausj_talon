@@ -49,7 +49,7 @@ page move left: key(cmd-alt-[)
 [page] rename date [<user.prose>]$:
 	key(cmd-shift-t cmd-d)
 	sleep(200ms)
-	insert(prose)
+	insert(prose or "")
 
 [page] rename [<user.prose>]$:
 	key(cmd-shift-t)
