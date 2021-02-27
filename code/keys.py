@@ -235,8 +235,8 @@ alternate_keys = {
     "delete": "backspace",
     "void": "delete",
     # 'junk': 'backspace',
-    "lend": "end",
-    "bend": "home",
+    "tail": "end",
+    "head": "home",
 }
 # mac apparently doesn't have the menu key.
 if app.platform in ("windows", "linux"):
