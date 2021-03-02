@@ -1,5 +1,8 @@
 from talon import Context, actions, ui, Module, app, clip
-from typing import List, Union
+from typing import Any, List, Optional, Union
+import requests
+import json
+import tempfile
 
 is_mac = app.platform == "mac"
 
@@ -67,13 +70,41 @@ class edit_actions:
         actions.key("shift-alt-down")
 
     def jump_line(n: int):
-        actions.user.vscode("workbench.action.gotoLine")
+        actions.user.vscode_http("workbench.action.gotoLine")
         actions.insert(str(n))
         actions.key("enter")
 
 
 @mod.action_class
 class Actions:
+    def vscode_http(command: str, args: Optional[List[Any]] = None):
+        """Execute command via vscode command pipe."""
+        if args is None:
+            args = []
+
+        # if not is_mac:
+        #     actions.key("ctrl-shift-alt-p")
+        # else:
+        #     actions.key("cmd-shift-alt-p")
+        # with open(f"{tempfile.gettempdir()}/vscode-host") as host_file:
+
+        with open("c:/temp/vscode-host") as host_file:
+            host = host_file.read()
+        print(host)
+        response = requests.post(
+            f"http://{host}",
+            json={
+                "commandId": command,
+                "args": args,
+                "expectResponse": False,
+                # "timestamp": timestamp.isoformat(),
+            },
+            timeout=(0.05, 3.05),
+        )
+        response.raise_for_status()
+        print(response.text)
+        # queue.join()
+
     def vscode(command: str):
         """Execute command via command palette. Preserves the clipboard."""
         # Clip is noticeably faster than insert
