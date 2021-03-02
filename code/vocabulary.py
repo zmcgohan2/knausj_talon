@@ -1,12 +1,8 @@
-from talon import Module, Context, resource, actions
+from talon import Module, Context, resource, actions, grammar
 import os
 import csv
 from pathlib import Path
 from typing import Dict, List, Tuple
-
-# NOTE: This method requires this module to be one folder below the top-level
-#   knausj folder.
-SETTINGS_DIR = Path(__file__).parents[1] / "settings"
 
 mod = Module()
 ctx = Context()
@@ -68,6 +64,10 @@ def capture_to_word_list(m):
 def get_list_from_csv(
     filename: str, headers=Tuple[str, str], default: Dict[str, str] = {}
 ):
+    # NOTE: This method requires this module to be one folder below the top-level
+    #   knausj folder.
+    SETTINGS_DIR = Path(__file__).parents[1] / "settings"
+
     assert filename.endswith(".csv")
     path = SETTINGS_DIR / filename
 
@@ -80,11 +80,11 @@ def get_list_from_csv(
             writer.writerow(headers)
             for key, value in default.items():
                 writer.writerow([key] if key == value else [value, key])
-    print("updating filename: " + filename)
 
-    # Now read from disk
-    with resource.open(path, "r") as file:
-        rows = list(csv.reader(file))
+    # Now read via resource to take advantage of talon's
+    # ability to reload this script for us when the resource changes
+    contents = resource.read(str(path))
+    rows = list(csv.reader(contents))
 
     mapping = {}
     if len(rows) >= 2:
@@ -160,6 +160,7 @@ _word_map_defaults.update({word.lower(): word for word in _capitalize_defaults})
 # "dictate.word_map" is used by `actions.dictate.replace_words` to rewrite words
 # Talon recognized. Entries in word_map don't change the priority with which
 # Talon recognizes some words over others.
+
 ctx.settings["dictate.word_map"] = get_list_from_csv(
     "words_to_replace.csv",
     headers=("Replacement", "Original"),
@@ -187,3 +188,4 @@ ctx.lists["user.vocabulary"] = get_list_from_csv(
     headers=("Word(s)", "Spoken Form (If Different)"),
     default=_default_vocabulary,
 )
+
