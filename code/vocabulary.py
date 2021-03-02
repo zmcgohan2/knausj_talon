@@ -1,4 +1,4 @@
-from talon import Module, Context, resource, actions, grammar
+from talon import Module, Context, resource, actions, grammar, app
 import os
 import csv
 from pathlib import Path
@@ -61,18 +61,20 @@ def capture_to_word_list(m):
     return words
 
 
+# NOTE: This method requires this module to be one folder below the top-level
+#   knausj folder.
+SETTINGS_DIR = Path(__file__).parents[1] / "settings"
+
+if not SETTINGS_DIR.is_dir():
+    os.mkdir(SETTINGS_DIR)
+
+
 def get_list_from_csv(
     filename: str, headers=Tuple[str, str], default: Dict[str, str] = {}
 ):
-    # NOTE: This method requires this module to be one folder below the top-level
-    #   knausj folder.
-    SETTINGS_DIR = Path(__file__).parents[1] / "settings"
 
     assert filename.endswith(".csv")
     path = SETTINGS_DIR / filename
-
-    if not SETTINGS_DIR.is_dir():
-        os.mkdir(SETTINGS_DIR)
 
     if not path.is_file():
         with open(path, "w", encoding="utf-8") as file:
@@ -83,9 +85,10 @@ def get_list_from_csv(
 
     # Now read via resource to take advantage of talon's
     # ability to reload this script for us when the resource changes
-    contents = resource.read(str(path))
-    rows = list(csv.reader(contents))
+    with resource.open(str(path), "r") as f:
+        rows = list(csv.reader(f))
 
+    # print(str(rows))
     mapping = {}
     if len(rows) >= 2:
         actual_headers = rows[0]
@@ -167,7 +170,6 @@ ctx.settings["dictate.word_map"] = get_list_from_csv(
     default=_word_map_defaults,
 )
 
-
 # Default words that should be added to Talon's vocabulary.
 _simple_vocab_default = ["nmap", "admin", "Cisco", "Citrix", "VPN", "DNS", "Minecraft"]
 
@@ -188,4 +190,3 @@ ctx.lists["user.vocabulary"] = get_list_from_csv(
     headers=("Word(s)", "Spoken Form (If Different)"),
     default=_default_vocabulary,
 )
-
