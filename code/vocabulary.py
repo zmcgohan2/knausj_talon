@@ -1,4 +1,4 @@
-from talon import Module, Context, resource, actions, grammar, app
+from talon import Module, resource, Context
 import os
 import csv
 from pathlib import Path
@@ -8,58 +8,6 @@ mod = Module()
 ctx = Context()
 
 mod.list("vocabulary", desc="additional vocabulary words")
-
-
-@mod.capture(rule="({user.vocabulary} | <word>)")
-def word(m) -> str:
-    try:
-        return m.vocabulary
-    except AttributeError:
-        return " ".join(
-            actions.dictate.replace_words(actions.dictate.parse_words(m.word))
-        )
-
-
-@mod.capture(rule="({user.vocabulary} | <phrase>)+")
-def text(m) -> str:
-    return format_phrase(m)
-
-
-@mod.capture(rule="({user.vocabulary} | {user.punctuation} | <phrase>)+")
-def prose(m) -> str:
-    return format_phrase(m)
-
-
-# TODO: unify this formatting code with the dictation formatting code, so that
-# user.prose behaves the same way as dictation mode.
-no_space_before = set("\n .,!?;:-/%)]}")
-no_space_after = set("\n -/#([{$£€¥₩₽₹")
-
-
-def format_phrase(m):
-    words = capture_to_word_list(m)
-    result = ""
-    for i, word in enumerate(words):
-        if (
-            i > 0
-            and word not in no_space_before
-            and words[i - 1][-1] not in no_space_after
-        ):
-            result += " "
-        result += word
-    return result
-
-
-def capture_to_word_list(m):
-    words = []
-    for item in m:
-        words.extend(
-            actions.dictate.replace_words(actions.dictate.parse_words(item))
-            if isinstance(item, grammar.vm.Phrase)
-            else item.split(" ")
-        )
-    return words
-
 
 # NOTE: This method requires this module to be one folder below the top-level
 #   knausj folder.
@@ -117,8 +65,11 @@ def get_list_from_csv(
     return mapping
 
 
-# ---------- LISTS (punctuation, additional/replacement words) ----------
 # Default words that will need to be capitalized (particularly under w2l).
+# NB. These defaults and those later in this file are ONLY used when
+# auto-creating the corresponding settings/*.csv files. Those csv files
+# determine the contents of user.vocabulary and dictate.word_map. Once they
+# exist, the contents of the lists/dictionaries below are irrelevant.
 _capitalize_defaults = [
     "I",
     "I'm",
@@ -160,6 +111,7 @@ _word_map_defaults = {
 }
 _word_map_defaults.update({word.lower(): word for word in _capitalize_defaults})
 
+
 # "dictate.word_map" is used by `actions.dictate.replace_words` to rewrite words
 # Talon recognized. Entries in word_map don't change the priority with which
 # Talon recognizes some words over others.
@@ -170,6 +122,7 @@ ctx.settings["dictate.word_map"] = get_list_from_csv(
     default=_word_map_defaults,
 )
 
+
 # Default words that should be added to Talon's vocabulary.
 _simple_vocab_default = ["nmap", "admin", "Cisco", "Citrix", "VPN", "DNS", "Minecraft"]
 
@@ -179,7 +132,6 @@ _default_vocabulary = {
     "N map": "nmap",
     "under documented": "under-documented",
 }
-
 _default_vocabulary.update({word: word for word in _simple_vocab_default})
 
 # "user.vocabulary" is used to explicitly add words/phrases that Talon doesn't
