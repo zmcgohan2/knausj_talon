@@ -3,6 +3,7 @@ from typing import Any, List, Optional, Union
 import requests
 import json
 import tempfile
+import os
 
 is_mac = app.platform == "mac"
 
@@ -67,14 +68,14 @@ class edit_actions:
         actions.key("shift-alt-down")
 
     def jump_line(n: int):
-        actions.user.vscode_http("workbench.action.gotoLine")
+        actions.user.vscode("workbench.action.gotoLine")
         actions.insert(str(n))
         actions.key("enter")
 
 
 @mod.action_class
 class Actions:
-    def vscode_http(command: str, args: Optional[List[Any]] = None):
+    def vscode(command: str, args: Optional[List[Any]] = None):
         """Execute command via vscode command pipe."""
         if args is None:
             args = []
@@ -85,11 +86,11 @@ class Actions:
         #     actions.key("cmd-shift-alt-p")
         # with open(f"{tempfile.gettempdir()}/vscode-host") as host_file:
 
-        with open("c:/temp/vscode-host") as host_file:
-            host = host_file.read()
-        print(host)
+        with open(os.path.join(tempfile.gettempdir(), "vscode-port"), "r") as port_file:
+            port = port_file.read()
+        print(port)
         response = requests.post(
-            f"http://{host}",
+            f"http://localhost:{port}",
             json={
                 "commandId": command,
                 "args": args,
@@ -101,17 +102,6 @@ class Actions:
         response.raise_for_status()
         print(response.text)
         # queue.join()
-
-    def vscode(command: str):
-        """Execute command via command palette. Preserves the clipboard."""
-        # Clip is noticeably faster than insert
-        if not is_mac:
-            actions.key("ctrl-shift-p")
-        else:
-            actions.key("cmd-shift-p")
-
-        actions.user.paste(f"{command}")
-        actions.key("enter")
 
     def vscode_ignore_clipboard(command: str):
         """Execute command via command palette. Does NOT preserve the clipboard for commands like copyFilePath"""
