@@ -308,7 +308,7 @@ def gui_folders(gui: imgui.GUI):
     #   actions.user.file_manager_previous_folder_page()
 
 
-@imgui.open(y=0, x=775, software=app.platform == "linux")
+@imgui.open(y=0, x=775)
 def gui_files(gui: imgui.GUI):
     global file_selections, current_file_page, total_file_pages
     total_file_pages = math.ceil(len(file_selections) / setting_imgui_limit.get())

@@ -1,4 +1,5 @@
-from talon import Module, resource, Context
+from talon import Module, Context, resource
+from typing import Dict, List, Tuple
 import os
 import csv
 from pathlib import Path
@@ -9,6 +10,7 @@ ctx = Context()
 
 mod.list("vocabulary", desc="additional vocabulary words")
 
+
 # NOTE: This method requires this module to be one folder below the top-level
 #   knausj folder.
 SETTINGS_DIR = Path(__file__).parents[1] / "settings"
@@ -16,13 +18,12 @@ SETTINGS_DIR = Path(__file__).parents[1] / "settings"
 if not SETTINGS_DIR.is_dir():
     os.mkdir(SETTINGS_DIR)
 
-
 def get_list_from_csv(
-    filename: str, headers=Tuple[str, str], default: Dict[str, str] = {}
+    filename: str, headers: Tuple[str, str], default: Dict[str, str] = {}
 ):
-
-    assert filename.endswith(".csv")
+    """Retrieves list from CSV"""
     path = SETTINGS_DIR / filename
+    assert filename.endswith(".csv")
 
     if not path.is_file():
         with open(path, "w", encoding="utf-8") as file:
@@ -63,7 +64,6 @@ def get_list_from_csv(
             mapping[spoken_form] = output
 
     return mapping
-
 
 # Default words that will need to be capitalized (particularly under w2l).
 # NB. These defaults and those later in this file are ONLY used when

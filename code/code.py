@@ -88,7 +88,6 @@ class code_actions:
         result = ""
         if not forced_language:
             file_extension = actions.win.file_ext()
-            print("file_extension: " + file_extension)
             if file_extension and file_extension in extension_lang_map:
                 result = extension_lang_map[file_extension]
 

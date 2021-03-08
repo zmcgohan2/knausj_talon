@@ -10,22 +10,21 @@ os: windows
 and app.name: Windows Explorer
 os: windows
 and app.exe: explorer.exe
-os: windows
-and app: windows_file_browser
 """
 
+# many commands should work in most save/open dialog.
+# note the "show options" stuff won't work unless work
+# unless the path is displayed in the title, which is rare for those
 apps.windows_file_browser = """
-#many commands should work in most save/open dialog. 
-#note the "show options" stuff won't work unless work 
-#unless the path is displayed in the title, which is rare for those
 os: windows
-and app: /.*/
+and app.name: /.*/
 and title: /(Save|Open|Browse|Select)/
 """
 
 ctx = Context()
 ctx.matches = r"""
 app: windows_explorer
+app: windows_file_browser
 """
 
 user_path = os.path.expanduser("~")
