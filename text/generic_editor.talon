@@ -1,26 +1,32 @@
-# find it:
-#     edit.find()
-
-# next one:
-#     edit.find_next()
-
-draw:
+draw [<number>]:
+    numb = number or 1
     edit.word_left()
+    repeat(numb - 1)
 
-spring:
+spring [<number>]:
+    numb = number or 1
     edit.word_right()
+    repeat(numb - 1)
 
-go left:
+go left [<number>]:
+    numb = number or 1
     edit.left()
+    repeat(numb - 1)
 
-go right:
+go right [<number>]:
+    numb = number or 1
     edit.right()
+    repeat(numb - 1)
 
-go up:
+go up [<number>]:
+    numb = number or 1
     edit.up()
+    repeat(numb - 1)
 
-go down:
+go down [<number>]:
+    numb = number or 1
     edit.down()
+    repeat(numb - 1)
 
 go line start:
     edit.line_start()
@@ -54,26 +60,40 @@ sell line:
 sell all:
     edit.select_all()
 
-sell left:
+sell left [<number>]:
+    numb = number or 1
     edit.extend_left()
+    repeat(numb - 1)
 
-sell right:
+sell right [<number>]:
+    numb = number or 1
     edit.extend_right()
+    repeat(numb - 1)
 
-sell up:
+sell up [<number>]:
+    numb = number or 1
     edit.extend_line_up()
+    repeat(numb - 1)
 
-sell down:
+sell down [<number>]:
+    numb = number or 1
     edit.extend_line_down()
+    repeat(numb - 1)
 
-sell word:
+sell word [<number>]:
+    numb = number or 1
     edit.select_word()
-    
-sell draw:
-    edit.extend_word_left()
+    repeat(numb - 1)    
 
-sell spring:
+sell draw [<number>]:
+    numb = number or 1
+    edit.extend_word_left()
+    repeat(numb - 1)
+
+sell spring [<number>]:
+    numb = number or 1
     edit.extend_word_right()
+    repeat(numb - 1)
 
 sell far left:
     edit.extend_line_start()
@@ -88,54 +108,69 @@ sell far down:
     edit.extend_file_end()
 
 # editing
-tab:
+tab [<number>]:
+    numb = number or 1
     edit.indent_more()
+    repeat(numb - 1)    
 
-retab:
+retab [<number>]:
+    numb = number or 1
     edit.indent_less()
+    repeat(numb - 1)
 
 # deleting
-void line:
+chuck line:
     edit.delete_line()
-
-# void left:
+    
+# chuck left:
 #     key(backspace)
 
-# void right:
+# chuck right:
 #     key(delete)
 
-void up:
+chuck up [<number>]:
+    numb = number or 1
     edit.extend_line_up()
+    repeat(numb - 1)    
     edit.delete()
 
-void down:
+chuck down [<number>]:
+    numb = number or 1
     edit.extend_line_down()
+    repeat(numb - 1) 
     edit.delete()
 
-void word:
+chuck word [<number>]:
+    numb = number or 1
     edit.delete_word()
+    repeat(numb - 1)
 
-void draw:
+chuck draw [<number>]:
+    numb = number or 1
     edit.extend_word_left()
+    repeat(numb - 1)    
     edit.delete()
 
-void spring:
+chuck spring [<number>]:
     edit.extend_word_right()
+    numb = number or 1
+    repeat(numb - 1)    
     edit.delete()
 
-void far left:
+
+chuck far left:
     edit.extend_line_start()
     edit.delete()
 
-void far right:
+chuck far right:
     edit.extend_line_end()
     edit.delete()
 
-void far up:
+chuck far up:
     edit.extend_file_start()
     edit.delete()
 
-void far down:
+chuck far down:
     edit.extend_file_end()
     edit.delete()
 
@@ -157,17 +192,26 @@ copy all:
 #     edit.extend_down()
 #     edit.copy()
 
-copy word:
+copy word [<number>]:
+    numb = number or 1
     edit.select_word()
+    repeat(numb - 1)    
     edit.copy()
 
-copy draw:
+
+copy draw [<number>]:
+    numb = number or 1
     edit.extend_word_left()
+    repeat(numb - 1)    
     edit.copy()
 
-copy spring:
+
+copy spring [<number>]:
+    numb = number or 1
     edit.extend_word_right()
+    repeat(numb - 1)    
     edit.copy()
+
 
 copy line:
     edit.select_line()
@@ -209,15 +253,19 @@ cut all:
 #     edit.cut()
 
 cut word:
-    edit.select_word()
+    edit.select_word()   
     edit.cut()
 
-cut draw:
+cut draw [<number>]:
+    numb = number or 1
     edit.extend_word_left()
+    repeat(numb - 1)    
     edit.cut()
 
-cut spring:
+cut spring [<number>]:
+    numb = number or 1
     edit.extend_word_right()
+    repeat(numb - 1)
     edit.cut()
 
 cut line:
