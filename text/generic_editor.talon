@@ -223,3 +223,7 @@ cut spring:
 cut line:
     edit.select_line()
     edit.cut()
+
+chuck <number>:
+    edit.delete()
+    repeat(number - 1)

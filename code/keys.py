@@ -232,7 +232,7 @@ simple_keys = [
 ]
 
 alternate_keys = {
-    "delete": "backspace",
+    "chuck": "backspace",
     "void": "delete",
     # 'junk': 'backspace',
     "tail": "end",
