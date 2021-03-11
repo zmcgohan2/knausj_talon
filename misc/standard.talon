@@ -10,15 +10,28 @@
 #word cmd: "cmd"
 #word dup: "dup"
 #word shell: "shell"
-zoom in: edit.zoom_in()
-zoom out: edit.zoom_out()
+zoom in [<number>]: 
+	numb  = number or 1	
+	edit.zoom_in()
+	repeat(numb - 1)	
+zoom out [<number>]: 
+	numb  = number or 1	
+	edit.zoom_out()
+	repeat(numb - 1)
 # (page | scroll) up: key(pgup)
 # (page | scroll) down: key(pgdown)
 copy sell: edit.copy()
 cut sell: edit.cut()
 paste now: edit.paste()
-undo that: edit.undo()
-redo that: edit.redo()
+undo that [<number>]: 
+	numb  = number or 1
+	edit.undo()
+	repeat(numb - 1)
+redo that [<number>]: 
+	numb  = number or 1
+	edit.redo()
+	repeat(numb - 1)
+
 paste match: edit.paste_match_style()
 file save: edit.save()
 # wipe: key(backspace)    

@@ -119,58 +119,58 @@ retab [<number>]:
     repeat(numb - 1)
 
 # deleting
-chuck line:
+void line:
     edit.delete_line()
     
-# chuck left:
+# void left:
 #     key(backspace)
 
-# chuck right:
+# void right:
 #     key(delete)
 
-chuck up [<number>]:
+void up [<number>]:
     numb = number or 1
     edit.extend_line_up()
     repeat(numb - 1)    
     edit.delete()
 
-chuck down [<number>]:
+void down [<number>]:
     numb = number or 1
     edit.extend_line_down()
     repeat(numb - 1) 
     edit.delete()
 
-chuck word [<number>]:
+void word [<number>]:
     numb = number or 1
     edit.delete_word()
     repeat(numb - 1)
 
-chuck draw [<number>]:
+void draw [<number>]:
     numb = number or 1
     edit.extend_word_left()
     repeat(numb - 1)    
     edit.delete()
 
-chuck spring [<number>]:
+void spring [<number>]:
     edit.extend_word_right()
     numb = number or 1
     repeat(numb - 1)    
     edit.delete()
 
 
-chuck far left:
+void far left:
     edit.extend_line_start()
     edit.delete()
 
-chuck far right:
+void far right:
     edit.extend_line_end()
     edit.delete()
 
-chuck far up:
+void far up:
     edit.extend_file_start()
     edit.delete()
 
-chuck far down:
+void far down:
     edit.extend_file_end()
     edit.delete()
 
