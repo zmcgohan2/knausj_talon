@@ -39,6 +39,7 @@ extension_lang_map = {
     ".go": "go",
     ".h": "c",
     ".hpp": "cplusplus",
+    ".java": "java",
     ".js": "javascript",
     ".jsx": "javascript",
     ".json": "json",
@@ -88,6 +89,7 @@ class code_actions:
         result = ""
         if not forced_language:
             file_extension = actions.win.file_ext()
+
             if file_extension and file_extension in extension_lang_map:
                 result = extension_lang_map[file_extension]
 

@@ -151,6 +151,18 @@ app: jetbrains
 """
 
 
+@ctx.action_class("win")
+class win_actions:
+    def filename():
+        title = actions.win.title()
+        result = title.split(" ")
+        
+        for word in result:
+            if "." in word:
+                return word
+
+        return ""
+
 @ctx.action_class("edit")
 class edit_actions:
     def jump_line(n: int):
