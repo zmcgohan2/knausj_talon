@@ -111,24 +111,21 @@ def letters(m) -> str:
 
 
 ctx = Context()
-modifier_key = {
+modifier_keys = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
-    "alt": "alt",
-    "alter": "alt",
-    "man": "cmd",  # I keep getting "comma" or "coma" when I say "command"
-    "command": "cmd",
-    "control": "ctrl",
-    "troll": "ctrl",
-    "option": "alt",
+    "alt": "alt", 'alter': 'alt',
+    "control": "ctrl", 'troll': 'ctrl',
     "shift": "shift",  #'sky':     'shift',
     "win": "super",
 }
-# for use when remote controlling Windows machines
 if app.platform == 'mac':
-    modifier_key['alt'] = 'cmd'
-    modifier_key['alter'] = 'cmd'
-ctx.lists["self.modifier_key"] = modifier_key
-
+    modifier_keys["command"] = "cmd"
+    modifier_keys['man'] = 'cmd' # I keep getting "comma" or "coma" when I say "command"
+    modifier_keys["option"] = "alt"
+    # for use when remote controlling Windows machines
+    modifier_keys['alt'] = 'cmd'
+    modifier_keys['alter'] = 'cmd'
+ctx.lists["self.modifier_key"] = modifier_keys
 alphabet = dict(zip(default_alphabet, letters_string))
 ctx.lists["self.letter"] = alphabet
 
@@ -242,11 +239,14 @@ alternate_keys = {
     "white": "backspace",
     "forward delete": "delete",
     #'junk': 'backspace',
-    "return": "enter"
+    "return": "enter",
+    "page up": "pageup",
+    "page down": "pagedown",
 }
 # mac apparently doesn't have the menu key.
 if app.platform in ("windows", "linux"):
     alternate_keys["menu key"] = "menu"
+    alternate_keys["print screen"] = "printscr"
 
 keys = {k: k for k in simple_keys}
 keys.update(alternate_keys)
