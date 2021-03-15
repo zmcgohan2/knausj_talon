@@ -32,5 +32,12 @@ settings():
     # default wav2letter timeout changed in 0.1.5 from 150 to 300 ms
     speech.timeout = 0.12
 
+    # Uncomment the below to enable context-sensitive dictation. This determines
+    # how to format (capitalize, space) dictation-mode speech by selecting &
+    # copying surrounding text before inserting. This can be slow and may not
+    # work in some applications. You may wish to enable this on a
+    # per-application basis.
+    #user.context_sensitive_dictation = 1
+
 # uncomment tag to enable mouse grid
 # tag(): user.mouse_grid_enabled
