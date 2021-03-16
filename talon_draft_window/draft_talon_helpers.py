@@ -64,6 +64,10 @@ def _update_draft_style(*args):
 
 settings.register("", _update_draft_style)
 
+# flag indicating whether or not the draft window
+# should use user.paste.
+submitting_draft = False
+
 
 @ctx_focused.action_class("user")
 class ContextSensitiveDictationActions:
@@ -81,8 +85,14 @@ class ContextSensitiveDictationActions:
         return area[area.sel.right : area.sel.right + 50]
 
     def paste(text: str):
-        # todo: remove once user.paste works reliably with the draft window
-        actions.insert(text)
+        # todo: remove once user.paste works reliably when the draft window is focused
+        # if we're submitting, use the default user.paste
+        if submitting_draft:
+            actions.next(text)
+        # otherwise, we're pasting into the draft window, and we need to
+        # use insert on Mac and Windows, at least for now
+        else:
+            actions.insert(text)
 
 
 @ctx_focused.action_class("edit")
@@ -236,6 +246,19 @@ class Actions:
         draft_manager.hide()
         UndoWorkaround.stop_logger()
         ctx.tags = []
+
+    def draft_submit():
+        """Enters the text into the next active application"""
+        global submitting_draft
+
+        content = actions.user.draft_get_text()
+        actions.user.draft_hide()
+        # todo: remove submitting_draft
+        # set flag to force use of default user.paste function
+        # for submit
+        submitting_draft = True
+        actions.user.paste(content)
+        submitting_draft = False
 
     def draft_select(
         start_anchor: str, end_anchor: str = "", include_trailing_whitespace: int = 0
