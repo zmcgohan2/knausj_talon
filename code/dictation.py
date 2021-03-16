@@ -11,23 +11,18 @@ setting_context_sensitive_dictation = mod.setting(
     desc="Look at surrounding text to improve auto-capitalization/spacing in dictation mode. By default, this works by selecting that text & copying it to the clipboard, so it may be slow or fail in some applications.",
 )
 
-
 @mod.capture(rule="({user.vocabulary} | <word>)")
 def word(m) -> str:
     """A single word, including user-defined vocabulary."""
     try:
         return m.vocabulary
     except AttributeError:
-        return " ".join(
-            actions.dictate.replace_words(actions.dictate.parse_words(m.word))
-        )
-
+        return " ".join(actions.dictate.replace_words(actions.dictate.parse_words(m.word)))
 
 @mod.capture(rule="({user.vocabulary} | <phrase>)+")
 def text(m) -> str:
     """A sequence of words, including user-defined vocabulary."""
     return format_phrase(m)
-
 
 @mod.capture(rule="({user.vocabulary} | {user.punctuation} | <phrase>)+")
 def prose(m) -> str:
@@ -35,43 +30,34 @@ def prose(m) -> str:
     text, _state = auto_capitalize(format_phrase(m))
     return text
 
-
+
 # ---------- FORMATTING ---------- #
 def format_phrase(m):
     words = capture_to_words(m)
     result = ""
     for i, word in enumerate(words):
-        if i > 0 and needs_space_between(words[i - 1], word):
+        if i > 0 and needs_space_between(words[i-1], word):
             result += " "
         result += word
     return result
-
 
 def capture_to_words(m):
     words = []
     for item in m:
         words.extend(
             actions.dictate.replace_words(actions.dictate.parse_words(item))
-            if isinstance(item, grammar.vm.Phrase)
-            else item.split(" ")
-        )
+            if isinstance(item, grammar.vm.Phrase) else
+            item.split(" "))
     return words
 
-
-no_space_before = set('\n .,!?;:-/%)]}"')
-no_space_after = set('\n -/#@([{$£€¥₩₽₹"')
-
-
+no_space_before = set("\n .,!?;:-/%)]}\"")
+no_space_after = set("\n -/#@([{$£€¥₩₽₹\"")
 def needs_space_between(before: str, after: str) -> bool:
-    return (
-        before != ""
-        and after != ""
-        and before[-1] not in no_space_after
-        and after[0] not in no_space_before
-    )
+    return (before != "" and after != ""
+            and before[-1] not in no_space_after
+            and after[0] not in no_space_before)
 
-
-def auto_capitalize(text, state=None):
+def auto_capitalize(text, state = None):
     """
     Auto-capitalizes text. `state` argument means:
 
@@ -100,24 +86,21 @@ def auto_capitalize(text, state=None):
         # Otherwise the charge just passes through.
         output += c
         newline = c == "\n"
-    return (
-        output,
-        ("sentence start" if charge else "after newline" if newline else None),
-    )
+    return output, ("sentence start" if charge else
+                    "after newline" if newline else None)
 
-
+
 # ---------- DICTATION AUTO FORMATTING ---------- #
 class DictationFormat:
     def __init__(self):
         self.reset()
 
-    def reset(self, before=None):
+    def reset(self):
         self.before = ""
         self.state = "sentence start"
 
     def update_context(self, before):
-        if before is None:
-            return
+        if before is None: return
         self.reset()
         self.pass_through(before)
 
@@ -132,11 +115,9 @@ class DictationFormat:
         self.before = text or self.before
         return text
 
-
 dictation_formatter = DictationFormat()
 ui.register("app_deactivate", lambda app: dictation_formatter.reset())
 ui.register("win_focus", lambda win: dictation_formatter.reset())
-
 
 @mod.action_class
 class Actions:
@@ -154,14 +135,11 @@ class Actions:
         # do_the_dance = whether we should try to be context-sensitive. Since
         # whitespace is not affected by formatter state, if text.isspace() is
         # True we don't need context-sensitivity.
-        do_the_dance = setting_context_sensitive_dictation.get() and not text.isspace()
+        do_the_dance = (setting_context_sensitive_dictation.get()
+                        and not text.isspace())
         if do_the_dance:
-            print("doing the dance")
             dictation_formatter.update_context(
-                actions.user.dictation_peek_left(clobber=True)
-            )
-        else:
-            print("nope")
+                actions.user.dictation_peek_left(clobber=True))
         text = dictation_formatter.format(text)
         actions.user.add_phrase_to_history(text)
         actions.insert(text)
@@ -185,11 +163,9 @@ class Actions:
         unchanged unless `clobber` is true, in which case it may clobber it.
         """
         # Get rid of the selection if it exists.
-        if clobber:
-            actions.user.clobber_selection_if_exists()
+        if clobber: actions.user.clobber_selection_if_exists()
         # Otherwise, if there's a selection, fail.
-        elif "" != actions.edit.selected_text():
-            return None
+        elif "" != actions.edit.selected_text(): return None
 
         # In principle the previous word should suffice, but some applications
         # have a funny concept of what the previous word is (for example, they
@@ -239,10 +215,8 @@ class Actions:
         """
         actions.edit.extend_right()
         char = actions.edit.selected_text()
-        if char:
-            actions.edit.left()
+        if char: actions.edit.left()
         return char
-
 
 # Use the dictation formatter in dictation mode.
 dictation_ctx = Context()
@@ -250,9 +224,6 @@ dictation_ctx.matches = r"""
 mode: dictation
 """
 
-
 @dictation_ctx.action_class("main")
 class main_action:
-    def auto_insert(text):
-        actions.user.dictation_insert(text)
-
+    def auto_insert(text): actions.user.dictation_insert(text)
