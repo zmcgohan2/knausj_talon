@@ -27,7 +27,7 @@ time <number_small> [o] <digits> [<user.ampm>]:
 	insert("{number_small}:0{digits}")
 	insert(ampm or "")
 
-time <number_small> o clock [<user.ampm>]:
+time <number_small> o'clock [<user.ampm>]:
 	insert("{number_small}:00")
 	insert(ampm or "")
 
