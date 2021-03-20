@@ -9,3 +9,7 @@ up: key(up)
 down: key(down)
 left: key(left)
 right: key(right)
+
+<user.number_string>:
+	"{number_string}"
+	key(enter)
