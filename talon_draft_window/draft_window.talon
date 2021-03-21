@@ -23,20 +23,20 @@ cursor after <user.draft_anchor>:
   user.draft_position_caret("{draft_anchor}", 1)
 
 # Select a whole word
-select <user.draft_anchor>:
+sell <user.draft_anchor>:
   user.draft_select("{draft_anchor}")
 
 # Select a range of words
-select <user.draft_anchor> through <user.draft_anchor>:
+sell <user.draft_anchor> by <user.draft_anchor>:
   user.draft_select("{draft_anchor_1}", "{draft_anchor_2}")
 
 # Delete a word
-clear <user.draft_anchor>:
+void <user.draft_anchor>:
   user.draft_select("{draft_anchor}", "", 1)
   key(backspace)
 
 # Delete a range of words
-clear <user.draft_anchor> through <user.draft_anchor>:
+void <user.draft_anchor> by <user.draft_anchor>:
   user.draft_select(draft_anchor_1, draft_anchor_2, 1)
   key(backspace)
 
@@ -46,6 +46,6 @@ clear <user.draft_anchor> through <user.draft_anchor>:
   user.formatters_reformat_selection(user.formatters)
 
 # reformat range
-<user.formatters> <user.draft_anchor> through <user.draft_anchor>:
+<user.formatters> <user.draft_anchor> by <user.draft_anchor>:
     user.draft_select(draft_anchor_1, draft_anchor_2, 1)
     user.formatters_reformat_selection(user.formatters)
