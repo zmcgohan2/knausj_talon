@@ -15,6 +15,10 @@ go [to] inbox: key(cmd-1)
 go to drafts: key(cmd-4)
 go to sent: key(cmd-2)
 
+message (last | lost | lust):
+	key(end)
+	user.mail_select_last_message()
+
 # MsgFiler
 move:
 	key(ctrl-s)
