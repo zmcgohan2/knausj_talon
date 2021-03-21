@@ -49,6 +49,3 @@ class win_actions:
 		result = result.rsplit(" (", 1)[0]
 		result = result.rsplit(" •", 1)[0]
 		return result if "." in result else ""
-
-	def file_ext():
-		return actions.win.filename().split(".")[-1]

@@ -53,9 +53,6 @@ class win_actions:
 		result = title.split(" — ")[0]
 		return result if "." in result else ""
 
-	def file_ext():
-		return actions.win.filename().split(".")[-1]
-
 @mod.action_class
 class Actions:
 	def subl(paths: list[str]):
