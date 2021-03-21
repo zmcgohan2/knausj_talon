@@ -13,7 +13,8 @@ class user_actions:
 	def mail_select_last_message():
 		mail = ui.apps(bundle='com.apple.mail')[0]
 		focused = mail.focused_element
-		if focused['AXIdentifier'] == 'MessagesTableView':
+		messages_table = None
+		if focused.get('AXIdentifier') == 'MessagesTableView':
 			messages_table = focused
 		else:
 			try:
