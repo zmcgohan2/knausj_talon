@@ -12,7 +12,7 @@ workspace setup:
 	key(ctrl-esc)
 	sleep(500ms)
 	insert("h:m")
-	sleep(100ms)
+	sleep(200ms)
 	key(return)
 
 hyperspace nonproduction:
