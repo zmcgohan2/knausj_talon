@@ -2,7 +2,8 @@ app.bundle: com.apple.mail
 -
 archive: key(ctrl-cmd-a)
 delete: key(backspace)
-flag: key(cmd-shift-l)
+# This toggles; OK for now
+flag | unflag: key(cmd-shift-l)
 junk: key(cmd-shift-j)
 reply: key(cmd-r)
 reply all: key(cmd-shift-r)
