@@ -30,6 +30,11 @@ class Actions:
                 actions.user.engine_wake()
                 # note: this may not do anything for all versions of Dragon. Requires Pro.
                 actions.user.engine_mimic("switch to command mode")
+        else:
+            actions.mode.disable("sleep")
+            actions.mode.disable("dictation")
+            actions.mode.enable("command")
+            actions.user.code_clear_language_mode()
 
     def dragon_mode():
         """For windows and Mac with Dragon, disables Talon commands and exits Dragon's command mode"""
@@ -45,3 +50,9 @@ class Actions:
                 actions.user.engine_wake()
                 # note: this may not do anything for all versions of Dragon. Requires Pro.
                 actions.user.engine_mimic("start normal mode")
+        else:
+            actions.mode.disable("sleep")
+            actions.mode.enable("dictation")
+            actions.mode.disable("command")
+            actions.user.code_clear_language_mode()
+
