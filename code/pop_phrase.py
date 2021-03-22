@@ -8,7 +8,7 @@ mod = Module()
 last_phrase = ""
 pop_phrase = ""
 
-auto_pop_that_phrases = ["go"]
+auto_pop_that_phrases = ["go", "move"]
 
 def on_phrase(j):
     """Record the last phrase"""
