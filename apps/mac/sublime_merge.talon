@@ -6,6 +6,7 @@ do [<user.text>]:
 
 message [<user.prose>]:
 	key(cmd-9)
+	sleep(100ms)
 	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
 
 commit: key(cmd-enter)
