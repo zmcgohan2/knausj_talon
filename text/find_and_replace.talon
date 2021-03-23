@@ -16,18 +16,18 @@ replace confirm that: user.replace_confirm()
 replace confirm all: user.replace_confirm_all()
 
 #quick replace commands, modeled after jetbrains
-void last <user.text> [over]: 
+bear last <user.text> [over]: 
     user.select_previous_occurrence(text)
     sleep(100ms)
     edit.delete()
-void next <user.text> [over]: 
+bear next <user.text> [over]: 
     user.select_next_occurrence(text)
     sleep(100ms)
     edit.delete()
-void last clip: 
+bear last clip: 
     user.select_previous_occurrence(clip.text())
     edit.delete()
-void next clip: 
+bear next clip: 
     user.select_next_occurrence(clip.text())
     sleep(100ms)
     edit.delete()
