@@ -1,6 +1,10 @@
 tag: browser
 -
 (address bar | go address | go url): browser.focus_address()
+copy address: 
+  browser.focus_address()
+  sleep(50ms)
+  edit.copy()
 go home: browser.go_home()
 [go] forward: browser.go_forward()
 go (back | backward): browser.go_back()
@@ -55,6 +59,8 @@ go patron:
   browser.go("https://www.patreon.com")
 go meet up:
   browser.go("https://www.Meetup.com")
+go you tube: 
+  browser.go("https://www.youtube.com")
 #todo - port to apps
 # navigating current page
 # help: key(?)
