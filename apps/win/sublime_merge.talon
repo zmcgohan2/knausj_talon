@@ -5,7 +5,11 @@ do [<user.text>]:
 	key(ctrl-shift-p)
 	insert(user.text or "")
 
-message: key(ctrl-9)
+^message [<user.prose>]$:
+	key(ctrl-9)
+	sleep(100ms)
+	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
+
 commit: key(ctrl-enter)
 push: key(ctrl-alt-up)
 pull: key(ctrl-alt-down)
