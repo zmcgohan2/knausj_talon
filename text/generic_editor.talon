@@ -1,37 +1,37 @@
-draw [<number>]:
-    numb = number or 1
+draw [<number_small>]:
+    numb = number_small or 1
     edit.word_left()
     repeat(numb - 1)
 
-spring [<number>]:
-    numb = number or 1
+spring [<number_small>]:
+    numb = number_small or 1
     edit.word_right()
     repeat(numb - 1)
 
-go left [<number>]:
-    numb = number or 1
+go left [<number_small>]:
+    numb = number_small or 1
     edit.left()
     repeat(numb - 1)
 
-go right [<number>]:
-    numb = number or 1
+go right [<number_small>]:
+    numb = number_small or 1
     edit.right()
     repeat(numb - 1)
 
-go up [<number>]:
-    numb = number or 1
+go up [<number_small>]:
+    numb = number_small or 1
     edit.up()
     repeat(numb - 1)
 
-go down [<number>]:
-    numb = number or 1
+go down [<number_small>]:
+    numb = number_small or 1
     edit.down()
     repeat(numb - 1)
 
-go line start:
+head:
     edit.line_start()
 
-go line end:
+tail:
     edit.line_end()
 
 far left:
@@ -60,38 +60,38 @@ sell line:
 sell all:
     edit.select_all()
 
-sell left [<number>]:
-    numb = number or 1
+sell left [<number_small>]:
+    numb = number_small or 1
     edit.extend_left()
     repeat(numb - 1)
 
-sell right [<number>]:
-    numb = number or 1
+sell right [<number_small>]:
+    numb = number_small or 1
     edit.extend_right()
     repeat(numb - 1)
 
-sell up [<number>]:
-    numb = number or 1
+sell up [<number_small>]:
+    numb = number_small or 1
     edit.extend_line_up()
     repeat(numb - 1)
 
-sell down [<number>]:
-    numb = number or 1
+sell down [<number_small>]:
+    numb = number_small or 1
     edit.extend_line_down()
     repeat(numb - 1)
 
-sell word [<number>]:
-    numb = number or 1
+sell word [<number_small>]:
+    numb = number_small or 1
     edit.select_word()
     repeat(numb - 1)    
 
-sell draw [<number>]:
-    numb = number or 1
+sell draw [<number_small>]:
+    numb = number_small or 1
     edit.extend_word_left()
     repeat(numb - 1)
 
-sell spring [<number>]:
-    numb = number or 1
+sell spring [<number_small>]:
+    numb = number_small or 1
     edit.extend_word_right()
     repeat(numb - 1)
 
@@ -108,13 +108,13 @@ sell far down:
     edit.extend_file_end()
 
 # editing
-tab [<number>]:
-    numb = number or 1
+tap that [<number_small>]:
+    numb = number_small or 1
     edit.indent_more()
     repeat(numb - 1)    
 
-retab [<number>]:
-    numb = number or 1
+retap that [<number_small>]:
+    numb = number_small or 1
     edit.indent_less()
     repeat(numb - 1)
 
@@ -128,35 +128,34 @@ bear line:
 # bear right:
 #     key(delete)
 
-bear up [<number>]:
-    numb = number or 1
+bear up [<number_small>]:
+    numb = number_small or 1
     edit.extend_line_up()
     repeat(numb - 1)    
     edit.delete()
 
-bear down [<number>]:
-    numb = number or 1
+bear down [<number_small>]:
+    numb = number_small or 1
     edit.extend_line_down()
     repeat(numb - 1) 
     edit.delete()
 
-bear word [<number>]:
-    numb = number or 1
+bear word [<number_small>]:
+    numb = number_small or 1
     edit.delete_word()
     repeat(numb - 1)
 
-bear draw [<number>]:
-    numb = number or 1
+(bear draw | scratch) [<number_small>]:
+    numb = number_small or 1
     edit.extend_word_left()
     repeat(numb - 1)    
     edit.delete()
 
-bear spring [<number>]:
+(bear spring | sprung) [<number_small>]:
     edit.extend_word_right()
-    numb = number or 1
+    numb = number_small or 1
     repeat(numb - 1)    
-    edit.delete()
-
+    edit.delete()+thatp
 
 bear far left:
     edit.extend_line_start()
@@ -192,26 +191,25 @@ copy all:
 #     edit.extend_down()
 #     edit.copy()
 
-copy word [<number>]:
-    numb = number or 1
+copy word [<number_small>]:
+    numb = number_small or 1
     edit.select_word()
     repeat(numb - 1)    
     edit.copy()
 
 
-copy draw [<number>]:
-    numb = number or 1
+copy draw [<number_small>]:
+    numb = number_small or 1
     edit.extend_word_left()
     repeat(numb - 1)    
     edit.copy()
 
 
-copy spring [<number>]:
-    numb = number or 1
+copy spring [<number_small>]:
+    numb = number_small or 1
     edit.extend_word_right()
     repeat(numb - 1)    
     edit.copy()
-
 
 copy line:
     edit.select_line()
@@ -233,45 +231,45 @@ copy far down:
     edit.extend_file_end()
     edit.copy()
 
-#cut commands
-cut all:
+#snip commands
+snip all:
     edit.select_all()
     edit.cut()
 
 #to do: do we want these variants
-# cut left:
+# snip left:
 #      edit.select_all()
 #      edit.cut()
-# cut right:
+# snip right:
 #      edit.select_all()
 #      edit.cut()
-# cut up:
+# snip up:
 #      edit.select_all()
 #     edit.cut()
-# cut down:
+# snip down:
 #     edit.select_all()
 #     edit.cut()
 
-cut word:
+snip word:
     edit.select_word()   
     edit.cut()
 
-cut draw [<number>]:
-    numb = number or 1
+snip draw [<number_small>]:
+    numb = number_small or 1
     edit.extend_word_left()
     repeat(numb - 1)    
     edit.cut()
 
-cut spring [<number>]:
-    numb = number or 1
+snip spring [<number_small>]:
+    numb = number_small or 1
     edit.extend_word_right()
     repeat(numb - 1)
     edit.cut()
 
-cut line:
+snip line:
     edit.select_line()
     edit.cut()
 
-chuck <number>:
+chuck <number_small>:
     edit.delete()
-    repeat(number - 1)
+    repeat(number_small - 1)

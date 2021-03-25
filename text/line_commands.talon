@@ -26,10 +26,10 @@ copy [line] <number>:
 copy <number> by <number>: 
     user.select_range(number_1, number_2)
     edit.copy()
-cut [line] <number>: 
+snip [line] <number>: 
     user.select_range(number, number)
     edit.cut()
-cut [line] <number> by <number>: 
+snip [line] <number> by <number>: 
     user.select_range(number_1, number_2)
     edit.cut()
 paste <number> by <number>:
@@ -40,18 +40,18 @@ replace <number> by <number>:
     edit.paste()
 sell [line] <number>: user.select_range(number, number)
 sell <number> by <number>: user.select_range(number_1, number_2)
-# tab that: edit.indent_more()
-tab [line] <number>:
+# tap that: edit.indent_more()
+tap [line] <number>:
     edit.jump_line(number)
     edit.indent_more() 
-tab <number> by <number>:
+tap <number> by <number>:
     user.select_range(number_1, number_2)
     edit.indent_more()
-# retab that: edit.indent_less()
-retab [line] <number>:
+# retap that: edit.indent_less()
+retap [line] <number>:
     user.select_range(number, number)
     edit.indent_less()
-retab <number> by <number>:
+retap <number> by <number>:
     user.select_range(number_1, number_2)
     edit.indent_less()
 drag [line] down: edit.line_swap_down()
