@@ -8,22 +8,22 @@ spring [<number_small>]:
     edit.word_right()
     repeat(numb - 1)
 
-go left [<number_small>]:
+left [<number_small>]:
     numb = number_small or 1
     edit.left()
     repeat(numb - 1)
 
-go right [<number_small>]:
+right [<number_small>]:
     numb = number_small or 1
     edit.right()
     repeat(numb - 1)
 
-go up [<number_small>]:
+rise [<number_small>]:
     numb = number_small or 1
     edit.up()
     repeat(numb - 1)
 
-go down [<number_small>]:
+fall [<number_small>]:
     numb = number_small or 1
     edit.down()
     repeat(numb - 1)
@@ -95,16 +95,16 @@ sell spring [<number_small>]:
     edit.extend_word_right()
     repeat(numb - 1)
 
-sell far left:
+sell start:
     edit.extend_line_start()
 
-sell far right:
+sell end:
     edit.extend_line_end()
 
-sell far up:
+sell north:
     edit.extend_file_start()
 
-sell far down:
+sell south:
     edit.extend_file_end()
 
 # editing
@@ -152,25 +152,29 @@ wipe word [<number_small>]:
     edit.delete()
 
 (wipe spring | gobble) [<number_small>]:
-    edit.extend_word_right()
     numb = number_small or 1
+    edit.extend_word_right()
     repeat(numb - 1)    
     edit.delete()
 
-wipe far left:
+wipe start:
     edit.extend_line_start()
     edit.delete()
 
-wipe far right:
+wipe end:
     edit.extend_line_end()
     edit.delete()
 
-wipe far up:
+wipe north:
     edit.extend_file_start()
     edit.delete()
 
-wipe far down:
+wipe south:
     edit.extend_file_end()
+    edit.delete()
+    
+wipe all:
+    edit.select_all()
     edit.delete()
 
 #copy commands
@@ -215,19 +219,19 @@ copy line:
     edit.select_line()
     edit.copy()
 
-copy far left:
+copy end:
     edit.extend_line_start()
     edit.delete()
 
-copy far right:
+copy start:
     edit.extend_line_end()
     edit.copy()
 
-copy far up:
+copy north:
     edit.extend_file_start()
     edit.copy()
 
-copy far down:
+copy south:
     edit.extend_file_end()
     edit.copy()
 
