@@ -30,7 +30,7 @@ ctx.lists["self.navigation_action"] = {
     "move": "GO",
     "extend": "EXTEND",
     "sell": "SELECT",
-    "bear": "DELETE",
+    "wipe": "DELETE",
     "snip": "CUT",
     "copy": "COPY",
 }

@@ -119,57 +119,57 @@ retap that [<number_small>]:
     repeat(numb - 1)
 
 # deleting
-bear line:
+wipe line:
     edit.delete_line()
     
-# bear left:
+# wipe left:
 #     key(backspace)
 
-# bear right:
+# wipe right:
 #     key(delete)
 
-bear up [<number_small>]:
+wipe up [<number_small>]:
     numb = number_small or 1
     edit.extend_line_up()
     repeat(numb - 1)    
     edit.delete()
 
-bear down [<number_small>]:
+wipe down [<number_small>]:
     numb = number_small or 1
     edit.extend_line_down()
     repeat(numb - 1) 
     edit.delete()
 
-bear word [<number_small>]:
+wipe word [<number_small>]:
     numb = number_small or 1
     edit.delete_word()
     repeat(numb - 1)
 
-(bear draw | scratch) [<number_small>]:
+(wipe draw | sweep) [<number_small>]:
     numb = number_small or 1
     edit.extend_word_left()
     repeat(numb - 1)    
     edit.delete()
 
-(bear spring | sprung) [<number_small>]:
+(wipe spring | gobble) [<number_small>]:
     edit.extend_word_right()
     numb = number_small or 1
     repeat(numb - 1)    
-    edit.delete()+thatp
+    edit.delete()
 
-bear far left:
+wipe far left:
     edit.extend_line_start()
     edit.delete()
 
-bear far right:
+wipe far right:
     edit.extend_line_end()
     edit.delete()
 
-bear far up:
+wipe far up:
     edit.extend_file_start()
     edit.delete()
 
-bear far down:
+wipe far down:
     edit.extend_file_end()
     edit.delete()
 

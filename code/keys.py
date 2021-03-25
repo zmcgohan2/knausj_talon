@@ -226,7 +226,7 @@ simple_keys = [
 
 alternate_keys = {
     "chuck": "backspace",
-    "bear": "delete",
+    "wipe": "delete",
     # 'junk': 'backspace',
     "tail": "end",
     "head": "home",
@@ -240,7 +240,7 @@ keys = {k: k for k in simple_keys}
 keys.update(alternate_keys)
 ctx.lists["self.special_key"] = keys
 ctx.lists["self.function_key"] = {
-    f"fine {default_f_digits[i]}": f"f{i + 1}" for i in range(12)
+    f"f {default_f_digits[i]}": f"f{i + 1}" for i in range(12)
 }
 
 

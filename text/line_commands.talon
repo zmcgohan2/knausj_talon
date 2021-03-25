@@ -13,11 +13,11 @@ note [line] <number>:
 note <number> by <number>: 
     user.select_range(number_1, number_2)
     code.toggle_comment()
-bear [line] <number>:
+wipe [line] <number>:
     edit.jump_line(number)
     user.select_range(number, number)
     edit.delete()
-bear <number> by <number>: 
+wipe <number> by <number>: 
     user.select_range(number_1, number_2)
     edit.delete()
 copy [line] <number>: 
