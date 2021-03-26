@@ -8,22 +8,22 @@ spring [<number_small>]:
     edit.word_right()
     repeat(numb - 1)
 
-left [<number_small>]:
+go left [<number_small>]:
     numb = number_small or 1
     edit.left()
     repeat(numb - 1)
 
-right [<number_small>]:
+go right [<number_small>]:
     numb = number_small or 1
     edit.right()
     repeat(numb - 1)
 
-rise [<number_small>]:
+go up [<number_small>]:
     numb = number_small or 1
     edit.up()
     repeat(numb - 1)
 
-fall [<number_small>]:
+go down [<number_small>]:
     numb = number_small or 1
     edit.down()
     repeat(numb - 1)
@@ -34,17 +34,17 @@ head:
 tail:
     edit.line_end()
 
-far left:
+go east:
     edit.line_start()
     edit.line_start()
 
-far right:
+go west:
     edit.line_end()
 
-far down:
+go south:
     edit.file_end()
 
-far up:
+go north:
     edit.file_start()
 
 # go page down:
@@ -95,10 +95,12 @@ sell spring [<number_small>]:
     edit.extend_word_right()
     repeat(numb - 1)
 
-sell start:
+sell east:
+    edit.extend_line_start()
     edit.extend_line_start()
 
-sell end:
+sell west:
+    edit.extend_line_end()
     edit.extend_line_end()
 
 sell north:
@@ -165,6 +167,16 @@ wipe end:
     edit.extend_line_end()
     edit.delete()
 
+wipe east:
+    edit.extend_line_start()
+    edit.extend_line_start()
+    edit.delete()
+
+wipe west:
+    edit.extend_line_end()
+    edit.extend_line_end()
+    edit.delete()
+
 wipe north:
     edit.extend_file_start()
     edit.delete()
@@ -219,11 +231,11 @@ copy line:
     edit.select_line()
     edit.copy()
 
-copy end:
+copy east:
     edit.extend_line_start()
     edit.delete()
 
-copy start:
+copy west:
     edit.extend_line_end()
     edit.copy()
 
@@ -253,6 +265,22 @@ snip all:
 # snip down:
 #     edit.select_all()
 #     edit.cut()
+
+snip east:
+    edit.extend_line_start()
+    edit.cut()
+
+snip west:
+    edit.extend_line_end()
+    edit.cut()
+
+snip north:
+    edit.extend_file_start()
+    edit.cut()
+
+snip south:
+    edit.extend_file_end()
+    edit.cut()
 
 snip word:
     edit.select_word()   
