@@ -38,8 +38,8 @@ paste <number> by <number>:
 replace <number> by <number>: 
     user.select_range(number_1, number_2)
     edit.paste()
-sell [line] <number>: user.select_range(number, number)
-sell <number> by <number>: user.select_range(number_1, number_2)
+take [line] <number>: user.select_range(number, number)
+take <number> by <number>: user.select_range(number_1, number_2)
 # tap that: edit.indent_more()
 tap [line] <number>:
     edit.jump_line(number)

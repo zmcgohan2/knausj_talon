@@ -6,8 +6,8 @@ zoom out [<number>]:
 	numb  = number or 1	
 	edit.zoom_out()
 	repeat(numb - 1)
-copy sell: edit.copy()
-cut sell: edit.cut()
+copy take: edit.copy()
+cut take: edit.cut()
 paste now: edit.paste()
 undo now [<number>]: 
 	numb  = number or 1

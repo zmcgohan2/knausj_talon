@@ -29,7 +29,7 @@ mod.list(
 ctx.lists["self.navigation_action"] = {
     "move": "GO",
     "extend": "EXTEND",
-    "sell": "SELECT",
+    "take": "SELECT",
     "wipe": "DELETE",
     "snip": "CUT",
     "copy": "COPY",

@@ -54,59 +54,59 @@ go north:
 #     edit.page_up()
 
 # selecting
-sell line:
+take line:
     edit.select_line()
 
-sell all:
+take all:
     edit.select_all()
 
-sell left [<number_small>]:
+take left [<number_small>]:
     numb = number_small or 1
     edit.extend_left()
     repeat(numb - 1)
 
-sell right [<number_small>]:
+take right [<number_small>]:
     numb = number_small or 1
     edit.extend_right()
     repeat(numb - 1)
 
-sell up [<number_small>]:
+take up [<number_small>]:
     numb = number_small or 1
     edit.extend_line_up()
     repeat(numb - 1)
 
-sell down [<number_small>]:
+take down [<number_small>]:
     numb = number_small or 1
     edit.extend_line_down()
     repeat(numb - 1)
 
-sell word [<number_small>]:
+take word [<number_small>]:
     numb = number_small or 1
     edit.select_word()
     repeat(numb - 1)    
 
-sell draw [<number_small>]:
+take draw [<number_small>]:
     numb = number_small or 1
     edit.extend_word_left()
     repeat(numb - 1)
 
-sell spring [<number_small>]:
+take spring [<number_small>]:
     numb = number_small or 1
     edit.extend_word_right()
     repeat(numb - 1)
 
-sell east:
+take east:
     edit.extend_line_start()
     edit.extend_line_start()
 
-sell west:
+take west:
     edit.extend_line_end()
     edit.extend_line_end()
 
-sell north:
+take north:
     edit.extend_file_start()
 
-sell south:
+take south:
     edit.extend_file_end()
 
 # editing
