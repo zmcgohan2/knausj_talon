@@ -23,11 +23,11 @@ cursor after <user.draft_anchor>:
   user.draft_position_caret("{draft_anchor}", 1)
 
 # Select a whole word
-sell <user.draft_anchor>:
+take <user.draft_anchor>:
   user.draft_select("{draft_anchor}")
 
 # Select a range of words
-sell <user.draft_anchor> by <user.draft_anchor>:
+take <user.draft_anchor> by <user.draft_anchor>:
   user.draft_select("{draft_anchor_1}", "{draft_anchor_2}")
 
 # Delete a word

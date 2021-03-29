@@ -50,27 +50,27 @@ inside angle:
 inside pad:
     insert('   ')
     key(left)
-angle sell: 
+angle take: 
     text = edit.selected_text()
     user.paste("<{text}>")
-pad sell: 
+pad take: 
     text = edit.selected_text()
     user.paste(" {text} ")    
-bracket sell: 
+bracket take: 
     text = edit.selected_text()
     user.paste("{{{text}}}")
-args sell: 
+args take: 
     text = edit.selected_text()
     user.paste("({text})")
-percent sell: 
+percent take: 
     text = edit.selected_text()
     user.paste("%{text}%")
-quote sell:
+quote take:
     text = edit.selected_text()
     user.paste('"{text}"')
-tick sell:
+tick take:
     text = edit.selected_text()
     user.paste('`{text}`')
-square sell:
+square take:
     text = edit.selected_text()
     user.paste('[{text}]')

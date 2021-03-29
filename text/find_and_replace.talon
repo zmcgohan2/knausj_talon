@@ -79,10 +79,10 @@ replace next <user.text> [over]:
     user.select_next_occurrence(text)
     sleep(100ms)
     edit.paste()
-sell last <user.text> [over]: user.select_previous_occurrence(text)
-sell next <user.text> [over]: user.select_next_occurrence(text)
-sell last clip: user.select_previous_occurrence(clip.text())
-sell next clip: user.select_next_occurrence(clip.text())
+take last <user.text> [over]: user.select_previous_occurrence(text)
+take next <user.text> [over]: user.select_next_occurrence(text)
+take last clip: user.select_previous_occurrence(clip.text())
+take next clip: user.select_next_occurrence(clip.text())
 
 
 
