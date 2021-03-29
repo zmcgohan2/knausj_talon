@@ -4,7 +4,7 @@ mode: dictation
 
 # Everything here should call auto_insert to preserve the state to correctly auto-capitalize/auto-space.
 <user.prose>: auto_insert(prose)
-new line: "\n"
+new row: "\n"
 new paragraph: "\n\n"
 cap <user.word>:
     result = user.formatted_text(word, "CAPITALIZE_FIRST_WORD")
@@ -23,8 +23,8 @@ go left <number_small> (word|words):
 go right <number_small> (word|words):
     edit.word_right()
     repeat(number_small - 1)
-go line start: edit.line_start()
-go line end: edit.line_end()
+go row start: edit.line_start()
+go row end: edit.line_end()
 
 # Selection
 select left <number_small> (word|words):

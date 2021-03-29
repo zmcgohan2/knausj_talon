@@ -54,7 +54,7 @@ go north:
 #     edit.page_up()
 
 # selecting
-take line:
+take row:
     edit.select_line()
 
 take all:
@@ -121,7 +121,7 @@ retap that [<number_small>]:
     repeat(numb - 1)
 
 # deleting
-wipe line:
+wipe row:
     edit.delete_line()
     
 # wipe left:
@@ -227,7 +227,7 @@ copy spring [<number_small>]:
     repeat(numb - 1)    
     edit.copy()
 
-copy line:
+copy row:
     edit.select_line()
     edit.copy()
 
@@ -298,7 +298,7 @@ snip spring [<number_small>]:
     repeat(numb - 1)
     edit.cut()
 
-snip line:
+snip row:
     edit.select_line()
     edit.cut()
 

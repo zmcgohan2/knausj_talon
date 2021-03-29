@@ -1,7 +1,7 @@
 tag: user.code_block_comment
 -
 block comment: user.code_block_comment()
-block comment line:
+block comment row:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
 	edit.line_start()
@@ -11,7 +11,7 @@ block comment line:
     key(space)
     user.code_block_comment_suffix()
 #adds comment to the start of the line
-block comment line <user.text> over:
+block comment row <user.text> over:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
     edit.line_start()
@@ -27,7 +27,7 @@ block comment <user.text>$:
     #.talon supports implementing actions with parameters?
     user.code_block_comment()
     insert(user.text)
-(line | inline) block comment <user.text> over:
+(row | inline) block comment <user.text> over:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
 	edit.line_end()
@@ -36,7 +36,7 @@ block comment <user.text>$:
     insert(user.text)
     key(space)
    	user.code_block_comment_suffix()
-(line | inline) block comment <user.text>$:
+(row | inline) block comment <user.text>$:
     #todo: this should probably be a single function once
     #.talon supports implementing actions with parameters?
 	edit.line_end()
