@@ -67,6 +67,9 @@ percent take:
     user.paste("%{text}%")
 quote take:
     text = edit.selected_text()
+    user.paste("'{text}'")
+dubquote take:
+    text = edit.selected_text()
     user.paste('"{text}"')
 tick take:
     text = edit.selected_text()
