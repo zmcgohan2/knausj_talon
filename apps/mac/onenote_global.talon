@@ -11,7 +11,7 @@ action(user.onenote_now):
 	user.insert_time_ampm()
 	insert(" - ")
 
-now (<phrase> | <user.number_string>):
+^now (<phrase> | <user.number_string>):
 	user.onenote_now()
 	number = number_string or ""
 	insert("{phrase or number}")
