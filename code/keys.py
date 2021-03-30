@@ -225,8 +225,8 @@ simple_keys = [
 ]
 
 alternate_keys = {
-    "chuck": "backspace",
-    "wipe": "delete",
+    "wipe": "backspace",
+    "slay": "delete",
     # 'junk': 'backspace',
     "tail": "end",
     "head": "home",

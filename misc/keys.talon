@@ -9,3 +9,16 @@ go <user.arrow_keys>: key(arrow_keys)
 <user.modifiers> hold: key("{modifiers}:down")
 <user.modifiers> release: key("{modifiers}:up")
 
+face(pucker_lips_outwards):
+    user.start_scroll()
+face(pucker_lips_outwards:end):
+    user.start_scroll()
+# smile
+# open_mouth
+# stick_out_tongue
+# raise_eyebrows
+# 
+# scrunch_nose
+# pucker_lips_outwards
+# pucker_lips_left
+# pucker_lips_right

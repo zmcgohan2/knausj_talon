@@ -9,11 +9,11 @@ zoom out [<number>]:
 copy take: edit.copy()
 cut take: edit.cut()
 paste now: edit.paste()
-undo now [<number>]: 
+undo [<number>]: 
 	numb  = number or 1
 	edit.undo()
 	repeat(numb - 1)
-redo now [<number>]: 
+redo [<number>]: 
 	numb  = number or 1
 	edit.redo()
 	repeat(numb - 1)

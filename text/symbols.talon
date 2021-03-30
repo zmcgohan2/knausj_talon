@@ -9,7 +9,7 @@ spamma: ", "
 # plus: "+"
 # arrow: "->"
 # dub arrow: "=>"
-new line: "\\n"
+new row: "\\n"
 # carriage return: "\\r"
 # line feed: "\\r\\n"
 empty dubstring:

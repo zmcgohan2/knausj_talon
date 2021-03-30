@@ -29,6 +29,8 @@ lunix require:
 	insert("os: linux\n")
 title require:
 	insert("win.title: ")
+app require:
+	insert("app: ")
 mode require:
 	insert("mode: ")
 name require:
