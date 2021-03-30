@@ -156,7 +156,7 @@ punctuation_words = {
     "ampersand": "&",
 }
 symbol_key_words = {
-    "dot": ".",
+    "point": ".",
     "quote": "'",
     # "L square": "[",
     # "left square": "[",
@@ -225,8 +225,8 @@ simple_keys = [
 ]
 
 alternate_keys = {
-    "wipe": "backspace",
-    "slay": "delete",
+    "junk": "backspace",
+    "delete": "delete",
     # 'junk': 'backspace',
     "tail": "end",
     "head": "home",

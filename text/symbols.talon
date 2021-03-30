@@ -35,7 +35,7 @@ inside squares:
 inside bracket: 
 	insert("{}") 
 	key(left)
-inside percent: 
+inside percy: 
 	insert("%%") 
 	key(left)
 inside quotes:
@@ -62,7 +62,7 @@ bracket take:
 args take: 
     text = edit.selected_text()
     user.paste("({text})")
-percent take: 
+percy take: 
     text = edit.selected_text()
     user.paste("%{text}%")
 quote take:

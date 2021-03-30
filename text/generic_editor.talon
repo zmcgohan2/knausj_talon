@@ -13,25 +13,35 @@ go left [<number_small>]:
     edit.left()
     repeat(numb - 1)
 
+# hike [<number_small>]:
+#     edit.up()
+#     repeat(number_small - 1)
+#     key(enter)
+
+# topple [<number_small>]:
+#     edit.down()
+#     repeat(number_small - 1)  
+#     key(enter)
+
 go right [<number_small>]:
     numb = number_small or 1
     edit.right()
     repeat(numb - 1)
 
-go up [<number_small>]:
-    numb = number_small or 1
-    edit.up()
-    repeat(numb - 1)
+# hike [<number_small>]:
+#     numb = number_small or 1
+#     edit.up()
+#     repeat(numb - 1)
 
-go down [<number_small>]:
-    numb = number_small or 1
-    edit.down()
-    repeat(numb - 1)
+# topple [<number_small>]:
+#     numb = number_small or 1
+#     edit.down()
+#     repeat(numb - 1)
 
 head:
     edit.line_start()
 
-tail:
+push:
     edit.line_end()
 
 go east:
@@ -54,7 +64,7 @@ go north:
 #     edit.page_up()
 
 # selecting
-take row:
+take line:
     edit.select_line()
 
 take all:
@@ -163,9 +173,9 @@ wipe start:
     edit.extend_line_start()
     edit.delete()
 
-wipe end:
-    edit.extend_line_end()
-    edit.delete()
+# wipe end:
+#     edit.extend_line_end()
+#     edit.delete()
 
 wipe east:
     edit.extend_line_start()
@@ -302,6 +312,12 @@ snip row:
     edit.select_line()
     edit.cut()
 
-chuck <number_small>:
+chuck [<number_small>]:
+    numb = number_small or 1
+    key(backspace)
+    repeat(numb - 1)   
+
+scrap [<number_small>]:
+    numb = number_small or 1
     edit.delete()
-    repeat(number_small - 1)
+    repeat(numb - 1)    

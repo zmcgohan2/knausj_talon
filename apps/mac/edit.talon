@@ -7,7 +7,7 @@ action(edit.cut):
 	key(cmd-x)
 
 action(edit.delete):
-	key(backspace)
+	key(delete)
 
 action(edit.delete_line):
 	edit.select_line()
