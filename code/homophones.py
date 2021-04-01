@@ -78,6 +78,7 @@ def raise_homophones(word, forced=False, selection=False):
     is_upper = word.isupper()
 
     word = word.lower()
+    word = word.replace('’', "'")
 
     if word not in all_homophones:
         app.notify("homophones.py", '"%s" not in homophones list' % word)
