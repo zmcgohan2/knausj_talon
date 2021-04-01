@@ -43,6 +43,8 @@ action(edit.delete_line): key(ctrl-shift-k)
 action(edit.line_clone): key(cmd-shift-d)
 action(edit.line_swap_up): key(cmd-ctrl-up)
 action(edit.line_swap_down): key(cmd-ctrl-down)
+action(edit.indent_less): key(cmd-[)
+action(edit.indent_more): key(cmd-])
 action(edit.select_word): key(cmd-d)
 action(edit.select_line): key(cmd-l)
 
