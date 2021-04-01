@@ -17,7 +17,7 @@ workspace setup:
 
 hyperspace nonproduction:
 	key(ctrl-esc)
-	sleep(100ms)
+	sleep(1s)
 	insert("H:\\Hyperspace nonproduction.RDP")
 	key(return)
 
