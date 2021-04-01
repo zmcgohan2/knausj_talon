@@ -36,5 +36,5 @@ class user_actions:
 
 	def find_everywhere(text: str):
 		actions.key("ctrl-g cmd-alt-f")
-		actions.sleep("100ms")
+		actions.sleep("200ms")
 		actions.insert(text)
