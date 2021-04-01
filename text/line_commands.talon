@@ -37,32 +37,32 @@ cut <number> until <number>:
     edit.paste()
 (select | cell | sell) [line] <number>: user.select_range(number, number)
 (select | cell | sell) <number> until <number>: user.select_range(number_1, number_2)
-tab that: edit.indent_more()
-tab [line] <number>:
+move right: edit.indent_more()
+move right <number>:
     edit.jump_line(number)
     edit.indent_more()
-tab <number> until <number>:
+move right <number> until <number>:
     user.select_range(number_1, number_2)
     edit.indent_more()
-retab that: edit.indent_less()
-retab [line] <number>:
+move left: edit.indent_less()
+move left <number>:
     user.select_range(number, number)
     edit.indent_less()
-retab <number> until <number>:
+move left <number> until <number>:
     user.select_range(number_1, number_2)
     edit.indent_less()
-(drag | move) [line] down: edit.line_swap_down()
-(drag | move) [line] up: edit.line_swap_up()
-(drag | move) up [line] <number>:
+move down: edit.line_swap_down()
+move up: edit.line_swap_up()
+move up <number>:
     user.select_range(number, number)
     edit.line_swap_up()
-(drag | move) up <number> until <number>: 
+move up <number> until <number>: 
     user.select_range(number_1, number_2)
     edit.line_swap_up()
-(drag | move) down [line] <number>: 
+move down <number>: 
     user.select_range(number, number)
     edit.line_swap_down()
-(drag | move) down <number> until <number>: 
+move down <number> until <number>: 
     user.select_range(number_1, number_2)
     edit.line_swap_down()
 clone (line|that): edit.line_clone()
