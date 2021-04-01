@@ -10,45 +10,45 @@ go <number> end:
 comment [line] <number>:
     user.select_range(number, number)
     code.toggle_comment()
-comment <number> until <number>: 
+comment <number> through <number>: 
     user.select_range(number_1, number_2)
     code.toggle_comment()
 clear [line] <number>:
     edit.jump_line(number)
     user.select_range(number, number)
     edit.delete()
-clear <number> until <number>: 
+clear <number> through <number>: 
     user.select_range(number_1, number_2)
     edit.delete()
 copy [line] <number>: 
     user.select_range(number, number)
     edit.copy()
-copy <number> until <number>: 
+copy <number> through <number>: 
     user.select_range(number_1, number_2)
     edit.copy()
 cut [line] <number>: 
     user.select_range(number, number)
     edit.cut()
-cut <number> until <number>: 
+cut <number> through <number>: 
     user.select_range(number_1, number_2)
     edit.cut()
-(paste | replace) <number> until <number>:
+(paste | replace) <number> through <number>:
     user.select_range(number_1, number_2)
     edit.paste()
 (select | cell | sell) [line] <number>: user.select_range(number, number)
-(select | cell | sell) <number> until <number>: user.select_range(number_1, number_2)
+(select | cell | sell) <number> through <number>: user.select_range(number_1, number_2)
 move right: edit.indent_more()
 move right <number>:
     edit.jump_line(number)
     edit.indent_more()
-move right <number> until <number>:
+move right <number> through <number>:
     user.select_range(number_1, number_2)
     edit.indent_more()
 move left: edit.indent_less()
 move left <number>:
     user.select_range(number, number)
     edit.indent_less()
-move left <number> until <number>:
+move left <number> through <number>:
     user.select_range(number_1, number_2)
     edit.indent_less()
 move down: edit.line_swap_down()
@@ -56,13 +56,13 @@ move up: edit.line_swap_up()
 move up <number>:
     user.select_range(number, number)
     edit.line_swap_up()
-move up <number> until <number>: 
+move up <number> through <number>: 
     user.select_range(number_1, number_2)
     edit.line_swap_up()
 move down <number>: 
     user.select_range(number, number)
     edit.line_swap_down()
-move down <number> until <number>: 
+move down <number> through <number>: 
     user.select_range(number_1, number_2)
     edit.line_swap_down()
 clone (line|that): edit.line_clone()
