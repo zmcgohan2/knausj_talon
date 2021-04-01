@@ -1,4 +1,3 @@
 os: mac
 -
-nav:
-  key(ctrl-alt-v)
+^nav$: key(ctrl-alt-v)
