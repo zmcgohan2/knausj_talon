@@ -56,3 +56,8 @@ edit <user.letter> <user.letter> <user.letter>:
 	key(enter enter)
 	insert("1;1")
 	key(enter)
+edit <user.letter> <number_small> <user.letter>:
+	insert("e {letter_1}{number_small}{letter_2}")
+	key(enter enter)
+	insert("1;1")
+	key(enter)
