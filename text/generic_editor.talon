@@ -28,15 +28,15 @@ go right [<number_small>]:
     edit.right()
     repeat(numb - 1)
 
-# hike [<number_small>]:
-#     numb = number_small or 1
-#     edit.up()
-#     repeat(numb - 1)
+go up [<number_small>]:
+    numb = number_small or 1
+    edit.up()
+    repeat(numb - 1)
 
-# topple [<number_small>]:
-#     numb = number_small or 1
-#     edit.down()
-#     repeat(numb - 1)
+go down [<number_small>]:
+    numb = number_small or 1
+    edit.down()
+    repeat(numb - 1)
 
 head:
     edit.line_start()
