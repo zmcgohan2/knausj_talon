@@ -61,6 +61,8 @@ go meet up:
   browser.go("https://www.Meetup.com")
 go you tube: 
   browser.go("https://www.youtube.com")
+go apple:
+  browser.go("https://www.apple.com")
 #todo - port to apps
 # navigating current page
 # help: key(?)

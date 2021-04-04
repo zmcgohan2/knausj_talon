@@ -112,7 +112,7 @@ class DictationFormat:
         self.reset()
 
     def reset(self):
-        print("dictation reset")
+        # print("dictation reset")
         self.before = ""
         self.state = "sentence start"
 
@@ -139,6 +139,7 @@ ui.register("app_deactivate", lambda app: dictation_formatter.reset())
 ui.register("win_focus", lambda win: dictation_formatter.reset())
 ui.register("app_close", lambda win: dictation_formatter.reset())
 ui.register("app_launch", lambda win: dictation_formatter.reset())
+ui.register("win_title", lambda win: dictation_formatter.reset())
 
 
 @mod.action_class
