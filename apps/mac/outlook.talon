@@ -1,6 +1,7 @@
 app.bundle: com.microsoft.Outlook
 -
 archive: key(ctrl-e)
+delete: key(cmd-backspace)
 flag: key(ctrl-5)
 unflag:	key(cmd-alt-')
 junk: key(cmd-shift-j)
