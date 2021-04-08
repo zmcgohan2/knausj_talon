@@ -189,7 +189,7 @@ symbol_key_words = {
     # "R angle": ">",
     # "right angle": ">",
     # "greater than": ">",
-    "star": "*",
+    "snow": "*",
     # "pound": "#",
     "hash": "#",
     "percy": "%",

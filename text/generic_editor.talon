@@ -312,7 +312,7 @@ snip row:
     edit.select_line()
     edit.cut()
 
-chuck [<number_small>]:
+wipe [<number_small>]:
     numb = number_small or 1
     key(backspace)
     repeat(numb - 1)   

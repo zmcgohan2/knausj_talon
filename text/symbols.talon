@@ -12,54 +12,73 @@ spamma: ", "
 new row: "\\n"
 # carriage return: "\\r"
 # line feed: "\\r\\n"
-empty dubstring:
+bear dubstring:
     '""'
     key(left)
-empty escaped dubstring:
+bear escaped dubstring:
     '\\"\\"'
     key(left)
     key(left)
-empty string:
+bear string:
     "''"
     key(left)
-empty escaped string:
+bear escaped string:
     "\\'\\'"
     key(left)
     key(left)
-[inside] args:
-	insert("()")
+bear round:
+    user.paste("()")
+round:
+	user.paste("()")
 	key(left)
-inside squares: 
-	insert("[]") 
+bear square: 
+    user.paste("[]") 
+square: 
+	user.paste("[]") 
 	key(left)
-inside bracket: 
-	insert("{}") 
+bear curly: 
+    user.paste("{}") 
+curly: 
+	user.paste("{}") 
 	key(left)
-inside percy: 
-	insert("%%") 
+bear duty: 
+    user.paste("%%") 
+duty: 
+	user.paste("%%") 
 	key(left)
-inside quotes:
-	insert('""')
+quote:
+	user.paste("''")
     key(left)
-inside ticks:
-	insert('``')
+bear ditto:
+    user.paste('""')
+ditto:
+    user.paste('""')
     key(left)
-inside angle:
-    insert('<>')
+bear ticker:
+    user.paste('``')
+ticker:
+	user.paste('``')
     key(left)
-inside pad:
-    insert('   ')
+bear ring:
+    user.paste('<>')
+ring:
+    user.paste('<>')
     key(left)
-angle take: 
+bear pad:
+    user.paste('   ')
+pad:
+    user.paste('   ')
+    key(left)
+ring take: 
     text = edit.selected_text()
     user.paste("<{text}>")
 pad take: 
     text = edit.selected_text()
     user.paste(" {text} ")    
-bracket take: 
+curly take: 
     text = edit.selected_text()
     user.paste("{{{text}}}")
-args take: 
+round take: 
     text = edit.selected_text()
     user.paste("({text})")
 percy take: 
@@ -68,12 +87,13 @@ percy take:
 quote take:
     text = edit.selected_text()
     user.paste("'{text}'")
-dubquote take:
+ditto take:
     text = edit.selected_text()
     user.paste('"{text}"')
-tick take:
+ticker take:
     text = edit.selected_text()
     user.paste('`{text}`')
 square take:
     text = edit.selected_text()
     user.paste('[{text}]')
+
