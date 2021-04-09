@@ -27,6 +27,12 @@ class Actions:
 	def onenote_now():
 		"""Insert timestamped bullet list item into OneNote."""
 
+	def onenote_checkbox():
+		"""Insert indented checkbox into OneNote."""
+
+	def onenote_heading_1():
+		"""Insert a first-level heading into OneNote."""
+
 @ctx.action_class("user")
 class user_actions:
 	def find(text: str):

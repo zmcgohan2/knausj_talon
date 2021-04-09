@@ -79,7 +79,7 @@ action(user.find_next): key(cmd-g)
 action(user.find_previous): key(cmd-shift-g)
 
 # not standard OneNote; approximate equivalents of AutoHotKey
-today:
+action(user.onenote_heading_1):
 	key(ctrl-e enter)
 	# custom shortcut for "Remove Tag"
 	key(cmd-alt-0)
@@ -88,12 +88,24 @@ today:
 	key(cmd-. cmd-/ cmd-/)
 	# outdent one more time as the above may indent
 	key(shift-tab)
-	key(cmd-alt-1 cmd-d)
+	key(cmd-alt-1)
+
+action(user.onenote_checkbox): key(enter tab cmd-1 up ctrl-e)
+
+today:
+	user.onenote_heading_1()
+	key(cmd-d)
 	insert('- ')
-	key(enter tab cmd-1 up ctrl-e)
+	user.onenote_checkbox()
 
 key(ctrl-cmd-t):
 	mimic('today')
+
+tomorrow:
+	user.onenote_heading_1()
+	user.insert_date(1, '%-m/%-d/%Y')
+	insert(' - ')
+	user.onenote_checkbox()
 
 # back to progress (first notebook, first section)
 go progress:
