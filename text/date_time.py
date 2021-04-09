@@ -1,4 +1,6 @@
+from datetime import date, timedelta
 from talon import Module, Context, actions
+from typing import Optional
 import time
 
 mod = Module()
@@ -48,6 +50,6 @@ class Actions:
 		"""Inserts the current time in 12-hour format"""
 		actions.insert(time.strftime('%-I:%M %p'))
 
-	def insert_date():
-		"""Inserts the current date"""
-		actions.insert(time.strftime('%x'))
+	def insert_date(days: Optional[int] = 0, format: Optional[str] = '%x'):
+		"""Inserts the date offset by the specified number of days"""
+		actions.insert((date.today() + timedelta(days=days)).strftime(format))
