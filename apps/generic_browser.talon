@@ -22,6 +22,11 @@ show cache: browser.show_clear_cache()
 
 dev tools: browser.toggle_dev_tools()
 
+copy link:
+    browser.focus_address()
+    edit.copy()
+    browser.focus_page()
+
 #todo - port to apps
 # navigating current page
 # help: key(?)
