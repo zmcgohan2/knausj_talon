@@ -5,7 +5,6 @@ from talon.skia import Shader, Color, Paint, Rect
 from talon.types.point import Point2d
 from talon_plugins import eye_mouse, eye_zoom_mouse
 from typing import Union
-
 import math, time
 
 import typing

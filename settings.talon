@@ -32,4 +32,4 @@ settings():
     # speech.gain = 6
 
 # uncomment tag to enable mouse grid
-# tag(): user.mouse_grid_enabled
+tag(): user.mouse_grid_enabled
