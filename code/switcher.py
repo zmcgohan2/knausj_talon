@@ -1,16 +1,16 @@
+import csv
 import os
 import re
-import time
 import shutil
-import talon
-import csv
-from talon import Context, Module, app, imgui, ui, actions, resource
-from .user_settings import SETTINGS_DIR, DATA_DIR
-
-# from .user_settings import get_list_from_csv
+import time
 from glob import glob
 from itertools import islice
 from pathlib import Path
+
+import talon
+from talon import Context, Module, actions, app, imgui, resource, ui
+
+from .user_settings import get_list_from_csv
 
 override_file_name = f"app_name_overrides.{talon.app.platform}.csv"
 
@@ -59,10 +59,11 @@ words_to_exclude = [
 
 # windows-specific logic
 if app.platform == "windows":
-    import os
     import ctypes
-    import pywintypes
+    import os
+
     import pythoncom
+    import pywintypes
     import winerror
 
     try:
@@ -74,8 +75,9 @@ if app.platform == "windows":
         bytes = lambda x: str(buffer(x))
 
     from ctypes import wintypes
-    from win32com.shell import shell, shellcon
+
     from win32com.propsys import propsys, pscon
+    from win32com.shell import shell, shellcon
 
     # KNOWNFOLDERID
     # https://msdn.microsoft.com/en-us/library/dd378457
@@ -383,13 +385,21 @@ def get_overrides_from_csv(filename: str):
 
 # Talon starts faster if you don't use the `talon.ui` module during launch
 def on_ready():
-    global overrides
-    overrides = get_overrides_from_csv(override_file_name)
-    # print(str(overrides))
-
     update_launch_list()
     update_running_list()
     ui.register("", ui_event)
 
+
+# construct the legacy path name. todo: remove in Talon v0.2 timeframe
+cwd = os.path.dirname(os.path.realpath(__file__))
+legacy_path = Path(os.path.join(cwd, "app_names", override_file_name))
+
+overrides = get_list_from_csv(
+    override_file_name,
+    headers=None,
+    spoken_form_first=True,
+    strip_whitepsace_from_output=True,
+    legacy_path=legacy_path,
+)
 
 app.register("ready", on_ready)

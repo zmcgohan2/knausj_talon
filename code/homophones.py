@@ -1,6 +1,12 @@
-from talon import Context, Module, app, clip, cron, imgui, actions, ui, resource
-import os, shutil
-from .user_settings import SETTINGS_DIR, DATA_DIR
+import logging
+import os
+import shutil
+import warnings
+from pathlib import Path
+
+from talon import Context, Module, actions, app, clip, cron, imgui, resource, ui
+
+from .user_settings import DATA_DIR, SETTINGS_DIR
 
 ########################################################################
 # global settings
@@ -20,15 +26,27 @@ main_screen = ui.main_screen()
 
 
 def get_homophones_from_csv(filename: str):
-    """Retrieves list from CSV"""
+    """Retrieves homophones from CSV"""
+    # todo this code could be consolidated, save for parsing, with user_settings.
     path = SETTINGS_DIR / filename
     template_name = filename + ".template"
     template_path = DATA_DIR / template_name
+    cwd = os.path.dirname(os.path.realpath(__file__))
+    legacy_path = Path(os.path.join(cwd, "homophones.csv"))
+    # print(str(legacy_path))
     assert filename.endswith(".csv")
-    assert template_path.is_file()
-
     if not path.is_file():
-        shutil.copyfile(template_path, path)
+        if legacy_path and legacy_path.is_file():
+            shutil.move(legacy_path, path)
+            warnings.warn(
+                "Support for the legacy CSVs location (i.e. outside /Settings) will be removed in the Talon v0.2.0 timeframe. Moving file from {} to {}".format(
+                    legacy_path, path
+                ),
+                DeprecationWarning,
+            )
+        else:
+            assert template_path.is_file()
+            shutil.copyfile(template_path, path)
 
     phones = {}
     canonical_list = []
