@@ -350,39 +350,6 @@ def ui_event(event, arg):
 # errors on other platforms.
 ctx.lists["user.launch"] = {}
 ctx.lists["user.running"] = {}
-
-# todo: this exist only because the order of the spoken form and the output differs from the other files
-def get_overrides_from_csv(filename: str):
-    """Retrieves list from CSV"""
-    path = SETTINGS_DIR / filename
-    template_name = filename + ".template"
-    template_path = DATA_DIR / template_name
-    assert filename.endswith(".csv")
-    assert template_path.is_file()
-
-    if not path.is_file():
-        shutil.copyfile(template_path, path)
-
-    # Now read via resource to take advantage of talon's
-    # ability to reload this script for us when the resource changes
-    with resource.open(str(path), "r") as f:
-        rows = list(csv.reader(f))
-    mapping = {}
-    for row in rows:
-        spoken_form, output = row[:2]
-        if len(row) > 2:
-            print(
-                f'"{filename}": More than two values in row: {row}.'
-                + " Ignoring the extras."
-            )
-        # Leading/trailing whitespace in spoken form can prevent recognition.
-        output = output.strip()
-        spoken_form = spoken_form.strip()
-        mapping[spoken_form] = output
-
-    return mapping
-
-
 # Talon starts faster if you don't use the `talon.ui` module during launch
 def on_ready():
     update_launch_list()
