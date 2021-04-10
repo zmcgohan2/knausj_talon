@@ -11,8 +11,8 @@ tag(): user.tabs
 # action(edit.select_line):
 # 	key(ctrl-e cmd-shift-left)
 
-action(edit.delete_line):
-	user.vscode("editor.action.deleteLines")
+# action(edit.delete_line):
+# 	user.vscode("editor.action.deleteLines")
 
 settings():
   key_wait = 1
