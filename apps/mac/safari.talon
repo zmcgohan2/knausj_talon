@@ -7,19 +7,19 @@ tag(): user.tabs
 action(browser.bookmark):
 	key(cmd-d)
 
-action(browser.bookmark_tabs):
-	key(cmd-shift-d)
+#action(browser.bookmark_tabs):
 	
 action(browser.bookmarks):
 	key(cmd-alt-b)
   
-#action(browser.bookmarks_bar):
-#	key(ctrl-shift-b)
+action(browser.bookmarks_bar):
+	key(cmd-shift-b)
 
 action(browser.focus_address): 
 	key(cmd-l)
 	
-#action(browser.focus_page):
+action(browser.focus_page):
+	key(escape:2)
 
 action(browser.focus_search):
 	browser.focus_address()
@@ -48,13 +48,11 @@ action(browser.reload_hard):
 #action(browser.reload_hardest):
 	
 #action(browser.show_clear_cache):
-#	key(cmd-shift-delete)
   
 action(browser.show_downloads):
 	key(cmd-shift-j)
 
-action(browser.show_extensions):
-	key(ctrl-shift-a)
+#action(browser.show_extensions):
 
 action(browser.show_history):
 	key(cmd-y)
@@ -62,7 +60,7 @@ action(browser.show_history):
 action(browser.submit_form):
 	key(enter)
 
-#action(browser.title)
+#action(browser.title):
 
 action(browser.toggle_dev_tools):
 	key(cmd-alt-i)
