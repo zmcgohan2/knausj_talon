@@ -94,8 +94,6 @@ class clickless_mouse:
     def is_left_down(self):
         left_index = 0
 
-        if app.platform == "windows":
-            left_index = 1
         return left_index in ctrl.mouse_buttons_down()
 
     def enable(self, enable):
@@ -459,6 +457,9 @@ class clickless_mouse:
 
     def draw_options(self, canvas):
         paint = canvas.paint
+        paint.color = "ff0000"
+        paint.style = paint.Style.FILL
+        canvas.draw_circle(self.x, self.y, 3.5)
 
         for b in self.button_positions:
             # draw outer circle
