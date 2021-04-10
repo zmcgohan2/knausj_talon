@@ -18,7 +18,7 @@ workspace setup:
 hyperspace nonproduction:
 	key(ctrl-esc)
 	sleep(1s)
-	insert("H:\\Hyperspace nonproduction.RDP")
+	insert("h:\\hyperspace nonproduction.rdp")
 	key(return)
 
 home drive:
