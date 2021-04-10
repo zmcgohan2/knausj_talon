@@ -95,6 +95,7 @@ sig
 sigs
 SlicerDicer,slicer dicer
 SmartData,smart data
+SmartForm,smart form
 SmartGroup,smart group
 SmartGroups,smart groups
 SmartLink,smart link
