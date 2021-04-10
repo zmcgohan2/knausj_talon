@@ -1,16 +1,10 @@
-from talon import Context, Module, app, clip, cron, imgui, actions, ui, fs
-import os
+from talon import Context, Module, app, clip, cron, imgui, actions, ui, resource
+import os, shutil
+from .user_settings import SETTINGS_DIR, DATA_DIR
 
 ########################################################################
 # global settings
 ########################################################################
-
-# a list of homophones where each line is a comma separated list
-# e.g. where,wear,ware
-# a suitable one can be found here:
-# https://github.com/pimentel/homophones
-cwd = os.path.dirname(os.path.realpath(__file__))
-homophones_file = os.path.join(cwd, "homophones.csv")
 # if quick_replace, then when a word is selected and only one homophone exists,
 # replace it without bringing up the options
 quick_replace = True
@@ -22,17 +16,23 @@ mod = Module()
 mod.mode("homophones")
 mod.list("homophones_canonicals", desc="list of words ")
 
-
 main_screen = ui.main_screen()
 
 
-def update_homophones(name, flags):
-    if name != homophones_file:
-        return
+def get_homophones_from_csv(filename: str):
+    """Retrieves list from CSV"""
+    path = SETTINGS_DIR / filename
+    template_name = filename + ".template"
+    template_path = DATA_DIR / template_name
+    assert filename.endswith(".csv")
+    assert template_path.is_file()
+
+    if not path.is_file():
+        shutil.copyfile(template_path, path)
 
     phones = {}
     canonical_list = []
-    with open(homophones_file, "r") as f:
+    with resource.open(path, "r") as f:
         for line in f:
             words = line.rstrip().split(",")
             canonical_list.append(words[0])
@@ -43,11 +43,9 @@ def update_homophones(name, flags):
 
     global all_homophones
     all_homophones = phones
-    ctx.lists["self.homophones_canonicals"] = canonical_list
+    return canonical_list
 
 
-update_homophones(homophones_file, None)
-fs.watch(cwd, update_homophones)
 active_word_list = None
 is_selection = False
 
@@ -166,3 +164,9 @@ class Actions:
         app.notify(error)
         raise error
 
+
+def on_ready():
+    ctx.lists["self.homophones_canonicals"] = get_homophones_from_csv("homophones.csv")
+
+
+app.register("ready", on_ready)

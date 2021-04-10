@@ -3,28 +3,30 @@ import os
 from pathlib import Path
 from typing import Dict, List, Tuple
 from talon import resource
+import shutil
 
 # NOTE: This method requires this module to be one folder below the top-level
 #   knausj folder.
 SETTINGS_DIR = Path(__file__).parents[1] / "settings"
+DATA_DIR = Path(__file__).parents[1] / "data"
 
 if not SETTINGS_DIR.is_dir():
     os.mkdir(SETTINGS_DIR)
 
+if not DATA_DIR.is_dir():
+    os.mkdir(DATA_DIR)
 
-def get_list_from_csv(
-    filename: str, headers: Tuple[str, str], default: Dict[str, str] = {}
-):
+
+def get_list_from_csv(filename: str, headers: Tuple[str, str] = None):
     """Retrieves list from CSV"""
     path = SETTINGS_DIR / filename
+    template_name = filename + ".template"
+    template_path = DATA_DIR / template_name
     assert filename.endswith(".csv")
+    assert template_path.is_file()
 
     if not path.is_file():
-        with open(path, "w", encoding="utf-8") as file:
-            writer = csv.writer(file)
-            writer.writerow(headers)
-            for key, value in default.items():
-                writer.writerow([key] if key == value else [value, key])
+        shutil.copyfile(template_path, path)
 
     # Now read via resource to take advantage of talon's
     # ability to reload this script for us when the resource changes
@@ -34,13 +36,19 @@ def get_list_from_csv(
     # print(str(rows))
     mapping = {}
     if len(rows) >= 2:
-        actual_headers = rows[0]
-        if not actual_headers == list(headers):
-            print(
-                f'"{filename}": Malformed headers - {actual_headers}.'
-                + f" Should be {list(headers)}. Ignoring row."
-            )
-        for row in rows[1:]:
+        # the start row for the actual contents, excluding the header
+        start_row_index = 0
+
+        if headers is not None:
+            start_row_index = 1
+            actual_headers = rows[0]
+            if not actual_headers == list(headers):
+                print(
+                    f'"{filename}": Malformed headers - {actual_headers}.'
+                    + f" Should be {list(headers)}. Ignoring row."
+                )
+
+        for row in rows[start_row_index:]:
             if len(row) == 0:
                 # Windows newlines are sometimes read as empty rows. :champagne:
                 continue

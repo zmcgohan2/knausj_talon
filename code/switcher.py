@@ -1,22 +1,18 @@
 import os
 import re
 import time
-
+import shutil
 import talon
-from talon import Context, Module, app, imgui, ui, fs, actions
+import csv
+from talon import Context, Module, app, imgui, ui, actions, resource
+from .user_settings import SETTINGS_DIR, DATA_DIR
+
+# from .user_settings import get_list_from_csv
 from glob import glob
 from itertools import islice
 from pathlib import Path
 
-# Construct at startup a list of overides for application names (similar to how homophone list is managed)
-# ie for a given talon recognition word set  `one note`, recognized this in these switcher functions as `ONENOTE`
-# the list is a comma seperated `<Recognized Words>, <Overide>`
-# TODO: Consider put list csv's (homophones.csv, app_name_overrides.csv) files together in a seperate directory,`knausj_talon/lists`
-cwd = os.path.dirname(os.path.realpath(__file__))
-overrides_directory = os.path.join(cwd, "app_names")
 override_file_name = f"app_name_overrides.{talon.app.platform}.csv"
-override_file_path = os.path.join(overrides_directory, override_file_name)
-
 
 mod = Module()
 mod.list("running", desc="all running applications")
@@ -169,7 +165,7 @@ def get_words(name):
     return out
 
 
-def update_lists():
+def update_running_list():
     global running_application_dict
     running_application_dict = {}
     running = {}
@@ -192,28 +188,10 @@ def update_lists():
 
     lists = {
         "self.running": running,
-        # "self.launch": launch,
     }
 
     # batch update lists
     ctx.lists.update(lists)
-
-
-def update_overrides(name, flags):
-    """Updates the overrides list"""
-    global overrides
-    overrides = {}
-
-    if name is None or name == override_file_path:
-        # print("update_overrides")
-        with open(override_file_path, "r") as f:
-            for line in f:
-                line = line.rstrip()
-                line = line.split(",")
-                if len(line) == 2:
-                    overrides[line[0].lower()] = line[1].strip()
-
-        update_lists()
 
 
 pattern = re.compile(r"[A-Z][a-z]*|[a-z]+|\d|[+]")
@@ -362,7 +340,7 @@ def update_launch_list():
 
 def ui_event(event, arg):
     if event in ("app_launch", "app_close"):
-        update_lists()
+        update_running_list()
 
 
 # Currently update_launch_list only does anything on mac, so we should make sure
@@ -371,13 +349,47 @@ def ui_event(event, arg):
 ctx.lists["user.launch"] = {}
 ctx.lists["user.running"] = {}
 
+# todo: this exist only because the order of the spoken form and the output differs from the other files
+def get_overrides_from_csv(filename: str):
+    """Retrieves list from CSV"""
+    path = SETTINGS_DIR / filename
+    template_name = filename + ".template"
+    template_path = DATA_DIR / template_name
+    assert filename.endswith(".csv")
+    assert template_path.is_file()
+
+    if not path.is_file():
+        shutil.copyfile(template_path, path)
+
+    # Now read via resource to take advantage of talon's
+    # ability to reload this script for us when the resource changes
+    with resource.open(str(path), "r") as f:
+        rows = list(csv.reader(f))
+    mapping = {}
+    for row in rows:
+        spoken_form, output = row[:2]
+        if len(row) > 2:
+            print(
+                f'"{filename}": More than two values in row: {row}.'
+                + " Ignoring the extras."
+            )
+        # Leading/trailing whitespace in spoken form can prevent recognition.
+        output = output.strip()
+        spoken_form = spoken_form.strip()
+        mapping[spoken_form] = output
+
+    return mapping
+
+
 # Talon starts faster if you don't use the `talon.ui` module during launch
 def on_ready():
-    update_overrides(None, None)
-    fs.watch(overrides_directory, update_overrides)
+    global overrides
+    overrides = get_overrides_from_csv(override_file_name)
+    # print(str(overrides))
+
     update_launch_list()
+    update_running_list()
     ui.register("", ui_event)
 
 
-# NOTE: please update this from "launch" to "ready" in Talon v0.1.5
 app.register("ready", on_ready)
