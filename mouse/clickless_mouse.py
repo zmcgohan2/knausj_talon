@@ -108,6 +108,9 @@ class clickless_mouse:
             self.mcanvas.unregister("draw", self.draw)
             self.mcanvas = None
 
+    def toggle(self):
+        self.enable(not self.enabled)
+
     def set_button_positions(self):
         self.button_positions = []
         self.scroll_progress = 0
@@ -494,6 +497,14 @@ class clickless_mouse:
 
 
 cm = clickless_mouse()
+
+
+@mod.action_class
+class Actions:
+    def clickless_mouse_toggle():
+        """Enable the click less mouse"""
+        cm.toggle()
+
 
 # uncomment to enable by default/for quick testing
 # cm.enable(True)
