@@ -1,6 +1,7 @@
 from typing import Tuple
 
-from talon import Context, Module, canvas, cron, ctrl, cron, app, actions
+from talon import Context, Module, actions, app, canvas, cron, ctrl
+from user.knausj_talon.code.menu import menu
 
 
 class MouseGuide:
@@ -176,9 +177,6 @@ ctx.lists["user.mouse_cardinal"] = [
 
 def toggle_mouse_guide(state):
     mouse_guide.toggle()
-
-
-from .menu import menu
 
 
 menu.toggle("Mouse Guide", weight=2, cb=toggle_mouse_guide)

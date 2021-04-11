@@ -10,7 +10,7 @@
 # ka = keep alive for e.g. leaving the thing up for easy scroll down/up on webpages. no action
 
 from talon import Module, Context, app, canvas, screen, ui, ctrl, cron, actions
-from .menu import menu
+from user.knausj_talon.code.menu import menu
 
 import math, time
 
@@ -81,13 +81,11 @@ class dwell_button:
 class clickless_mouse:
     def __init__(self):
         self.button_positions = []
-        # self.screen_index = 0
         self.screen = None
         self.offset_x = None
         self.offset_y = None
         self.width = None
         self.height = None
-        # self.mcanvas.register("draw", self.draw)
         self.mcanvas = None
         self.x, self.y = ctrl.mouse_pos()
         self._dwell_x, self._dwell_y = ctrl.mouse_pos()
@@ -110,7 +108,7 @@ class clickless_mouse:
 
         if self.enabled:
             update_cron = cron.interval("16ms", self.update)
-        else:
+        elif self.update_cron:
             cron.cancel(update_cron)
             update_cron = None
 
@@ -407,8 +405,8 @@ class clickless_mouse:
             ):
                 # update the position to prevent re-display for minor moves
                 # this may not be preferred.
-                self.x = self._dwell_x
-                self.y = self._dwell_y
+                # self.x = self._dwell_x
+                # self.y = self._dwell_y
 
                 self.state = STATE_MOUSE_IDLE
                 draw_options = False
