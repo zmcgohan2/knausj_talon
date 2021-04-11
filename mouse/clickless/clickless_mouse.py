@@ -107,10 +107,10 @@ class clickless_mouse:
         self.enabled = enable
 
         if self.enabled:
-            update_cron = cron.interval("16ms", self.update)
+            self.update_cron = cron.interval("16ms", self.update)
         elif self.update_cron:
-            cron.cancel(update_cron)
-            update_cron = None
+            cron.cancel(self.update_cron)
+            self.update_cron = None
 
     def toggle(self):
         self.enable(not self.enabled)
@@ -547,7 +547,7 @@ cm = clickless_mouse()
 @mod.action_class
 class Actions:
     def clickless_mouse_toggle():
-        """Enable the click less mouse"""
+        """Toggles the click less mouse"""
         cm.toggle()
 
 
