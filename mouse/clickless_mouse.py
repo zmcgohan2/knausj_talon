@@ -50,6 +50,13 @@ radius = mod.setting(
     desc="The size of the options in the clickless mouse",
 )
 
+release_button_delay = mod.setting(
+    "clickless_mouse_release_delay",
+    type=int,
+    default=50,
+    desc="The delay (ms) before releasing the held mouse button",
+)
+
 
 class dwell_button:
     def __init__(self, x, y, action="l"):
@@ -416,13 +423,14 @@ class clickless_mouse:
                         ctrl.mouse_click(button=0, down=True)
                     else:
                         # print("pressing button 0 up")
-                        actions.sleep("50ms")
+                        actions.sleep("{}ms".format(release_button_delay.get()))
+                        ctrl.mouse_click()
                         ctrl.mouse_click(button=0, up=True)
 
                     # print(str(ctrl.mouse_buttons_down()))
                 elif item_hit.action == "lr":
                     if self.is_left_down():
-                        actions.sleep("50ms")
+                        actions.sleep("{}ms".format(release_button_delay.get()))
                         ctrl.mouse_click(button=0, up=True)
 
                 elif item_hit.action == "l":
