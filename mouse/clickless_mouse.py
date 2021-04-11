@@ -405,6 +405,11 @@ class clickless_mouse:
                 and time.time() - self.last_time >= auto_hide.get()
                 and (self._dwell_x == x or self._dwell_y == y)
             ):
+                # update the position to prevent re-display for minor moves
+                # this may not be preferred.
+                self.x = self._dwell_x
+                self.y = self._dwell_y
+
                 self.state = STATE_MOUSE_IDLE
                 draw_options = False
 
@@ -483,6 +488,7 @@ class clickless_mouse:
             if draw_options:
                 if self._dwell_x != x or self._dwell_y != y:
                     self.last_time = time.time()
+                    self._dwell_x, self._dwell_y = ctrl.mouse_pos()
 
                 # print("draw options...")
                 if not self.draw_registered:
