@@ -370,14 +370,14 @@ class clickless_mouse:
                     self._dwell_x, self._dwell_y = ctrl.mouse_pos()
                     screen = ui.screen_containing(self.x, self.y)
 
-                    if screen != self.screen:
-                        self.screen = screen
-                        self.offset_x = self.screen.x
-                        self.offset_y = self.screen.y
-                        self.width = self.screen.width
-                        self.height = self.screen.height
-                        self.mcanvas = None
-                        self.mcanvas = canvas.Canvas.from_screen(self.screen)
+                    # if screen != self.screen:
+                    self.screen = screen
+                    self.offset_x = self.screen.x
+                    self.offset_y = self.screen.y
+                    self.width = self.screen.width
+                    self.height = self.screen.height
+                    self.mcanvas = None
+                    self.mcanvas = canvas.Canvas.from_screen(self.screen)
 
                     self.set_button_positions()
                     self.state = STATE_DISPLAYING_OPTIONS

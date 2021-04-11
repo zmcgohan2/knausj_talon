@@ -1,16 +1,15 @@
 import os
 import pathlib
 import subprocess
-from .user_settings import DATA_DIR
 
 from talon import (
     Context,
     Module,
     actions,
     app,
+    clip,
     cron,
     ctrl,
-    clip,
     imgui,
     noise,
     settings,
@@ -18,6 +17,7 @@ from talon import (
 )
 from talon_plugins import eye_mouse, eye_zoom_mouse, speech
 from talon_plugins.eye_mouse import config, toggle_camera_overlay, toggle_control
+from user.knausj_talon.code.user_settings import DATA_DIR
 
 key = actions.key
 self = actions.self
