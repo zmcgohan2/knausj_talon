@@ -111,6 +111,10 @@ class clickless_mouse:
         elif self.update_cron:
             cron.cancel(self.update_cron)
             self.update_cron = None
+            if self.draw_registered:
+                self.mcanvas.unregister("draw", self.draw)
+                self.mcanvas.close()
+                self.mcanvas = None
 
     def toggle(self):
         self.enable(not self.enabled)

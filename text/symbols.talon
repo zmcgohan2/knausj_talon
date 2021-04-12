@@ -96,4 +96,5 @@ ticker take:
 square take:
     text = edit.selected_text()
     user.paste('[{text}]')
-
+between <user.symbol_key>:
+    key("{symbol_key} {symbol_key} left")

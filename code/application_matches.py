@@ -76,3 +76,7 @@ os: windows
 and app.exe: powershell.exe
 """
 
+mod.apps.stretchly = """
+os: mac
+and app.bundle: net.hovancik.stretchly
+"""
