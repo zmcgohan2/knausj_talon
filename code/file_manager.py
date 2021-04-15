@@ -44,7 +44,7 @@ setting_imgui_limit = mod.setting(
 setting_imgui_string_limit = mod.setting(
     "file_manager_string_limit",
     type=int,
-    default=20,
+    default=30,
     desc="Maximum like of string to display in the imgui",
 )
 cached_path = None
@@ -383,8 +383,19 @@ def update_lists():
     current_folder_page = current_file_page = 1
     ctx.lists["self.file_manager_directories"] = directories
     ctx.lists["self.file_manager_files"] = files
-    folder_selections = sorted(directories.values(), key=str.casefold)
-    file_selections = sorted(files.values(), key=str.casefold)
+
+    folder_selections = []
+    [
+        folder_selections.append(x)
+        for x in sorted(directories.values(), key=str.casefold)
+        if x not in folder_selections
+    ]
+    file_selections = []
+    [
+        file_selections.append(x)
+        for x in sorted(files.values(), key=str.casefold)
+        if x not in file_selections
+    ]
 
     update_gui()
 

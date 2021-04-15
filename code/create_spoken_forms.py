@@ -73,6 +73,8 @@ def create_spoken_forms(
     ]
     # print(terms)
 
+    if source not in terms:
+        terms.append(source)
     return terms
 
 
