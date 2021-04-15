@@ -6,6 +6,7 @@ import re
 from .extensions import _file_extensions_defaults
 from .numbers import digits_map
 from .abbreviate import abbreviations
+from .keys import symbol_key_words, punctuation_words
 
 # TODO: 'Whats application': 'WhatsApp' (Should keep "whats app" as well?)
 # TODO: 'V O X': 'VOX' (should keep "VOX" as well?)
@@ -20,14 +21,19 @@ FILE_EXTENSIONS_REGEX = "|".join(
     re.escape(file_extension) for file_extension in _file_extensions_defaults.values()
 )
 DIGITS_REGEX = r"\d"
+SYMBOL_REGEX = "|".join(re.escape(symbol) for symbol in symbol_key_words.values())
+SYMBOL_REGEX += "|".join(re.escape(symbol) for symbol in punctuation_words.values())
 FULL_REGEX = re.compile(
-    "|".join([DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD,])
+    "|".join(
+        [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SYMBOL_REGEX, SMALL_WORD, UPPERCASE_WORD,]
+    )
 )
 
 REVERSE_PRONUNCIATION_MAP = {
     **{value: key for key, value in abbreviations.items()},
     **{value: key for key, value in _file_extensions_defaults.items()},
     **{str(value): key for key, value in digits_map.items()},
+    **{value: key for key, value in symbol_key_words.items()},
 }
 
 
