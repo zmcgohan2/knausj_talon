@@ -85,6 +85,8 @@ def create_spoken_forms_for_list(
         words_to_exclude = []
 
     result = {}
+
+    # todo: figure out what to do with ambiquities
     ambiguities = {}
     for source in source_list:
         terms = create_spoken_forms(source, words_to_exclude, minimum_term_length)
@@ -95,10 +97,14 @@ def create_spoken_forms_for_list(
                 and len(term) >= minimum_term_length
             ):
                 if term in result and result[term] != source:
-                    result.pop(term)
-                    ambiguities[term] = True
+                    # result.pop(term)
+                    if term not in ambiguities:
+                        ambiguities[term] = []
+
+                    ambiguities[term].append(source)
                 else:
                     result[term] = source
+    print(str(result))
     return result
     # print(terms)
 
