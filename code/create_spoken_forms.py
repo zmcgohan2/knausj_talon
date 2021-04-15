@@ -104,7 +104,7 @@ def create_spoken_forms_for_list(
                     ambiguities[term].append(source)
                 else:
                     result[term] = source
-    print(str(result))
+    # print(str(result))
     return result
     # print(terms)
 
