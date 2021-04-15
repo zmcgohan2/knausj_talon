@@ -1,4 +1,5 @@
 from talon import app, Module, Context, actions, ui, imgui, settings, app, registry
+from .create_spoken_forms import create_spoken_forms_for_list
 from os.path import expanduser
 from subprocess import Popen
 from pathlib import Path
@@ -227,10 +228,6 @@ class Actions:
 pattern = re.compile(r"[A-Z][a-z]*|[a-z]+|\d")
 
 
-def create_spoken_forms(symbols, max_len=30):
-    return [" ".join(list(islice(pattern.findall(s), max_len))) for s in symbols]
-
-
 def is_dir(f):
     try:
         return f.is_dir()
@@ -254,8 +251,7 @@ def get_directory_map(current_path):
         if is_dir(f)
     ]
     # print(len(directories))
-    spoken_forms = create_spoken_forms(directories)
-    return dict(zip(spoken_forms, directories))
+    return create_spoken_forms_for_list(directories)
 
 
 def get_file_map(current_path):
@@ -267,8 +263,8 @@ def get_file_map(current_path):
         if is_file(f)
     ]
     # print(str(files))
-    spoken_forms = create_spoken_forms([p for p in files])
-    return dict(zip(spoken_forms, [f for f in files]))
+
+    return create_spoken_forms_for_list(files)
 
 
 @imgui.open(y=0, x=158)

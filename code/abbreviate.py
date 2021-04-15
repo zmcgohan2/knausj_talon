@@ -10,7 +10,7 @@ mod = Module()
 mod.list("abbreviation", desc="Common abbreviation")
 
 ctx = Context()
-
-ctx.lists["user.abbreviation"] = get_list_from_csv(
+abbreviations = get_list_from_csv(
     "abbreviations.csv", headers=None, spoken_form_first=True
 )
+ctx.lists["user.abbreviation"] = abbreviations

@@ -10,6 +10,7 @@ from pathlib import Path
 import talon
 from talon import Context, Module, actions, app, imgui, resource, ui
 
+from .create_spoken_forms import create_spoken_forms
 from .user_settings import get_list_from_csv
 
 override_file_name = f"app_name_overrides.{talon.app.platform}.csv"
@@ -155,18 +156,6 @@ def launch_applications(m) -> str:
     return m.launch
 
 
-def split_camel(word):
-    return re.findall(r"[0-9A-Z]*[a-z]+(?=[A-Z]|$)", word)
-
-
-def get_words(name):
-    words = re.findall(r"[0-9A-Za-z]+", name)
-    out = []
-    for word in words:
-        out += split_camel(word)
-    return out
-
-
 def update_running_list():
     global running_application_dict
     running_application_dict = {}
@@ -174,15 +163,11 @@ def update_running_list():
     for cur_app in ui.apps(background=False):
         name = cur_app.name
 
-        if name.endswith(".exe"):
-            name = name.rsplit(".", 1)[0]
+        spoken_forms = create_spoken_forms(name, words_to_exclude=words_to_exclude)
+        for spoken_form in spoken_forms:
+            if spoken_form not in running:
+                running[spoken_form] = cur_app.name
 
-        words = get_words(name)
-        for word in words:
-            if word and word not in running and len(word) >= 3:
-                running[word.lower()] = cur_app.name
-
-        running[name.lower()] = cur_app.name
         running_application_dict[cur_app.name] = True
 
     for override in overrides:
@@ -194,28 +179,6 @@ def update_running_list():
 
     # batch update lists
     ctx.lists.update(lists)
-
-
-pattern = re.compile(r"[A-Z][a-z]*|[a-z]+|\d|[+]")
-
-# todo: this is garbage
-def create_spoken_forms(name, max_len=30):
-    result = " ".join(list(islice(pattern.findall(name), max_len)))
-
-    result = (
-        result.replace("0", "zero")
-        .replace("1", "one")
-        .replace("2", "two")
-        .replace("3", "three")
-        .replace("4", "four")
-        .replace("5", "five")
-        .replace("6", "six")
-        .replace("7", "seven")
-        .replace("8", "eight")
-        .replace("9", "nine")
-        .replace("+", "plus")
-    )
-    return result
 
 
 @mod.action_class
@@ -310,14 +273,15 @@ def update_launch_list():
             if os.path.isdir(base):
                 for name in os.listdir(base):
                     path = os.path.join(base, name)
-                    name = name.rsplit(".", 1)[0].lower()
                     launch[name] = path
-                    words = name.split(" ")
-                    for word in words:
-                        if word and word not in launch:
-                            if len(name) > 6 and len(word) < 3:
+                    spoken_forms = create_spoken_forms(
+                        name, words_to_exclude=words_to_exclude
+                    )
+                    for spoken_form in spoken_forms:
+                        if spoken_form and spoken_form not in launch:
+                            if len(name) > 6 and len(spoken_form) < 3:
                                 continue
-                            launch[word] = path
+                            launch[spoken_form] = path
 
     elif app.platform == "windows":
         shortcuts = enum_known_folder(FOLDERID_AppsFolder)
