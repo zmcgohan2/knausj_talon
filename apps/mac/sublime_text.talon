@@ -1,4 +1,5 @@
-app: com.sublimetext.4
+os: mac
+app.bundle: com.sublimetext.4
 -
 tag(): user.find_and_replace
 tag(): user.line_commands

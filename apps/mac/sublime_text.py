@@ -6,6 +6,7 @@ mod = Module()
 ctx = Context()
 
 ctx.matches = r"""
+os: mac
 app.bundle: com.sublimetext.4
 """
 
