@@ -1,4 +1,4 @@
-from talon import Context, actions, ui, Module, app, clip
+from talon import Context, actions, ui, Module, app, clip, scope
 import os
 import re
 from itertools import islice
@@ -53,3 +53,6 @@ class Actions:
 
         clip.set_text(result)
 
+    def talon_get_scope(info: str) -> str:
+        """Returns Talon scope information."""
+        return scope.get(info, '')
