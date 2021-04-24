@@ -13,6 +13,7 @@ from talon import (
     imgui,
     noise,
     settings,
+    tap,
     ui,
 )
 from talon_plugins import eye_mouse, eye_zoom_mouse, speech
