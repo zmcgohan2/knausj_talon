@@ -21,11 +21,11 @@ FILE_EXTENSIONS_REGEX = "|".join(
     re.escape(file_extension) for file_extension in _file_extensions_defaults.values()
 )
 DIGITS_REGEX = r"\d"
-SYMBOL_REGEX = "|".join(re.escape(symbol) for symbol in symbol_key_words.values())
-SYMBOL_REGEX += "|".join(re.escape(symbol) for symbol in punctuation_words.values())
+# SYMBOL_REGEX = "|".join(re.escape(symbol) for symbol in symbol_key_words.values())
+# SYMBOL_REGEX += "|".join(re.escape(symbol) for symbol in punctuation_words.values())
 FULL_REGEX = re.compile(
     "|".join(
-        [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SYMBOL_REGEX, SMALL_WORD, UPPERCASE_WORD,]
+        [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD,]
     )
 )
 
@@ -112,7 +112,7 @@ def create_spoken_forms_for_list(
                     ambiguities[term].append(source)
                 else:
                     result[term] = source
-    # print(str(result))
+    #print(str(result))
     return result
     # print(terms)
 

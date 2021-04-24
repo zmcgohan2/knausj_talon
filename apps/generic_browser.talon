@@ -63,6 +63,8 @@ go you tube:
   browser.go("https://www.youtube.com")
 go apple:
   browser.go("https://www.apple.com")
+go library:
+  browser.go("https://www.slcolibrary.org")
 #todo - port to apps
 # navigating current page
 # help: key(?)
