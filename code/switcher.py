@@ -291,16 +291,15 @@ def update_launch_list():
             # print(name)
             # name = path.rsplit("\\")[-1].split(".")[0].lower()
             if "install" not in name:
-                spoken_form = create_spoken_forms(name)
-                # print(spoken_form)
-                launch[spoken_form] = name
-                words = spoken_form.split(" ")
-                for word in words:
-                    if word not in words_to_exclude and word not in launch:
-                        if len(name) > 6 and len(word) < 3:
+                launch[name] = name
+                spoken_forms = create_spoken_forms(
+                    name, words_to_exclude=words_to_exclude
+                )
+                for spoken_form in spoken_forms:
+                    if spoken_form and spoken_form not in launch:
+                        if len(name) > 6 and len(spoken_form) < 3:
                             continue
-                        launch[word] = name
-
+                        launch[spoken_form] = name
     ctx.lists["self.launch"] = launch
 
 
