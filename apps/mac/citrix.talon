@@ -8,17 +8,20 @@ start [<user.text>]:
 	key(ctrl-esc)
 	insert(text or "")
 
+# delays are longer than are often needed
+# but particularly on slow networks, without them keys can be dropped
 workspace setup:
 	key(ctrl-esc)
-	sleep(500ms)
+	sleep(1s)
 	insert("h:m")
-	sleep(200ms)
+	sleep(500ms)
 	key(return)
 
 hyperspace nonproduction:
 	key(ctrl-esc)
 	sleep(1s)
 	insert("h:\\hyperspace nonproduction.rdp")
+	sleep(500ms)
 	key(return)
 
 home drive:
