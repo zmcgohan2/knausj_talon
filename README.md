@@ -13,7 +13,7 @@ Clone repo into `~/.talon/user`
 
 ```insert code:
 cd ~/.talon/user
-git clone git@github.com:knausj85/knausj_talon.git knausj_talon
+git clone https://github.com/knausj85/knausj_talon knausj_talon
 ```
     
 Alternatively, access the directory by right clicking the Talon icon in taskbar, clicking Scripting>Open ~/talon, and navigating to user.
@@ -39,7 +39,7 @@ Clone repo into `%AppData%\Talon\user`
 
 ```insert code:
 cd %AppData%\Talon\user
-git clone git@github.com:knausj85/knausj_talon.git knausj_talon
+git clone https://github.com/knausj85/knausj_talon knausj_talon
 ```
     
 Alternatively, access the directory by right clicking the Talon icon in taskbar, clicking Scripting>Open ~/talon, and navigating to user.
@@ -208,6 +208,10 @@ Notes:
 • Both Windows Explorer and Finder hide certain files and folder by default, so it's often best to use the imgui to list the options before issuing commands. 
 
 • If there no hidden files or folders, and the items are displayed in alphabetical order, you can typically issue the `follow <number>`, `file <number>` and `open <number>` commands based on the displayed order.
+
+To implement support for a new program, you need to implement the relevant file manager actions for your application and assert the user.file_manager tag.
+- There are a number of example implementations in the repository. Finder is a good example to copy and customize to your application as needed. 
+https://github.com/knausj85/knausj_talon/blob/5eae0b6a8f2269f24265e77feddbcc4bcf437c36/apps/mac/finder/finder.py#L16
 
 ## Terminal commands
 
