@@ -153,7 +153,7 @@ class Actions:
         """(TEMPORARY) Press and hold/release button 0 depending on state for dragging"""
         # todo: fixme temporary fix for drag command
         button_down = len(list(ctrl.mouse_buttons_down())) > 0
-        print(str(ctrl.mouse_buttons_down()))
+        # print(str(ctrl.mouse_buttons_down()))
         if not button_down:
             # print("start drag...")
             ctrl.mouse_click(button=0, down=True)
