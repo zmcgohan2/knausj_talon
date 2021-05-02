@@ -90,12 +90,15 @@ action(user.onenote_heading_1):
 	key(shift-tab)
 	key(cmd-alt-1)
 
-action(user.onenote_checkbox): key(enter tab cmd-1 up ctrl-e)
+action(user.onenote_checkbox): key(ctrl-e enter tab cmd-1 up ctrl-e)
 
 today:
 	user.onenote_heading_1()
 	key(cmd-d)
 	insert('- ')
+	key(up ctrl-shift--)
+	sleep(500ms)
+	key(down)
 	user.onenote_checkbox()
 
 key(ctrl-cmd-t):
@@ -105,6 +108,9 @@ tomorrow:
 	user.onenote_heading_1()
 	user.insert_date(1, '%-m/%-d/%Y')
 	insert(' - ')
+	key(up ctrl-shift--)
+	sleep(500ms)
+	key(down)
 	user.onenote_checkbox()
 
 # back to progress (first notebook, first section)
