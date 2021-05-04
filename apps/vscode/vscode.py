@@ -47,7 +47,7 @@ class win_actions:
 
 @ctx.action_class("edit")
 class edit_actions:
-    def find(text=None):
+    def find(text = None):
         if is_mac:
             actions.key("cmd-f")
         else:
@@ -214,10 +214,10 @@ class user_actions:
         actions.sleep("100ms")
         actions.key("esc")
 
-    # def select_next_token():
-    #     actions.edit.find("")
-    #     actions.key("enter")
-    #     actions.key("enter")
-    #     actions.key("esc")
+    def select_next_token():
+        actions.edit.find("")
+        actions.key("enter")
+        actions.key("enter")
+        actions.key("esc")
 
     # find_and_replace.py support end
