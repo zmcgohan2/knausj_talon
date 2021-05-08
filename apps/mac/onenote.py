@@ -33,6 +33,9 @@ class Actions:
 	def onenote_heading_1():
 		"""Insert a first-level heading into OneNote."""
 
+	def onenote_hide_navigation():
+		"""Hide the navigation panes."""
+
 @ctx.action_class("user")
 class user_actions:
 	def find(text: str):
@@ -44,3 +47,17 @@ class user_actions:
 		actions.key("ctrl-g cmd-alt-f")
 		actions.sleep("200ms")
 		actions.insert(text)
+	
+	def onenote_hide_navigation():
+		onenote = ui.apps(bundle="com.microsoft.onenote.mac")[0]
+		window = next(window for window in onenote.windows() if window.doc)
+		# un-check the "books" at the top left if necessary
+		splitgroup = next(child for child in window.children if child.AXRole == 'AXSplitGroup')
+		group = next(child for child in splitgroup.children if child.AXRole == 'AXGroup')
+		checkbox = next(child for child in group.children if child.AXRole == 'AXCheckBox')
+		if checkbox.AXValue == 1:
+			checkbox.perform('AXPress')
+		# focus the note body if necessary
+		focused = onenote.focused_element
+		if focused.AXRole == 'AXWindow' and focused.get('AXDocument'):
+			actions.key("tab")

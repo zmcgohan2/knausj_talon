@@ -78,6 +78,10 @@ paste link:
 action(user.find_next): key(cmd-g)
 action(user.find_previous): key(cmd-shift-g)
 
+# missing shortcut for hiding navigation
+navigation hide: user.onenote_hide_navigation()
+key(esc): user.onenote_hide_navigation()
+
 # not standard OneNote; approximate equivalents of AutoHotKey
 action(user.onenote_heading_1):
 	key(ctrl-e enter)
@@ -117,6 +121,6 @@ tomorrow:
 go progress:
 	key(ctrl-g alt-up enter)
 	sleep(200ms)
-	# esc is custom shortcut for "Hide Navigation" AppleScript using accessibility
-	# to hide the sidebar - happy to provide it on request if anyone else is using this
-	key(alt-up tab:2 escape)
+	key(alt-up)
+	user.onenote_hide_navigation()
+
