@@ -79,7 +79,7 @@ action(user.find_next): key(cmd-g)
 action(user.find_previous): key(cmd-shift-g)
 
 # missing shortcut for hiding navigation
-navigation hide: user.onenote_hide_navigation()
+(navigation hide | escape): user.onenote_hide_navigation()
 key(esc): user.onenote_hide_navigation()
 
 # not standard OneNote; approximate equivalents of AutoHotKey
