@@ -65,6 +65,8 @@ go apple:
   browser.go("https://www.apple.com")
 go library:
   browser.go("https://www.slcolibrary.org")
+go bed and breakfast:
+  browser.go("https://www.airbnb.com")
 #todo - port to apps
 # navigating current page
 # help: key(?)

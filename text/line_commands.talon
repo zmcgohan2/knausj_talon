@@ -39,7 +39,7 @@ replace <number> by <number>:
     user.select_range(number_1, number_2)
     edit.paste()
 take [row] <number>: user.select_range(number, number)
-take <number> by <number>: user.select_range(number_1, number_2)
+(take [row] | row) <number> by <number>: user.select_range(number_1, number_2)
 # tap that: edit.indent_more()
 tap [row] <number>:
     edit.jump_line(number)

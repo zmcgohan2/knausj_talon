@@ -7,18 +7,16 @@ from talon import (
     Module,
     actions,
     app,
-    clip,
     cron,
     ctrl,
+    clip,
     imgui,
     noise,
     settings,
-    tap,
     ui,
 )
 from talon_plugins import eye_mouse, eye_zoom_mouse, speech
 from talon_plugins.eye_mouse import config, toggle_camera_overlay, toggle_control
-from user.knausj_talon.code.user_settings import DATA_DIR
 
 key = actions.key
 self = actions.self
@@ -27,6 +25,7 @@ click_job = None
 scroll_job = None
 gaze_job = None
 cancel_scroll_on_pop = True
+control_mouse_forced = False
 
 default_cursor = {
     "AppStarting": r"%SystemRoot%\Cursors\aero_working.ani",
@@ -49,7 +48,9 @@ default_cursor = {
 }
 
 # todo figure out why notepad++ still shows the cursor sometimes.
-hidden_cursor = DATA_DIR / "HiddenCursor.cur"
+hidden_cursor = os.path.join(
+    os.path.dirname(os.path.realpath(__file__)), r"Resources\HiddenCursor.cur"
+)
 
 mod = Module()
 mod.list(
@@ -153,7 +154,7 @@ class Actions:
         """(TEMPORARY) Press and hold/release button 0 depending on state for dragging"""
         # todo: fixme temporary fix for drag command
         button_down = len(list(ctrl.mouse_buttons_down())) > 0
-        # print(str(ctrl.mouse_buttons_down()))
+        print(str(ctrl.mouse_buttons_down()))
         if not button_down:
             # print("start drag...")
             ctrl.mouse_click(button=0, down=True)
@@ -215,9 +216,16 @@ class Actions:
         """Starts gaze scroll"""
         global continuous_scoll_mode
         continuous_scoll_mode = "gaze scroll"
+
         start_cursor_scrolling()
         if setting_mouse_hide_mouse_gui.get() == 0:
             gui_wheel.show()
+
+        # enable 'control mouse' if eye tracker is present and not enabled already
+        global control_mouse_forced
+        if eye_mouse.tracker is not None and not config.control_mouse:
+            toggle_control(True)
+            control_mouse_forced = True
 
     def copy_mouse_position():
         """Copy the current mouse position coordinates"""
@@ -265,26 +273,6 @@ def show_cursor_helper(show):
         ctrl.cursor_visible(show)
 
 
-def custom_zoom_enable(self):
-    if self.enabled:
-        return
-    # noise.register("pop", self.on_pop)
-
-    if eye_zoom_mouse.config.enable_hiss_for_right_click:
-        noise.register("hiss", self.on_hiss)
-
-    tap.register(tap.MCLICK | tap.KEY | tap.HOOK, self.on_key)
-    # app.register('overlay', self.draw_gaze)
-    self.enabled = True
-
-
-# monkey patch for allowing continuous scrolling to be stopped via a pop
-# and coexist well with the zoom mouse.
-eye_zoom_mouse.ZoomMouse.enable = custom_zoom_enable
-if eye_zoom_mouse.zoom_mouse.enabled:
-    noise.unregister("pop", eye_zoom_mouse.zoom_mouse.on_pop)
-
-
 def on_pop(active):
     if gaze_job or scroll_job:
         if setting_mouse_enable_pop_stops_scroll.get() >= 1:
@@ -295,11 +283,6 @@ def on_pop(active):
     ):
         if setting_mouse_enable_pop_click.get() >= 1:
             ctrl.mouse_click(button=0, hold=16000)
-    elif (
-        eye_zoom_mouse.zoom_mouse.enabled
-        and eye_mouse.mouse.attached_tracker is not None
-    ):
-        eye_zoom_mouse.zoom_mouse.on_pop(eye_zoom_mouse.zoom_mouse.state)
 
 
 noise.register("pop", on_pop)
@@ -372,6 +355,11 @@ def stop_scroll():
 
     if gaze_job:
         cron.cancel(gaze_job)
+
+    global control_mouse_forced
+    if control_mouse_forced and config.control_mouse:
+        toggle_control(False)
+        control_mouse_forced = False
 
     scroll_job = None
     gaze_job = None

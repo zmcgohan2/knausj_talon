@@ -31,6 +31,11 @@ os: mac
 and app.bundle: com.googlecode.iterm2
 """
 
+mod.apps.vimac = """
+os: mac
+and app.bundle: dexterleng.vimac
+"""
+
 # linux specific apps
 apps.keepass = """
 os: linux
