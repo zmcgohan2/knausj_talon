@@ -12,9 +12,10 @@ auto_pop_that_phrases = ["go", "move", "select", "undo that"]
 
 def on_phrase(j):
     """Record the last phrase"""
-    phrase = getattr(j["parsed"], "_unmapped", j["phrase"])
-    phrase = " ".join(word.split("\\")[0] for word in phrase)
     global last_phrase
+    if not (text := j.get("text")):
+        return
+    phrase = " ".join(text)
     last_phrase = phrase
     # auto-set pop_phrase if the last phrase is in the auto_pop_that_phrases list
 
