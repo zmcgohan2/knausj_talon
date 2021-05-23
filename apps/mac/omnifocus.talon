@@ -67,6 +67,9 @@ due this weekend: key(ctrl-cmd-w)
 postpone [by] <number_small> days:
 	user.omnifocus_postpone(number_small)
 
+postpone [by] <number_small> [week | weeks]:
+	user.omnifocus_postpone(number_small * 7)
+
 postpone: key(ctrl-cmd-l)
 
 clear dates: key(ctrl-cmd-\)
