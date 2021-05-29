@@ -180,7 +180,6 @@ symbol_key_words = {
     "right paren": ")",
     "close paren": ")",
     "close parenthesis": ")",
-    "brace": "{",
     "left brace": "{",
     "open brace": "{",
     "R brace": "}",
