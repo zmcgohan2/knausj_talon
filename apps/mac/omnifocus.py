@@ -30,6 +30,10 @@ class user_actions:
 		applescript.run(f'tell application id "com.omnigroup.OmniFocus3.MacAppStore" to tell window 1\'s content to set selected trees to {{{tree}}}')
 		actions.key("alt-cmd-2")
 
+	def find_everywhere(text: str):
+		actions.key("alt-cmd-f")
+		actions.insert(text)
+
 @mod.action_class
 class Action:
 	def omnifocus_complete():

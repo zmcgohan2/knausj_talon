@@ -1,6 +1,8 @@
 os: mac
 app.bundle: com.omnigroup.OmniFocus3.MacAppStore
 -
+tag(): user.find_and_replace
+
 action [<phrase>]:
 	# Quick Entry (keyboard shortcut is customizable)
 	key(ctrl-alt-o)
