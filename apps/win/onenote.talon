@@ -1,5 +1,5 @@
 os: windows
-and app.name: ONENOTE.EXE
+and app.exe: ONENOTE.EXE
 -
 action(edit.select_line):
 	key(ctrl-a)
