@@ -1,5 +1,5 @@
 import time
-from talon import Module, Context, actions, clip, ui
+from talon import Module, Context, actions, app, clip, ui
 
 mod = Module()
 ctx = Context()
@@ -36,6 +36,9 @@ class Actions:
 	def onenote_hide_navigation():
 		"""Hide the navigation panes."""
 
+	def onenote_copy_link():
+		"""Copy a link to the current paragraph in OneNote."""
+
 @ctx.action_class("user")
 class user_actions:
 	def find(text: str):
@@ -65,3 +68,13 @@ class user_actions:
 				actions.sleep("100ms")
 			else:
 				return
+	
+	def onenote_copy_link():
+		# despite the name of this menu item, the link takes you directly to the selected paragraph
+		onenote = ui.apps(bundle="com.microsoft.onenote.mac")[0]
+		(onenote.children.find_one(AXRole='AXMenuBar')
+				.children.find_one(AXRole='AXMenuBarItem', AXTitle='Notebooks')
+				.children[0].children.find_one(AXRole='AXMenuItem', AXTitle='Pages')
+				.children[0].children.find_one(AXRole='AXMenuItem', AXTitle='Copy Link to Page')
+		).perform('AXPress')
+		app.notify(body='Copied link to paragraph', title='OneNote')

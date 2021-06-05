@@ -65,7 +65,8 @@ go back[ward]: key(cmd-ctrl-left)
 
 [open] link: key(left right:2 enter)
 edit link: key(cmd-k)
-copy link: key(cmd-ctrl-c)
+copy link: user.onenote_copy_link()
+key(cmd-ctrl-c): user.onenote_copy_link()
 
 paste link:
 	key(cmd-k)
