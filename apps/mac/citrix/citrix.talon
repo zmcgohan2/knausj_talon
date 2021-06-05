@@ -3,6 +3,10 @@ app: com.citrix.XenAppViewer
 app: com.citrix.receiver.icaviewer.mac
 -
 
+# keys get dropped frequently
+settings():
+	key_wait = 2.0
+
 # Windows
 start [<user.text>]:
 	key(ctrl-esc)
