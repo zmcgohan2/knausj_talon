@@ -1,6 +1,4 @@
-os: mac
-app: com.citrix.XenAppViewer
-app: com.citrix.receiver.icaviewer.mac
+app: citrix_viewer
 -
 
 # keys get dropped frequently
