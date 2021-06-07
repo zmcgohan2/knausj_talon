@@ -43,6 +43,12 @@ chart search [<user.text>]:
 master navigation:
 	key(ctrl-space ctrl-home)
 
+# XXX handle repeating
+section up: key(alt-up)
+section down: key(alt-down)
+tab up: key(ctrl-up)
+tab down: key(ctrl-down)
+
 # Chronicles
 exit: key(shift-f7)
 previous: key(pageup)
