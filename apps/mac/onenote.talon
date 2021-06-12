@@ -121,7 +121,6 @@ tomorrow:
 # back to progress (first notebook, first section)
 go progress:
 	key(ctrl-g alt-up enter)
-	sleep(200ms)
+	sleep(300ms)
 	key(alt-up)
 	user.onenote_hide_navigation()
-
