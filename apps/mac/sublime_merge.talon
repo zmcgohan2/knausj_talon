@@ -16,3 +16,5 @@ stage all:
 	key(cmd-shift-a)
 	sleep(100ms)
 stage untracked: key(cmd-k cmd-a)
+
+stash: key(cmd-s)
