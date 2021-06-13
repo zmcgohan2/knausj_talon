@@ -134,8 +134,10 @@ ctx.lists["self.letter"] = alphabet
 # available in command mode, but NOT during dictation.
 punctuation_words = {
     "back tick": "`",
+    "grave": "`",
     "comma": ",",
     "period": ".",
+    "full stop": ".",
     "semicolon": ";",
     "colon": ":",
     "forward slash": "/",
