@@ -38,51 +38,33 @@ inside angle brackets:
     insert("<>")
     key(left)
 (inside parens | args):
-	insert("()")
-	key(left)
-<<<<<<< variant A
+    insert("()")
+    key(left)
 inside (list | brackets):
-	insert("[]") 
->>>>>>> variant B
-inside (squares | list):
-	insert("[]")
-======= end
-	key(left)
-<<<<<<< variant A
+    insert("[]")
+    key(left)
 inside braces:
-	insert("{}") 
->>>>>>> variant B
-inside (bracket | braces):
-	insert("{}")
-======= end
-	key(left)
+    insert("{}") 
+    key(left)
 inside percent:
-	insert("%%")
-	key(left)
+    insert("%%")
+    key(left)
 inside quotes:
-	insert('""')
-	key(left)
-inside (graves | back ticks):
-	insert("``")
-	key(left)
+    insert('""')
+    key(left)
+inside back ticks:
+    insert("``")
+    key(left)
 angle that:
     text = edit.selected_text()
     user.paste("<{text}>")
-<<<<<<< variant A
 brace that: 
->>>>>>> variant B
-(bracket | brace) that:
-======= end
     text = edit.selected_text()
     user.paste("{{{text}}}")
-<<<<<<< variant A
 bracket that: 
     text = edit.selected_text()
     user.paste("[{text}]")
 (parens | args) that: 
->>>>>>> variant B
-(parens | args) that:
-======= end
     text = edit.selected_text()
     user.paste("({text})")
 percent that:
@@ -91,6 +73,6 @@ percent that:
 quote that:
     text = edit.selected_text()
     user.paste('"{text}"')
-(grave | back tick) that:
+back tick that:
     text = edit.selected_text()
     user.paste('`{text}`')
