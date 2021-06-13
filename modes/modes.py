@@ -45,3 +45,28 @@ class Actions:
                 actions.user.engine_wake()
                 # note: this may not do anything for all versions of Dragon. Requires Pro.
                 actions.user.engine_mimic("start normal mode")
+
+    def dictation_mode():
+        """Switch to dictation mode."""
+        actions.mode.disable("sleep")
+        actions.mode.disable("command")
+        actions.mode.enable("dictation")
+        actions.user.code_clear_language_mode()
+        actions.mode.disable("user.gdb")
+
+    def command_mode():
+        """Switch to command mode."""
+        actions.mode.disable("sleep")
+        actions.mode.disable("dictation")
+        actions.mode.enable("command")
+
+    def toggle_dictation_mode():
+        """Switch from dictation to command mode or vice versa."""
+        # XXX uses private API
+        from talon import registry
+        if 'dictation' in registry._modes.modes:
+            actions.user.command_mode()
+            app.notify(body='Command mode')
+        else:
+            actions.user.dictation_mode()
+            app.notify(body='Dictation mode')
