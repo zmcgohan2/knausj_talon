@@ -1,5 +1,5 @@
 import time
-from talon import Module, Context, actions, app, clip, ui
+from talon import Module, Context, actions, app, clip, cron, ui
 
 mod = Module()
 ctx = Context()
@@ -22,10 +22,14 @@ class edit_actions:
 class Actions:
 	def onenote_focus():
 		"""Bring OneNote to the front."""
-		actions.user.launch_or_focus_bundle('com.microsoft.onenote.mac')
+		return actions.user.launch_or_focus_bundle('com.microsoft.onenote.mac')
 
 	def onenote_now():
 		"""Insert timestamped bullet list item into OneNote."""
+		# XXX work around inability to focus and insert in a single action
+		# XXX potentially related to https://github.com/talonvoice/talon/issues/305?
+		if actions.user.onenote_focus():
+			cron.after('200ms', lambda: actions.user.onenote_now())
 
 	def onenote_checkbox():
 		"""Insert indented checkbox into OneNote."""
@@ -131,3 +135,11 @@ class user_actions:
 		first_section = sections_list.children.find_one(AXRole='AXRow')
 		if not first_section.AXSelected:
 			first_section.AXSelected = True
+
+	def onenote_now():
+		actions.key("ctrl-e enter")
+		actions.key("cmd-alt-0") # custom shortcut for "Remove Tag"
+		actions.key("cmd-/ cmd-.")
+		actions.key("shift-tab:5 tab:2")
+		actions.user.insert_time_ampm()
+		actions.insert(" - ")
