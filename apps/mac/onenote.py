@@ -117,7 +117,7 @@ class user_actions:
 		first_notebook = notebooks_list.children.find_one(AXRole='AXRow')
 		if not first_notebook.AXSelected:
 			first_notebook.AXSelected = True
-			actions.key("return") # XXX auto-dismissal doesn't work when when selected via accessibility
+			actions.key("return") # XXX auto-dismissal doesn't work when selected via accessibility
 		else:
 			notebooks_button = next(child for child in navigation.children if child.AXRole == 'AXButton')
 			notebooks_button.perform('AXPress')
