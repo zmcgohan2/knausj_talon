@@ -3,7 +3,7 @@ app: citrix_viewer
 
 # keys get dropped frequently
 settings():
-	key_wait = 2.0
+	key_wait = 3.0
 
 # Windows
 start [<user.text>]:
@@ -22,6 +22,7 @@ workspace setup:
 hyperspace nonproduction:
 	key(ctrl-esc)
 	sleep(1s)
+	# most commonly the colon gets dropped here
 	insert("h:\\hyperspace nonproduction.rdp")
 	sleep(500ms)
 	key(return)
