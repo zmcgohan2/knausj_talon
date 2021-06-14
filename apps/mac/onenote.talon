@@ -122,3 +122,7 @@ tomorrow:
 go progress:
 	user.onenote_go_progress()
 	user.onenote_hide_navigation()
+
+# XXX not reliable if defined globally (unlike corresponding voice command)
+key(ctrl-alt-i):
+	user.onenote_now()

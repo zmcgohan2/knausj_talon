@@ -16,5 +16,6 @@ action(user.onenote_now):
 	number = number_string or ""
 	insert("{phrase or number}")
 
+# XXX can't combine with local action (unlike voice command above, which works fine)
 key(ctrl-alt-i):
-	user.onenote_now()
+	user.onenote_focus()
