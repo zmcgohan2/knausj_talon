@@ -1,4 +1,5 @@
 os: mac
+os: windows
 -
 ^now (<phrase> | <user.number_string>):
 	user.onenote_now()

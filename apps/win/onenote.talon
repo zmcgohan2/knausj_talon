@@ -60,8 +60,7 @@ copy link: key(shift-f10 p)
 paste link: key(ctrl-k alt-e ctrl-v enter)
 remove link: key(shift-f10 r)
 
-# not standard OneNote; triggers AutoHotKey macros I wrote
-now: key(super-alt-i)
+# not standard OneNote; triggers an AutoHotKey macro I wrote
 today: key(super-alt-d)
 
 tomorrow:
