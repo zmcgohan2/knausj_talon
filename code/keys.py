@@ -138,6 +138,7 @@ punctuation_words = {
     "`": "`",
     ",": ",",  # <== these things
     "back tick": "`",
+    "grave": "`",
     "comma": ",",
     "dot": ".",
     "semicolon": ";",
