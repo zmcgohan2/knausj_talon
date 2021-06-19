@@ -11,9 +11,11 @@ microphone_device_list = []
 def update_microphone_list():
     global microphone_device_list
     microphone_device_list = ["None", "System Default"]
-    microphone_device_list += [
+    devices = [
         dev.name for dev in ctx.inputs() if str(dev.state) == "DeviceState.ENABLED"
     ]
+    devices.sort()
+    microphone_device_list += devices
 
 
 def devices_changed(device_type):
