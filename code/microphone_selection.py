@@ -25,7 +25,11 @@ class Actions:
             gui.hide()
         else:
             global microphone_device_list
-            microphone_device_list = [dev.name for dev in ctx.inputs()]
+            microphone_device_list = [
+                dev.name
+                for dev in ctx.inputs()
+                if str(dev.state) == "DeviceState.ENABLED"
+            ]
             microphone_device_list.append("None")
             microphone_device_list.append("System Default")
 
