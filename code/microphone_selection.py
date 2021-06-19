@@ -8,6 +8,18 @@ mod = Module()
 microphone_device_list = []
 
 
+def update_microphone_list():
+    global microphone_device_list
+    microphone_device_list = ["None", "System Default"]
+    microphone_device_list += [
+        dev.name for dev in ctx.inputs() if str(dev.state) == "DeviceState.ENABLED"
+    ]
+
+
+def devices_changed(device_type):
+    update_microphone_list()
+
+
 @imgui.open()
 def gui(gui: imgui.GUI):
     gui.text("Select a Microphone")
@@ -24,15 +36,7 @@ class Actions:
         if gui.showing:
             gui.hide()
         else:
-            global microphone_device_list
-            microphone_device_list = [
-                dev.name
-                for dev in ctx.inputs()
-                if str(dev.state) == "DeviceState.ENABLED"
-            ]
-            microphone_device_list.append("None")
-            microphone_device_list.append("System Default")
-
+            update_microphone_list()
             gui.show()
 
     def microphone_select(index: int):
@@ -43,3 +47,11 @@ class Actions:
                 "Activating microphone: {}".format(microphone_device_list[index - 1])
             )
             gui.hide()
+
+
+def on_ready():
+    ctx.register("devices_changed", devices_changed)
+    update_microphone_list()
+
+
+app.register("ready", on_ready)
