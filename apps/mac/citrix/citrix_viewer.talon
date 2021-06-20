@@ -3,7 +3,7 @@ app: citrix_viewer
 
 # keys get dropped frequently
 settings():
-	key_wait = 3.0
+	key_wait = 4.0
 
 # Windows
 start [<user.text>]:
