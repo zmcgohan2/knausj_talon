@@ -3,6 +3,10 @@ and app.bundle: 85C27NK92C.com.flexibits.fantastical2.mac.helper
 os: mac
 and app.bundle: com.flexibits.fantastical2.mac
 -
+next: key(cmd-right)
+previous: key(cmd-left)
+today: key(cmd-t)
+
 # XXX eliminate duplication with date_time.talon
 
 # mm/0x
