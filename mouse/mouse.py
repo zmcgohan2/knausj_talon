@@ -3,19 +3,17 @@ import pathlib
 import subprocess
 
 from talon import (
-    Context,
     Module,
     actions,
     app,
+    clip,
     cron,
     ctrl,
-    clip,
     imgui,
     noise,
-    settings,
     ui,
 )
-from talon_plugins import eye_mouse, eye_zoom_mouse, speech
+from talon_plugins import eye_mouse, eye_zoom_mouse
 from talon_plugins.eye_mouse import config, toggle_camera_overlay, toggle_control
 
 key = actions.key
@@ -274,8 +272,7 @@ def show_cursor_helper(show):
 
 
 def on_pop(active):
-    if gaze_job or scroll_job:
-        if setting_mouse_enable_pop_stops_scroll.get() >= 1:
+    if setting_mouse_enable_pop_stops_scroll.get() >= 1 and (gaze_job or scroll_job):
             stop_scroll()
     elif (
         not eye_zoom_mouse.zoom_mouse.enabled
