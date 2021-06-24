@@ -53,12 +53,14 @@ class Actions:
         actions.mode.enable("dictation")
         actions.user.code_clear_language_mode()
         actions.mode.disable("user.gdb")
+        app.notify(body='Dictation mode')
 
     def command_mode():
         """Switch to command mode."""
         actions.mode.disable("sleep")
         actions.mode.disable("dictation")
         actions.mode.enable("command")
+        app.notify(body='Command mode')
 
     def toggle_dictation_mode():
         """Switch from dictation to command mode or vice versa."""
@@ -66,7 +68,5 @@ class Actions:
         from talon import registry
         if 'dictation' in registry._modes.modes:
             actions.user.command_mode()
-            app.notify(body='Command mode')
         else:
             actions.user.dictation_mode()
-            app.notify(body='Dictation mode')
