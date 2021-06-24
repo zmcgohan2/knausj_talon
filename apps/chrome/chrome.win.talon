@@ -29,10 +29,14 @@ action(browser.go_blank):
 	key(ctrl-n)
 	
 action(browser.go_back):
-	key(alt-left)
+	key(alt:down)
+	key(left)
+	key(alt:up)
 
 action(browser.go_forward):
-	key(alt-right)
+	key(alt:down)
+	key(right)
+	key(alt:up)
 	
 action(browser.go_home):
 	key(alt-home)
