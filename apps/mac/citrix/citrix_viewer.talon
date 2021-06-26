@@ -12,6 +12,7 @@ start [<user.text>]:
 
 workspace setup:
 	key(ctrl-esc)
+	sleep(500ms)
 	insert("run")
 	key(return)
 	sleep(1s)
