@@ -10,6 +10,10 @@ do [<user.text>]:
 	sleep(100ms)
 	user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
 
+go locations: key(ctrl-1)
+go commits: key(ctrl-2)
+go files: key(ctrl-3)
+
 commit: key(ctrl-enter)
 push: key(ctrl-alt-up)
 pull: key(ctrl-alt-down)
