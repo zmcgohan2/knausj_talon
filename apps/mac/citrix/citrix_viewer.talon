@@ -10,13 +10,13 @@ start [<user.text>]:
 	key(ctrl-esc)
 	insert(text or "")
 
-# delays are longer than are often needed
-# but particularly on slow networks, without them keys can be dropped
 workspace setup:
 	key(ctrl-esc)
+	insert("run")
+	key(return)
 	sleep(1s)
+	# if trying to insert "h:m" directly into search box, often : turns into ;
 	insert("h:m")
-	sleep(500ms)
 	key(return)
 
 hyperspace nonproduction:
