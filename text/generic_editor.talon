@@ -1,8 +1,13 @@
-find it:
+hunt this:
     edit.find()
 
-next one:
+^hunt this <user.text>$: edit.find(text)
+
+hunt next:
     edit.find_next()
+
+hunt previous:
+    edit.find_previous()
 
 go (word (left | previous) | west):
     edit.word_left()

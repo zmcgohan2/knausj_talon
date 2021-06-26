@@ -90,10 +90,6 @@ action(edit.file_end):
 action(edit.file_start):
 	key(cmd-up cmd-left)
 
-action(edit.find):
-	key(cmd-f)
-	#actions.insert(text)
-
 action(edit.find_next):
 	key(cmd-g)
 
