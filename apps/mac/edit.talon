@@ -60,10 +60,12 @@ action(edit.extend_page_down):
 action(edit.extend_page_up):
 	key(cmd-shift-pageup)
 
-#action(edit.extend_paragraph_end):
-#action(edit.extend_paragraph_next()):
-#action(edit.extend_paragraph_previous()):
-#action(edit.extend_paragraph_start()):
+action(edit.extend_paragraph_end):
+	key(ctrl-shift-e)
+#action(edit.extend_paragraph_next):
+#action(edit.extend_paragraph_previous):
+action(edit.extend_paragraph_start):
+	key(ctrl-shift-a)
 
 action(edit.extend_right):
 	key(shift-right)

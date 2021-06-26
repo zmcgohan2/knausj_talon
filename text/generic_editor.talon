@@ -87,6 +87,10 @@ select way left:
 select way right:
     edit.extend_line_end()
 
+select paragraph:
+    edit.paragraph_start()
+    edit.extend_paragraph_end()
+
 select way up:
     edit.extend_file_start()
 
@@ -142,6 +146,11 @@ clear way left:
 
 clear way right:
     edit.extend_line_end()
+    edit.delete()
+
+clear paragraph:
+    edit.paragraph_start()
+    edit.extend_paragraph_end()
     edit.delete()
 
 clear way up:
