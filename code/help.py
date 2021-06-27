@@ -497,7 +497,7 @@ class Actions:
         global search_phrase
 
         reset()
-        search_phrase = phrase
+        search_phrase = phrase.lower()
         refresh_context_command_map()
         gui_alphabet.hide()
         gui_context_help.show()
