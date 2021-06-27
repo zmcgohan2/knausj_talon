@@ -8,6 +8,7 @@ tag(): user.snippets
 tag(): user.splits
 tag(): user.tabs
 #talon app actions
+action(app.tab_open): user.vscode("workbench.action.files.newUntitledFile")
 action(app.tab_close): user.vscode("workbench.action.closeActiveEditor")
 action(app.tab_next): user.vscode("workbench.action.nextEditorInGroup")
 action(app.tab_previous): user.vscode("workbench.action.previousEditorInGroup")
