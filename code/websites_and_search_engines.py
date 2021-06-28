@@ -34,14 +34,10 @@ _search_engine_defaults = {
 
 ctx = Context()
 ctx.lists["self.website"] = get_list_from_csv(
-    "websites.csv",
-    headers=("URL", "Spoken name"),
-    default=website_defaults,
+    "websites.csv", headers=("URL", "Spoken name"),
 )
 ctx.lists["self.search_engine"] = get_list_from_csv(
-    "search_engines.csv",
-    headers=("URL Template", "Name"),
-    default=_search_engine_defaults,
+    "search_engines.csv", headers=("URL Template", "Name"),
 )
 
 
