@@ -284,7 +284,7 @@ def update_launch_list():
             if "install" not in name:
                 launch[name] = name
 
-    ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_list(
+    ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_map(
         launch, words_to_exclude
     )
 
