@@ -172,9 +172,6 @@ class Actions:
         """Returns the requested directory for the imgui display by index"""
         index = (current_folder_page - 1) * setting_imgui_limit.get() + index
         assert index < len(folder_selections)
-        # print(str(index))
-        # print(str(folder_selections[index]))
-
         return folder_selections[index]
 
     def file_manager_get_file_by_index(index: int) -> str:
@@ -227,9 +224,6 @@ class Actions:
             gui_folders.show()
 
 
-pattern = re.compile(r"[A-Z][a-z]*|[a-z]+|\d")
-
-
 def is_dir(f):
     try:
         return f.is_dir()
@@ -252,28 +246,9 @@ def get_directory_map(current_path):
         )
         if is_dir(f)
     ]
-    directories.sort()
+    # directories.sort()
     # print(len(directories))
-    return actions.user.create_spoken_forms_from_list(
-        directories,
-        words_to_exclude=[
-            "and",
-            "zero",
-            "one",
-            "two",
-            "three",
-            "for",
-            "four",
-            "five",
-            "six",
-            "seven",
-            "eight",
-            "nine",
-            "microsoft",
-            "windows",
-            "Windows",
-        ],
-    )
+    return actions.user.create_spoken_forms_from_list(directories)
 
 
 def get_file_map(current_path):
@@ -284,29 +259,10 @@ def get_file_map(current_path):
         )
         if is_file(f)
     ]
-    files.sort()
+    # files.sort()
     # print(str(files))
 
-    return actions.user.create_spoken_forms_from_list(
-        files,
-        words_to_exclude=[
-            "and",
-            "zero",
-            "one",
-            "two",
-            "three",
-            "for",
-            "four",
-            "five",
-            "six",
-            "seven",
-            "eight",
-            "nine",
-            "microsoft",
-            "windows",
-            "Windows",
-        ],
-    )
+    return actions.user.create_spoken_forms_from_list(files)
 
 
 @imgui.open(y=0, x=158)
@@ -426,18 +382,11 @@ def update_lists():
     ctx.lists["self.file_manager_directories"] = directories
     ctx.lists["self.file_manager_files"] = files
 
-    folder_selections = []
-
-    [
-        folder_selections.append(x)
-        for x in directories.values()
-        if x not in folder_selections
-    ]
-
+    folder_selections = list(set(directories.values()))
     folder_selections.sort(key=str.casefold)
-    file_selections = []
-    [file_selections.append(x) for x in files.values() if x not in file_selections]
+    file_selections = list(set(files.values()))
     file_selections.sort(key=str.casefold)
+
     update_gui()
 
 
