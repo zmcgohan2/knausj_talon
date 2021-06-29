@@ -6,7 +6,7 @@ not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 # 	print("drag")
 # 	talon_plugins.eye_zoom_mouse.mouse_drag()
 parrot(shush):
-	print("shush") 
+	key(cmd-space) 
 	# talon_plugins.eye_zoom_mouse.triple_click()
 parrot(tut):
 	key(ctrl-up)
