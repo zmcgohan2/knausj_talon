@@ -1,5 +1,4 @@
 from talon import app, Module, Context, actions, ui, imgui, settings, app, registry
-from .create_spoken_forms import create_spoken_forms_for_list
 from os.path import expanduser
 from subprocess import Popen
 from pathlib import Path
@@ -255,7 +254,7 @@ def get_directory_map(current_path):
     ]
     directories.sort()
     # print(len(directories))
-    return create_spoken_forms_for_list(
+    return actions.user.create_spoken_forms_from_list(
         directories,
         words_to_exclude=[
             "and",
@@ -288,7 +287,7 @@ def get_file_map(current_path):
     files.sort()
     # print(str(files))
 
-    return create_spoken_forms_for_list(
+    return actions.user.create_spoken_forms_from_list(
         files,
         words_to_exclude=[
             "and",
@@ -473,4 +472,3 @@ def register_events():
 # prevent scary errors in the log by waiting for talon to be fully loaded
 # before registering the events
 app.register("ready", register_events)
-

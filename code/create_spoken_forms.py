@@ -1,12 +1,17 @@
-from typing import List, Optional, Dict
+from dataclasses import dataclass
+from typing import Dict, Generic, List, Mapping, Optional, TypeVar
+from collections import defaultdict
 import itertools
-from talon import registry
+
+from talon import actions, registry
+from talon import Context, Module, app, imgui, ui, fs
 import re
 
-from .extensions import _file_extensions_defaults
+from .extensions import file_extensions
 from .numbers import digits_map
 from .abbreviate import abbreviations
-from .keys import symbol_key_words, punctuation_words
+
+mod = Module()
 
 # TODO: 'Whats application': 'WhatsApp' (Should keep "whats app" as well?)
 # TODO: 'V O X': 'VOX' (should keep "VOX" as well?)
@@ -18,22 +23,24 @@ SMALL_WORD = r"[A-Z]?[a-z]+"
 # TODO: We want "AXEvery" to be ["AX", "Every"]
 UPPERCASE_WORD = r"[A-Z]+"
 FILE_EXTENSIONS_REGEX = "|".join(
-    re.escape(file_extension) for file_extension in _file_extensions_defaults.values()
+    re.escape(file_extension) for file_extension in file_extensions.values()
 )
 DIGITS_REGEX = r"\d"
-# SYMBOL_REGEX = "|".join(re.escape(symbol) for symbol in symbol_key_words.values())
-# SYMBOL_REGEX += "|".join(re.escape(symbol) for symbol in punctuation_words.values())
 FULL_REGEX = re.compile(
     "|".join(
-        [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD,]
+        [
+            DIGITS_REGEX,
+            FILE_EXTENSIONS_REGEX,
+            SMALL_WORD,
+            UPPERCASE_WORD,
+        ]
     )
 )
 
 REVERSE_PRONUNCIATION_MAP = {
     **{value: key for key, value in abbreviations.items()},
-    **{value: key for key, value in _file_extensions_defaults.items()},
+    **{value: key for key, value in file_extensions.items()},
     **{str(value): key for key, value in digits_map.items()},
-    **{value: key for key, value in symbol_key_words.items()},
 }
 
 
@@ -48,71 +55,89 @@ def create_single_spoken_form(source: str):
     return mapped_source
 
 
-def create_spoken_forms(
-    source: str,
-    words_to_exclude: Optional[List[str]] = None,
-    minimum_term_length=DEFAULT_MINIMUM_TERM_LENGTH,
-) -> List[str]:
-    if words_to_exclude is None:
-        words_to_exclude = []
+T = TypeVar("T")
 
-    pieces = list(FULL_REGEX.finditer(source))
-    # print([piece.group(0) for piece in pieces])
 
-    term_sequence = " ".join(
-        [create_single_spoken_form(piece.group(0)) for piece in pieces]
-    ).split(" ")
-    # print(term_sequence)
+@dataclass
+class SpeakableItem(Generic[T]):
+    name: str
+    value: T
 
-    terms = [
-        term.strip()
-        for term in set(
-            term_sequence
-            + list(itertools.accumulate([f"{term} " for term in term_sequence]))
+
+@mod.action_class
+class Actions:
+    def create_spoken_forms(
+        source: str,
+        words_to_exclude: Optional[List[str]] = None,
+        minimum_term_length: int = DEFAULT_MINIMUM_TERM_LENGTH,
+    ) -> List[str]:
+        """Create spoken forms for a given source"""
+        if words_to_exclude is None:
+            words_to_exclude = []
+
+        pieces = list(FULL_REGEX.finditer(source))
+        # print([piece.group(0) for piece in pieces])
+
+        term_sequence = " ".join(
+            [create_single_spoken_form(piece.group(0)) for piece in pieces]
+        ).split(" ")
+        # print(term_sequence)
+
+        terms = list(
+            {
+                term.lower().strip()
+                for term in (
+                    term_sequence
+                    + list(itertools.accumulate([f"{term} " for term in term_sequence]))
+                    + [source]
+                )
+            }
         )
-    ]
 
-    terms = [
-        term
-        for term in terms
-        if term not in words_to_exclude and len(term) >= minimum_term_length
-    ]
-    # print(terms)
+        terms = [
+            term
+            for term in terms
+            if term not in words_to_exclude and len(term) >= minimum_term_length
+        ]
+        # print(terms)
 
-    if source not in terms:
-        terms.append(source)
-    return terms
+        return terms
 
+    def create_spoken_forms_from_list(
+        sources: List[str],
+        words_to_exclude: Optional[List[str]] = None,
+        minimum_term_length: int = DEFAULT_MINIMUM_TERM_LENGTH,
+    ) -> Dict[str, str]:
+        """Create spoken forms for all sources in a list, doing conflict resolution"""
+        return actions.user.create_spoken_forms_from_map(
+            {source: source for source in sources},
+            words_to_exclude,
+            minimum_term_length,
+        )
 
-def create_spoken_forms_for_list(
-    source_list: List[str],
-    words_to_exclude: Optional[List[str]] = None,
-    minimum_term_length=DEFAULT_MINIMUM_TERM_LENGTH,
-) -> Dict[str, str]:
-    if words_to_exclude is None:
-        words_to_exclude = []
+    def create_spoken_forms_from_map(
+        sources: Mapping[str, T],
+        words_to_exclude: Optional[List[str]] = None,
+        minimum_term_length: int = DEFAULT_MINIMUM_TERM_LENGTH,
+    ) -> Dict[str, T]:
+        """Create spoken forms for all sources in a map, doing conflict resolution"""
+        all_spoken_forms: defaultdict[str, List[SpeakableItem[T]]] = defaultdict(list)
 
-    result = {}
+        for name, value in sources.items():
+            spoken_forms = actions.user.create_spoken_forms(
+                name, words_to_exclude, minimum_term_length
+            )
+            for spoken_form in spoken_forms:
+                all_spoken_forms[spoken_form].append(SpeakableItem(name, value))
 
-    # todo: figure out what to do with ambiquities
-    ambiguities = {}
-    for source in source_list:
-        terms = create_spoken_forms(source, words_to_exclude, minimum_term_length)
-        for term in terms:
-            if (
-                term not in ambiguities
-                and term not in words_to_exclude
-                and len(term) >= minimum_term_length
-            ):
-                if term in result and result[term] != source:
-                    # result.pop(term)
-                    if term not in ambiguities:
-                        ambiguities[term] = []
+        final_spoken_forms = {}
+        for spoken_form, spoken_form_sources in all_spoken_forms.items():
+            if len(spoken_form_sources) > 1:
+                final_spoken_forms[spoken_form] = min(
+                    spoken_form_sources,
+                    key=lambda speakable_item: len(speakable_item.name),
+                ).value
+            else:
+                final_spoken_forms[spoken_form] = spoken_form_sources[0].value
 
-                    ambiguities[term].append(source)
-                else:
-                    result[term] = source
-    #print(str(result))
-    return result
-    # print(terms)
-
+        return final_spoken_forms

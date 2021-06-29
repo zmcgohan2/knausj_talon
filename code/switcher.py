@@ -10,7 +10,6 @@ from pathlib import Path
 import talon
 from talon import Context, Module, actions, app, imgui, resource, ui
 
-from .create_spoken_forms import create_spoken_forms
 from .user_settings import get_list_from_csv
 
 override_file_name = f"app_name_overrides.{talon.app.platform}.csv"
@@ -161,20 +160,19 @@ def update_running_list():
     running_application_dict = {}
     running = {}
     for cur_app in ui.apps(background=False):
-        name = cur_app.name
-
-        spoken_forms = create_spoken_forms(name, words_to_exclude=words_to_exclude)
-        for spoken_form in spoken_forms:
-            if spoken_form not in running:
-                running[spoken_form] = cur_app.name
-
         running_application_dict[cur_app.name] = True
+
+    running = actions.user.create_spoken_forms_from_list(
+        [curr_app.name for curr_app in ui.apps(background=False)],
+        words_to_exclude=words_to_exclude,
+    )
 
     for override in overrides:
         running[override] = overrides[override]
 
     lists = {
         "self.running": running,
+        # "self.launch": launch,
     }
 
     # batch update lists
@@ -273,15 +271,8 @@ def update_launch_list():
             if os.path.isdir(base):
                 for name in os.listdir(base):
                     path = os.path.join(base, name)
+                    name = name.rsplit(".", 1)[0].lower()
                     launch[name] = path
-                    spoken_forms = create_spoken_forms(
-                        name, words_to_exclude=words_to_exclude
-                    )
-                    for spoken_form in spoken_forms:
-                        if spoken_form and spoken_form not in launch:
-                            if len(name) > 6 and len(spoken_form) < 3:
-                                continue
-                            launch[spoken_form] = path
 
     elif app.platform == "windows":
         shortcuts = enum_known_folder(FOLDERID_AppsFolder)
@@ -292,15 +283,10 @@ def update_launch_list():
             # name = path.rsplit("\\")[-1].split(".")[0].lower()
             if "install" not in name:
                 launch[name] = name
-                spoken_forms = create_spoken_forms(
-                    name, words_to_exclude=words_to_exclude
-                )
-                for spoken_form in spoken_forms:
-                    if spoken_form and spoken_form not in launch:
-                        if len(name) > 6 and len(spoken_form) < 3:
-                            continue
-                        launch[spoken_form] = name
-    ctx.lists["self.launch"] = launch
+
+    ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_list(
+        launch, words_to_exclude
+    )
 
 
 def ui_event(event, arg):
