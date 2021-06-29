@@ -6,6 +6,7 @@ mode: all
     user.enable_hud()
     # user.history_enable()
     user.talon_mode()
+    mode.enable("noise")
 ^sleep all$:
     user.switcher_hide_running()
     user.disable_hud()
@@ -15,6 +16,7 @@ mode: all
     user.mouse_sleep()
     speech.disable()
     user.engine_sleep()
+    mode.disable("noise")
 ^go to sleep$: speech.disable()
 ^wake up$: speech.enable()
 
