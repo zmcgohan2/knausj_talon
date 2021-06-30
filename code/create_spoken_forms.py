@@ -1,3 +1,5 @@
+print("create spoken form loading")
+
 from dataclasses import dataclass
 from typing import Dict, Generic, List, Mapping, Optional, TypeVar
 from collections import defaultdict
@@ -29,7 +31,7 @@ FILE_EXTENSIONS_REGEX = "|".join(
 
 DIGITS_REGEX = r"\d"
 REGEX_SYMBOLS = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
-REGEX_NO_SYMBOLS = re.compile(
+FULL_REGEX_NO_SYMBOLS = re.compile(
     "|".join([DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD,])
 )
 FULL_REGEX = re.compile(
@@ -86,7 +88,7 @@ class Actions:
         if words_to_exclude is None:
             words_to_exclude = []
 
-        pieces_no_symbols = list(REGEX_NO_SYMBOLS.finditer(source))
+        pieces_no_symbols = list(FULL_REGEX_NO_SYMBOLS.finditer(source))
 
         pieces_with_symbols = list(FULL_REGEX.finditer(source))
 

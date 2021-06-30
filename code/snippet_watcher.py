@@ -17,12 +17,12 @@ class snippet_watcher:
     create_spoken_forms = False
 
     def __notify(self):
-        print("NOTIFY")
+        # print("NOTIFY")
         self.snippet_dictionary = {}
         for key, val in self.file_snippet_cache.items():
             self.snippet_dictionary.update(val)
 
-        print("dictionary" + str(self.snippet_dictionary))
+        # print("dictionary" + str(self.snippet_dictionary))
         if self.callback_function:
             self.callback_function(self.snippet_dictionary)
 
@@ -43,7 +43,7 @@ class snippet_watcher:
         file_type = path_obj.suffix
         self.file_snippet_cache[str(path_obj)] = {}
 
-        print("{}, {}, {}, {}".format(name, directory, file_name, file_type))
+        # print("{}, {}, {}, {}".format(name, directory, file_name, file_type))
         if directory in self.directories and file_name in self.directories[directory]:
             if file_type.lower() == ".json":
                 jsonDict = {}
