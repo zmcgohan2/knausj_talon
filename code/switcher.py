@@ -55,6 +55,8 @@ words_to_exclude = [
     "microsoft",
     "windows",
     "Windows",
+    "exe",
+    "dot",
 ]
 
 # windows-specific logic
@@ -287,6 +289,8 @@ def update_launch_list():
     ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_map(
         launch, words_to_exclude
     )
+
+    # print(str(ctx.lists["self.launch"]))
 
 
 def ui_event(event, arg):

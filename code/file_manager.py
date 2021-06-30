@@ -31,6 +31,8 @@ words_to_exclude = [
     "microsoft",
     "windows",
     "Windows",
+    "dot",
+    "exe",
 ]
 
 setting_auto_show_pickers = mod.setting(
