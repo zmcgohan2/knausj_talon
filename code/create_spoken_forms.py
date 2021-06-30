@@ -1,5 +1,3 @@
-print("create spoken form loading")
-
 from dataclasses import dataclass
 from typing import Dict, Generic, List, Mapping, Optional, TypeVar
 from collections import defaultdict
@@ -15,6 +13,13 @@ from .abbreviate import abbreviations
 from .keys import symbol_key_words
 
 mod = Module()
+
+setting_minimum_term_length = mod.setting(
+    "create_spoken_forms_minimum_term_length",
+    type=int,
+    default=4,
+    desc="Indicates the minimum sub-sequence length to keep",
+)
 
 # TODO: 'Whats application': 'WhatsApp' (Should keep "whats app" as well?)
 # TODO: 'V O X': 'VOX' (should keep "VOX" as well?)
@@ -100,6 +105,17 @@ class Actions:
             [create_single_spoken_form(piece.group(0)) for piece in pieces_no_symbols]
         ).lower()
 
+        # these two may be identical, so ensure the list is reduced
+        full_forms = list(
+            set(
+                [
+                    full_spoken_form_with_symbols.lower(),
+                    spoken_form_without_symbols.lower(),
+                ]
+            )
+        )
+
+        # only generate the subsequences if requested
         if generate_subsequences_without_symbols:
             term_sequence = spoken_form_without_symbols.split(" ")
             terms = list(
@@ -114,23 +130,19 @@ class Actions:
                 }
             )
 
-            if full_spoken_form_with_symbols not in terms:
-                terms.append(full_spoken_form_with_symbols)
         else:
-            terms = [full_spoken_form_with_symbols]
+            terms = full_forms
 
-            if spoken_form_without_symbols not in terms:
-                terms.append(spoken_form_without_symbols)
-
-        # print(str(terms))
         terms.sort(key=len)
         terms = [
             term
             for term in terms
-            if (term not in words_to_exclude and len(term) >= minimum_term_length)
-            or terms[-1] == term
+            if (
+                term not in words_to_exclude
+                and len(term) >= setting_minimum_term_length.get()
+            )
+            or term in full_forms
         ]
-        # print(terms)
 
         return terms
 

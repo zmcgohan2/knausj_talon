@@ -1,5 +1,8 @@
 tag: user.file_manager
 -
+settings():
+    user.create_spoken_forms_minimum_term_length = 4
+
 title force: user.file_manager_refresh_title()
 manager show: user.file_manager_toggle_pickers()
 manager refresh: user.file_manager_update_lists()
@@ -23,7 +26,7 @@ daddy [<number_small>]:
     number = number_small or 1
     user.file_manager_open_parent()
     repeat(number - 1)
-^follow <number_small>$: 
+^follow numb <number_small>$: 
     directory = user.file_manager_get_directory_by_index(number_small - 1)
     user.file_manager_open_directory(directory)
 ^follow {user.file_manager_directories}$: user.file_manager_open_directory(file_manager_directories)
