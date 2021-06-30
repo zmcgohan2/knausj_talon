@@ -2,6 +2,7 @@ tag: user.file_manager
 -
 settings():
     user.create_spoken_forms_minimum_term_length = 4
+    user.create_spoken_forms_generate_sub_sequences = 1
 
 title force: user.file_manager_refresh_title()
 manager show: user.file_manager_toggle_pickers()

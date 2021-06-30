@@ -38,9 +38,7 @@ mac_application_directories = [
 #     "%ProgramData%/Microsoft/Windows/Start Menu/Programs",
 #     "%AppData%/Microsoft/Internet Explorer/Quick Launch/User Pinned/TaskBar",
 # ]
-
-words_to_exclude = [
-    "and",
+ctx.settings["user.create_spoken_forms_words_to_exclude"] = [
     "zero",
     "one",
     "two",
@@ -51,18 +49,19 @@ words_to_exclude = [
     "six",
     "seven",
     "eight",
-    "nine",
-    "microsoft",
-    "windows",
-    "Windows",
-    "exe",
+    "and",
     "dot",
+    "exe",
     "help",
     "install",
     "installer",
+    "microsoft",
+    "nine",
     "readme",
-    "visual",
     "studio",
+    "terminal",
+    "visual",
+    "windows",
 ]
 
 # windows-specific logic
@@ -172,7 +171,6 @@ def update_running_list():
 
     running = actions.user.create_spoken_forms_from_list(
         [curr_app.name for curr_app in ui.apps(background=False)],
-        words_to_exclude=words_to_exclude,
     )
 
     for override in overrides:
@@ -291,9 +289,7 @@ def update_launch_list():
             # name = path.rsplit("\\")[-1].split(".")[0].lower()
             launch[name] = name
 
-    ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_map(
-        launch, words_to_exclude
-    )
+    ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_map(launch)
 
     # print(str(ctx.lists["self.launch"]))
 

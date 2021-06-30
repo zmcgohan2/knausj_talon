@@ -10,12 +10,15 @@ from itertools import islice
 
 mod = Module()
 ctx = Context()
+ctx.matches = r"""
+tag: user.file_manager
+"""
 
 mod.tag("file_manager", desc="Tag for enabling generic file management commands")
 mod.list("file_manager_directories", desc="List of subdirectories for the current path")
 mod.list("file_manager_files", desc="List of files at the root of the current path")
 
-words_to_exclude = [
+ctx.settings["user.create_spoken_forms_words_to_exclude"] = [
     "and",
     "zero",
     "one",
