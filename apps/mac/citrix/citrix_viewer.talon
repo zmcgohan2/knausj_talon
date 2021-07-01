@@ -14,6 +14,7 @@ workspace setup:
 	key(ctrl-esc)
 	sleep(500ms)
 	insert("run")
+	sleep(500ms)
 	key(return)
 	sleep(1s)
 	# if trying to insert "h:m" directly into search box, often : turns into ;
