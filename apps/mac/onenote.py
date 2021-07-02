@@ -74,11 +74,12 @@ class user_actions:
 		if checkbox.AXValue == 1:
 			checkbox.perform('AXPress')
 		# focus the note body if necessary
-		for attempt in range(5):
+		for attempt in range(10):
 			focused = onenote.focused_element
 			if focused.AXRole == 'AXWindow' and focused.get('AXDocument'):
-				actions.key("tab")
-				actions.sleep("100ms")
+				actions.sleep('100ms')
+				actions.key('tab')
+				actions.sleep('100ms')
 			else:
 				return
 	
