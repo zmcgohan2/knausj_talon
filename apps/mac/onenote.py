@@ -68,9 +68,9 @@ class user_actions:
 		onenote = onenote_app()
 		window = onenote_window()
 		# un-check the "books" at the top left if necessary
-		splitgroup = next(child for child in window.children if child.AXRole == 'AXSplitGroup')
-		group = next(child for child in splitgroup.children if child.AXRole == 'AXGroup')
-		checkbox = next(child for child in group.children if child.AXRole == 'AXCheckBox')
+		splitgroup = window.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		group = splitgroup.children.find_one(AXRole='AXGroup', max_depth=0)
+		checkbox = group.children.find_one(AXRole='AXCheckBox', max_depth=0)
 		if checkbox.AXValue == 1:
 			checkbox.perform('AXPress')
 		# focus the note body if necessary
@@ -96,37 +96,37 @@ class user_actions:
 		window = onenote_window()
 
 		# show navigation
-		splitgroup = next(child for child in window.children if child.AXRole == 'AXSplitGroup')
-		group = next(child for child in splitgroup.children if child.AXRole == 'AXGroup')
-		checkbox = next(child for child in group.children if child.AXRole == 'AXCheckBox')
+		splitgroup = window.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		group = splitgroup.children.find_one(AXRole='AXGroup', max_depth=0)
+		checkbox = group.children.find_one(AXRole='AXCheckBox', max_depth=0)
 		if checkbox.AXValue == 0:
 			checkbox.perform('AXPress')
 
 		# go to the first notebook
-		navigation = next(child for child in splitgroup.children if child.AXRole == 'AXSplitGroup')
+		navigation = splitgroup.children.find_one(AXRole='AXSplitGroup', max_depth=0)
 		try:
-			sections_pages = next(child for child in navigation.children if child.AXRole == 'AXSplitGroup')
-		except StopIteration:
+			sections_pages = navigation.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		except ui.UIErr:
 			pass
 		else:
 			# sections and pages are visible; show notebooks instead
-			notebooks_button = next(child for child in navigation.children if child.AXRole == 'AXButton')
+			notebooks_button = navigation.children.find_one(AXRole='AXButton', max_depth=0)
 			notebooks_button.perform('AXPress')
-		notebooks = next(child for child in navigation.children if child.AXRole == 'AXGroup')
+		notebooks = navigation.children.find_one(AXRole='AXGroup', max_depth=0)
 		notebooks_list = notebooks.children.find_one(AXRole='AXOutline')
 		first_notebook = notebooks_list.children.find_one(AXRole='AXRow')
 		if not first_notebook.AXSelected:
 			first_notebook.AXSelected = True
 			actions.key("return") # XXX auto-dismissal doesn't work when selected via accessibility
 		else:
-			notebooks_button = next(child for child in navigation.children if child.AXRole == 'AXButton')
+			notebooks_button = navigation.children.find_one(AXRole='AXButton', max_depth=0)
 			notebooks_button.perform('AXPress')
 
 		# wait for section and page navigation to reappear
 		for attempt in range(5):
 			try:
-				sections_pages = next(child for child in navigation.children if child.AXRole == 'AXSplitGroup')
-			except StopIteration:
+				sections_pages = navigation.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+			except ui.UIErr:
 				actions.sleep("100ms")
 
 		# go to the first section
