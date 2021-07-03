@@ -14,27 +14,6 @@ from .keys import symbol_key_words
 
 mod = Module()
 
-setting_minimum_term_length = mod.setting(
-    "create_spoken_forms_minimum_term_length",
-    type=int,
-    default=4,
-    desc="Indicates the minimum sub-sequence length to keep",
-)
-
-setting_generate_sub_sequences = mod.setting(
-    "create_spoken_forms_generate_sub_sequences",
-    type=int,
-    default=1,
-    desc="Indicates whether or not to generate subsequences, or just the 'full' forms",
-)
-
-setting_words_to_exclude = mod.setting(
-    "create_spoken_forms_words_to_exclude",
-    type=List[str],
-    default=[],
-    desc="List of words to exclude from subsequences in create_spoken_form",
-)
-
 # TODO: 'Whats application': 'WhatsApp' (Should keep "whats app" as well?)
 # TODO: 'V O X': 'VOX' (should keep "VOX" as well?)
 # Could handle by handling all alternatives for these, or by having hardcoded list of things that we want to handle specially
@@ -58,12 +37,6 @@ FULL_REGEX = re.compile(
         [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD, REGEX_SYMBOLS]
     )
 )
-
-# print(
-#     "|".join(
-#         [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD, REGEX_SYMBOLS]
-#     )
-# )
 
 REVERSE_PRONUNCIATION_MAP = {
     **{value: key for key, value in abbreviations.items()},
@@ -97,11 +70,17 @@ class SpeakableItem(Generic[T]):
 
 @mod.action_class
 class Actions:
-    def create_spoken_forms(source: str) -> List[str]:
+    def create_spoken_forms(
+        source: str,
+        words_to_exclude: Optional[List[str]] = None,
+        minimum_term_length: int = DEFAULT_MINIMUM_TERM_LENGTH,
+        generate_subsequences: bool = True,
+    ) -> List[str]:
         """Create spoken forms for a given source"""
 
-        words_to_exclude = setting_words_to_exclude.get() or []
-        print(str(words_to_exclude))
+        if words_to_exclude is None:
+            words_to_exclude = []
+
         pieces_no_symbols = list(FULL_REGEX_NO_SYMBOLS.finditer(source))
 
         pieces_with_symbols = list(FULL_REGEX.finditer(source))
@@ -122,7 +101,7 @@ class Actions:
         )
 
         # only generate the subsequences if requested
-        if setting_generate_sub_sequences.get() >= 1:
+        if generate_subsequences:
             term_sequence = spoken_form_without_symbols.split(" ")
             terms = list(
                 {
@@ -146,28 +125,40 @@ class Actions:
         terms = [
             term
             for term in terms
-            if (
-                term not in words_to_exclude
-                and len(term) >= setting_minimum_term_length.get()
-            )
+            if (term not in words_to_exclude and len(term) >= minimum_term_length)
             # always keep the full forms, even if < min term length?
             or term in full_forms
         ]
 
         return terms
 
-    def create_spoken_forms_from_list(sources: List[str]) -> Dict[str, str]:
+    def create_spoken_forms_from_list(
+        sources: List[str],
+        words_to_exclude: Optional[List[str]] = None,
+        minimum_term_length: int = DEFAULT_MINIMUM_TERM_LENGTH,
+        generate_subsequences: bool = True,
+    ) -> Dict[str, str]:
         """Create spoken forms for all sources in a list, doing conflict resolution"""
         return actions.user.create_spoken_forms_from_map(
-            {source: source for source in sources}
+            {source: source for source in sources},
+            words_to_exclude,
+            minimum_term_length,
+            generate_subsequences,
         )
 
-    def create_spoken_forms_from_map(sources: Mapping[str, T]) -> Dict[str, T]:
+    def create_spoken_forms_from_map(
+        sources: Mapping[str, T],
+        words_to_exclude: Optional[List[str]] = None,
+        minimum_term_length: int = DEFAULT_MINIMUM_TERM_LENGTH,
+        generate_subsequences: bool = True,
+    ) -> Dict[str, T]:
         """Create spoken forms for all sources in a map, doing conflict resolution"""
         all_spoken_forms: defaultdict[str, List[SpeakableItem[T]]] = defaultdict(list)
 
         for name, value in sources.items():
-            spoken_forms = actions.user.create_spoken_forms(name)
+            spoken_forms = actions.user.create_spoken_forms(
+                name, words_to_exclude, minimum_term_length, generate_subsequences
+            )
             for spoken_form in spoken_forms:
                 all_spoken_forms[spoken_form].append(SpeakableItem(name, value))
 

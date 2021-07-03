@@ -18,7 +18,7 @@ mod.tag("file_manager", desc="Tag for enabling generic file management commands"
 mod.list("file_manager_directories", desc="List of subdirectories for the current path")
 mod.list("file_manager_files", desc="List of files at the root of the current path")
 
-ctx.settings["user.create_spoken_forms_words_to_exclude"] = [
+words_to_exclude = [
     "and",
     "zero",
     "one",
@@ -270,7 +270,7 @@ def get_directory_map(current_path):
     ]
     directories.sort(key=str.casefold)
     return actions.user.create_spoken_forms_from_list(
-        directories, minimum_term_length=1, words_to_exclude=words_to_exclude
+        directories, words_to_exclude=words_to_exclude
     )
 
 
@@ -284,7 +284,7 @@ def get_file_map(current_path):
     ]
     files.sort(key=str.casefold)
     return actions.user.create_spoken_forms_from_list(
-        files, minimum_term_length=1, words_to_exclude=words_to_exclude
+        files, words_to_exclude=words_to_exclude
     )
 
 

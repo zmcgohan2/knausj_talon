@@ -38,7 +38,7 @@ mac_application_directories = [
 #     "%ProgramData%/Microsoft/Windows/Start Menu/Programs",
 #     "%AppData%/Microsoft/Internet Explorer/Quick Launch/User Pinned/TaskBar",
 # ]
-ctx.settings["user.create_spoken_forms_words_to_exclude"] = [
+words_to_exclude = [
     "zero",
     "one",
     "two",
@@ -171,6 +171,7 @@ def update_running_list():
 
     running = actions.user.create_spoken_forms_from_list(
         [curr_app.name for curr_app in ui.apps(background=False)],
+        words_to_exclude=words_to_exclude,
     )
 
     for override in overrides:
