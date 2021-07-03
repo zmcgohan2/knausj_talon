@@ -2,6 +2,7 @@ from typing import Set
 
 from talon import Module, Context, actions, app
 import sys
+import copy
 
 default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
     " "
@@ -15,6 +16,12 @@ default_f_digits = "one two three four five six seven eight nine ten eleven twel
 )
 
 mod = Module()
+ctx = Context()
+ctx_dragon = Context()
+ctx_dragon.matches = r"""
+speech.engine: dragon
+"""
+
 mod.list("letter", desc="The spoken phonetic alphabet")
 mod.list("symbol_key", desc="All symbols from the keyboard")
 mod.list("arrow_key", desc="All arrow keys")
@@ -110,7 +117,6 @@ def letters(m) -> str:
     return "".join(m.letter_list)
 
 
-ctx = Context()
 modifier_keys = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
     # "alt": "alt",  #'alter': 'alt',
@@ -133,10 +139,6 @@ ctx.lists["self.letter"] = alphabet
 # key names in command mode. `symbol_key_words` is for key names that should be
 # available in command mode, but NOT during dictation.
 punctuation_words = {
-    # TODO: I'm not sure why we need these, I think it has something to do with
-    # Dragon. Possibly it has been fixed by later improvements to talon? -rntz
-    # "`": "`",
-    # ",": ",",  # <== these things
     "back tick": "`",
     "grave": "`",
     "comma": ",",
@@ -156,6 +158,7 @@ punctuation_words = {
     "and sign": "&",
     "ampersand": "&",
 }
+
 
 symbol_key_words = {
     # "point": ".",
@@ -202,10 +205,23 @@ symbol_key_words = {
     # "double quote": '"',
 }
 
+# duplicate the relevant lists for dragon, and modify as needed
+punctuation_words_dragon = copy.deepcopy(punctuation_words)
+
+# dragon expects the actual symbol in the list for reasons
+punctuation_words_dragon["`"] = "`"
+punctuation_words_dragon[","] = ","
+symbol_key_words_dragon = copy.deepcopy(symbol_key_words)
+
 # make punctuation words also included in {user.symbol_keys}
 symbol_key_words.update(punctuation_words)
+symbol_key_words_dragon.update(punctuation_words_dragon)
 ctx.lists["self.punctuation"] = punctuation_words
+ctx_dragon.lists["self.punctuation"] = punctuation_words_dragon
+
 ctx.lists["self.symbol_key"] = symbol_key_words
+ctx_dragon.lists["self.symbol_key"] = symbol_key_words_dragon
+
 ctx.lists["self.number_key"] = dict(zip(default_digits, numbers))
 ctx.lists["self.arrow_key"] = {
     "down": "down",
