@@ -52,12 +52,20 @@ section down: key(alt-down)
 tab up: key(ctrl-up)
 tab down: key(ctrl-down)
 
+insert: key(ctrl-f2 d return k return down:2 right i return)
+
 # Chronicles
 exit: key(shift-f7)
 previous: key(pageup)
 next: key(pagedown)
 chronicles item: key(home f9 i enter)
 chronicles screen: key(home f9 s enter)
+chronicles restore: key(f3)
+item delete: key(f1)
+item clear: key(f2)
+item insert: key(shift-f6 ctrl-f2 d return k return down:2 right i return)
+item help: key(shift-f5)
+item info: key(home f7)
 
 # Lookitt
 routine do: insert("d ^")
