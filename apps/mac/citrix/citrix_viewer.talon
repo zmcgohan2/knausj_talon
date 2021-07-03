@@ -46,7 +46,7 @@ chart search [<user.text>]:
 master navigation:
 	key(ctrl-space ctrl-home)
 
-# XXX handle repeating
+# XXX handle repeating - alt:down/press/alt:up doesn't work
 section up: key(alt-up)
 section down: key(alt-down)
 tab up: key(ctrl-up)
