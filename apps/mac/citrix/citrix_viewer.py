@@ -1,4 +1,4 @@
-from talon import actions, app, Context, keychain, Module, ui
+from talon import Module     
 
 mod = Module()
 
