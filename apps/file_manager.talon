@@ -1,9 +1,5 @@
 tag: user.file_manager
 -
-settings():
-    user.create_spoken_forms_minimum_term_length = 4
-    user.create_spoken_forms_generate_sub_sequences = 1
-
 title force: user.file_manager_refresh_title()
 manager show: user.file_manager_toggle_pickers()
 manager refresh: user.file_manager_update_lists()
@@ -23,7 +19,7 @@ go forward [<number_small>]:
     number = number_small or 1
     user.file_manager_go_forward()
     repeat(number - 1)
-daddy [<number_small>]: 
+parent [<number_small>]: 
     number = number_small or 1
     user.file_manager_open_parent()
     repeat(number - 1)
@@ -31,7 +27,7 @@ daddy [<number_small>]:
     directory = user.file_manager_get_directory_by_index(number_small - 1)
     user.file_manager_open_directory(directory)
 ^follow {user.file_manager_directories}$: user.file_manager_open_directory(file_manager_directories)
-^take folder {user.file_manager_directories}$: user.file_manager_select_directory(file_manager_directories)
+^(select|cell) folder {user.file_manager_directories}$: user.file_manager_select_directory(file_manager_directories)
 ^open <number_small>$: 
     file = user.file_manager_get_file_by_index(number_small - 1)
     user.file_manager_open_file(file)
@@ -42,7 +38,7 @@ daddy [<number_small>]:
     file = user.file_manager_get_file_by_index(number_small - 1)
     user.file_manager_select_file(file)
 ^file {user.file_manager_files}$: user.file_manager_select_file(file_manager_files)
-^take file {user.file_manager_files}$: user.file_manager_select_file(file_manager_files)
+^(select|cell) file {user.file_manager_files}$: user.file_manager_select_file(file_manager_files)
 
 #new folder
 folder new [<user.text>]: 

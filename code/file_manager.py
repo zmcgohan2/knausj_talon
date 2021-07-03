@@ -10,9 +10,6 @@ from itertools import islice
 
 mod = Module()
 ctx = Context()
-ctx.matches = r"""
-tag: user.file_manager
-"""
 
 mod.tag("file_manager", desc="Tag for enabling generic file management commands")
 mod.list("file_manager_directories", desc="List of subdirectories for the current path")

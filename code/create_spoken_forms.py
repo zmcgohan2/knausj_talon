@@ -24,17 +24,16 @@ SMALL_WORD = r"[A-Z]?[a-z]+"
 # TODO: We want "AXEvery" to be ["AX", "Every"]
 UPPERCASE_WORD = r"[A-Z]+"
 FILE_EXTENSIONS_REGEX = "|".join(
-    file_extension.strip() for file_extension in file_extensions.values()
+    re.escape(file_extension.strip()) for file_extension in file_extensions.values()
 )
-
 DIGITS_REGEX = r"\d"
-REGEX_SYMBOLS = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
+SYMBOLS_REGEX = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
 FULL_REGEX_NO_SYMBOLS = re.compile(
     "|".join([DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD,])
 )
 FULL_REGEX = re.compile(
     "|".join(
-        [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD, REGEX_SYMBOLS]
+        [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD, SYMBOLS_REGEX]
     )
 )
 
@@ -44,8 +43,6 @@ REVERSE_PRONUNCIATION_MAP = {
     **{str(value): key for key, value in digits_map.items()},
     **{value: key for key, value in symbol_key_words.items()},
 }
-
-# print(str(REVERSE_PRONUNCIATION_MAP))
 
 
 def create_single_spoken_form(source: str):
