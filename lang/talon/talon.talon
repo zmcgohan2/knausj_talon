@@ -13,7 +13,7 @@ action block:
     edit.left()
 setting block:
     insert("settings():\n\t")
-    #context requirements
+#context requirements
 win require:
     insert("os: windows\n")
 mac require:
@@ -28,7 +28,7 @@ tag require:
     insert("tag: ")
 tag set:
     insert("tag(): ")
-    #commands for dictating key combos
+#commands for dictating key combos
 key <user.keys> over: "{keys}"
 key <user.modifiers> over: "{modifiers}"
 #funk commands, consistent with other languages
