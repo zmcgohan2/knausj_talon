@@ -13,4 +13,4 @@ class Actions:
 	def moom_keys(key: str, times: int = 1):
 		"""Press the corresponding Moom control key followed by Return."""
 		actions.user.moom_key(f'{key}:{times} return')
-		actions.sleep('300ms')
+		actions.sleep('800ms')
