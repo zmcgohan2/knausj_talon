@@ -53,6 +53,7 @@ extension_lang_map = {
     ".s": "assembly",
     ".sh": "bash",
     ".snippets": "snippets",
+    ".sql": "sql",
     ".talon": "talon",
     ".ts": "typescript",
     ".tsx": "typescript",
