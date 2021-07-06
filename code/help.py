@@ -123,8 +123,7 @@ def get_current_context_page_length() -> int:
 
 
 def get_command_line_count(command: Tuple[str, str]) -> int:
-    """This should be kept in sync with draw_commands
-    """
+    """This should be kept in sync with draw_commands"""
     _, body = command
     lines = len(body.split("\n"))
     if lines == 1:
@@ -364,8 +363,8 @@ def update_active_contexts_cache(active_contexts):
 
 
 # example usage todo: make a list definable in .talon
-# overrides = {"generic browser" : "broswer"}
-overrides = {}
+# overrides = {"generic browser": "broswer"}
+# overrides = {}
 
 
 def refresh_context_command_map(enabled_only=False):
@@ -379,6 +378,7 @@ def refresh_context_command_map(enabled_only=False):
 
     context_map = {}
     cached_short_context_names = {}
+    display_names_only = {}
     show_enabled_contexts_only = enabled_only
     cached_window_title = ui.active_window().title
     active_contexts = registry.active_contexts()
@@ -388,43 +388,43 @@ def refresh_context_command_map(enabled_only=False):
     context_command_map = {}
     for context_name, context in registry.contexts.items():
         splits = context_name.split(".")
-        index = -1
-        if "talon" in splits[index]:
-            index = -2
-            short_name = splits[index].replace("_", " ")
-        else:
-            short_name = splits[index].replace("_", " ")
 
-        if "mac" == short_name or "win" == short_name or "linux" == short_name:
-            index = index - 1
-            short_name = splits[index].replace("_", " ")
+        if "talon" == splits[-1]:
+            short_names = actions.user.create_spoken_forms(
+                splits[-2],
+                generate_subsequences=False,
+            )
+            if short_names[0] in overrides:
+                short_names = [overrides[short_names[0]]]
+            elif len(short_names) == 2 and short_names[1] in overrides:
+                short_names = [overrides[short_names[1]]]
 
-        # print("short name: " + short_name)
-        if short_name in overrides:
-            short_name = overrides[short_name]
+            if enabled_only and context in active_contexts or not enabled_only:
+                context_command_map[context_name] = {}
+                for command_alias, val in context.commands.items():
+                    # print(str(val))
+                    if command_alias in registry.commands:
+                        # print(str(val.rule.rule) + ": " + val.target.code)
+                        context_command_map[context_name][
+                            str(val.rule.rule)
+                        ] = val.target.code
+                # print(short_name)
+                # print("length: " + str(len(context_command_map[context_name])))
+                if len(context_command_map[context_name]) == 0:
+                    context_command_map.pop(context_name)
+                else:
+                    for short_name in short_names:
+                        cached_short_context_names[short_name] = context_name
 
-        if enabled_only and context in active_contexts or not enabled_only:
-            context_command_map[context_name] = {}
-            for command_alias, val in context.commands.items():
-                # print(str(val))
-                if command_alias in registry.commands:
-                    # print(str(val.rule.rule) + ": " + val.target.code)
-                    context_command_map[context_name][
-                        str(val.rule.rule)
-                    ] = val.target.code
-            # print(short_name)
-            # print("length: " + str(len(context_command_map[context_name])))
-            if len(context_command_map[context_name]) == 0:
-                context_command_map.pop(context_name)
-            else:
-                cached_short_context_names[short_name] = context_name
-                context_map[context_name] = context
+                    # the last entry will contain no symbols
+                    display_names_only[short_names[-1]] = context_name
+                    context_map[context_name] = context
 
     refresh_rule_word_map(context_command_map)
 
     ctx.lists["self.help_contexts"] = cached_short_context_names
     # print(str(ctx.lists["self.help_contexts"]))
-    sorted_context_map_keys = sorted(cached_short_context_names)
+    sorted_context_map_keys = sorted(display_names_only)
 
 
 def refresh_rule_word_map(context_command_map):
@@ -622,4 +622,3 @@ def commands_updated(_):
 
 
 app.register("ready", refresh_context_command_map)
-
