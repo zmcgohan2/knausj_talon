@@ -317,7 +317,7 @@ wipe [<number_small>]:
     key(backspace)
     repeat(numb - 1)   
 
-scrap [<number_small>]:
+(scrap|drill) [<number_small>]:
     numb = number_small or 1
     edit.delete()
     repeat(numb - 1)    
