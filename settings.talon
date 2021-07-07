@@ -1,6 +1,6 @@
 -
 settings():
-    user.context_sensitive_dictation = 1
+    user.context_sensitive_dictation = 0
     #adjust the scale of the imgui to my liking
     imgui.scale = 3.5
     # enable if you'd like the picker gui to automatically appear when explorer has focus
