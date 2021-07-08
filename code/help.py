@@ -364,7 +364,7 @@ def update_active_contexts_cache(active_contexts):
 
 # example usage todo: make a list definable in .talon
 # overrides = {"generic browser": "broswer"}
-# overrides = {}
+overrides = {}
 
 
 def refresh_context_command_map(enabled_only=False):
