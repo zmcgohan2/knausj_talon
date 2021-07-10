@@ -1,4 +1,6 @@
 from talon import Context, Module, app, actions, speech_system
+from talon import canvas, ui
+from talon.types import Rect
 
 mod = Module()
 
@@ -53,14 +55,14 @@ class Actions:
         actions.mode.enable("dictation")
         actions.user.code_clear_language_mode()
         actions.mode.disable("user.gdb")
-        app.notify(body='Dictation mode')
+        show_mode()
 
     def command_mode():
         """Switch to command mode."""
         actions.mode.disable("sleep")
         actions.mode.disable("dictation")
         actions.mode.enable("command")
-        app.notify(body='Command mode')
+        hide_mode()
 
     def toggle_dictation_mode():
         """Switch from dictation to command mode or vice versa."""
@@ -70,3 +72,48 @@ class Actions:
             actions.user.command_mode()
         else:
             actions.user.dictation_mode()
+
+mode_canvas = None
+
+def show_mode():
+    global mode_canvas
+
+    if mode_canvas is not None:
+        return
+
+    mode_canvas = canvas.Canvas.from_screen(ui.screens()[0])
+    mode_canvas.register('draw', draw_mode)
+    mode_canvas.freeze()
+
+def hide_mode():
+    global mode_canvas
+
+    if mode_canvas is None:
+        return
+
+    mode_canvas.unregister('draw', draw_mode)
+    mode_canvas.close()
+    mode_canvas = None
+
+def draw_mode(canvas):
+    paint = canvas.paint
+    paint.textsize = 12
+    text = 'Dictation Mode'
+    _, text_rect = canvas.paint.measure_text(text)
+
+    screen_rect = ui.screens()[0].visible_rect
+    padding_x = 5
+    padding_y = 5
+
+    bg_rect = Rect(
+        screen_rect.width - text_rect.width - (padding_x * 2),
+        screen_rect.y,
+        text_rect.width + (padding_x * 2),
+        text_rect.height + (padding_y * 2)
+    )    
+    canvas.draw_rect(bg_rect)
+    paint.color = "ffffffff"
+    canvas.draw_text(
+        text,
+        bg_rect.x + padding_x,
+        bg_rect.y + padding_y + text_rect.height)
