@@ -6,6 +6,7 @@ mod.mode("draft_editor", "Indicates whether the draft editor has been activated"
 
 active_window = None
 
+
 @mod.action_class
 class Actions:
     def draft_editor_open():
@@ -16,7 +17,6 @@ class Actions:
         selected_text = actions.edit.selected_text()
         focus_window(editor)
         # Wait for context to change.
-        actions.sleep("100ms")
         actions.app.tab_open()
         if selected_text != "":
             actions.user.paste(selected_text)
@@ -32,17 +32,12 @@ class Actions:
 
 
 def get_editor():
-    editor_names = {
-        "Visual Studio Code",
-        "Code",
-        "VSCodium",
-        "Codium",
-        "code-oss"
-    }
+    editor_names = {"Visual Studio Code", "Code", "VSCodium", "Codium", "code-oss"}
     for app in ui.apps(background=False):
         if app.name in editor_names:
             return app.windows()[0]
     raise RuntimeError("VSCode is not running")
+
 
 def close_editor(submit_draft: bool):
     actions.mode.disable("user.draft_editor")
@@ -54,6 +49,7 @@ def close_editor(submit_draft: bool):
     if submit_draft:
         actions.user.paste(selected_text)
 
+
 def focus_window(window: ui.Window):
     """Focus window and wait until finished"""
     window.focus()
@@ -62,3 +58,4 @@ def focus_window(window: ui.Window):
         if time.monotonic() - t1 > 1:
             raise RuntimeError(f"Can't focus window: {window.title}")
         actions.sleep("50ms")
+    actions.sleep("200ms")
