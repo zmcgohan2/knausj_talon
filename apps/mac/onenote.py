@@ -67,11 +67,14 @@ class user_actions:
 	def onenote_hide_navigation():
 		onenote = onenote_app()
 		window = onenote_window()
-		# un-check the "books" at the top left if necessary
+		# hide the navigation pane(s) if necessary
 		splitgroup = window.children.find_one(AXRole='AXSplitGroup', max_depth=0)
 		group = splitgroup.children.find_one(AXRole='AXGroup', max_depth=0)
-		checkbox = group.children.find_one(AXRole='AXCheckBox', max_depth=0)
-		if checkbox.AXValue == 1:
+		try:
+			checkbox = group.children.find_one(AXRole='AXCheckBox', AXValue=1, max_depth=0)
+		except ui.UIErr:
+			pass
+		else:
 			checkbox.perform('AXPress')
 		# focus the note body if necessary
 		for attempt in range(10):
