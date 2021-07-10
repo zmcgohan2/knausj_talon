@@ -85,6 +85,7 @@ class user_actions:
 				actions.sleep('100ms')
 			else:
 				return
+		app.notify(body='Unable to focus note body', title='OneNote')
 	
 	def onenote_copy_link():
 		onenote = onenote_app()
