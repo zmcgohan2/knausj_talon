@@ -50,19 +50,19 @@ class Actions:
 
     def dictation_mode():
         """Switch to dictation mode."""
+        show_mode()
         actions.mode.disable("sleep")
         actions.mode.disable("command")
         actions.mode.enable("dictation")
         actions.user.code_clear_language_mode()
         actions.mode.disable("user.gdb")
-        show_mode()
 
     def command_mode():
         """Switch to command mode."""
+        hide_mode()
         actions.mode.disable("sleep")
         actions.mode.disable("dictation")
         actions.mode.enable("command")
-        hide_mode()
 
     def toggle_dictation_mode():
         """Switch from dictation to command mode or vice versa."""
@@ -79,6 +79,7 @@ def show_mode():
     global mode_canvas
 
     if mode_canvas is not None:
+        mode_canvas.freeze()
         return
 
     mode_canvas = canvas.Canvas.from_screen(ui.screens()[0])
@@ -91,9 +92,7 @@ def hide_mode():
     if mode_canvas is None:
         return
 
-    mode_canvas.unregister('draw', draw_mode)
-    mode_canvas.close()
-    mode_canvas = None
+    mode_canvas.hide()
 
 def draw_mode(canvas):
     paint = canvas.paint
