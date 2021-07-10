@@ -102,12 +102,12 @@ def draw_mode(canvas):
     _, text_rect = canvas.paint.measure_text(text)
 
     screen_rect = ui.screens()[0].visible_rect
-    padding_x = 5
-    padding_y = 5
+    padding_x = 4
+    padding_y = 4
 
     bg_rect = Rect(
-        screen_rect.width - text_rect.width - (padding_x * 2),
-        screen_rect.y,
+        screen_rect.width - text_rect.width - (padding_x * 2) + 1,
+        screen_rect.y - 1,
         text_rect.width + (padding_x * 2),
         text_rect.height + (padding_y * 2)
     )    
@@ -115,5 +115,5 @@ def draw_mode(canvas):
     paint.color = "ffffffff"
     canvas.draw_text(
         text,
-        bg_rect.x + padding_x,
-        bg_rect.y + padding_y + text_rect.height)
+        bg_rect.x + padding_x + 1,
+        bg_rect.y + padding_y + text_rect.height - 1)
