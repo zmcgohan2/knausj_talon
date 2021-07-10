@@ -58,7 +58,10 @@ inside back ticks:
 angle that:
     text = edit.selected_text()
     user.paste("<{text}>")
-brace that: 
+bracket that:
+    text = edit.selected_text()
+    user.paste("[{text}]")
+brace that:
     text = edit.selected_text()
     user.paste("{{{text}}}")
 bracket that: 

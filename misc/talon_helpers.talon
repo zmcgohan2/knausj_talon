@@ -14,3 +14,4 @@ talon dump context:
     print("Executable: {executable}")
     print("Bundle: {bundle}")
     print("Title: {title}")
+
