@@ -55,6 +55,19 @@ page move left: key(cmd-alt-[)
 go top: key(alt-up)
 go bottom: key(alt-down)
 
+# navigating in recent notes (pages)
+page forward [<user.ordinals>]$:
+    offset = ordinals or 1
+    offset = -1 * offset
+    user.onenote_go_recent(offset)
+
+page back [<user.ordinals>]$:
+    user.onenote_go_recent(ordinals or 1)
+
+key(cmd-ctrl-down): user.onenote_go_recent(1)
+key(cmd-ctrl-up): user.onenote_go_recent(-1)
+
+# navigating by cursor position
 go forward: key(cmd-ctrl-right)
 go back[ward]: key(cmd-ctrl-left)
 

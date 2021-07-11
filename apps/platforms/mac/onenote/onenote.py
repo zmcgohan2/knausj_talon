@@ -50,6 +50,9 @@ class Actions:
 	def onenote_go_progress():
 		"""Go to the first section of the first notebook."""
 
+	def onenote_go_recent(offset: int):
+		"""Navigate to recent notes."""
+
 def onenote_app():
 	return ui.apps(bundle="com.microsoft.onenote.mac")[0]
 
@@ -108,6 +111,25 @@ class UserActions:
 			else:
 				return
 		app.notify(body='Unable to focus note body', title='OneNote')
+
+	def onenote_go_recent(offset: int):
+		window = onenote_window()
+
+		splitgroup = window.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		group = splitgroup.children.find_one(AXRole='AXGroup', max_depth=0)
+		checkbox = group.children.find(AXRole='AXCheckBox', max_depth=0)[2]
+		if checkbox.AXValue == 0:
+			checkbox.perform('AXPress')
+
+		navigation = splitgroup.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		recent_notes = navigation.children.find_one(AXRole='AXGroup', max_depth=0)
+		recent_list = recent_notes.children.find_one(AXRole='AXTable', max_depth=1)
+		recent_rows = list(recent_list.children.find(AXRole='AXRow', max_depth=0))
+		current_row = recent_rows.index(next(row for row in recent_rows if row.AXSelected == True))
+		desired_row = current_row + offset
+		desired_row = max(desired_row, 0)
+		desired_row = min(desired_row, len(recent_rows) - 1)
+		recent_rows[desired_row].AXSelected = True
 	
 	def onenote_copy_link():
 		onenote = onenote_app()
