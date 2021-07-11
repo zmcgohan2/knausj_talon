@@ -11,6 +11,9 @@ launch bar:
 launch running:
 	user.launchbar_action('Running Applications')
 
+launch paste:
+	key(ctrl-cmd-alt-v)
+
 web search <phrase>:
 	user.launchbar_action('Google')
 	key(backspace)
