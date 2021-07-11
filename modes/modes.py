@@ -73,26 +73,32 @@ class Actions:
         else:
             actions.user.dictation_mode()
 
-mode_canvas = None
+# XXX switch to canvas.overlay instead?
+
+mode_canvases = []
 
 def show_mode():
-    global mode_canvas
+    global mode_canvases
 
-    if mode_canvas is not None:
-        mode_canvas.freeze()
+    if mode_canvases:
+        for mode_canvas in mode_canvases:
+            mode_canvas.freeze()
         return
 
-    mode_canvas = canvas.Canvas.from_screen(ui.screens()[0])
-    mode_canvas.register('draw', draw_mode)
-    mode_canvas.freeze()
+    for screen in ui.screens():
+        mode_canvas = canvas.Canvas.from_screen(screen)
+        mode_canvas.register('draw', draw_mode)
+        mode_canvas.freeze()
+        mode_canvases.append(mode_canvas)
 
 def hide_mode():
-    global mode_canvas
+    global mode_canvases
 
-    if mode_canvas is None:
+    if not mode_canvases:
         return
 
-    mode_canvas.hide()
+    for mode_canvas in mode_canvases:
+        mode_canvas.hide()
 
 def draw_mode(canvas):
     paint = canvas.paint
@@ -100,12 +106,13 @@ def draw_mode(canvas):
     text = 'Dictation Mode'
     _, text_rect = canvas.paint.measure_text(text)
 
-    screen_rect = ui.screens()[0].visible_rect
+    screen = ui.screen_containing(canvas.x, canvas.y)
+    screen_rect = screen.visible_rect
     padding_x = 4
     padding_y = 4
 
     bg_rect = Rect(
-        screen_rect.width - text_rect.width - (padding_x * 2) + 1,
+        screen_rect.right - text_rect.width - (padding_x * 2) + 1,
         screen_rect.y - 1,
         text_rect.width + (padding_x * 2),
         text_rect.height + (padding_y * 2)
@@ -116,3 +123,24 @@ def draw_mode(canvas):
         text,
         bg_rect.x + padding_x + 1,
         bg_rect.y + padding_y + text_rect.height - 1)
+
+def on_screen_change(screens):
+    global mode_canvases
+
+    print(f'screen change: {mode_canvases}')
+    if not mode_canvases:
+        return
+
+    were_showing = mode_canvases[0].showing
+
+    for mode_canvas in mode_canvases:
+        mode_canvas.unregister('draw', draw_mode)
+        mode_canvas.close()
+
+    mode_canvases = []
+
+    if were_showing: show_mode()
+
+# XXX doesn't work when display configuration is changed
+# see https://github.com/talonvoice/talon/issues/248#issuecomment-877831551
+ui.register('screen_change', on_screen_change)
