@@ -1,4 +1,6 @@
-from talon import Context, actions
+from talon import Context, actions, ui
+from pathlib import Path
+from subprocess import call
 ctx = Context()
 ctx.matches = r"""
 os: windows
@@ -89,3 +91,17 @@ class WinActions:
 		result = result.rsplit(" (", 1)[0]
 		result = result.rsplit(" •", 1)[0]
 		return result if "." in result else ""
+
+ctx_global = Context()
+
+ctx_global.matches = r"""
+os: windows
+"""
+
+@ctx_global.action_class('user')
+class Actions:
+	def subl(paths: list[str]):
+		# XXX assume Sublime Text is running
+		sublime_text = ui.apps(name='Sublime Text')[0]
+		subl_path = str(Path(sublime_text.exe).parents[0] / "subl.exe")
+		call([subl_path, '--'] + paths)
