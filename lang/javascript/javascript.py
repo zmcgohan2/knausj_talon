@@ -16,6 +16,9 @@ and code.language: javascript
 
 @ctx.action_class("user")
 class UserActions:
+    def code_comment():
+        actions.auto_insert('//')
+
     def code_is_not_null():
         actions.auto_insert(" !== null")
 
