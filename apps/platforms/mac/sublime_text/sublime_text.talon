@@ -31,6 +31,11 @@ slap: key(cmd-enter)
 # navigate through multifile search results
 result next: key(f4 cmd-g)
 result previous: key(shift-f4 cmd-g)
+
+# history navigation
+go back: key(ctrl--)
+go forward: key(ctrl-shift--)
+
 [do] repository:
     key(cmd-shift-p)
     insert("Sublime Merge: Open Repository")
