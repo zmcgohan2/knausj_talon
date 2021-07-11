@@ -1,5 +1,5 @@
 os: mac
 -
-menu <user.text>$:
+^menu <user.text>$:
 	key("cmd-shift-/")
 	insert(user.text)
