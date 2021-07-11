@@ -22,10 +22,6 @@ class UserActions:
     def code_is_null():
         actions.auto_insert(" === null")
 
-    def code_type_dictionary():
-        actions.insert("{}")
-        actions.key("left")
-
     def code_state_if():
         actions.insert("if ()")
         actions.key("left")
