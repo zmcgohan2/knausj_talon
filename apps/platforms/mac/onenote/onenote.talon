@@ -51,7 +51,7 @@ page move left: key(cmd-alt-[)
     sleep(100ms)
     user.insert_formatted(prose or "", "CAPITALIZE_FIRST_WORD")
     
-    # navigating in notebook/section/page lists
+# navigating in notebook/section/page lists
 go top: key(alt-up)
 go bottom: key(alt-down)
 
@@ -97,7 +97,7 @@ tomorrow:
     key(down)
     user.onenote_checkbox()
     
-    # back to progress (first notebook, first section)
+# back to progress (first notebook, first section)
 go progress:
     user.onenote_go_progress()
     user.onenote_hide_navigation()

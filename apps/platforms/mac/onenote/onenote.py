@@ -83,6 +83,7 @@ class UserActions:
 		# outdent one more time as the above may indent
 		actions.key('shift-tab')
 		actions.key('cmd-alt-1')
+
 	def onenote_checkbox(): actions.key('ctrl-e enter tab cmd-1 up ctrl-e')
 	
 	def onenote_hide_navigation():
