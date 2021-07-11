@@ -4,7 +4,7 @@ from subprocess import call
 ctx = Context()
 ctx.matches = r"""
 os: windows
-and app.name: Sublime Text
+and app.exe: sublime_text.exe
 """
 
 @ctx.action_class('app')

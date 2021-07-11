@@ -1,5 +1,5 @@
 os: windows
-and app.name: Sublime Text
+and app.exe: sublime_text.exe
 -
 tag(): user.find_and_replace
 tag(): user.line_commands
