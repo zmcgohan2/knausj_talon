@@ -11,6 +11,8 @@ and app.exe: sublime_text.exe
 class AppActions:
 	def window_open():  actions.key('ctrl-shift-n')
 	def window_close(): actions.key('ctrl-shift-w')
+	def tab_next():     actions.key('ctrl-pagedown')
+	def tab_previous(): actions.key('ctrl-pageup')
 
 @ctx.action_class('code')
 class CodeActions:
