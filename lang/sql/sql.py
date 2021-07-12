@@ -14,7 +14,13 @@ class UserActions:
     def code_operator_greater_than_or_equal_to(): actions.auto_insert(' >= ')
     def code_operator_less_than(): actions.auto_insert(' < ')
     def code_operator_less_than_or_equal_to(): actions.auto_insert(' <= ')
-    
+    def code_operator_in():
+        actions.auto_insert(' IN ()')
+        actions.key('left')
+    def code_operator_not_in():
+        actions.auto_insert(' NOT IN ()')
+        actions.key('left')
+
     def code_operator_and(): actions.auto_insert('AND ')
     def code_operator_or(): actions.auto_insert('OR ')
     
