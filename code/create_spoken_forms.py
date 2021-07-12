@@ -24,12 +24,19 @@ SMALL_WORD = r"[A-Z]?[a-z]+"
 # TODO: We want "AXEvery" to be ["AX", "Every"]
 UPPERCASE_WORD = r"[A-Z]+"
 FILE_EXTENSIONS_REGEX = "|".join(
-    re.escape(file_extension.strip()) for file_extension in file_extensions.values()
+    file_extension.strip() + "$" for file_extension in file_extensions.values()
 )
 DIGITS_REGEX = r"\d"
 SYMBOLS_REGEX = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
 FULL_REGEX_NO_SYMBOLS = re.compile(
-    "|".join([DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD,])
+    "|".join(
+        [
+            DIGITS_REGEX,
+            FILE_EXTENSIONS_REGEX,
+            SMALL_WORD,
+            UPPERCASE_WORD,
+        ]
+    )
 )
 FULL_REGEX = re.compile(
     "|".join(
@@ -93,7 +100,10 @@ class Actions:
         # these two may be identical, so ensure the list is reduced
         full_forms = list(
             set(
-                [spoken_form_with_symbols.lower(), spoken_form_without_symbols.lower(),]
+                [
+                    spoken_form_with_symbols.lower(),
+                    spoken_form_without_symbols.lower(),
+                ]
             )
         )
 
@@ -116,16 +126,16 @@ class Actions:
             if spoken_form_with_symbols not in terms:
                 terms.append(spoken_form_with_symbols)
 
+            terms = [
+                term
+                for term in terms
+                if (term not in words_to_exclude and len(term) >= minimum_term_length)
+                # always keep the full forms, even if < min term length?
+                or term in full_forms
+            ]
+
         else:
             terms = full_forms
-
-        terms = [
-            term
-            for term in terms
-            if (term not in words_to_exclude and len(term) >= minimum_term_length)
-            # always keep the full forms, even if < min term length?
-            or term in full_forms
-        ]
 
         return terms
 
