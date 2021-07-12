@@ -8,6 +8,7 @@ mod.list("talon_captures")
 mod.list("talon_apps")
 mod.list("talon_tags")
 mod.list("talon_modes")
+mod.list("talon_settings")
 
 ctx.matches = r"""
 mode: user.talon
@@ -36,15 +37,12 @@ ctx.lists["user.code_functions"] = {
 
 
 def update_lists(decls):
-    for thing in ["actions", "lists", "captures", "tags", "apps", "modes"]:
+    for thing in ["actions", "lists", "captures", "tags", "apps", "modes", "settings"]:
         l = getattr(decls, thing)
-        names = l.keys()
-        spoken = [
-            actions.user.create_spoken_forms(s, generate_subsequences=False)[-1]
-            for s in names
-        ]
-        ctx.lists[f"user.talon_{thing}"] = dict(zip(spoken, names))
-        # print(dict(zip(spoken, names)))
+        ctx.lists[f"user.talon_{thing}"] = actions.user.create_spoken_forms_from_list(
+            l.keys(), generate_subsequences=False
+        )
+        print("List: {} \n {}".format(thing, str(ctx.lists[f"user.talon_{thing}"])))
 
 
 registry.register("update_decls", update_lists)

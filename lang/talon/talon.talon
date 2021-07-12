@@ -4,7 +4,8 @@ and code.language: talon
 -
 tag(): user.code_operators
 tag(): user.code_comment
-
+settings():
+    
 dot talon: insert(".talon")
 #defintion blocks for the context
 action block:
@@ -13,6 +14,8 @@ action block:
     edit.left()
 setting block:
     insert("settings():\n\t")
+setting {user.talon_settings}: 
+    user.paste("{talon_settings} = ")
 #context requirements
 win require:
     insert("os: windows\n")
