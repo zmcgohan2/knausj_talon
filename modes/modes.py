@@ -131,7 +131,9 @@ def on_screen_change(screens):
     if not mode_canvases:
         return
 
-    were_showing = mode_canvases[0].showing
+    # XXX AttributeError: 'Canvas' object has no attribute 'showing'
+    # https://github.com/talonvoice/talon/issues/350
+    were_showing = getattr(mode_canvases[0], 'showing', False)
 
     for mode_canvas in mode_canvases:
         mode_canvas.unregister('draw', draw_mode)
