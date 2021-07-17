@@ -127,13 +127,11 @@ def draw_mode(canvas):
 def on_screen_change(screens):
     global mode_canvases
 
-    print(f'screen change: {mode_canvases}')
     if not mode_canvases:
         return
 
-    # XXX AttributeError: 'Canvas' object has no attribute 'showing'
-    # https://github.com/talonvoice/talon/issues/350
-    were_showing = getattr(mode_canvases[0], 'showing', False)
+    # XXX debugging until this is working more reliably
+    print(f"screen_change {screens}")
 
     for mode_canvas in mode_canvases:
         mode_canvas.unregister('draw', draw_mode)
@@ -141,7 +139,10 @@ def on_screen_change(screens):
 
     mode_canvases = []
 
-    if were_showing: show_mode()
+    # XXX uses private API
+    from talon import registry
+    if 'dictation' in registry._modes.modes:
+        show_mode()
 
 # XXX doesn't work when display configuration is changed
 # see https://github.com/talonvoice/talon/issues/248#issuecomment-877831551
