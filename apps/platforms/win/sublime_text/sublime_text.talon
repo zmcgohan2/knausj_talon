@@ -7,6 +7,9 @@ tag(): user.multiple_cursors
 # tag(): user.snippets
 tag(): user.tabs
 
+# NOTE: for Talon's context-sensitive dictation to work properly in Sublime Text,
+# you need to set "copy_with_empty_selection": false in your settings.
+
 file:
     key(ctrl-p)
     
