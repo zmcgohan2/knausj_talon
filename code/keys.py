@@ -162,7 +162,6 @@ symbol_key_words = {
     "open bracket": "[",
     "right bracket": "]",
     "close bracket": "]",
-    "forward slash": "/",
     "slash": "/",
     "backslash": "\\",
     "minus": "-",
