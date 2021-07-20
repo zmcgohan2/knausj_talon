@@ -13,6 +13,12 @@ from .abbreviate import abbreviations
 from .keys import symbol_key_words
 
 mod = Module()
+setting_defer_numbers_to_engine = mod.setting(
+    "spoken_forms_defer_numbers_to_engine",
+    type=bool,
+    default=False,
+    desc="Whether or not to let the engine (e.g. dragon) parse numbers when in a list",
+)
 
 # TODO: 'Whats application': 'WhatsApp' (Should keep "whats app" as well?)
 # TODO: 'V O X': 'VOX' (should keep "VOX" as well?)
@@ -49,24 +55,24 @@ REVERSE_PRONUNCIATION_MAP = {
 # the algorithm's expectation is slightly different from numbers.py
 
 # the spoken form for "100"
-hundred = scales[0] + " "
+hundred = scales[0]
 
 # ["", "one ", "two ",... "nine "] or equivalents
 ones = [""] + [
-    REVERSE_PRONUNCIATION_MAP[str(index)] + " " for index in range(10) if index != 0
+    REVERSE_PRONUNCIATION_MAP[str(index)] for index in range(10) if index != 0
 ]
 
 # ["ten ", "eleven ",... "nineteen"] or equivalents
-teen = [tens[0]] + [val + " " for val in teens]
+teen = [tens[0]] + [val for val in teens]
 
 # print("tens = " + str(ten))
 
-# ["","","twenty ","thirty ","forty ", "fifty ","sixty ","seventy ","eighty ","ninety "]
+# ["","","twenty","thirty","forty",..."ninety"]
 # or equivalent
-twenties = ["", ""] + [val + " " for index, val in enumerate(tens) if index != 0]
+twenties = ["", ""] + [val for index, val in enumerate(tens) if index != 0]
 # print("twenties = " + str(twenties))
 
-thousands = [""] + [val + " " for index, val in enumerate(scales) if index != 0]
+thousands = [""] + [val for index, val in enumerate(scales) if index != 0]
 # print("thousands = " + thousands)
 # end: create the lists necessary for create_spoken_word_for_number
 
@@ -95,28 +101,27 @@ def create_spoken_form_for_number(num: int):
 
     # break each group of 3 digits into
     # ones, tens/twenties, hundreds
-    nw = ""
+    words = []
     for i, x in enumerate(n3):
-        # print(x)
         b1 = x % 10
         b2 = (x % 100) // 10
         b3 = (x % 1000) // 100
-        # print b1, b2, b3  # test
         if x == 0:
             continue  # skip
         else:
             t = thousands[i]
+
         # print(str(b1) + ", " + str(b2) + ", " + str(b3))
         if b2 == 0:
-            nw = ones[b1] + t + nw
+            words = [ones[b1], t] + words
         elif b2 == 1:
-            nw = teen[b1] + t + nw
+            words = [teen[b1], t] + words
         elif b2 > 1:
-            nw = twenties[b2] + ones[b1] + t + nw
+            words = [twenties[b2], ones[b1], t] + words
         if b3 > 0:
-            nw = ones[b3] + hundred + nw
+            words = [ones[b3], hundred] + words
 
-    return nw.strip()
+    return " ".join(words)
 
 
 def create_spoken_form_years(num: str):
@@ -143,9 +148,9 @@ def create_spoken_form_years(num: str):
     if remainder > 0:
         # 1906 => "nineteen six"
         if remainder < 10:
-            # if hundreds % 10 != 0:
-            #    words.append("oh")
-            # else:
+            if hundreds % 10 != 0:
+                words.append("oh")
+
             words.append(REVERSE_PRONUNCIATION_MAP[str(remainder)])
         else:
             words.append(create_spoken_form_for_number(remainder))
@@ -202,24 +207,27 @@ def create_spoken_forms_from_regex(source: str, pattern: re.Pattern):
         length = len(substring)
 
         # the length is currently capped at 34 digits for decillion
-        # since that's the max in numbers.py ... which is patently absurd
+        # since that's the max in numbers.py...
         if length > 1 and length < 34 and substring.isnumeric():
-            has_fancy_number_version = True
-            val = int(substring)
-            spoken_form_years = create_spoken_form_years(val)
-            spoken_form = create_spoken_form_for_number(val)
+            if not setting_defer_numbers_to_engine.get():
+                has_fancy_number_version = True
+                val = int(substring)
+                spoken_form_years = create_spoken_form_years(val)
+                spoken_form = create_spoken_form_for_number(val)
 
-            if spoken_form_years:
-                has_spoken_form_years = True
-                full_form_spoken_form_years.append(spoken_form_years)
+                if spoken_form_years:
+                    has_spoken_form_years = True
+                    full_form_spoken_form_years.append(spoken_form_years)
+                else:
+                    full_form_spoken_form_years.append(spoken_form)
+
+                full_form_fancy_numbers.append(spoken_form)
+
+                # build the serial digit version
+                for digit in substring:
+                    full_form_digit_wise.append(create_single_spoken_form(digit))
             else:
-                full_form_spoken_form_years.append(spoken_form)
-
-            full_form_fancy_numbers.append(spoken_form)
-
-            # build the serial digit version
-            for digit in substring:
-                full_form_digit_wise.append(create_single_spoken_form(digit))
+                full_form_digit_wise.append(substring)
 
         else:
             spoken_form = create_single_spoken_form(substring)

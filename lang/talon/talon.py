@@ -1,4 +1,4 @@
-from talon import Module, Context, actions, ui, imgui, clip, settings, registry
+from talon import Module, Context, actions, ui, imgui, clip, settings, registry, app
 
 mod = Module()
 ctx = Context()
@@ -22,30 +22,24 @@ ctx.lists["user.code_functions"] = {
     "repeat": "repeat",
 }
 
-# todo: evaluate whether we need replacement functionality
-# REPLACEMENTS = {
-#     "str": "string",
-#     "vscode": "VS code",
-#     "url": "URL",
-#     "10": "ten",
-#     "20": "twenty",
-#     "r": "are",
-#     "sys": "sis",
-#     "py": "pie",
-#     "cd": "CD",
-# }
-
 
 def update_lists(decls):
+    # print("update_lists")
     for thing in ["actions", "lists", "captures", "tags", "apps", "modes", "settings"]:
         l = getattr(decls, thing)
         ctx.lists[f"user.talon_{thing}"] = actions.user.create_spoken_forms_from_list(
             l.keys(), generate_subsequences=False
         )
-        print("List: {} \n {}".format(thing, str(ctx.lists[f"user.talon_{thing}"])))
+        # print("List: {} \n {}".format(thing, str(ctx.lists[f"user.talon_{thing}"])))
 
 
-registry.register("update_decls", update_lists)
+def on_ready():
+    # print("on_ready")
+    update_lists(registry.decls)
+    registry.register("update_decls", update_lists)
+
+
+app.register("ready", on_ready)
 
 
 @ctx.action_class("user")
