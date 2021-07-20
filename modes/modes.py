@@ -111,19 +111,27 @@ def draw_mode(canvas):
     padding_x = 4
     padding_y = 4
 
+    if app.platform == 'mac':
+        top_left = screen_rect.right - text_rect.width - (padding_x * 2) + 1
+        text_offset = 1
+    else:
+        top_left = screen_rect.left - 1
+        text_offset = 0
+
     bg_rect = Rect(
-        screen_rect.right - text_rect.width - (padding_x * 2) + 1,
+        top_left,
         screen_rect.y - 1,
         text_rect.width + (padding_x * 2),
         text_rect.height + (padding_y * 2)
     )    
+
     paint.color = "ff0000ff" # red
     canvas.draw_rect(bg_rect)
     paint.color = "ffffffff" # white
     canvas.draw_text(
         text,
-        bg_rect.x + padding_x + 1,
-        bg_rect.y + padding_y + text_rect.height - 1)
+        bg_rect.x + padding_x + text_offset,
+        bg_rect.y + padding_y + text_rect.height - text_offset)
 
 def on_screen_change(screens):
     global mode_canvases
