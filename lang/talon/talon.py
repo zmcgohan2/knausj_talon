@@ -2,6 +2,7 @@ from talon import Module, Context, actions, ui, imgui, clip, settings, registry,
 
 mod = Module()
 ctx = Context()
+mod.tag("talon_python", "Tag to activate talon-specific python commands")
 mod.list("talon_actions")
 mod.list("talon_lists")
 mod.list("talon_captures")

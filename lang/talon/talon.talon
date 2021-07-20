@@ -4,8 +4,7 @@ and code.language: talon
 -
 tag(): user.code_operators
 tag(): user.code_comment
-settings():
-    
+
 dot talon: insert(".talon")
 #defintion blocks for the context
 action block:
@@ -44,6 +43,7 @@ capture {user.talon_captures}: "<{talon_captures}>"
 key <user.keys> over: "{keys}"
 key <user.modifiers> over: "{modifiers}"
 funk [user] {user.talon_actions}: user.code_insert_function(talon_actions, edit.selected_text())
+
 #funk commands, consistent with other languages
 toggle funk: user.code_toggle_functions()
 funk <user.code_functions>:
