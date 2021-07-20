@@ -117,8 +117,9 @@ def draw_mode(canvas):
         text_rect.width + (padding_x * 2),
         text_rect.height + (padding_y * 2)
     )    
+    paint.color = "ff0000ff" # red
     canvas.draw_rect(bg_rect)
-    paint.color = "ffffffff"
+    paint.color = "ffffffff" # white
     canvas.draw_text(
         text,
         bg_rect.x + padding_x + 1,
