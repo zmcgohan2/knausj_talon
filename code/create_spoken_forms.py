@@ -3,12 +3,12 @@ from typing import Dict, Generic, List, Mapping, Optional, TypeVar
 from collections import defaultdict
 import itertools
 
-from talon import actions, registry
-from talon import Context, Module, app, imgui, ui, fs
+from talon import actions
+from talon import Module
 import re
 
 from .extensions import file_extensions
-from .numbers import digits_map
+from .numbers import digits_map, teens, scales, tens
 from .abbreviate import abbreviations
 from .keys import symbol_key_words
 
@@ -17,31 +17,24 @@ mod = Module()
 # TODO: 'Whats application': 'WhatsApp' (Should keep "whats app" as well?)
 # TODO: 'V O X': 'VOX' (should keep "VOX" as well?)
 # Could handle by handling all alternatives for these, or by having hardcoded list of things that we want to handle specially
-
+# TODO: Tests
 DEFAULT_MINIMUM_TERM_LENGTH = 3
-
-SMALL_WORD = r"[A-Z]?[a-z]+"
-# TODO: We want "AXEvery" to be ["AX", "Every"]
-UPPERCASE_WORD = r"[A-Z]+"
+FANCY_REGULAR_EXPRESSION = r"[A-Z]?[a-z]+|[A-Z]+(?![a-z])|[0-9]+"
 FILE_EXTENSIONS_REGEX = "|".join(
     file_extension.strip() + "$" for file_extension in file_extensions.values()
 )
-DIGITS_REGEX = r"\d"
 SYMBOLS_REGEX = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
-FULL_REGEX_NO_SYMBOLS = re.compile(
+REGEX_NO_SYMBOLS = re.compile(
     "|".join(
         [
-            DIGITS_REGEX,
+            FANCY_REGULAR_EXPRESSION,
             FILE_EXTENSIONS_REGEX,
-            SMALL_WORD,
-            UPPERCASE_WORD,
         ]
     )
 )
-FULL_REGEX = re.compile(
-    "|".join(
-        [DIGITS_REGEX, FILE_EXTENSIONS_REGEX, SMALL_WORD, UPPERCASE_WORD, SYMBOLS_REGEX]
-    )
+
+REGEX_WITH_SYMBOLS = re.compile(
+    "|".join([FANCY_REGULAR_EXPRESSION, FILE_EXTENSIONS_REGEX, SYMBOLS_REGEX])
 )
 
 REVERSE_PRONUNCIATION_MAP = {
@@ -51,9 +44,124 @@ REVERSE_PRONUNCIATION_MAP = {
     **{value: key for key, value in symbol_key_words.items()},
 }
 
+# begin: create the lists etc necessary for create_spoken_word_for_number
+# by convention, each entry in the list has an append space... until I clean up the function
+# the algorithm's expectation is slightly different from numbers.py
+
+# the spoken form for "100"
+hundred = scales[0] + " "
+
+# ["", "one ", "two ",... "nine "] or equivalents
+ones = [""] + [
+    REVERSE_PRONUNCIATION_MAP[str(index)] + " " for index in range(10) if index != 0
+]
+
+# ["ten ", "eleven ",... "nineteen"] or equivalents
+teen = [tens[0]] + [val + " " for val in teens]
+
+# print("tens = " + str(ten))
+
+# ["","","twenty ","thirty ","forty ", "fifty ","sixty ","seventy ","eighty ","ninety "]
+# or equivalent
+twenties = ["", ""] + [val + " " for index, val in enumerate(tens) if index != 0]
+# print("twenties = " + str(twenties))
+
+thousands = [""] + [val + " " for index, val in enumerate(scales) if index != 0]
+# print("thousands = " + thousands)
+# end: create the lists necessary for create_spoken_word_for_number
+
+
+def create_spoken_form_for_number(num: int):
+    """Creates a spoken form for an integer"""
+
+    n3 = []
+    r1 = ""
+    # create numeric string
+    ns = str(num)
+    for k in range(3, 33, 3):
+        r = ns[-k:]
+        q = len(ns) - k
+        # break if end of ns has been reached
+        if q < -2:
+            break
+        else:
+            if q >= 0:
+                n3.append(int(r[:3]))
+            elif q >= -1:
+                n3.append(int(r[:2]))
+            elif q >= -2:
+                n3.append(int(r[:1]))
+        r1 = r
+
+    # break each group of 3 digits into
+    # ones, tens/twenties, hundreds
+    nw = ""
+    for i, x in enumerate(n3):
+        # print(x)
+        b1 = x % 10
+        b2 = (x % 100) // 10
+        b3 = (x % 1000) // 100
+        # print b1, b2, b3  # test
+        if x == 0:
+            continue  # skip
+        else:
+            t = thousands[i]
+        # print(str(b1) + ", " + str(b2) + ", " + str(b3))
+        if b2 == 0:
+            nw = ones[b1] + t + nw
+        elif b2 == 1:
+            nw = teen[b1] + t + nw
+        elif b2 > 1:
+            nw = twenties[b2] + ones[b1] + t + nw
+        if b3 > 0:
+            nw = ones[b3] + hundred + nw
+
+    return nw.strip()
+
+
+def create_spoken_form_years(num: str):
+    """Creates spoken form for numbers 1000 <= num <= 9999. Returns None if not supported"""
+
+    val = int(num)
+    if val > 9999 or val < 1000:
+        return None
+
+    hundreds = val // 100
+    remainder = val % 100
+
+    words = []
+    # 1900 => 19 hundred 5
+    # 2005 => 2 thousand 5
+    # 2100 => 21 hundred
+    if hundreds % 10 != 0:
+        words.append(create_spoken_form_for_number(hundreds))
+        words.append(scales[0])
+    else:
+        words.append(REVERSE_PRONUNCIATION_MAP[str(hundreds // 10)])
+        words.append(scales[1])
+
+    if remainder > 0:
+        # 1906 => "nineteen six"
+        if remainder < 10:
+            # if hundreds % 10 != 0:
+            #    words.append("oh")
+            # else:
+            words.append(REVERSE_PRONUNCIATION_MAP[str(remainder)])
+        else:
+            words.append(create_spoken_form_for_number(remainder))
+
+    return " ".join(words)
+
 
 def create_single_spoken_form(source: str):
+    """
+    Returns a spoken form of a string
+        (1) Returns the value from REVERSE_PRONUNCIATION_MAP if it exists
+        (2) Splits allcaps into separate letters ("ABC" -> A B C)
+        (3) Otherwise, returns the lower case source.
+    """
     normalized_source = source.lower()
+
     try:
         mapped_source = REVERSE_PRONUNCIATION_MAP[normalized_source]
     except KeyError:
@@ -61,6 +169,100 @@ def create_single_spoken_form(source: str):
     if mapped_source.isupper():
         mapped_source = " ".join(mapped_source)
     return mapped_source
+
+
+def create_spoken_forms_from_regex(source: str, pattern: re.Pattern):
+    """
+    Creates a list of spoken forms for source using the provided regex pattern.
+    For numeric pieces detected by the regex, generates both digit-wise and full
+    spoken forms for the numbers where appropriate.
+    """
+    pieces = list(pattern.finditer(source))
+
+    # list of spoken forms returned
+    spoken_forms = []
+
+    # contains the pieces for the spoken form with individual digits
+    full_form_digit_wise = []
+
+    # contains the pieces for the spoken form with the spoken version of the number
+    full_form_fancy_numbers = []
+
+    # contains the pieces for the spoken form for years like "1900" => nineteen hundred
+    full_form_spoken_form_years = []
+
+    # indicates whether or not we processed created a version with the full number (>10) translated
+    has_fancy_number_version = False
+
+    # indicates whether or not we processed created a version with the year-like ("1900" => nineteen hundred) numbers
+    has_spoken_form_years = False
+
+    for piece in pieces:
+        substring = piece.group(0)
+        length = len(substring)
+
+        # the length is currently capped at 34 digits for decillion
+        # since that's the max in numbers.py ... which is patently absurd
+        if length > 1 and length < 34 and substring.isnumeric():
+            has_fancy_number_version = True
+            val = int(substring)
+            spoken_form_years = create_spoken_form_years(val)
+            spoken_form = create_spoken_form_for_number(val)
+
+            if spoken_form_years:
+                has_spoken_form_years = True
+                full_form_spoken_form_years.append(spoken_form_years)
+            else:
+                full_form_spoken_form_years.append(spoken_form)
+
+            full_form_fancy_numbers.append(spoken_form)
+
+            # build the serial digit version
+            for digit in substring:
+                full_form_digit_wise.append(create_single_spoken_form(digit))
+
+        else:
+            spoken_form = create_single_spoken_form(substring)
+            full_form_fancy_numbers.append(spoken_form)
+            full_form_spoken_form_years.append(spoken_forms)
+            full_form_digit_wise.append(spoken_form)
+
+    if has_fancy_number_version:
+        spoken_forms.append(" ".join(full_form_fancy_numbers).lower())
+
+    if has_spoken_form_years:
+        result = " ".join(full_form_spoken_form_years)
+        if result not in spoken_forms:
+            spoken_forms.append(result)
+
+    spoken_forms.append(" ".join(full_form_digit_wise).lower())
+
+    return spoken_forms
+
+
+def generate_string_subsequences(
+    source: str,
+    words_to_exclude: List[str],
+    minimum_term_length=DEFAULT_MINIMUM_TERM_LENGTH,
+):
+    term_sequence = source.split(" ")
+    terms = list(
+        {
+            term.lower().strip()
+            for term in (
+                term_sequence
+                + list(itertools.accumulate([f"{term} " for term in term_sequence]))
+            )
+        }
+    )
+
+    terms = [
+        term
+        for term in terms
+        if (term not in words_to_exclude and len(term) >= minimum_term_length)
+    ]
+
+    return terms
 
 
 T = TypeVar("T")
@@ -85,57 +287,36 @@ class Actions:
         if words_to_exclude is None:
             words_to_exclude = []
 
-        pieces_no_symbols = list(FULL_REGEX_NO_SYMBOLS.finditer(source))
+        spoken_forms_without_symbols = create_spoken_forms_from_regex(
+            source, REGEX_NO_SYMBOLS
+        )
 
-        pieces_with_symbols = list(FULL_REGEX.finditer(source))
+        # todo: this could probably be optimized out if there's no symbols
+        spoken_forms_with_symbols = create_spoken_forms_from_regex(
+            source, REGEX_WITH_SYMBOLS
+        )
 
-        spoken_form_with_symbols = " ".join(
-            [create_single_spoken_form(piece.group(0)) for piece in pieces_with_symbols]
-        ).lower()
-
-        spoken_form_without_symbols = " ".join(
-            [create_single_spoken_form(piece.group(0)) for piece in pieces_no_symbols]
-        ).lower()
-
-        # these two may be identical, so ensure the list is reduced
-        full_forms = list(
-            set(
-                [
-                    spoken_form_with_symbols.lower(),
-                    spoken_form_without_symbols.lower(),
-                ]
-            )
+        # some may be identical, so ensure the list is reduced
+        full_spoken_forms = list(
+            set(spoken_forms_with_symbols + spoken_forms_without_symbols)
         )
 
         # only generate the subsequences if requested
         if generate_subsequences:
-            term_sequence = spoken_form_without_symbols.split(" ")
-            terms = list(
-                {
-                    term.lower().strip()
-                    for term in (
-                        term_sequence
-                        + list(
-                            itertools.accumulate([f"{term} " for term in term_sequence])
-                        )
-                    )
-                }
+
+            # todo: do we care about the subsequences that are excluded.
+            # the only one that seems relevant are the full spoken form for
+            terms = generate_string_subsequences(
+                spoken_forms_without_symbols[-1], words_to_exclude, minimum_term_length
             )
 
-            # add the full form if not present
-            if spoken_form_with_symbols not in terms:
-                terms.append(spoken_form_with_symbols)
-
-            terms = [
-                term
-                for term in terms
-                if (term not in words_to_exclude and len(term) >= minimum_term_length)
-                # always keep the full forms, even if < min term length?
-                or term in full_forms
-            ]
+            # always keep the full terms... there's probably a better way to do this
+            for form in full_spoken_forms:
+                if form not in terms:
+                    terms.append(form)
 
         else:
-            terms = full_forms
+            terms = full_spoken_forms
 
         return terms
 
