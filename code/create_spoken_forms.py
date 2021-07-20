@@ -31,12 +31,7 @@ FILE_EXTENSIONS_REGEX = "|".join(
 )
 SYMBOLS_REGEX = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
 REGEX_NO_SYMBOLS = re.compile(
-    "|".join(
-        [
-            FANCY_REGULAR_EXPRESSION,
-            FILE_EXTENSIONS_REGEX,
-        ]
-    )
+    "|".join([FANCY_REGULAR_EXPRESSION, FILE_EXTENSIONS_REGEX,])
 )
 
 REGEX_WITH_SYMBOLS = re.compile(
@@ -201,7 +196,7 @@ def create_spoken_forms_from_regex(source: str, pattern: re.Pattern):
 
     # indicates whether or not we processed created a version with the year-like ("1900" => nineteen hundred) numbers
     has_spoken_form_years = False
-
+    # print(source)
     for piece in pieces:
         substring = piece.group(0)
         length = len(substring)
@@ -232,7 +227,7 @@ def create_spoken_forms_from_regex(source: str, pattern: re.Pattern):
         else:
             spoken_form = create_single_spoken_form(substring)
             full_form_fancy_numbers.append(spoken_form)
-            full_form_spoken_form_years.append(spoken_forms)
+            full_form_spoken_form_years.append(spoken_form)
             full_form_digit_wise.append(spoken_form)
 
     if has_fancy_number_version:
