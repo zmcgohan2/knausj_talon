@@ -1,4 +1,7 @@
-from talon import Context, actions, ui, Module, app, clip
+from talon import Context, actions, ui, Module, app, clip, speech_system
+from talon.grammar import Phrase
+from typing import Union
+
 import os
 import re
 from itertools import islice
@@ -52,4 +55,15 @@ class Actions:
             result = "os: {}\nand app.name: {}\n".format(app.platform, friendly_name)
 
         clip.set_text(result)
+
+    def talon_sim_phrase(phrase: Union[str, Phrase]):
+        """Sims the phrase in the active app and dumps to the log"""
+        print("**** Simulated Phrse **** ")
+        print(speech_system._sim(str(phrase)))
+
+    def talon_action_find(action: str):
+        """Runs action.find for the provided action and dumps to the log"""
+        print("**** action.find{} **** ".format(action))
+
+        print(actions.find(action))
 

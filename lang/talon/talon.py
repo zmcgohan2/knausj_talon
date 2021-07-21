@@ -2,6 +2,7 @@ from talon import Module, Context, actions, ui, imgui, clip, settings, registry,
 
 mod = Module()
 ctx = Context()
+ctx_global = Context()
 mod.tag("talon_python", "Tag to activate talon-specific python commands")
 mod.list("talon_actions")
 mod.list("talon_lists")
@@ -28,10 +29,14 @@ def update_lists(decls):
     # print("update_lists")
     for thing in ["actions", "lists", "captures", "tags", "apps", "modes", "settings"]:
         l = getattr(decls, thing)
-        ctx.lists[f"user.talon_{thing}"] = actions.user.create_spoken_forms_from_list(
+        ctx_global.lists[
+            f"user.talon_{thing}"
+        ] = actions.user.create_spoken_forms_from_list(
             l.keys(), generate_subsequences=False
         )
-        # print("List: {} \n {}".format(thing, str(ctx.lists[f"user.talon_{thing}"])))
+        # print(
+        #     "List: {} \n {}".format(thing, str(ctx_global.lists[f"user.talon_{thing}"]))
+        # )
 
 
 def on_ready():

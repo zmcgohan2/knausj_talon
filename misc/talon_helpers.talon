@@ -26,3 +26,17 @@ talon dump context:
     print("Executable: {executable}")
     print("Bundle: {bundle}")
     print("Title: {title}")
+^talon debug sim last$:
+    phrase = user.history_get(1)
+    print(phrase)
+    user.talon_sim_phrase(phrase)
+^talon debug sim numb <number_small>$:
+    phrase = user.history_get(number_small)
+    print(phrase)
+    command = "sim('" + phrase
+    command = command + "')"
+    user.paste(command)
+^talon debug sim <phrase>$:
+    user.talon_sim_phrase(phrase)
+^talon debug action {user.talon_actions}$: 
+    user.talon_action_find("{user.talon_actions}")
