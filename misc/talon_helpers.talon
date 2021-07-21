@@ -44,3 +44,7 @@ talon dump context:
     user.talon_debug_list(talon_lists)
 ^talon copy list {user.talon_lists}$:
     user.talon_copy_list(talon_lists)
+^talon debug tags$:
+    user.talon_debug_tags()
+^talon debug modes$:
+    user.talon_debug_modes()

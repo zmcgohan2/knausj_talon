@@ -1,4 +1,14 @@
-from talon import Context, actions, ui, Module, app, clip, speech_system, registry
+from talon import (
+    Context,
+    actions,
+    ui,
+    Module,
+    app,
+    clip,
+    speech_system,
+    registry,
+    scope,
+)
 from talon.grammar import Phrase
 from typing import Union
 
@@ -75,7 +85,20 @@ class Actions:
         print(str(registry.lists[name]))
         print("***********************")
 
+    def talon_debug_tags():
+        """Dumps the active tags to the console"""
+        print("**** Dumping active tags *** ")
+        print(str(registry.tags))
+        print("***********************")
+
+    def talon_debug_modes():
+        """Dumps active modes to the console"""
+        print(scope.get("mode"))
+        print("***********************")
+
     def talon_copy_list(name: str):
         """Dumps the contents of list to the console"""
         print("**** Copied list {} **** ".format(name))
         clip.set_text(registry.lists[name])
+        print("***********************")
+

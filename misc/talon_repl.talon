@@ -31,6 +31,16 @@ tag(): user.talon_python
 ^debug list {user.talon_lists}$:
     insert("registry.lists['{talon_lists}']")
     key(enter)
+^debug tags$:
+    insert("registry.tags")
+    key(enter)
+^debug settings$:
+    insert("registry.settings")
+    key(enter)
+^debug modes$:
+    insert("scope.get('mode')")
+    key(enter)
+
 
 
     
