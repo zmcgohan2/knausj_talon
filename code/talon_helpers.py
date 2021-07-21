@@ -75,3 +75,7 @@ class Actions:
         print(str(registry.lists[name]))
         print("***********************")
 
+    def talon_copy_list(name: str):
+        """Dumps the contents of list to the console"""
+        print("**** Copied list {} **** ".format(name))
+        clip.set_text(registry.lists[name])
