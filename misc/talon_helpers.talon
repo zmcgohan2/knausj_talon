@@ -40,3 +40,6 @@ talon dump context:
     user.talon_sim_phrase(phrase)
 ^talon debug action {user.talon_actions}$: 
     user.talon_action_find("{user.talon_actions}")
+^talon debug list {user.talon_lists}$:
+    user.talon_debug_list(talon_lists)
+

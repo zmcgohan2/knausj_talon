@@ -1,4 +1,4 @@
-from talon import Context, actions, ui, Module, app, clip, speech_system
+from talon import Context, actions, ui, Module, app, clip, speech_system, registry
 from talon.grammar import Phrase
 from typing import Union
 
@@ -60,10 +60,18 @@ class Actions:
         """Sims the phrase in the active app and dumps to the log"""
         print("**** Simulated Phrse **** ")
         print(speech_system._sim(str(phrase)))
+        print("*************************")
 
     def talon_action_find(action: str):
         """Runs action.find for the provided action and dumps to the log"""
         print("**** action.find{} **** ".format(action))
-
         print(actions.find(action))
+        print("***********************")
+
+    def talon_debug_list(name: str):
+        """Dumps the contents of list to the console"""
+        print("**** Dumping list {} **** ".format(name))
+
+        print(str(registry.lists[name]))
+        print("***********************")
 
