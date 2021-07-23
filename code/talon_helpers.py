@@ -58,8 +58,10 @@ class Actions:
                 app.platform, actions.app.bundle()
             )
         elif app.platform == "windows":
-            result = "os: windows\nand app.name: {}\nos: windows\nand app.exe: {}\n".format(
-                friendly_name, executable
+            result = (
+                "os: windows\nand app.name: {}\nos: windows\nand app.exe: {}\n".format(
+                    friendly_name, executable
+                )
             )
         else:
             result = "os: {}\nand app.name: {}\n".format(app.platform, friendly_name)
@@ -93,7 +95,14 @@ class Actions:
 
     def talon_debug_modes():
         """Dumps active modes to the console"""
+        print("**** Active modes ****")
         print(scope.get("mode"))
+        print("***********************")
+
+    def talon_debug_scope(name: str):
+        """Dumps the active scope information to the console"""
+        print("**** Dumping {} scope ****".format(name))
+        print(scope.get(name))
         print("***********************")
 
     def talon_copy_list(name: str):
@@ -101,4 +110,3 @@ class Actions:
         print("**** Copied list {} **** ".format(name))
         clip.set_text(registry.lists[name])
         print("***********************")
-

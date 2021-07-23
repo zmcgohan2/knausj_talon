@@ -48,3 +48,5 @@ talon dump context:
     user.talon_debug_tags()
 ^talon debug modes$:
     user.talon_debug_modes()
+^talon debug scope {user.talon_scopes}$:
+    user.talon_debug_scope(talon_scopes)

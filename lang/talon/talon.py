@@ -12,7 +12,8 @@ mod.list("talon_tags")
 mod.list("talon_modes")
 mod.list("talon_settings")
 # todo: scopes
-# mod.list("talon_scopes")
+mod.list("talon_scopes")
+mod.list("talon_modes")
 
 ctx.matches = r"""
 mode: user.talon
@@ -37,6 +38,8 @@ def update_lists(decls):
         "tags",
         "apps",
         "settings",
+        "scopes",
+        "modes",
     ]:
         l = getattr(decls, thing)
         ctx_global.lists[
