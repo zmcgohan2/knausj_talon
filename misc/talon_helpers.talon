@@ -4,7 +4,6 @@ talon open rebel: menu.open_repl()
 talon home: menu.open_talon_home()
 talon copy context pie: user.talon_add_context_clipboard_python()
 talon copy context: user.talon_add_context_clipboard()
-
 talon copy name:
     name = app.name()
     clip.set_text(name)  
@@ -28,14 +27,10 @@ talon dump context:
     print("Title: {title}")
 ^talon test last$:
     phrase = user.history_get(1)
-    print(phrase)
     user.talon_sim_phrase(phrase)
 ^talon test numb <number_small>$:
     phrase = user.history_get(number_small)
-    print(phrase)
-    command = "sim('" + phrase
-    command = command + "')"
-    user.paste(command)
+    user.talon_sim_phrase(phrase)
 ^talon test <phrase>$:
     user.talon_sim_phrase(phrase)
 ^talon debug action {user.talon_actions}$: 
@@ -50,3 +45,7 @@ talon dump context:
     user.talon_debug_modes()
 ^talon debug scope {user.talon_scopes}$:
     user.talon_debug_scope(talon_scopes)
+^talon debug setting {user.talon_settings}$:
+    user.talon_debug_setting(talon_settings)
+^talon debug all settings$: 
+    user.talon_debug_all_settings()

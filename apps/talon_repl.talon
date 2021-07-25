@@ -5,11 +5,7 @@ tag(): user.talon_python
 
 ^test last$:
     phrase = user.history_get(1)
-    command = "sim('"
-    command = command + phrase
-    command = command + "')"
-    #to do: shouldn't this work?
-    #user.paste("sim({phrase})")
+    command = "sim('{phrase}')"
     insert(command)
     key(enter)
 ^test <phrase>$:
@@ -17,15 +13,12 @@ tag(): user.talon_python
     key(enter)
 ^test numb <number_small>$:
     phrase = user.history_get(number_small)
-    phrase = user.history_get(1)
-    command = "sim('"
-    command = command + phrase
-    command = command + "')"
+    command = "sim('{phrase}')"
     #to do: shouldn't this work?
     #user.paste("sim({phrase})")
     insert(command)
     key(enter)
-^debug action {user.talon_actions}$: 
+^debug action {user.talon_actions}$:
     insert("actions.find('{user.talon_actions}')")
     key(enter)
 ^debug list {user.talon_lists}$:
@@ -43,5 +36,5 @@ tag(): user.talon_python
 
 
 
-    
+
 

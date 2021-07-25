@@ -58,10 +58,8 @@ class Actions:
                 app.platform, actions.app.bundle()
             )
         elif app.platform == "windows":
-            result = (
-                "os: windows\nand app.name: {}\nos: windows\nand app.exe: {}\n".format(
-                    friendly_name, executable
-                )
+            result = "os: windows\nand app.name: {}\nos: windows\nand app.exe: {}\n".format(
+                friendly_name, executable
             )
         else:
             result = "os: {}\nand app.name: {}\n".format(app.platform, friendly_name)
@@ -109,4 +107,16 @@ class Actions:
         """Dumps the contents of list to the console"""
         print("**** Copied list {} **** ".format(name))
         clip.set_text(registry.lists[name])
+        print("***********************")
+
+    def talon_debug_setting(name: str):
+        """Dumps the current setting to the console"""
+        print("**** Dumping setting {} **** ".format(name))
+        print(registry.settings[name])
+        print("***********************")
+
+    def talon_debug_all_settings():
+        """Dumps all settings to the console"""
+        print("**** Dumping settings **** ")
+        print(str(registry.settings))
         print("***********************")

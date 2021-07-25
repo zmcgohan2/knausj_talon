@@ -1,6 +1,8 @@
+# this tag is meant to be asserted in a user-specific fashion as appropriate
+# to enable the talon-specific support for python
 tag: user.talon_python
 -
-standard imports:
+talon imports:
     "from talon import ui, Module, Context, registry, actions, imgui, cron\n"
 (context and module | module and context):
     """mod = Module()
@@ -20,11 +22,6 @@ context lists:
 context matches:
     'ctx.matches = r""""""'
     key(left:3 enter:2 up)
-clip capture:
-    """with clip.capture() as s:
-        actions.edit.copy()
-    text = s.get()
-    """
 mod list: user.code_insert_function("mod.list", edit.selected_text())
 mod tag: user.code_insert_function("mod.tag", edit.selected_text())
 (action | fun) {user.talon_actions}:

@@ -11,7 +11,6 @@ mod.list("talon_apps")
 mod.list("talon_tags")
 mod.list("talon_modes")
 mod.list("talon_settings")
-# todo: scopes
 mod.list("talon_scopes")
 mod.list("talon_modes")
 
