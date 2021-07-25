@@ -49,9 +49,6 @@ REVERSE_PRONUNCIATION_MAP = {
 # by convention, each entry in the list has an append space... until I clean up the function
 # the algorithm's expectation is slightly different from numbers.py
 
-# the spoken form for "100"
-hundred = scales[0]
-
 # ["", "one ", "two ",... "nine "] or equivalents
 ones = [""] + [
     REVERSE_PRONUNCIATION_MAP[str(index)] for index in range(10) if index != 0
@@ -114,43 +111,77 @@ def create_spoken_form_for_number(num: int):
         elif b2 > 1:
             words = [twenties[b2], ones[b1], t] + words
         if b3 > 0:
-            words = [ones[b3], hundred] + words
+            words = [ones[b3], scales[0]] + words
 
-    return " ".join(words)
+    return " ".join(words).strip()
 
 
 def create_spoken_form_years(num: str):
-    """Creates spoken form for numbers 1000 <= num <= 9999. Returns None if not supported"""
+    """Creates spoken forms for numbers 1000 <= num <= 9999. Returns None if not supported"""
 
     val = int(num)
     if val > 9999 or val < 1000:
         return None
 
-    hundreds = val // 100
+    centuries = val // 100
     remainder = val % 100
 
     words = []
-    # 1900 => 19 hundred 5
-    # 2005 => 2 thousand 5
-    # 2100 => 21 hundred
-    if hundreds % 10 != 0:
-        words.append(create_spoken_form_for_number(hundreds))
-        words.append(scales[0])
-    else:
-        words.append(REVERSE_PRONUNCIATION_MAP[str(hundreds // 10)])
-        words.append(scales[1])
 
-    if remainder > 0:
+    if centuries % 10 != 0:
+        words.append(create_spoken_form_for_number(centuries))
+
+        # 1900 -> nineteen hundred
+        if remainder == 0:
+            words.append(scales[0])
+    else:
+
+        # 200X -> two thousand x
+        if remainder < 9:
+            words.append(REVERSE_PRONUNCIATION_MAP[str(centuries // 10)])
+            words.append(scales[1])
+
+        # 20XX => twenty xx
+        else:
+            words.append(create_spoken_form_for_number(str(centuries)))
+
+    if remainder != 0:
         # 1906 => "nineteen six"
         if remainder < 10:
-            if hundreds % 10 != 0:
-                words.append("oh")
+
+            # todo: decide if we want nineteen oh five"
+            # todo: decide if we want "and"
+            # both seem like a waste
+            # if centuries % 10 != 0:
+            #     words.append("oh")
 
             words.append(REVERSE_PRONUNCIATION_MAP[str(remainder)])
         else:
             words.append(create_spoken_form_for_number(remainder))
 
     return " ".join(words)
+
+
+# # ---------- create_spoken_form_years  (uncomment to run) ----------
+# def test_year(year: str, expected: str):
+#     result = create_spoken_form_years(year)
+#     print(f"test_year: test string = {year}, result = {result}, expected = {expected}")
+#     assert create_spoken_form_years(year) == expected
+
+
+# print("************* test_year tests ******************")
+# test_year("1100", "eleven hundred")
+# test_year("1905", "nineteen five")
+# test_year("1910", "nineteen ten")
+# test_year("1925", "nineteen twenty five")
+# test_year("2000", "two thousand")
+# test_year("2005", "two thousand five")
+# test_year("2020", "twenty twenty")
+# test_year("2019", "twenty nineteen")
+# test_year("2085", "twenty eighty five")
+# test_year("2100", "twenty one hundred")
+# test_year("2105", "twenty one five")
+# print("************* test_year tests done**************")
 
 
 def create_single_spoken_form(source: str):
