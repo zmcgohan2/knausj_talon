@@ -21,7 +21,7 @@ talon dump version:
     print(result)
 talon insert version: 
     result = user.talon_version_info()
-    insert(result)
+    user.paste(result)
 talon dump context: 
     result = user.talon_get_active_context()
     print(result)
