@@ -17,6 +17,9 @@ import os
 import re
 import platform
 from itertools import islice
+import pprint
+
+pp = pprint.PrettyPrinter()
 
 
 mod = Module()
@@ -152,3 +155,12 @@ class Actions:
         )
         return result
 
+    def talon_pretty_print(string: str):
+        """Uses pretty print to dump something"""
+        pp.pprint(string)
+
+    def talon_debug_app_windows(app: str):
+        """Pretty prints the application windows"""
+        apps = ui.apps(name=app, background=False)
+        for app in apps:
+            pp.pprint(app.windows())
