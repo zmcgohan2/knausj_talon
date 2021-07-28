@@ -31,7 +31,7 @@ tag(): user.talon_python
     insert("actions.user.talon_pretty_print(registry.settings)")
     key(enter)
 ^debug modes$:
-    insert("scope.get('mode')")
+    insert("actions.user.talon_pretty_print(scope.get('mode'))")
     key(enter)
 ^debug scope {user.talon_scopes}$:
     insert("actions.user.talon_pretty_print(scope.get('{talon_scopes}'))")
