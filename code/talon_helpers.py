@@ -15,13 +15,14 @@ from typing import Union
 
 import os
 import re
+import platform
 from itertools import islice
 
 
 mod = Module()
 pattern = re.compile(r"[A-Z][a-z]*|[a-z]+|\d")
 
-# todo: should this be an action that lives elsewhere??
+
 def create_name(text, max_len=20):
     return "_".join(list(islice(pattern.findall(text), max_len))).lower()
 
@@ -141,3 +142,21 @@ class Actions:
         print("Windows: " + str(ui.active_app().windows()))
         actions.user.talon_debug_context()
         print("***********************")
+
+    def talon_copy_active_application_info():
+        """Adds all active app info to the cliboard"""
+        result = str(ui.active_app())
+        result += "\nActive window: " + str(ui.active_window())
+        result += "\nWindows: " + +str(ui.active_app().windows())
+        result += "\nName: " + actions.app.name()
+        result += "\nExecutable: " + actions.app.executable()
+        result += "\nBundle: " + actions.app.bundle()
+        result += "\nTitle: " + actions.win.title()
+
+    def talon_version_info():
+        """Returns talon & operation system verison information"""
+        result = (
+            f"Version: {app.version}, Branch: {app.branch}, OS: {platform.platform()}"
+        )
+        return result
+

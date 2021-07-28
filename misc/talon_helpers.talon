@@ -16,7 +16,13 @@ talon copy bundle:
 talon copy title: 
     title = win.title()
     clip.set_text(title)
-talon dump context: actions.user.talon_debug_context()
+talon dump version: 
+    result = user.talon_version_info()
+    print(result)
+talon insert version: 
+    result = user.talon_version_info()
+    insert(result)
+talon dump context: user.talon_debug_context()
 ^talon test last$:
     phrase = user.history_get(1)
     user.talon_sim_phrase(phrase)
@@ -43,3 +49,5 @@ talon dump context: actions.user.talon_debug_context()
     user.talon_debug_all_settings()
 ^talon debug active app$: 
     user.talon_debug_active_application()
+^talon copy active app info$:
+    user.talon_copy_active_application_info()
