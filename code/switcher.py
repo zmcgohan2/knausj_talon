@@ -206,7 +206,11 @@ class Actions:
                     name = full_application_name
                     break
         for app in ui.apps():
-            if app.name == name and not app.background:
+            if (
+                app.name == name
+                or app.exe.split(os.path.sep)[-1] == name
+                and not app.background
+            ):
                 return app
         raise RuntimeError(f'App not running: "{name}"')
 

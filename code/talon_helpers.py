@@ -8,6 +8,7 @@ from talon import (
     speech_system,
     registry,
     scope,
+    ui,
 )
 from talon.grammar import Phrase
 from typing import Union
@@ -119,4 +120,24 @@ class Actions:
         """Dumps all settings to the console"""
         print("**** Dumping settings **** ")
         print(str(registry.settings))
+        print("***********************")
+
+    def talon_debug_context():
+        """Dumps active context info to the console"""
+        name = actions.app.name()
+        executable = actions.app.executable()
+        bundle = actions.app.bundle()
+        title = actions.win.title()
+        print(f"Name: {name}")
+        print(f"Executable: {executable}")
+        print(f"Bundle: {bundle}")
+        print(f"Title: {title}")
+
+    def talon_debug_active_application():
+        """Dumps all active app info to the console"""
+        print("**** Dumping active application **** ")
+        print(str(ui.active_app()))
+        print("Active window: " + str(ui.active_window()))
+        print("Windows: " + str(ui.active_app().windows()))
+        actions.user.talon_debug_context()
         print("***********************")
