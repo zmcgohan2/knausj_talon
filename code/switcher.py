@@ -66,11 +66,10 @@ words_to_exclude = [
 
 # windows-specific logic
 if app.platform == "windows":
-    import ctypes
     import os
-
-    import pythoncom
+    import ctypes
     import pywintypes
+    import pythoncom
     import winerror
 
     try:
@@ -79,12 +78,12 @@ if app.platform == "windows":
         # Python 2
         import _winreg as winreg
 
-        bytes = lambda x: str(buffer(x))
+        def bytes(x):
+            return str(buffer(x))
 
     from ctypes import wintypes
-
-    from win32com.propsys import propsys, pscon
     from win32com.shell import shell, shellcon
+    from win32com.propsys import propsys, pscon
 
     # KNOWNFOLDERID
     # https://msdn.microsoft.com/en-us/library/dd378457
@@ -162,7 +161,7 @@ def launch_applications(m) -> str:
     return m.launch
 
 
-def update_running_list():
+def update_lists():
     global running_application_dict
     running_application_dict = {}
     running = {}
@@ -212,16 +211,27 @@ class Actions:
         raise RuntimeError(f'App not running: "{name}"')
 
     def switcher_focus(name: str):
-        """Focus a new application by  name"""
+        """Focus a new application by name"""
         app = actions.user.get_running_app(name)
-        app.focus()
+        actions.user.switcher_focus_app(app)
 
-        # Hacky solution to do this reliably on Mac.
-        timeout = 5
+    def switcher_focus_app(app: ui.App):
+        """Focus application and wait until switch is made"""
+        app.focus()
         t1 = time.monotonic()
-        if talon.app.platform == "mac":
-            while ui.active_app() != app and time.monotonic() - t1 < timeout:
-                time.sleep(0.1)
+        while ui.active_app() != app:
+            if time.monotonic() - t1 > 1:
+                raise RuntimeError(f"Can't focus app: {app.name}")
+            actions.sleep(0.1)
+
+    def switcher_focus_window(window: ui.Window):
+        """Focus window and wait until switch is made"""
+        window.focus()
+        t1 = time.monotonic()
+        while ui.active_window() != window:
+            if time.monotonic() - t1 > 1:
+                raise RuntimeError(f"Can't focus window: {window.title}")
+            actions.sleep(0.1)
 
     def switcher_launch(path: str):
         """Launch a new application by path"""
@@ -288,7 +298,8 @@ def update_launch_list():
             # print("hit: " + name)
             # print(name)
             # name = path.rsplit("\\")[-1].split(".")[0].lower()
-            launch[name] = name
+            if "install" not in name:
+                launch[name] = name
 
     ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_map(
         launch, words_to_exclude
@@ -298,7 +309,7 @@ def update_launch_list():
 
 def ui_event(event, arg):
     if event in ("app_launch", "app_close"):
-        update_running_list()
+        update_lists()
 
 
 # Currently update_launch_list only does anything on mac, so we should make sure
@@ -309,7 +320,7 @@ ctx.lists["user.running"] = {}
 # Talon starts faster if you don't use the `talon.ui` module during launch
 def on_ready():
     update_launch_list()
-    update_running_list()
+    update_lists()
     ui.register("", ui_event)
 
 

@@ -1,16 +1,1 @@
-#extensions
-dot pie: ".py"
-dot talent: ".talon"
-dot mark down: ".md"
-dot shell: ".sh"
-dot vim: ".vim"
-dot see: ".c"
-dot see sharp: ".cs"
-dot com: ".com"
-dot net: ".net"
-dot org: ".org"
-#these two are Dragon specific
-.exe: ".exe"
-.com: ".com"
-dot (bin | bend): ".bin"	
-dot (jason | jay son): ".json"
+{user.file_extension}: "{file_extension}"
