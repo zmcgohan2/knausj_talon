@@ -22,7 +22,9 @@ talon dump version:
 talon insert version: 
     result = user.talon_version_info()
     insert(result)
-talon dump context: user.talon_debug_context()
+talon dump context: 
+    result = user.talon_get_active_context()
+    print(result)
 ^talon test last$:
     phrase = user.history_get(1)
     user.talon_sim_phrase(phrase)
@@ -48,6 +50,10 @@ talon dump context: user.talon_debug_context()
 ^talon debug all settings$: 
     user.talon_debug_all_settings()
 ^talon debug active app$: 
-    user.talon_debug_active_application()
-^talon copy active app info$:
-    user.talon_copy_active_application_info()
+    result = user.talon_get_active_application_info()
+    print("**** Dumping active application **** ")
+    print(result)
+    print("***********************")
+^talon copy active app$:
+    result = user.talon_get_active_application_info()
+    clip.set_text(result)

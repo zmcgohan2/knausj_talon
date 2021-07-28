@@ -123,37 +123,29 @@ class Actions:
         print(str(registry.settings))
         print("***********************")
 
-    def talon_debug_context():
-        """Dumps active context info to the console"""
+    def talon_get_active_context() -> str:
+        """Returns active context info"""
         name = actions.app.name()
         executable = actions.app.executable()
         bundle = actions.app.bundle()
         title = actions.win.title()
-        print(f"Name: {name}")
-        print(f"Executable: {executable}")
-        print(f"Bundle: {bundle}")
-        print(f"Title: {title}")
+        result = (
+            f"Name: {name}\nExecutable: {executable}\nBundle: {bundle}\nTitle: {title}"
+        )
+        return result
 
-    def talon_debug_active_application():
-        """Dumps all active app info to the console"""
-        print("**** Dumping active application **** ")
-        print(str(ui.active_app()))
-        print("Active window: " + str(ui.active_window()))
-        print("Windows: " + str(ui.active_app().windows()))
-        actions.user.talon_debug_context()
-        print("***********************")
-
-    def talon_copy_active_application_info():
-        """Adds all active app info to the cliboard"""
+    def talon_get_active_application_info() -> str:
+        """Returns all active app info to the cliboard"""
         result = str(ui.active_app())
         result += "\nActive window: " + str(ui.active_window())
-        result += "\nWindows: " + +str(ui.active_app().windows())
+        result += "\nWindows: " + str(ui.active_app().windows())
         result += "\nName: " + actions.app.name()
         result += "\nExecutable: " + actions.app.executable()
         result += "\nBundle: " + actions.app.bundle()
         result += "\nTitle: " + actions.win.title()
+        return result
 
-    def talon_version_info():
+    def talon_version_info() -> str:
         """Returns talon & operation system verison information"""
         result = (
             f"Version: {app.version}, Branch: {app.branch}, OS: {platform.platform()}"
