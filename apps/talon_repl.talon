@@ -33,8 +33,6 @@ tag(): user.talon_python
 ^debug modes$:
     insert("scope.get('mode')")
     key(enter)
-
-
-
-
-
+^debug scope {user.talon_scopes}$:
+    insert("scope.get('{talon_scopes}')")
+    key(enter)
