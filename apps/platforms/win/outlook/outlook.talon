@@ -1,5 +1,5 @@
 os: windows
-and app.name: Outlook
+and app.exe: OUTLOOK.EXE
 -
 archive: key(backspace)
 flag: key(shift-f10 u a)
