@@ -1,4 +1,4 @@
-from talon import Context, actions, ui
+from talon import Context, actions, ui, app
 from pathlib import Path
 from subprocess import call
 ctx = Context()
@@ -103,7 +103,11 @@ os: windows
 @ctx_global.action_class('user')
 class Actions:
 	def subl(paths: list[str]):
-		# XXX assume Sublime Text is running
-		sublime_text = ui.apps(name='Sublime Text')[0]
+		sublime_text = ui.apps(name='Sublime Text')
+		if not sublime_text:
+			app.notify('Sublime Text is not running.')
+			return
+		else:
+			sublime_text = sublime_text[0]
 		subl_path = str(Path(sublime_text.exe).parents[0] / "subl.exe")
 		call([subl_path, '--'] + paths)

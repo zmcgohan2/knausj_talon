@@ -16,4 +16,3 @@ class Actions:
 	def subl_talon_user_settings():
 		"""Edit Talon user settings with Sublime Text."""
 		actions.user.subl(list(SETTINGS_DIR.glob('*.csv')))
-
