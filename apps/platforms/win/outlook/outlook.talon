@@ -2,9 +2,9 @@ os: windows
 and app.exe: OUTLOOK.EXE
 -
 archive: key(backspace)
-flag: key(shift-f10 u a)
-unflag:	key(shift-f10 u e)
-junk: key(shift-f10 j enter)
+flag: key(alt-h u a)
+unflag:	key(alt-h u e)
+junk: key(alt-h j b)
 
 move:
 	key(ctrl-shift-v)
