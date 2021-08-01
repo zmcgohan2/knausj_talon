@@ -6,7 +6,7 @@ talon copy context pie: user.talon_add_context_clipboard_python()
 talon copy context: user.talon_add_context_clipboard()
 talon copy name:
     name = app.name()
-    clip.set_text(name)  
+    clip.set_text(name)
 talon copy executable:
     executable = app.executable()
     clip.set_text(executable)
@@ -21,7 +21,7 @@ talon dump version:
     print(result)
 talon insert version: 
     result = user.talon_version_info()
-    user.paste(result)
+    insert(result)
 talon dump context: 
     result = user.talon_get_active_context()
     print(result)
@@ -39,6 +39,7 @@ talon dump context:
     user.talon_debug_list(talon_lists)
 ^talon copy list {user.talon_lists}$:
     user.talon_copy_list(talon_lists)
+
 ^talon debug tags$:
     user.talon_debug_tags()
 ^talon debug modes$:
