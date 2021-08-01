@@ -5,6 +5,8 @@ app: citrix_viewer
 settings():
 	key_wait = 4.0
 
+full screen: user.window_toggle_full_screen()
+
 # Windows
 start [<user.text>]:
 	key(ctrl-esc)
