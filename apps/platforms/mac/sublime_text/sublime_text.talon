@@ -28,7 +28,9 @@ project switch [<user.text>]:
 project symbol [<user.text>]:
     key(cmd-shift-r)
     insert(user.text or "")
-    
+
+complete: key(ctrl-space)
+
 slap: key(cmd-enter)
 
 # navigate through multifile search results
