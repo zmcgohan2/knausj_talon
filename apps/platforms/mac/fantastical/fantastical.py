@@ -8,7 +8,7 @@ os: mac
 """
 
 @ctx.action_class("user")
-class fantastical_actions:
+class UserActions:
 	def fantastical_parse(text: str):
 		from talon.mac import applescript
 		text = text.replace('"', '\"')
@@ -23,7 +23,7 @@ class fantastical_actions:
 		webbrowser.open(f"x-fantastical3://show/calendar")
 
 @mod.action_class
-class FantasticalActions:
+class Actions:
 	def fantastical_parse(text: str): """Parses the text in Fantastical."""
 	def fantastical_show_mini_calendar(): """Shows the mini calendar popover."""
 	def fantastical_show_calendar(): """Shows the calendar window."""

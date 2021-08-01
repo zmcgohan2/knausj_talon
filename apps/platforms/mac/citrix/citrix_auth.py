@@ -9,7 +9,7 @@ and app.bundle: com.citrix.AuthManagerMac
 """
 
 @ctx.action_class("user")
-class user_actions:
+class UserActions:
 	def citrix_sign_in():
 		citrix_auth = ui.apps(bundle='com.citrix.AuthManagerMac')[0]
 		# XXX have to focus another app then back to the app or the window will not show up
@@ -34,6 +34,6 @@ class user_actions:
 		submit.perform('AXPress')
 
 @mod.action_class
-class Action:
+class Actions:
 	def citrix_sign_in():
 		"""Sign into Citrix Workspace."""
