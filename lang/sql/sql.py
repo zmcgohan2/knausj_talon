@@ -8,6 +8,11 @@ and code.language: sql
 
 @ctx.action_class('user')
 class UserActions:
+    def code_operator_addition(): actions.auto_insert(' + ')
+    def code_operator_subtraction(): actions.auto_insert(' - ')
+    def code_operator_multiplication(): actions.auto_insert(' * ')
+    def code_operator_division(): actions.auto_insert(' / ')
+    
     def code_operator_equal(): actions.auto_insert(' = ')
     def code_operator_not_equal(): actions.auto_insert(' <> ')
     def code_operator_greater_than(): actions.auto_insert(' > ')
