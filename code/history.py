@@ -79,6 +79,6 @@ class Actions:
         hist_more = False
 
     def history_get(number: int):
-        """returns the desired index"""
+        """returns the history entry at the specified index"""
         num = (0 - number) - 1
         return history[num]
