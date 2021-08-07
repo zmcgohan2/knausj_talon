@@ -1,9 +1,9 @@
 os: mac
 -
 
-launch <phrase>:
+launch <user.text>:
 	key(cmd-space)
-	insert('{user.formatted_text(phrase, "ALL_LOWERCASE,NO_SPACES")}')
+	insert('{user.formatted_text(text, "ALL_LOWERCASE,NO_SPACES")}')
 
 launch brief {user.abbreviation}: 
 	key(cmd-space)
