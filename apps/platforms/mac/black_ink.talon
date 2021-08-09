@@ -13,3 +13,6 @@ right: key(right)
 <user.number_string>:
 	"{number_string}"
 	key(enter)
+
+download:
+	key(cmd-alt-o return)
