@@ -134,10 +134,10 @@ class UserActions:
 	def onenote_copy_link():
 		onenote = onenote_app()
 		# despite the name of this menu item, the link takes you directly to the selected paragraph
-		(onenote.children.find_one(AXRole='AXMenuBar')
-				.children.find_one(AXRole='AXMenuBarItem', AXTitle='Notebooks')
-				.children[0].children.find_one(AXRole='AXMenuItem', AXTitle='Pages')
-				.children[0].children.find_one(AXRole='AXMenuItem', AXTitle='Copy Link to Page')
+		(onenote.children.find_one(AXRole='AXMenuBar', max_depth=0)
+				.children.find_one(AXRole='AXMenuBarItem', AXTitle='Notebooks', max_depth=0)
+				.children[0].children.find_one(AXRole='AXMenuItem', AXTitle='Pages', max_depth=0)
+				.children[0].children.find_one(AXRole='AXMenuItem', AXTitle='Copy Link to Page', max_depth=0)
 		).perform('AXPress')
 		app.notify(body='Copied link to paragraph', title='OneNote')
 
