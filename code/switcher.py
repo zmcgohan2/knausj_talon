@@ -265,7 +265,12 @@ class Actions:
 
     def switcher_focus(name: str):
         """Focus a new application by name"""
-        app = actions.user.get_running_app(name)
+        try:
+            app = actions.user.get_running_app(name)
+        except RuntimeError as e:
+            talon.app.notify('Unable to focus app', '\n'.join(e.args))
+            return
+
         app.focus()
 
         # Hacky solution to do this reliably on Mac.
