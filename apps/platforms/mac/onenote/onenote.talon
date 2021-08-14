@@ -24,6 +24,8 @@ move left: key(cmd-[)
 collapse: key(ctrl-shift--)
 expand: key(ctrl-shift-+)
 
+ribbon: key(cmd-alt-r)
+
 go (notebook | notebooks): key(ctrl-g)
 
 go (section | sections): key(ctrl-shift-g)
