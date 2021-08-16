@@ -15,3 +15,4 @@ talon dump context:
     print("Bundle: {bundle}")
     print("Title: {title}")
 
+talon relaunch: user.talon_relaunch()
