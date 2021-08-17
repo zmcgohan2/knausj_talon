@@ -34,3 +34,10 @@ toggle stroke: key(B)
 toggle guides: key(cmd-alt-;)
 
 toggle palettes: key(tab)
+
+zoom to fit: key(cmd-0)
+one hundred percent: key(cmd-1)
+two hundred percent: key(cmd-2)
+four hundred percent: key(cmd-3)
+eight hundred percent: key(cmd-4)
+fifty percent: key(cmd-5)
