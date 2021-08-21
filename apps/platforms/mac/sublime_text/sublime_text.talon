@@ -45,3 +45,12 @@ go forward: key(ctrl-shift--)
     key(cmd-shift-p)
     insert("Sublime Merge: Open Repository")
     key(enter)
+
+# Search through Talon or Python files when editing Talon configuration
+hunt pie [<user.text>]:
+    text = text or ""
+    user.sublime_text_find_in_project_files(text, "*.py,*.pyi")
+
+hunt talon [<user.text>]:
+    text = text or ""
+    user.sublime_text_find_in_project_files(text, "*.talon")

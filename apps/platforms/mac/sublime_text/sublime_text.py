@@ -40,6 +40,11 @@ class EditActions:
 
 @ctx.action_class('user')
 class UserActions:
+	def sublime_text_find_in_project_files(text: str, files: str):
+		actions.user.find_everywhere(text)
+		actions.key("tab cmd-a")
+		actions.insert("<project filters>," + files)
+
 	# user.find_and_replace
 	def find(text: str):
 		actions.key("cmd-f")
@@ -107,7 +112,10 @@ class WinActions:
 @mod.action_class
 class Actions:
 	def subl(paths: list[str]):
-		"""Open the specified paths in Sublime Text."""
+		"""Open the specified paths in Sublime Text"""
 		sublime_text = actions.user.launch_or_focus_bundle('com.sublimetext.4')
 		subl_path = join(sublime_text.path, 'Contents/SharedSupport/bin/subl')
 		call([subl_path, '--'] + paths)
+
+	def sublime_text_find_in_project_files(text: str, files: str):
+		"""Find text in the specified project files"""
