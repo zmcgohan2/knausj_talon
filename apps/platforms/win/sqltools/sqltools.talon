@@ -1,6 +1,7 @@
 os: windows
 and app: sqltools
 -
+tag(): user.line_commands
 tag(): user.tabs
 
 run: key(ctrl-enter)
