@@ -16,6 +16,10 @@ modes = {
 for key, value in modes.items():
     mod.mode(key, value)
 
+def dictation_mode_active() -> bool:
+    # XXX uses private API
+    from talon import registry
+    return 'dictation' in registry._modes.modes
 
 @mod.action_class
 class Actions:
@@ -66,9 +70,7 @@ class Actions:
 
     def toggle_dictation_mode():
         """Switch from dictation to command mode or vice versa."""
-        # XXX uses private API
-        from talon import registry
-        if 'dictation' in registry._modes.modes:
+        if dictation_mode_active():
             actions.user.command_mode()
         else:
             actions.user.dictation_mode()
@@ -148,9 +150,7 @@ def on_screen_change(screens):
 
     mode_canvases = []
 
-    # XXX uses private API
-    from talon import registry
-    if 'dictation' in registry._modes.modes:
+    if dictation_mode_active():
         show_mode()
 
 # XXX doesn't work when display configuration is changed
