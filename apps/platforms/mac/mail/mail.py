@@ -9,7 +9,7 @@ and app.bundle: com.apple.mail
 """
 
 @ctx.action_class("user")
-class user_actions:
+class UserActions:
 	def mail_select_last_message():
 		mail = ui.apps(bundle='com.apple.mail')[0]
 		focused = mail.focused_element
@@ -25,6 +25,6 @@ class user_actions:
 		last_row['AXSelected'] = True
 
 @mod.action_class
-class Action:
+class Actions:
 	def mail_select_last_message():
 		"""Select the last message in the currently focused Apple Mail message viewer."""

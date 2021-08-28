@@ -10,10 +10,10 @@ app.bundle: com.microsoft.Outlook
 """
 
 @ctx.action_class("user")
-class outlook_actions:
+class UserActions:
 	def outlook_set_selected_folder(folder: str):
 		applescript.run(f'tell app id "com.microsoft.Outlook" to set selected folder to {folder}')
 
 @mod.action_class
-class OutlookActions:
+class Actions:
 	def outlook_set_selected_folder(folder: str): """Opens the specified folder in Outlook."""

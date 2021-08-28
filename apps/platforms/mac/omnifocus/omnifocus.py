@@ -12,7 +12,7 @@ and app.bundle: com.omnigroup.OmniFocus3.MacAppStore
 """
 
 @ctx.action_class("user")
-class user_actions:
+class UserActions:
 	def omnifocus_complete():
 		applescript.run("""tell application id "com.omnigroup.OmniFocus3.MacAppStore"
 			set _content to window 1's content
@@ -35,7 +35,7 @@ class user_actions:
 		actions.insert(text)
 
 @mod.action_class
-class Action:
+class Actions:
 	def omnifocus_complete():
 		"""Mark the selection as completed while preserving the selection"""
 

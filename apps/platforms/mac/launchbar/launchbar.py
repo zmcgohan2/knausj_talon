@@ -8,12 +8,12 @@ os: mac
 """
 
 @ctx.action_class("user")
-class launchbar_actions:
+class UserActions:
 	def launchbar_action(action: str):
 		from talon.mac import applescript
 		action = action.replace('"', '\"')
 		applescript.run(f'tell app id "at.obdev.LaunchBar" to perform action "{action}"')
 
 @mod.action_class
-class LaunchBarActions:
+class Actions:
 	def launchbar_action(action: str): """Performs the LaunchBar action."""
