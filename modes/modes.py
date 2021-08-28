@@ -106,7 +106,7 @@ def draw_mode(canvas):
     paint = canvas.paint
     paint.textsize = 12
     text = 'Dictation Mode'
-    _, text_rect = canvas.paint.measure_text(text)
+    _, text_rect = paint.measure_text(text)
 
     screen = ui.screen_containing(canvas.x, canvas.y)
     screen_rect = screen.visible_rect
