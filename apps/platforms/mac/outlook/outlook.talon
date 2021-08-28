@@ -3,7 +3,7 @@ app.bundle: com.microsoft.Outlook
 archive: key(ctrl-e)
 delete: key(cmd-backspace)
 flag: key(ctrl-5)
-unflag:	key(cmd-alt-')
+unflag: user.outlook_unflag()
 junk: key(cmd-shift-j)
 
 send [this] message: key(cmd-enter)
