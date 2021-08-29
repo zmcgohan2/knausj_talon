@@ -23,7 +23,7 @@ message (last | lost | lust):
 move:
 	key(ctrl-s)
 
-(move to | folder) [<user.text>]:
+(save to | move to | folder) [<user.text>]:
 	key(ctrl-s)
 	sleep(200ms)
 	insert(user.text or "")
