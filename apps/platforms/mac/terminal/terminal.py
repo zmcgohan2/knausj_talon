@@ -1,6 +1,8 @@
 from talon import Context, Module, actions, imgui, settings, ui
 import os
 
+# TODO: fit this to generic_terminal
+
 ctx = Context()
 ctx.matches = r"""
 app: apple_terminal
@@ -23,9 +25,6 @@ class AppActions:
 
 @ctx.action_class('edit')
 class EditActions:
-	def paste():       actions.key('shift-insert')
-	def copy():        actions.key('ctrl-insert')
-	
 	def delete():
 		actions.key('ctrl-w')
 	def extend_word_left():

@@ -26,9 +26,7 @@ file save: edit.save()
 (pad | padding): 
 	insert("  ") 
 	key(left)
-slap:
-	edit.line_end()
-	key(enter)
+slap: edit.line_insert_down()
 new paragraph:
 	edit.line_end()
 	key(enter)

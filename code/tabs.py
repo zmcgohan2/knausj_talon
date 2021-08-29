@@ -12,3 +12,7 @@ class tab_actions:
 
     def tab_overview():
         """Shows tab thumbnails"""
+
+    def tab_close_wrapper():
+        """Closes the current tab"""
+        actions.app.tab_close()
