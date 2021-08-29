@@ -25,11 +25,8 @@ talon insert version:
 talon dump context: 
     result = user.talon_get_active_context()
     print(result)
-^talon test last$:
-    phrase = user.history_get(1)
-    user.talon_sim_phrase(phrase)
-^talon test numb <number_small>$:
-    phrase = user.history_get(number_small)
+^talon test [<user.ordinals>] last$:
+    phrase = user.history_get(ordinals or 1)
     user.talon_sim_phrase(phrase)
 ^talon test <phrase>$:
     user.talon_sim_phrase(phrase)
