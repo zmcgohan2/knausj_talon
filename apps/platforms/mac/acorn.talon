@@ -26,7 +26,7 @@ reset control points: key(C)
 line: key(;)
 rectangle: key(r)
 oval: key(o)
-color: key(ctrl-c)
+color | eyedropper: key(ctrl-c)
 
 toggle fill: key(F)
 toggle stroke: key(B)
