@@ -75,10 +75,22 @@ class Actions:
         else:
             actions.user.dictation_mode()
 
+dictation_apps = set()
+
 def set_command_mode_on_app_deactivate(app):
+    global dictation_apps
+
     if dictation_mode_active():
+        dictation_apps.add(app)
         actions.user.command_mode()
+    elif app in dictation_apps:
+        dictation_apps.remove(app)
 ui.register('app_deactivate', set_command_mode_on_app_deactivate)
+
+def restore_dictation_mode_on_app_activate(app):
+    if app in dictation_apps and not dictation_mode_active():
+        actions.user.dictation_mode()
+ui.register('app_activate', restore_dictation_mode_on_app_activate)
 
 # XXX switch to canvas.overlay instead?
 
