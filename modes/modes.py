@@ -92,6 +92,13 @@ def restore_dictation_mode_on_app_activate(app):
         actions.user.dictation_mode()
 ui.register('app_activate', restore_dictation_mode_on_app_activate)
 
+def remove_dictation_app_on_quit(app):
+    global dictation_apps
+
+    if app in dictation_apps:
+        dictation_apps.remove(app)
+ui.register('app_close', remove_dictation_app_on_quit)
+
 # XXX switch to canvas.overlay instead?
 
 mode_canvases = []
