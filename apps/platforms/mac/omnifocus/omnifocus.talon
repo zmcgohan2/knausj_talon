@@ -59,6 +59,7 @@ flag: key(cmd-shift-l)
 skip: key(alt-space)
 clean up: key(cmd-k)
 mark reviewed: key(cmd-shift-r)
+show in projects: key(cmd-alt-r)
 
 # Using plugins from https://github.com/nriley/OmniFocus-Plug-Ins
 
