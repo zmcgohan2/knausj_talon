@@ -176,6 +176,8 @@ class UserActions:
     def code_operator_bitwise_left_shift_assignment():   actions.auto_insert(' <<= ')
     def code_operator_bitwise_right_shift():             actions.auto_insert(' >> ')
     def code_operator_bitwise_right_shift_assignment():  actions.auto_insert(' >>= ')
+    def code_operator_in():                              actions.auto_insert(' in ')
+    def code_operator_not_in():                          actions.auto_insert(' not in ')
     def code_self():                                     actions.auto_insert('self')
     def code_null():                                     actions.auto_insert('None')
     def code_is_null():                                  actions.auto_insert(' is None')
