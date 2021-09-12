@@ -47,10 +47,10 @@ go forward: key(ctrl-shift--)
     key(enter)
 
 # Search through Talon or Python files when editing Talon configuration
-hunt pie [<user.text>]:
+hunt pie [<user.text>]$:
     text = text or ""
     user.sublime_text_find_in_project_files(text, "*.py,*.pyi")
 
-hunt talon [<user.text>]:
+hunt talon [<user.text>]$:
     text = text or ""
     user.sublime_text_find_in_project_files(text, "*.talon")
