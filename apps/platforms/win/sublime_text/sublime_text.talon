@@ -36,7 +36,17 @@ definition show: key(f12)
 # navigate through multifile search results
 result next: key(f4 f3)
 result previous: key(shift-f4 f3)
+
 [do] repository:
     key(ctrl-shift-p)
     insert("Sublime Merge: Open Repository")
     key(enter)
+
+# Search through Talon or Python files when editing Talon configuration
+hunt pie [<user.text>]$:
+    text = text or ""
+    user.sublime_text_find_in_project_files(text, "*.py,*.pyi")
+
+hunt talon [<user.text>]$:
+    text = text or ""
+    user.sublime_text_find_in_project_files(text, "*.talon")

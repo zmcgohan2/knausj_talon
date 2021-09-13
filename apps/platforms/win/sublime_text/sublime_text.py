@@ -37,6 +37,12 @@ class EditActions:
 
 @ctx.action_class('user')
 class UserActions:
+	def sublime_text_find_in_project_files(text: str, files: str):
+		actions.user.find_everywhere(text)
+		actions.key("tab ctrl-a")
+		actions.insert("<project filters>," + files)
+		actions.key("shift-tab")
+
 	# user.find_and_replace
 	def find_toggle_match_by_case():             actions.key('alt-c')
 	def find_toggle_match_by_word():             actions.key('alt-w')
