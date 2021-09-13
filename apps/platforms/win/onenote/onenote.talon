@@ -15,7 +15,11 @@ insert date: key(alt-shift-d)
 heading one: key(ctrl-alt-1)
 heading two: key(ctrl-alt-2)
 normal: key(ctrl-shift-n)
-code: key(ctrl-shift-n alt-h l up enter)
+
+code:
+    key(ctrl-shift-n alt-h)
+    sleep(50ms)
+    key(alt-l up enter)
 
 move up: key(alt-shift-up)
 move down: key(alt-shift-down)
