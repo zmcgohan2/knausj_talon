@@ -1,5 +1,7 @@
-mode: user.vimscript
-mode: user.auto_lang
+mode: command
+and mode: user.vimscript
+mode: command
+and mode: user.auto_lang
 and code.language: vimscript
 -
 tag(): user.code_operators
@@ -13,7 +15,6 @@ settings():
     user.code_private_variable_formatter = "SNAKE_CASE"
     user.code_protected_variable_formatter = "SNAKE_CASE"
     user.code_public_variable_formatter = "SNAKE_CASE"
-
 
 ###
 # VIM Script Specific

@@ -3,7 +3,7 @@
 # double dash: "--"
 # (bracket | brack | left bracket): "{"
 # (rbrack | are bracket | right bracket): "}"
-#ellipses: "…"
+triple quote: "'''"
 # ellipses: "..."
 spamma: ", " 
 # plus: "+"

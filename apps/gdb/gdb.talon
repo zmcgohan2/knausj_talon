@@ -15,15 +15,7 @@ break [on] clipboard:
     key(ctrl-shift-v)
     key(enter)
     
-    # Memory inspection
-    
-    # Type inspection
-    
-    ##
-    # gdb specific functionality
-    ##
-    
-    # information
+# information
 list [source]: "list\n"
 info source: "info source\n"
 
@@ -53,7 +45,7 @@ hex dump clipboard:
     key(enter)
     
     
-    # execution
+# execution
 source: "source \t\t"
 
 # displays
@@ -92,7 +84,7 @@ resume [from] (inf|inferior) <number_small>$:
     insert("inferior {number_small}\n")
     insert("c\n")
     
-    # arguments
+# arguments
 set args: "set args "
 
 # settings

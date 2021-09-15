@@ -19,6 +19,9 @@ redo that [<number>]:
 	repeat(numb - 1)
 paste match: edit.paste_match_style()
 file save: edit.save()
-slap:
-	edit.line_end()
-	key(enter)
+#wipe: key(backspace)    
+#(pad | padding): 
+#	insert("  ") 
+#	key(left)
+slap: edit.line_insert_down()
+

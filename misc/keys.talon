@@ -8,12 +8,7 @@ go <user.arrow_keys>: key(arrow_keys)
 <user.modifiers> <user.unmodified_key>: key("{modifiers}-{unmodified_key}")
 <user.modifiers> hold: key("{modifiers}:down")
 <user.modifiers> release: key("{modifiers}:up")
-
-face(pucker_lips_outwards):
-    user.start_scroll()
-face(pucker_lips_outwards:end):
-    user.start_scroll()
-    
+press <user.modifiers>: key(modifiers)
 # a: "a"
 # b: "b"
 # c:"c"

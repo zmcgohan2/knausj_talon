@@ -10,7 +10,6 @@ register <user.registers>:
     key(@)
     insert("{registers}")
     
-    # Type inspection
 open help: insert(".hh\n")
 
 # xxx - add window switching
@@ -27,7 +26,7 @@ loaded modules:
 display pointers:
     insert("dps ")
     
-    # XXX - should be generic
+# XXX - should be generic
 dereference pointer:
     insert("poi()")
     edit.left()

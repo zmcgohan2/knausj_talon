@@ -325,7 +325,7 @@ class Actions:
 
         # some may be identical, so ensure the list is reduced
         full_spoken_forms = list(
-            set(spoken_forms_without_symbols + spoken_forms_with_symbols)
+            set(spoken_forms_with_symbols + spoken_forms_without_symbols)
         )
 
         # only generate the subsequences if requested

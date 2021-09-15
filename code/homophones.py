@@ -73,6 +73,22 @@ def close_homophones():
     actions.mode.disable("user.homophones")
 
 
+PHONES_FORMATTERS = [
+    lambda word: word.capitalize(),
+    lambda word: word.upper(),
+]
+
+def find_matching_format_function(word_with_formatting, format_functions):
+    """ Finds the formatter function from a list of formatter functions which transforms a word into itself.
+     Returns an identity function if none exists """
+    for formatter in format_functions:
+        formatted_word = formatter(word_with_formatting)
+        if word_with_formatting == formatted_word:
+            return formatter
+
+    return lambda word: word
+
+
 def raise_homophones(word, forced=False, selection=False):
     global quick_replace
     global active_word_list
@@ -86,8 +102,8 @@ def raise_homophones(word, forced=False, selection=False):
     if is_selection:
         word = word.strip()
 
-    is_capitalized = word == word.capitalize()
-    is_upper = word.isupper()
+    # Find the formatter used for the word being 'phoned'
+    formatter = find_matching_format_function(word, PHONES_FORMATTERS)
 
     word = word.lower()
 
@@ -95,22 +111,20 @@ def raise_homophones(word, forced=False, selection=False):
         app.notify("homophones.py", '"%s" not in homophones list' % word)
         return
 
-    active_word_list = all_homophones[word]
+    # Lookup valid homophones and format them to match the current selection
+    valid_homophones = all_homophones[word]
+    active_word_list = list(map(formatter, valid_homophones))
+
     if (
-        is_selection
-        and len(active_word_list) == 2
-        and quick_replace
-        and not force_raise
+            is_selection
+            and len(active_word_list) == 2
+            and quick_replace
+            and not force_raise
     ):
         if word == active_word_list[0].lower():
             new = active_word_list[1]
         else:
             new = active_word_list[0]
-
-        if is_capitalized:
-            new = new.capitalize()
-        elif is_upper:
-            new = new.upper()
 
         clip.set(new)
         actions.edit.paste()
@@ -132,8 +146,13 @@ def gui(gui: imgui.GUI):
         gui.line()
         index = 1
         for word in active_word_list:
-            gui.text("Choose {}: {} ".format(index, word))
+            if gui.button("Choose {}: {}".format(index, word)):
+                actions.insert(actions.user.homophones_select(index))
+                actions.user.homophones_hide()
             index = index + 1
+
+        if gui.button("Phones hide"):
+            actions.user.homophones_hide()
 
 
 def show_help_gui():
@@ -155,20 +174,20 @@ class Actions:
         close_homophones()
 
     def homophones_show(m: str):
-        """Sentence formatter"""
+        """Show the homophones display"""
         print(m)
         raise_homophones(m, False, False)
 
     def homophones_show_selection():
-        """Sentence formatter"""
+        """Show the homophones display for the selected text"""
         raise_homophones(actions.edit.selected_text(), False, True)
 
     def homophones_force_show(m: str):
-        """Sentence formatter"""
+        """Show the homophones display forcibly"""
         raise_homophones(m, True, False)
 
     def homophones_force_show_selection():
-        """Sentence formatter"""
+        """Show the homophones display for the selected text forcibly"""
         raise_homophones(actions.edit.selected_text(), True, True)
 
     def homophones_select(number: int) -> str:
@@ -182,5 +201,9 @@ class Actions:
         app.notify(error)
         raise error
 
-
-ctx.lists["self.homophones_canonicals"] = get_homophones_from_csv("homophones.csv")
+    def homophones_get(word: str) -> [str] or None:
+        """Get homophones for the given word"""
+        word = word.lower()
+        if word in all_homophones:
+            return all_homophones[word]
+        return None
