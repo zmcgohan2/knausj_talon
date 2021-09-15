@@ -44,3 +44,5 @@ alt menu:
 	key(cmd)
 
 insert: key(ctrl-f2 d return k return down:2 right i return)
+
+mine: ".njr"
