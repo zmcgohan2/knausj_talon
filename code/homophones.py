@@ -24,7 +24,7 @@ mod.list("homophones_canonicals", desc="list of words ")
 
 main_screen = ui.main_screen()
 
-
+all_homophones = {}
 def get_homophones_from_csv(filename: str):
     """Retrieves homophones from CSV"""
     # todo this code could be consolidated, save for parsing, with user_settings.
@@ -61,8 +61,14 @@ def get_homophones_from_csv(filename: str):
 
     global all_homophones
     all_homophones = phones
+    #print(str(all_homophones))
     return canonical_list
 
+def on_ready():
+    get_homophones_from_csv("homophones.csv")
+
+
+app.register("ready", on_ready)
 
 active_word_list = None
 is_selection = False
@@ -89,7 +95,7 @@ def find_matching_format_function(word_with_formatting, format_functions):
     return lambda word: word
 
 
-def raise_homophones(word, forced=False, selection=False):
+def raise_homophones(word_to_find_homophones_for, forced=False, selection=False):
     global quick_replace
     global active_word_list
     global show_help
@@ -100,20 +106,26 @@ def raise_homophones(word, forced=False, selection=False):
     is_selection = selection
 
     if is_selection:
-        word = word.strip()
+        word_to_find_homophones_for = word_to_find_homophones_for.strip()
 
-    # Find the formatter used for the word being 'phoned'
-    formatter = find_matching_format_function(word, PHONES_FORMATTERS)
+    formatter = find_matching_format_function(word_to_find_homophones_for, PHONES_FORMATTERS)
 
-    word = word.lower()
+    word_to_find_homophones_for = word_to_find_homophones_for.lower()
 
-    if word not in all_homophones:
-        app.notify("homophones.py", '"%s" not in homophones list' % word)
+    if word_to_find_homophones_for not in all_homophones:
+        app.notify("homophones.py", '"%s" not in homophones list' % word_to_find_homophones_for)
         return
 
-    # Lookup valid homophones and format them to match the current selection
-    valid_homophones = all_homophones[word]
-    active_word_list = list(map(formatter, valid_homophones))
+    valid_homophones = all_homophones[word_to_find_homophones_for]
+
+    # Move current word to end of list to reduce searcher's cognitive load
+    valid_homophones_reordered = (
+        list(
+            filter(
+                lambda word_from_list: word_from_list.lower() != word_to_find_homophones_for, valid_homophones)
+        ) + [word_to_find_homophones_for]
+    )
+    active_word_list = list(map(formatter, valid_homophones_reordered))
 
     if (
             is_selection
@@ -121,7 +133,7 @@ def raise_homophones(word, forced=False, selection=False):
             and quick_replace
             and not force_raise
     ):
-        if word == active_word_list[0].lower():
+        if word_to_find_homophones_for == active_word_list[0].lower():
             new = active_word_list[1]
         else:
             new = active_word_list[0]
