@@ -131,8 +131,8 @@ retap that [<number_small>]:
     repeat(numb - 1)
 
 # deleting
-wipe row:
-    edit.delete_line()
+# wipe row:
+#     edit.delete_line()
     
 # wipe left:
 #     key(backspace)
@@ -172,6 +172,10 @@ wipe word [<number_small>]:
 wipe start:
     edit.extend_line_start()
     edit.delete()
+
+wipe row:
+    edit.select_line()
+    edit.delete()    
 
 # wipe end:
 #     edit.extend_line_end()
