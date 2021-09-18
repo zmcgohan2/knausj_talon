@@ -19,8 +19,6 @@ def parse_phrase(word_list):
 def on_phrase(j):
     global history
 
-    print('>', ' '.join(j["phrase"]))
-
     try:
         val = parse_phrase(getattr(j["parsed"], "_unmapped", j["phrase"]))
     except:
@@ -29,6 +27,7 @@ def on_phrase(j):
     if val != "":
         history.append(val)
         history = history[-setting_command_history_size.get() :]
+        print('>', val)
 
 
 # todo: dynamic rect?
