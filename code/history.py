@@ -19,7 +19,7 @@ def parse_phrase(word_list):
 def on_phrase(j):
     global history
 
-    print(j["phrase"])
+    print('>', ' '.join(j["phrase"]))
 
     try:
         val = parse_phrase(getattr(j["parsed"], "_unmapped", j["phrase"]))
