@@ -241,6 +241,7 @@ alternate_keys = {
     "junk": "backspace",
     "wipe": "backspace",
     "white": "backspace",
+    "eat": "delete",
     "forward delete": "delete",
     #'junk': 'backspace',
     "return": "enter",
