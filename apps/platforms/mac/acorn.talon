@@ -3,6 +3,8 @@ and app.bundle: com.flyingmeat.Acorn7
 -
 new from clipboard: key(cmd-alt-n)
 
+export: key(cmd-alt-s)
+
 copy merged: key(ctrl-cmd-c)
 
 # https://flyingmeat.com/acorn/docs-7.0/keyboard_shortcuts.html
