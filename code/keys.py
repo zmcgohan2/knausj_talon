@@ -164,6 +164,7 @@ symbol_key_words = {
     "point": ".",
     "quote": "'",
     "apostrophe": "'",
+    "bracket": "[",
     "left bracket": "[",
     "open bracket": "[",
     "right bracket": "]",
