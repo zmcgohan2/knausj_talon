@@ -123,6 +123,7 @@ if app.platform == 'mac':
     modifier_keys["command"] = "cmd"
     modifier_keys['man'] = 'cmd' # I keep getting "comma" or "coma" when I say "command"
     modifier_keys["option"] = "alt"
+    modifier_keys["function"] = "fn"
     # for use when remote controlling Windows machines
     # modifier_keys['alt'] = 'cmd'
     modifier_keys['alter'] = 'cmd'
