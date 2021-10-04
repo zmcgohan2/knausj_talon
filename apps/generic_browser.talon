@@ -25,49 +25,6 @@ show extensions: browser.show_extensions()
 show history: browser.show_history()
 show cache: browser.show_clear_cache()
 
-dev tools: browser.toggle_dev_tools()
-go Gmail:
-  browser.go("Gmail.com")
-go get hub:
-  browser.go("github.com")
-go Google:
-  browser.go("Google.com")
-go NPR:
-  browser.go("npr.com")
-go Amazon:
-  browser.go("Amazon.com")
-go bulwark:
-  browser.go("https://thebulwark.com/")
-go supreme:
-  browser.go("https://www.scotusblog.com/")
-go public:
-  browser.go("https://www.propublica.org/")
-go mint:
-  browser.go("mint.com")
-go fidelity:
-  browser.go("fidelity.com")
-go bank:
-  browser.go("usbank.com")
-go Netflix:
-  browser.go("Netflix.com")  
-go Hulu:
-  browser.go("Hulu.com")
-go Disney:
-  browser.go("https://www.disneyplus.com")
-go LinkedIn:
-  browser.go("https://www.LinkedIn.com")
-go patron:
-  browser.go("https://www.patreon.com")
-go meet up:
-  browser.go("https://www.Meetup.com")
-go you tube: 
-  browser.go("https://www.youtube.com")
-go apple:
-  browser.go("https://www.apple.com")
-go library:
-  browser.go("https://www.slcolibrary.org")
-go bed and breakfast:
-  browser.go("https://www.airbnb.com")
 #todo - port to apps
 # navigating current page
 # help: key(?)
