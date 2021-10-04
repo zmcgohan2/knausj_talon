@@ -219,7 +219,7 @@ class Actions:
                 app.platform == "windows"
                 and application.exe.split(os.path.sep)[-1] == name
             ):
-                print("returning something: " + application.name)
+                #print("returning something: " + application.name)
                 return application
         raise RuntimeError(f'App not running: "{name}"')
 
@@ -278,8 +278,27 @@ class Actions:
         """Open a menu of running apps to switch to"""
         if app.platform == "windows":
             actions.key("alt-ctrl-tab")
+        elif app.platform == "mac":
+            actions.key("ctrl-up")
+
+    def switcher_show_desktop():
+        """toggles the desktop view"""
+        if app.platform == "windows":
+            actions.key("super-d")
+        elif app.platform == "mac":
+            actions.key("f11")        
+            
+    def switcher_show_application_windows():
+        """shows windows for just the active app"""
+        if gui_application_windows.showing:
+            gui_application_windows.hide()
         else:
-            print("Persistent Switcher Menu not supported on " + app.platform)
+            gui_application_windows.show()       
+
+    def switcher_switch_window(index: int):
+        """Switches to active window for the app by index"""
+        ui.active_app().windows()[index-1].focus()
+        gui_application_windows.hide()
 
     def switcher_toggle_running():
         """Shows/hides all running applications"""
@@ -300,6 +319,18 @@ def gui(gui: imgui.GUI):
     for line in ctx.lists["self.running"]:
         gui.text(line)
 
+@imgui.open()
+def gui_application_windows(gui: imgui.GUI):
+    app = ui.active_app()
+    gui.text(f"{app.name} windows" )
+    gui.line()
+    index = 1
+    for window in ui.active_app().windows():
+        if gui.button(f"{index}. {window.title}"):
+            window.focus()
+            gui.hide()
+
+        index = index + 1
 
 def update_launch_list():
     launch = {}
