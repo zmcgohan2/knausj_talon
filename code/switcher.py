@@ -290,30 +290,39 @@ class Actions:
             
     def switcher_show_application_windows():
         """shows windows for just the active app"""
-        if gui_application_windows.showing:
-            gui_application_windows.hide()
+        if app.platform =="mac":
+            actions.key("ctrl-down")
         else:
-            gui_application_windows.show()       
+            if gui_application_windows.showing:
+                gui_application_windows.hide()
+            else:
+                gui_application_windows.show()  
+
+    def switcher_hide_application_windows():
+        """Hides windows for just the active app"""
+        gui_application_windows.hide()      
 
     def switcher_switch_window(index: int):
         """Switches to active window for the app by index"""
-        ui.active_app().windows()[index-1].focus()
+        windows = ui.active_app().windows()
+        windows.sort(key=lambda x: x.title)
+        windows[index - 1].focus()
         gui_application_windows.hide()
 
     def switcher_toggle_running():
         """Shows/hides all running applications"""
-        if gui.showing:
-            gui.hide()
+        if gui_running.showing:
+            gui_running.hide()
         else:
-            gui.show()
+            gui_running.show()
 
     def switcher_hide_running():
         """Hides list of running applications"""
-        gui.hide()
+        gui_running.hide()
 
 
 @imgui.open()
-def gui(gui: imgui.GUI):
+def gui_running(gui: imgui.GUI):
     gui.text("Names of running applications")
     gui.line()
     for line in ctx.lists["self.running"]:
@@ -324,13 +333,18 @@ def gui_application_windows(gui: imgui.GUI):
     app = ui.active_app()
     gui.text(f"{app.name} windows" )
     gui.line()
+    windows = ui.active_app().windows()
+    windows.sort(key=lambda x: x.title)
     index = 1
-    for window in ui.active_app().windows():
+    for window in windows:
         if gui.button(f"{index}. {window.title}"):
             window.focus()
             gui.hide()
 
         index = index + 1
+
+    if gui.button("Exit"):
+        actions.user.switcher_hide_application_windows()
 
 def update_launch_list():
     launch = {}

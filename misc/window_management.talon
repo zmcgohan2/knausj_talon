@@ -3,6 +3,7 @@ window next: app.window_next()
 window last: app.window_previous()
 window close: app.window_close()
 window list: user.switcher_show_application_windows()
+window list exit: user.switcher_hide_application_windows()
 window <number_small>: user.switcher_switch_window(number_small)
 focus <user.running_applications>: 
     user.switcher_focus(running_applications)
