@@ -1,8 +1,6 @@
 from talon import Context, actions, ui
 import os
 
-# TODO: fit this to generic_terminal
-
 ctx = Context()
 ctx.matches = r"""
 app: apple_terminal
@@ -69,6 +67,9 @@ class UserActions:
     def file_manager_select_file(path: str):
         """selects the file"""
         actions.insert(path)
+
+    def file_manager_refresh_title():
+        return
 
 @ctx.action_class("app")
 class app_actions:
