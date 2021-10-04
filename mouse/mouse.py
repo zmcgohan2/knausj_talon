@@ -15,8 +15,9 @@ from talon import (
     tap,
 )
 from talon_plugins import eye_mouse, eye_zoom_mouse
-from talon_plugins.eye_mouse import config, toggle_camera_overlay, toggle_control
+from talon_plugins.eye_mouse import config, toggle_camera_overlay, toggle_control, mouse
 
+main_screen = ui.main_screen()
 key = actions.key
 self = actions.self
 scroll_amount = 0
@@ -25,6 +26,14 @@ scroll_job = None
 gaze_job = None
 cancel_scroll_on_pop = True
 control_mouse_forced = False
+
+# Setting for how much percent of the screen you should gaze further from the reference point before scrolling starts. 
+scroll_offset = 0.12
+# Setting for how fast scrolling should be depending on the distance from the reference point. 
+def scroll_formula(diff): 
+    return 10+pow(10*abs(diff), 3.5)
+# Setting for the number of eye locations we should take the average from, increasing this will increase accuracy and increase latency.  
+eye_avg = 20
 
 default_cursor = {
     "AppStarting": r"%SystemRoot%\Cursors\aero_working.ani",
@@ -149,20 +158,20 @@ class Actions:
         if eye_zoom_mouse.zoom_mouse.enabled:
             eye_zoom_mouse.zoom_mouse.on_pop(eye_zoom_mouse.zoom_mouse.state)
 
-    def mouse_drag():
-        """(TEMPORARY) Press and hold/release button 0 depending on state for dragging"""
-        # todo: fixme temporary fix for drag command
-        button_down = len(list(ctrl.mouse_buttons_down())) > 0
-        print(str(ctrl.mouse_buttons_down()))
-        if not button_down:
-            # print("start drag...")
-            ctrl.mouse_click(button=0, down=True)
-            # app.notify("drag started")
-        else:
-            # print("end drag...")
-            ctrl.mouse_click(button=0, up=True)
+    def mouse_drag(button: int):
+        """Press and hold/release a specific mouse button for dragging"""
+        # Clear any existing drags
+        if not self.mouse_drag_end():
+            # Start drag
+            ctrl.mouse_click(button=button, down=True)
 
-        # app.notify("drag stopped")
+    def mouse_drag_end() -> bool:
+        """ Releases any held mouse buttons """
+        buttons_held_down = list(ctrl.mouse_buttons_down())
+        for button in buttons_held_down:
+            ctrl.mouse_click(button=button, up=True)
+
+        return len(buttons_held_down) > 0
 
     def mouse_sleep():
         """Disables control mouse, zoom mouse, and re-enables cursor"""
@@ -215,7 +224,8 @@ class Actions:
         """Starts gaze scroll"""
         global continuous_scoll_mode
         continuous_scoll_mode = "gaze scroll"
-        start_cursor_scrolling()
+
+        start_window_scrolling()
         if setting_mouse_hide_mouse_gui.get() == 0:
             gui_wheel.show()
 
@@ -225,6 +235,17 @@ class Actions:
             toggle_control(True)
             control_mouse_forced = True
 
+    
+    def mouse_gaze_scroll_cursor():
+        #Scroll the window if your eyes gaze up or down relative to the current curser position
+        """Starts gaze scroll cursor"""
+        global continuous_scoll_mode
+        continuous_scoll_mode = "gaze scroll"
+
+        start_cursor_scrolling()
+        if setting_mouse_hide_mouse_gui.get() == 0:
+            gui_wheel.show()
+        
     def copy_mouse_position():
         """Copy the current mouse position coordinates"""
         position = ctrl.mouse_pos()
@@ -370,6 +391,25 @@ def gaze_scroll():
 
     # print(f"gaze_scroll: {midpoint} {rect.height} {amount}")
 
+def gaze_scroll_cursor():
+    # Scroll the window if your eyes gaze up or down relative to the current window position
+
+    gaze_y = 0 
+    hist = mouse.eye_hist[-eye_avg:]
+    for l, r in hist:
+        gaze_y+= l.gaze.y + r.gaze.y
+    gaze_y /= (2*len(hist))
+
+    cursor_x, cursor_y = ctrl.mouse_pos()
+    cursor_y /= main_screen.height
+    diff_y = gaze_y - cursor_y
+
+    if abs(diff_y) > scroll_offset:
+        amount = int(scroll_formula(diff_y))
+        if diff_y <0 and amount>0: 
+            amount = -amount
+        actions.mouse_scroll(by_lines=False, y=amount)
+
 
 def stop_scroll():
     global scroll_amount, scroll_job, gaze_job
@@ -393,13 +433,18 @@ def stop_scroll():
     #    eye_zoom_mouse.zoom_mouse.sleep(False)
 
 
-def start_cursor_scrolling():
+def start_window_scrolling():
     global scroll_job, gaze_job
     stop_scroll()
     gaze_job = cron.interval("60ms", gaze_scroll)
     # if eye_zoom_mouse.zoom_mouse.enabled and eye_mouse.mouse.attached_tracker is not None:
     #    eye_zoom_mouse.zoom_mouse.sleep(True)
 
+
+def start_cursor_scrolling():
+    global scroll_job, gaze_job
+    stop_scroll()
+    gaze_job = cron.interval("60ms", gaze_scroll_cursor)
 
 if app.platform == "mac":
     from talon import tap

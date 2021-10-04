@@ -1,6 +1,5 @@
 -
 settings(): 
-    user.context_sensitive_dictation = 1
     #adjust the scale of the imgui to my liking
     imgui.scale = 3.5
     # enable if you'd like the picker gui to automatically appear when explorer has focus
@@ -33,4 +32,5 @@ settings():
     # speech.gain = 6
 # uncomment tag to enable mouse grid
 tag(): user.mouse_grid_enabled
+
 
