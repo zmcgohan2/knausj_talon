@@ -17,6 +17,7 @@ app: mintty
 """
 ctx.tags = [
     "terminal",
+    "user.generic_unix_shell",
     "user.file_manager",
     "user.terminal",
     "user.git",
