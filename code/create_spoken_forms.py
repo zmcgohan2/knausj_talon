@@ -26,7 +26,12 @@ FILE_EXTENSIONS_REGEX = "|".join(
 )
 SYMBOLS_REGEX = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
 REGEX_NO_SYMBOLS = re.compile(
-    "|".join([FANCY_REGULAR_EXPRESSION, FILE_EXTENSIONS_REGEX,])
+    "|".join(
+        [
+            FANCY_REGULAR_EXPRESSION,
+            FILE_EXTENSIONS_REGEX,
+        ]
+    )
 )
 
 REGEX_WITH_SYMBOLS = re.compile(
@@ -49,14 +54,9 @@ ones = [""] + [
     REVERSE_PRONUNCIATION_MAP[str(index)] for index in range(10) if index != 0
 ]
 
-# ["ten ", "eleven ",... "nineteen"] or equivalents
-teen = [tens[0]] + [val for val in teens]
-
-# print("tens = " + str(ten))
-
 # ["","","twenty","thirty","forty",..."ninety"]
 # or equivalent
-twenties = ["", ""] + [val for index, val in enumerate(tens) if index != 0]
+twenties = ["", ""] + [val for val in tens]
 # print("twenties = " + str(twenties))
 
 thousands = [""] + [val for index, val in enumerate(scales) if index != 0]
@@ -102,7 +102,7 @@ def create_spoken_form_for_number(num: int):
         if b2 == 0:
             words = [ones[b1], t] + words
         elif b2 == 1:
-            words = [teen[b1], t] + words
+            words = [teens[b1], t] + words
         elif b2 > 1:
             words = [twenties[b2], ones[b1], t] + words
         if b3 > 0:
@@ -159,26 +159,26 @@ def create_spoken_form_years(num: str):
 
 
 # # ---------- create_spoken_form_years  (uncomment to run) ----------
-# def test_year(year: str, expected: str):
-#     result = create_spoken_form_years(year)
-#     print(f"test_year: test string = {year}, result = {result}, expected = {expected}")
-#     assert create_spoken_form_years(year) == expected
+def test_year(year: str, expected: str):
+    result = create_spoken_form_years(year)
+    print(f"test_year: test string = {year}, result = {result}, expected = {expected}")
+    assert create_spoken_form_years(year) == expected
 
 
-# print("************* test_year tests ******************")
-# test_year("1100", "eleven hundred")
-# test_year("1905", "nineteen five")
-# test_year("1910", "nineteen ten")
-# test_year("1925", "nineteen twenty five")
-# test_year("2000", "two thousand")
-# test_year("2005", "two thousand five")
-# test_year("2020", "twenty twenty")
-# test_year("2019", "twenty nineteen")
-# test_year("2085", "twenty eighty five")
-# test_year("2100", "twenty one hundred")
-# test_year("2105", "twenty one five")
-# test_year("9999", "ninety nine ninety nine")
-# print("************* test_year tests done**************")
+print("************* test_year tests ******************")
+test_year("1100", "eleven hundred")
+test_year("1905", "nineteen five")
+test_year("1910", "nineteen ten")
+test_year("1925", "nineteen twenty five")
+test_year("2000", "two thousand")
+test_year("2005", "two thousand five")
+test_year("2020", "twenty twenty")
+test_year("2019", "twenty nineteen")
+test_year("2085", "twenty eighty five")
+test_year("2100", "twenty one hundred")
+test_year("2105", "twenty one five")
+test_year("9999", "ninety nine ninety nine")
+print("************* test_year tests done**************")
 
 
 def create_single_spoken_form(source: str):
