@@ -155,7 +155,7 @@ class Actions:
         """selects the file"""
 
     def file_manager_refresh_title():
-        """Refreshes the title to match current directory. this is for e.g. windows command prompt that will need to do some magic. """
+        """Refreshes the title to match current directory. this is for e.g. windows command prompt that will need to do some magic."""
         return
 
     def file_manager_update_lists():
@@ -176,6 +176,12 @@ class Actions:
         if gui_files.showing:
             gui_files.hide()
             gui_folders.hide()
+
+    def file_manager_open_recordings_directory():
+        """opens the talon recordings directory"""
+        path = actions.path.talon_home()
+        path = os.path.join(path, "recordings")
+        actions.user.file_manager_open_user_directory(path)
 
     def file_manager_open_user_directory(path: str):
         """expands and opens the user directory"""
