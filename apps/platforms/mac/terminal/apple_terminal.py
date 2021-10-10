@@ -40,22 +40,7 @@ class EditActions:
 @ctx.action_class('user')
 class UserActions:
     def file_manager_current_path():
-        title = ui.active_window().title
-
-        #take the first split for the zsh-based terminal
-        if " — " in title:
-            title = title.split(" — ")[0]
-
-        if "~" in title:
-            title = os.path.expanduser(title)
-
-        if title in directories_to_remap:
-            title = directories_to_remap[title]
-
-        if title in directories_to_exclude:
-            title = None
-
-        return title
+        return ui.active_window().doc or None
 
     def file_manager_show_properties():
         """Shows the properties for the file"""
