@@ -27,3 +27,6 @@ move:
 	key(ctrl-s)
 	sleep(200ms)
 	insert(user.text or "")
+
+# Add to OmniFocus
+to do: key(ctrl-o)
