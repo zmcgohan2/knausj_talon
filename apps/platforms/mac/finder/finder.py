@@ -25,19 +25,13 @@ class UserActions:
         """)
 
     def file_manager_terminal_here():
-        applescript.run(
-            r"""
-        tell application "Finder"
-            set myWin to window 1
-            set thePath to (quoted form of POSIX path of (target of myWin as alias))
+        applescript.run(r"""
+            tell application "Finder" to set theTarget to (front window's target as alias)
             tell application "Terminal"
                 activate
-                tell window 1
-                    do script "cd " & thePath
-                end tell
+                open theTarget
             end tell
-        end tell"""
-        )
+        """)
 
     def file_manager_show_properties():
         """Shows the properties for the file"""
