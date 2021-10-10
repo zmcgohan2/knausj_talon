@@ -7,9 +7,6 @@ ctx = Context()
 ctx.matches = r"""
 app: finder
 """
-directories_to_remap = {"": "/Volumes"}
-directories_to_exclude = {}
-
 
 @ctx.action_class('user')
 class UserActions:
@@ -20,18 +17,12 @@ class UserActions:
     def file_manager_go_back():
         actions.key('cmd-[')
     def file_manager_current_path():
-        title = ui.active_window().title
-
-        if "~" in title:
-            title = os.path.expanduser(title)
-
-        if title in directories_to_remap:
-            title = directories_to_remap[title]
-
-        if title in directories_to_exclude:
-            title = ""
-
-        return title
+        return applescript.run(r"""
+            tell application "Finder"
+                if not (exists (front window's target)) then return
+                return ((front window's target) as alias)'s POSIX path
+            end tell
+        """)
 
     def file_manager_terminal_here():
         applescript.run(
