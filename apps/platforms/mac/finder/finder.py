@@ -56,11 +56,11 @@ class UserActions:
 
     def file_manager_open_file(path: str):
         """opens the file"""
-        actions.key("home")
+        actions.key("esc")
         actions.insert(path)
         actions.key("cmd-o")
 
     def file_manager_select_file(path: str):
         """selects the file"""
-        actions.key("home")
+        actions.key("esc")
         actions.insert(path)
