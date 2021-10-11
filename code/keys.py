@@ -4,15 +4,15 @@ from talon import Module, Context, actions, app
 import sys
 import copy
 
-default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
+default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench risk sun trap urge vest whale plex yank zip".split(
     " "
 )
 letters_string = "abcdefghijklmnopqrstuvwxyz"
 
 default_digits = "zero one two three four five six seven eight nine".split(" ")
 numbers = [str(i) for i in range(10)]
-default_f_digits = "one two three four five six seven eight nine ten eleven twelve".split(
-    " "
+default_f_digits = (
+    "one two three four five six seven eight nine ten eleven twelve".split(" ")
 )
 
 mod = Module()
@@ -142,9 +142,9 @@ punctuation_words = {
     "back tick": "`",
     "grave": "`",
     "comma": ",",
-    "coma":",", 
+    "coma": ",",
     "dot": ".",
-    "period": ".", 
+    "period": ".",
     "semicolon": ";",
     "colon": ":",
     "slash": "/",
@@ -269,4 +269,3 @@ class Actions:
     def get_alphabet() -> dict:
         """Provides the alphabet dictionary"""
         return alphabet
-
