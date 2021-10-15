@@ -123,8 +123,8 @@ _snap_positions = {
     # '---'---'     '-------'
     "left": RelativeScreenPos(0, 0, 0.5, 1),
     "right": RelativeScreenPos(0.5, 0, 1, 1),
-    "top": RelativeScreenPos(0, 0, 1, 0.5),
-    "bottom": RelativeScreenPos(0, 0.5, 1, 1),
+    "lid": RelativeScreenPos(0, 0, 1, 0.5),
+    "deck": RelativeScreenPos(0, 0.5, 1, 1),
     # Thirds
     # .--.--.--.
     # |  |  |  |
@@ -138,23 +138,23 @@ _snap_positions = {
     # .---.---.
     # |---|---|
     # '---'---'
-    "top left": RelativeScreenPos(0, 0, 0.5, 0.5),
-    "top right": RelativeScreenPos(0.5, 0, 1, 0.5),
-    "bottom left": RelativeScreenPos(0, 0.5, 0.5, 1),
-    "bottom right": RelativeScreenPos(0.5, 0.5, 1, 1),
+    "lid left": RelativeScreenPos(0, 0, 0.5, 0.5),
+    "lid right": RelativeScreenPos(0.5, 0, 1, 0.5),
+    "deck left": RelativeScreenPos(0, 0.5, 0.5, 1),
+    "deck right": RelativeScreenPos(0.5, 0.5, 1, 1),
     # Sixths
     # .--.--.--.
     # |--|--|--|
     # '--'--'--'
-    "top right third": RelativeScreenPos(2 / 3, 0, 1, 0.5),
-    "top left two thirds": RelativeScreenPos(0, 0, 2 / 3, 0.5),
-    "top right two thirds": RelativeScreenPos(1 / 3, 0, 1, 0.5),
-    "top center third": RelativeScreenPos(1 / 3, 0, 2 / 3, 0.5),
-    "bottom left third": RelativeScreenPos(0, 0.5, 1 / 3, 1),
-    "bottom right third": RelativeScreenPos(2 / 3, 0.5, 1, 1),
-    "bottom left two thirds": RelativeScreenPos(0, 0.5, 2 / 3, 1),
-    "bottom right two thirds": RelativeScreenPos(1 / 3, 0.5, 1, 1),
-    "bottom center third": RelativeScreenPos(1 / 3, 0.5, 2 / 3, 1),
+    "lid right third": RelativeScreenPos(2 / 3, 0, 1, 0.5),
+    "lid left two thirds": RelativeScreenPos(0, 0, 2 / 3, 0.5),
+    "lid right two thirds": RelativeScreenPos(1 / 3, 0, 1, 0.5),
+    "lid center third": RelativeScreenPos(1 / 3, 0, 2 / 3, 0.5),
+    "deck left third": RelativeScreenPos(0, 0.5, 1 / 3, 1),
+    "deck right third": RelativeScreenPos(2 / 3, 0.5, 1, 1),
+    "deck left two thirds": RelativeScreenPos(0, 0.5, 2 / 3, 1),
+    "deck right two thirds": RelativeScreenPos(1 / 3, 0.5, 1, 1),
+    "deck center third": RelativeScreenPos(1 / 3, 0.5, 2 / 3, 1),
     # Special
     "center": RelativeScreenPos(1 / 8, 1 / 6, 7 / 8, 5 / 6),
     "full": RelativeScreenPos(0, 0, 1, 1),
