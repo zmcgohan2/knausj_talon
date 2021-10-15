@@ -176,6 +176,7 @@ abbreviations = {
     "revision": "rev",
     "ruby": "rb",
     "saskatchewan": "sk",
+    "sequel": "SQL",
     "service pack": "sp",
     "session id": "sid",
     "shell": "sh",
