@@ -116,9 +116,9 @@ if app.platform == "windows":
 
 @mod.action_class
 class Actions:
-    def file_manager_current_path() -> str:
-        """Returns the current path for the active file manager."""
-        return ""
+    def file_manager_current_path() -> Union[str, None]:
+        """Returns the current path for the active file manager, or None if there is no current path."""
+        return None
 
     def file_manager_open_parent():
         """file_manager_open_parent"""
@@ -382,22 +382,23 @@ def update_lists(path=None):
     folder_selections = []
     file_selections = []
     # print(path)
-    try:
-        current_path = Path(path)
-        is_valid_path = current_path.is_dir()
-    except:
-        is_valid_path = False
-
-    if is_valid_path:
-        # print("valid..." + str(current_path))
+    if path:
         try:
-            directories = get_directory_map(current_path)
-            files = get_file_map(current_path)
+            current_path = Path(path)
+            is_valid_path = current_path.is_dir()
         except:
-            # print("invalid path...")
+            is_valid_path = False
 
-            directories = {}
-            files = {}
+        if is_valid_path:
+            # print("valid..." + str(current_path))
+            try:
+                directories = get_directory_map(current_path)
+                files = get_file_map(current_path)
+            except:
+                # print("invalid path...")
+
+                directories = {}
+                files = {}
 
     current_folder_page = current_file_page = 1
     ctx.lists["self.file_manager_directories"] = directories
@@ -419,12 +420,14 @@ def win_event_handler(window):
     if not window.app.exe or window != ui.active_window():
         return
 
-    path = actions.user.file_manager_current_path()
-
     if not "user.file_manager" in registry.tags:
         actions.user.file_manager_hide_pickers()
         clear_lists()
-    elif path:
+        cached_path = None
+        return
+
+    path = actions.user.file_manager_current_path()
+    if path:
         if cached_path != path:
             update_lists(path)
     elif cached_path:
