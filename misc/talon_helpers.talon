@@ -1,3 +1,10 @@
+-
+# uncomment user.talon_populate_lists tag to activate talon-specific lists of actions, scopes, modes etcetera. 
+# Do not enable this tag with dragon, as it will be unusable.
+# with conformer, the latency increase may also be unacceptable depending on your cpu
+# see https://github.com/knausj85/knausj_talon/issues/600
+tag(): user.talon_populate_lists
+
 talon check updates: menu.check_for_updates()
 talon open log: menu.open_log()
 talon open rebel: menu.open_repl()
@@ -33,18 +40,23 @@ talon dump context:
     user.talon_sim_phrase(phrase)
 ^talon test <phrase>$:
     user.talon_sim_phrase(phrase)
+# requires user.talon_populate_lists tag. do not use with dragon
 ^talon debug action {user.talon_actions}$: 
     user.talon_action_find("{user.talon_actions}")
+# requires user.talon_populate_lists tag. do not use with dragon
 ^talon debug list {user.talon_lists}$:
     user.talon_debug_list(talon_lists)
+# requires user.talon_populate_lists tag. do not use with dragon
 ^talon copy list {user.talon_lists}$:
     user.talon_copy_list(talon_lists)
 ^talon debug tags$:
     user.talon_debug_tags()
 ^talon debug modes$:
     user.talon_debug_modes()
+# requires user.talon_populate_lists tag. do not use with dragon
 ^talon debug scope {user.talon_scopes}$:
     user.talon_debug_scope(talon_scopes)
+# requires user.talon_populate_lists tag. do not use with dragon
 ^talon debug setting {user.talon_settings}$:
     user.talon_debug_setting(talon_settings)
 ^talon debug all settings$: 

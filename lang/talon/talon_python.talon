@@ -2,6 +2,12 @@
 # to enable the talon-specific support for python
 tag: user.talon_python
 -
+# uncomment user.talon_populate_lists tag to activate talon-specific lists of actions, scopes, modes etcetera. 
+# Do not enable this tag with dragon, as it will be unusable.
+# with conformer, the latency increase may also be unacceptable depending on your cpu
+# see https://github.com/knausj85/knausj_talon/issues/600
+tag(): user.talon_populate_lists
+
 talon imports:
     "from talon import ui, Module, Context, registry, actions, imgui, cron\n"
 (context and module | module and context):
@@ -24,6 +30,8 @@ context matches:
     key(left:3 enter:2 up)
 mod list: user.code_insert_function("mod.list", edit.selected_text())
 mod tag: user.code_insert_function("mod.tag", edit.selected_text())
+# requires user.talon_populate_lists tag. do not use with dragon
 (action | fun) {user.talon_actions}:
     user.code_insert_function("actions.{talon_actions}", edit.selected_text())
+# requires user.talon_populate_lists tag. do not use with dragon
 context list {user.talon_lists}: 'ctx.lists["{talon_lists}"] = '
