@@ -8,7 +8,7 @@ tag(): user.code_block_comment
 
 select: "SELECT "
 from: "FROM "
-select star from: "SELECT * FROM "
+select star from: "SELECT *\nFROM "
 where: "WHERE "
 order by: "ORDER BY "
 group by: "GROUP BY "
