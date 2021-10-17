@@ -155,6 +155,9 @@ punctuation_words = {
     "and sign": "&",
     "ampersand": "&",
 
+    "open paren": "(",
+    "close paren": ")",
+
     # Currencies
     "dollar sign": "$",
     "pound sign": "£",
@@ -182,11 +185,9 @@ symbol_key_words = {
     "paren": "(",
     "L paren": "(",
     "left paren": "(",
-    "open paren": "(",
     "open parenthesis": "(",
     "R paren": ")",
     "right paren": ")",
-    "close paren": ")",
     "close parenthesis": ")",
     "left brace": "{",
     "open brace": "{",
