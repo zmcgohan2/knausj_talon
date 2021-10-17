@@ -20,7 +20,7 @@ class UserActions:
         if ui.active_window().title == "":
             return None # likely a modal window
         return applescript.run(r"""
-            tell application "Finder"
+            tell application id "com.apple.Finder"
                 if not (exists (front window's target)) then return
                 return ((front window's target) as alias)'s POSIX path
             end tell
@@ -31,11 +31,11 @@ class UserActions:
             return # likely a modal window
         applescript.run(r"""
             try
-                tell application "Finder" to set theTarget to (front window's target as alias)
+                tell application id "com.apple.Finder" to set theTarget to (front window's target as alias)
             on error -- fails with some windows, e.g. Preferences window
                 return
             end try
-            tell application "Terminal"
+            tell application id "com.apple.Terminal"
                 activate
                 open theTarget
             end tell
