@@ -17,6 +17,8 @@ class UserActions:
     def file_manager_go_back():
         actions.key('cmd-[')
     def file_manager_current_path():
+        if ui.active_window().title == "":
+            return None # likely a modal window
         return applescript.run(r"""
             tell application "Finder"
                 if not (exists (front window's target)) then return
@@ -25,8 +27,14 @@ class UserActions:
         """)
 
     def file_manager_terminal_here():
+        if ui.active_window().title == "":
+            return # likely a modal window
         applescript.run(r"""
-            tell application "Finder" to set theTarget to (front window's target as alias)
+            try
+                tell application "Finder" to set theTarget to (front window's target as alias)
+            on error -- fails with some windows, e.g. Preferences window
+                return
+            end try
             tell application "Terminal"
                 activate
                 open theTarget
