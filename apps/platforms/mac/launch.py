@@ -22,7 +22,8 @@ class Actions:
 			if active_app.bundle == bundle:
 				return active_app
 			actions.sleep("50ms")
-		app.notify(f'Failed to focus application with bundle ID {bundle}')
+		app.notify(title='Failed to focus application',
+				   body=f'Bundle ID: {bundle}')
 		return None
 
 	def launch_or_focus_bundle(bundle: str):
