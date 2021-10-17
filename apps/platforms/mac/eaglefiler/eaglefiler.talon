@@ -1,5 +1,4 @@
-os: mac
-and app.bundle: com.c-command.EagleFiler
+app: eaglefiler
 -
 
 record first: user.eaglefiler_select_first_displayed_record()

@@ -3,9 +3,13 @@ from talon import Module, Context
 ctx = Context()
 mod = Module()
 
-ctx.matches = r"""
+mod.apps.eaglefiler = r"""
 os: mac
 and app.bundle: com.c-command.EagleFiler
+"""
+
+ctx.matches = r"""
+app: eaglefiler
 """
 
 @ctx.action_class("user")
