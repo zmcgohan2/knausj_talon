@@ -1,8 +1,6 @@
 from talon import Context, actions, ui
 import os
 
-# TODO: fit this to generic_terminal
-
 ctx = Context()
 ctx.matches = r"""
 app: apple_terminal
