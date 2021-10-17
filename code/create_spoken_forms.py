@@ -22,8 +22,9 @@ mod = Module()
 DEFAULT_MINIMUM_TERM_LENGTH = 3
 FANCY_REGULAR_EXPRESSION = r"[A-Z]?[a-z]+|[A-Z]+(?![a-z])|[0-9]+"
 FILE_EXTENSIONS_REGEX = "|".join(
-    file_extension.strip() + "$" for file_extension in file_extensions.values()
+    "\\" + file_extension.strip() + "$" for file_extension in file_extensions.values()
 )
+print()
 SYMBOLS_REGEX = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
 REGEX_NO_SYMBOLS = re.compile(
     "|".join(
@@ -165,20 +166,20 @@ def test_year(year: str, expected: str):
     assert create_spoken_form_years(year) == expected
 
 
-print("************* test_year tests ******************")
-test_year("1100", "eleven hundred")
-test_year("1905", "nineteen five")
-test_year("1910", "nineteen ten")
-test_year("1925", "nineteen twenty five")
-test_year("2000", "two thousand")
-test_year("2005", "two thousand five")
-test_year("2020", "twenty twenty")
-test_year("2019", "twenty nineteen")
-test_year("2085", "twenty eighty five")
-test_year("2100", "twenty one hundred")
-test_year("2105", "twenty one five")
-test_year("9999", "ninety nine ninety nine")
-print("************* test_year tests done**************")
+# print("************* test_year tests ******************")
+# test_year("1100", "eleven hundred")
+# test_year("1905", "nineteen five")
+# test_year("1910", "nineteen ten")
+# test_year("1925", "nineteen twenty five")
+# test_year("2000", "two thousand")
+# test_year("2005", "two thousand five")
+# test_year("2020", "twenty twenty")
+# test_year("2019", "twenty nineteen")
+# test_year("2085", "twenty eighty five")
+# test_year("2100", "twenty one hundred")
+# test_year("2105", "twenty one five")
+# test_year("9999", "ninety nine ninety nine")
+# print("************* test_year tests done**************")
 
 
 def create_single_spoken_form(source: str):
