@@ -7,7 +7,6 @@ tag(): user.code_comment
 tag(): user.code_block_comment
 
 select: "SELECT "
-star: "*"
 from: "FROM "
 select star from: "SELECT * FROM "
 where: "WHERE "
