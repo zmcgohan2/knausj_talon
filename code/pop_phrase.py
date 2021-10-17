@@ -24,6 +24,9 @@ def on_phrase(j):
         if phrase[0:len(p)] == p:
             global pop_phrase
             pop_phrase = phrase
+            return
+    else:
+        pop_phrase = ""
 
 speech_system.register('post:phrase', on_phrase)
 
