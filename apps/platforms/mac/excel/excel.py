@@ -14,7 +14,7 @@ app: excel
 """
 
 @ctx.action_class('edit')
-class UserActions:
+class EditActions:
 	def zoom_in():
 		applescript.run(r"""
 			tell application id "com.microsoft.Excel" to set front window's zoom to (front window's zoom) * 1.25
