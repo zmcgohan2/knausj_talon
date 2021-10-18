@@ -175,8 +175,12 @@ class UserActions:
 		for attempt in range(5):
 			try:
 				sections_pages = navigation.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+				break
 			except ui.UIErr:
 				actions.sleep("100ms")
+		else:
+			app.notify(body='Did not see section and page navigation as expected', title='OneNote')
+			return
 
 		# go to the first section
 		sections, pages = [child for child in sections_pages.children if child.AXRole == 'AXGroup']
