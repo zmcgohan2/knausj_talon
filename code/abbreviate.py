@@ -204,6 +204,7 @@ abbreviations = {
     "temp": "tmp",
     "test": "TST",
     "test two": "TST2",
+    "test too": "TST2",
     "text": "txt",
     "time of check time of use": "toctou",
     "token": "tok",
