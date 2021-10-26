@@ -2,7 +2,19 @@ import os
 import pathlib
 import subprocess
 
-from talon import Module, actions, app, clip, cron, ctrl, imgui, noise, ui, tap
+from talon import (
+    Module,
+    actions,
+    app,
+    clip,
+    cron,
+    ctrl,
+    imgui,
+    noise,
+    ui,
+    tap,
+    registry,
+)
 from talon_plugins import eye_mouse, eye_zoom_mouse
 from talon_plugins.eye_mouse import config, toggle_camera_overlay, toggle_control, mouse
 
@@ -302,6 +314,7 @@ eye_zoom_mouse.ZoomMouse.enable = custom_zoom_enable
 
 if eye_zoom_mouse.zoom_mouse.enabled:
     noise.unregister("pop", eye_zoom_mouse.zoom_mouse.on_pop)
+    noise.unregister("hiss", eye_zoom_mouse.zoom_mouse.on_hiss)
 
 
 def on_pop(active):
@@ -316,11 +329,22 @@ def on_pop(active):
     elif (
         eye_zoom_mouse.zoom_mouse.enabled
         and eye_mouse.mouse.attached_tracker is not None
+        and not "talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal" in registry.tags
     ):
         eye_zoom_mouse.zoom_mouse.on_pop(eye_zoom_mouse.zoom_mouse.state)
 
 
+def on_hiss(active):
+    if (
+        eye_zoom_mouse.zoom_mouse.enabled
+        and eye_mouse.mouse.attached_tracker is not None
+        and not "talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal" in registry.tags
+    ):
+        eye_zoom_mouse.zoom_mouse.on_hiss(eye_zoom_mouse.zoom_mouse.state)
+
+
 noise.register("pop", on_pop)
+noise.register("hiss", on_hiss)
 
 
 def mouse_scroll(amount):
