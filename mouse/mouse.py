@@ -300,7 +300,7 @@ def custom_zoom_enable(self):
 
     # intentionally don't register pop, handled in on_pop.
     # noise.register("pop", self.on_pop)
-    noise.register("hiss", self.on_hiss)
+    # noise.register("hiss", self.on_hiss)
 
     tap.register(tap.MCLICK | tap.KEY | tap.HOOK, self.on_key)
 
