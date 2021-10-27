@@ -1,4 +1,4 @@
-from talon import Context, Module, app, actions, speech_system
+from talon import Context, Module, app, actions, speech_system, scope
 
 mod = Module()
 
@@ -56,3 +56,31 @@ class Actions:
             actions.mode.disable("command")
             actions.user.code_clear_language_mode()
 
+    def wake_or_sleep():
+        """toggles wake or sleep"""
+        modes = scope.get("mode")
+        print(str(modes))
+        if "sleep" in modes:
+            actions.user.welcome_back()
+        else:
+            actions.user.sleep_all()
+
+    def welcome_back():
+        """Enables all things"""
+        actions.user.mouse_wake()
+        actions.user.enable_hud()
+        # user.history_enable()
+        actions.user.talon_mode()
+        actions.mode.enable("noise")
+
+    def sleep_all():
+        """Disables all things"""
+        actions.user.switcher_hide_running()
+        actions.user.disable_hud()
+        # user.history_disable()
+        actions.user.homophones_hide()
+        actions.user.help_hide()
+        actions.user.mouse_sleep()
+        actions.speech.disable()
+        actions.user.engine_sleep()
+        actions.mode.disable("noise")

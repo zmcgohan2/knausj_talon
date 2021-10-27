@@ -139,6 +139,15 @@ retap that [<number_small>]:
 
 # wipe right:
 #     key(delete)
+wipe [<number_small>]:
+    numb = number_small or 1
+    key(backspace)
+    repeat(numb - 1)   
+
+bin [<number_small>]:
+    numb = number_small or 1
+    key(delete)
+    repeat(numb - 1)   
 
 wipe up [<number_small>]:
     numb = number_small or 1
@@ -173,7 +182,7 @@ wipe start:
     edit.extend_line_start()
     edit.delete()
 
-wipe row:
+(mop | wipe row):
     edit.select_line()
     edit.delete()    
 
@@ -315,11 +324,6 @@ snip spring [<number_small>]:
 snip row:
     edit.select_line()
     edit.cut()
-
-wipe [<number_small>]:
-    numb = number_small or 1
-    key(backspace)
-    repeat(numb - 1)   
 
 (scrap|drill) [<number_small>]:
     numb = number_small or 1
