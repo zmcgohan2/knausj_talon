@@ -13,6 +13,8 @@ abbreviations = {
     "alternative": "alt",
     "application": "app",
     "applications": "apps",
+    "appointment": "appt",
+    "appointments": "appts",
     "argument": "arg",
     "arguments": "args",
     "as far as i can tell": "afaict",
