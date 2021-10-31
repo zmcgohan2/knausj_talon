@@ -1,9 +1,8 @@
 os: mac
 os: windows
 -
-^now (<phrase> | <user.number_string>):
-	number = number_string or ""
-	user.onenote_now("{phrase or number}")
+^now <word>+$:
+	user.onenote_now(word_list)
 
 key(ctrl-alt-i):
 	user.onenote_now("")
