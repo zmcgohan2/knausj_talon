@@ -20,4 +20,6 @@ mode: all
     user.disable_fd()
     speech.enable()
 
-key(ctrl-`): speech.toggle()
+key(ctrl-`):
+    speech.toggle()
+    user.disable_fd()
