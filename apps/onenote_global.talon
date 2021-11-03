@@ -5,4 +5,4 @@ os: windows
 	user.onenote_now(word_list)
 
 key(ctrl-alt-i):
-	user.onenote_now("")
+	user.onenote_now()
