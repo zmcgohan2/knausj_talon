@@ -20,13 +20,9 @@ routine save: insert("d ^%ZeRSAVE")
 routine load: insert("d ^%ZeRLOAD")
 routine find: insert("d ^%ZRFIND")
 clinical admin: insert(";l")
-edit <user.letter> <user.letter> <user.letter>:
-	insert("e {letter_1}{letter_2}{letter_3}")
-	key(enter enter)
-	insert("1;1")
-	key(enter)
-edit <user.letter> <number_small> <user.letter>:
-	insert("e {letter_1}{number_small}{letter_2}")
+^edit <user.ini>$:
+	key(f1)
+	insert("e {ini}")
 	key(enter enter)
 	insert("1;1")
 	key(enter)
