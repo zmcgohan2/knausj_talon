@@ -141,7 +141,6 @@ punctuation_words = {
     "period": ".",
     "full stop": ".",
     "semicolon": ";",
-    "semi": ";",
     "colon": ":",
     "slash": "/",
     "question mark": "?",
@@ -163,6 +162,7 @@ punctuation_words = {
     "pound sign": "£",
 }
 symbol_key_words = {
+    "semi": ";",
     "dot": ".",
     "point": ".",
     "quote": "'",
