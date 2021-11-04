@@ -2,9 +2,10 @@ from talon import actions, ui
 
 DEFAULT_DISABLE_BUNDLE_IDS = frozenset({
     'com.apple.FaceTime',
-    'com.webex.meetingmanager',
+    'com.bluejeansnet.Blue',
     'com.microsoft.teams',
-    'us.zoom.xos'
+    'com.webex.meetingmanager',
+    'us.zoom.xos',
 })
 
 was_enabled_globally = False
