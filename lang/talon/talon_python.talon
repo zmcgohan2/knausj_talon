@@ -30,8 +30,12 @@ context matches:
     key(left:3 enter:2 up)
 mod list: user.code_insert_function("mod.list", edit.selected_text())
 mod tag: user.code_insert_function("mod.tag", edit.selected_text())
+mod setting: 'mod.setting("",type=,default=,desc="",)'
 # requires user.talon_populate_lists tag. do not use with dragon
 (action | fun) {user.talon_actions}:
     user.code_insert_function("actions.{talon_actions}", edit.selected_text())
 # requires user.talon_populate_lists tag. do not use with dragon
 context list {user.talon_lists}: 'ctx.lists["{talon_lists}"] = '
+#commands for dictating key combos
+key <user.keys> over: "{keys}"
+key <user.modifiers> over: "{modifiers}"
