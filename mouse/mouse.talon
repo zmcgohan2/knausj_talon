@@ -58,29 +58,71 @@ tripclick:
 # 	key("{modifiers}:up")
 drag:
 	user.mouse_drag(0)
-wheel down: user.mouse_scroll_down()
-wheel down here:
+wheel down [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	user.mouse_scroll_down()
+	repeat(num)
+wheel down here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
     user.mouse_move_center_active_window()
     user.mouse_scroll_down()
-wheel tiny [down]: mouse_scroll(20)
-wheel tiny [down] here:
+	repeat(num)
+wheel tiny [down] [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	mouse_scroll(20)
+	repeat(num)
+wheel tiny [down] here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
     user.mouse_move_center_active_window()
     mouse_scroll(20)
-wheel downer: user.mouse_scroll_down_continuous()
-wheel downer here:
+	repeat(num)
+wheel downer [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	user.mouse_scroll_down_continuous()
+	repeat(num)
+wheel downer here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
     user.mouse_move_center_active_window()
     user.mouse_scroll_down_continuous()
-wheel up: user.mouse_scroll_up()
-wheel up here:
- user.mouse_scroll_up()
-wheel tiny up: mouse_scroll(-20)
-wheel tiny up here:
+	repeat(num)
+wheel up [<number_small>]:
+	num = number_small or 1
+	num = num - 1
+	user.mouse_scroll_up()
+	repeat(num)
+wheel up here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
+	user.mouse_scroll_up()
+	repeat(num)
+wheel tiny up [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	mouse_scroll(-20)
+	repeat(num)
+wheel tiny up here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
     user.mouse_move_center_active_window()
     mouse_scroll(-20)
-wheel upper: user.mouse_scroll_up_continuous()
-wheel upper here:
-    user.mouse_move_center_active_window()
+	repeat(num)
+wheel upper [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	user.mouse_scroll_up_continuous()
+	repeat(num)
+wheel upper here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
+	user.mouse_move_center_active_window()
     user.mouse_scroll_up_continuous()
+	repeat(num)
 wheel gaze: user.mouse_gaze_scroll()
 wheel gaze cursor: user.mouse_gaze_scroll_cursor()
 wheel gaze cursor here: 
@@ -93,22 +135,50 @@ wheel stop: user.mouse_scroll_stop()
 wheel stop here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_stop()
-wheel left: mouse_scroll(0, -40)
-wheel left here:
+wheel left [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	mouse_scroll(0, -40)
+	repeat(num)
+wheel left here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
     user.mouse_move_center_active_window()
     mouse_scroll(0, -40)
-wheel tiny left: mouse_scroll(0, -20)
-wheel tiny left here:
+	repeat(num)
+wheel tiny left [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	mouse_scroll(0, -20)
+	repeat(num)
+wheel tiny left here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
     user.mouse_move_center_active_window()
     mouse_scroll(0, -20)
-wheel right: mouse_scroll(0, 40)
-wheel right here:
+	repeat(num)
+wheel right [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	mouse_scroll(0, 40)
+	repeat(num)
+wheel right here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
     user.mouse_move_center_active_window()
     mouse_scroll(0, 40)
-wheel tiny right: mouse_scroll(0, 20)
-wheel tiny right here:
+	repeat(num)
+wheel tiny right [<number_small>]: 
+	num = number_small or 1
+	num = num - 1
+	mouse_scroll(0, 20)
+	repeat(num)
+wheel tiny right here [<number_small>]:
+	num = number_small or 1
+	num = num - 1
     user.mouse_move_center_active_window()
     mouse_scroll(0, 20)
+	repeat(num)
 curse yes: user.mouse_show_cursor()
 curse no: user.mouse_hide_cursor()
 copy mouse position: user.copy_mouse_position()
