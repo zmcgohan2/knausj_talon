@@ -32,6 +32,9 @@ settings():
     # speech.gain = 6
 # uncomment tag to enable mouse grid
 tag(): user.mouse_grid_enabled
+tag(): user.cursorless_experimental_snippets
 tag(): talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
+tag(): user.cursorless_experimental_snippets
+
 
 
