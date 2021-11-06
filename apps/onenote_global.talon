@@ -1,3 +1,5 @@
+mode: command
+mode: dictation
 os: mac
 os: windows
 -
