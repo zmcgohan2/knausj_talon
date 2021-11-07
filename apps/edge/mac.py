@@ -19,7 +19,7 @@ class BrowserActions:
         actions.key("cmd-shift-d")
 
     def bookmarks():
-        actions.key("alt-cmd-b")
+        actions.key("cmd-alt-b")
 
     def bookmarks_bar():
         actions.key("cmd-shift-b")
@@ -35,10 +35,10 @@ class BrowserActions:
         actions.key("cmd-n")
 
     def go_back():
-        actions.key("cmd-[")
+        actions.key("cmd-left")
 
     def go_forward():
-        actions.key("cmd-]")
+        actions.key("cmd-right")
 
     def go_home():
         actions.key("cmd-shift-h")
@@ -50,14 +50,14 @@ class BrowserActions:
         actions.key("cmd-r")
 
     def reload_hard():
-        actions.key("cmd-shift-r")
+        actions.key("shift-cmd-r")
         # action(browser.reload_hardest):
 
-    # def show_clear_cache():
-    #     actions.key("alt-cmd-l")
+    def show_clear_cache():
+        actions.key("cmd-shift-delete")
 
     def show_downloads():
-        actions.key("alt-cmd-l")
+        actions.key("cmd-shift-j")
         # action(browser.show_extensions)
 
     def show_history():
@@ -68,7 +68,7 @@ class BrowserActions:
         # action(browser.title)
 
     def toggle_dev_tools():
-        actions.key("cmd-shift-i")
+        actions.key("cmd-alt-i")
 
 
 @ctx.action_class("user")
