@@ -22,9 +22,8 @@ mod = Module()
 DEFAULT_MINIMUM_TERM_LENGTH = 3
 FANCY_REGULAR_EXPRESSION = r"[A-Z]?[a-z]+|[A-Z]+(?![a-z])|[0-9]+"
 FILE_EXTENSIONS_REGEX = "|".join(
-    "\\" + file_extension.strip() + "$" for file_extension in file_extensions.values()
+    re.escape(file_extension.strip()) + "$" for file_extension in file_extensions.values()
 )
-print()
 SYMBOLS_REGEX = "|".join(re.escape(symbol) for symbol in set(symbol_key_words.values()))
 REGEX_NO_SYMBOLS = re.compile(
     "|".join(
@@ -160,10 +159,10 @@ def create_spoken_form_years(num: str):
 
 
 # # ---------- create_spoken_form_years  (uncomment to run) ----------
-def test_year(year: str, expected: str):
-    result = create_spoken_form_years(year)
-    print(f"test_year: test string = {year}, result = {result}, expected = {expected}")
-    assert create_spoken_form_years(year) == expected
+# def test_year(year: str, expected: str):
+#     result = create_spoken_form_years(year)
+#     print(f"test_year: test string = {year}, result = {result}, expected = {expected}")
+#     assert create_spoken_form_years(year) == expected
 
 
 # print("************* test_year tests ******************")
