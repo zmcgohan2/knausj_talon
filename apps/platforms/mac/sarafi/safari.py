@@ -14,17 +14,6 @@ app: safari
 """
 ctx.tags = ['browser', 'user.tabs']
 
-@ctx.action_class('app')
-class AppActions:
-    def tab_previous():
-        actions.key('cmd-shift-[')
-    def tab_next():
-        actions.key('cmd-shift-]')
-    def tab_close():
-        actions.key('cmd-w')
-    def tab_reopen():
-        actions.key('cmd-shift-t')
-
 def safari_app():
     return ui.apps(bundle="com.apple.Safari")[0]
 
