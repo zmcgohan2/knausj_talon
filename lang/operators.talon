@@ -30,10 +30,10 @@ do power: user.code_operator_exponent()
 #comparison operators
 do equal: user.code_operator_equal()
 do not equal: user.code_operator_not_equal()
-do greater: user.code_operator_greater_than()
-do less: user.code_operator_less_than()
+do greater [then]: user.code_operator_greater_than()
+do less [then]: user.code_operator_less_than()
 do greater equal: user.code_operator_greater_than_or_equal_to()
-do less equal: user.code_operator_less_than_or_equal_to()
+do less [then] equal: user.code_operator_less_than_or_equal_to()
 do in: user.code_operator_in()
 
 do and: user.code_operator_and()
