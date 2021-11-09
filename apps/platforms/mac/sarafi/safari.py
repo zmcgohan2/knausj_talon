@@ -17,28 +17,28 @@ ctx.tags = ["browser", "user.tabs"]
 
 @ctx.action_class("browser")
 class BrowserActions:
-    def address() -> str:
-        try:
-            window = ui.active_app().windows()[0]
-        except IndexError:
-            return ""
-        try:
-            address_field = window.element.children.find_one(
-                AXRole="AXTextField",
-                AXIdentifier="WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD",
-            )
-            address = address_field.AXValue
-        except (ui.UIErr, AttributeError):
-            address = applescript.run(
-                """
-            tell application id "com.apple.Safari"
-                if not (exists (window 1)) then return ""
-                return window 1's current tab's URL
-            end tell
-            """
-            )
+    # def address() -> str:
+    #     try:
+    #         window = ui.active_app().windows()[0]
+    #     except IndexError:
+    #         return ""
+    #     try:
+    #         address_field = window.element.children.find_one(
+    #             AXRole="AXTextField",
+    #             AXIdentifier="WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD",
+    #         )
+    #         address = address_field.AXValue
+    #     except (ui.UIErr, AttributeError):
+    #         address = applescript.run(
+    #             """
+    #         tell application id "com.apple.Safari"
+    #             if not (exists (window 1)) then return ""
+    #             return window 1's current tab's URL
+    #         end tell
+    #         """
+    #         )
 
-        return address
+    #     return address
 
     def bookmark():
         actions.key("cmd-d")
