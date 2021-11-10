@@ -5,6 +5,6 @@ mode: all
 ^sleep all$: user.sleep_all()
 ^go to sleep$: speech.disable()
 ^wake up$: speech.enable()
-key(ctrl-shift-f9): 
+key(ctrl-shift-f12): 
     user.wake_or_sleep()
 
