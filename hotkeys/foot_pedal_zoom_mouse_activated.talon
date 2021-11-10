@@ -12,7 +12,7 @@ key(scroll_lock): talon_plugins.eye_zoom_mouse.double_click()
 key(pageup): talon_plugins.eye_zoom_mouse.triple_click()
 #middle
 key(pagedown): talon_plugins.eye_zoom_mouse.mouse_drag()
-
+key(ctrl-shift-f12): talon_plugins.eye_zoom_mouse.mouse_move()
 #Blue2 
 key(home): talon_plugins.eye_zoom_mouse.right_click()
 key(insert): talon_plugins.eye_zoom_mouse.mouse_trigger()
