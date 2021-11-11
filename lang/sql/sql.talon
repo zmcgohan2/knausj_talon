@@ -7,9 +7,6 @@ tag(): user.code_comment
 tag(): user.code_block_comment
 
 select: "SELECT "
-count:
-    "Count()"
-    key(left)
 from: "FROM "
 select star from: "SELECT *\nFROM "
 where: "WHERE "
@@ -33,3 +30,11 @@ right outer join:
 column:
     key(return)
     ", "
+
+count:
+    "Count()"
+    key(left)
+
+date:
+    "DATE ''"
+    key(left)
