@@ -15,14 +15,43 @@ item help: key(shift-f5)
 item info: key(home f7)
 
 # Lookitt
-routine do: insert("d ^")
-routine save: insert("d ^%ZeRSAVE")
-routine load: insert("d ^%ZeRLOAD")
-routine find: insert("d ^%ZRFIND")
-clinical admin: insert(";l")
+^routine do$:
+	key(f1)
+	insert("d ^")
+
+^routine save$:
+	key(f1)
+	insert("d ^%ZeRSAVE")
+	key(enter)
+
+^routine load$:
+	key(f1)
+	insert("d ^%ZeRLOAD")
+	key(enter)
+
+^routine find$:
+	key(f1)
+	insert("d ^%ZRFIND")
+	key(enter)
+
+^clinical admin$:
+	key(f1)
+	insert(";l")
+	key(enter)
+
 ^edit <user.ini>$:
 	key(f1)
 	insert("e {ini}")
 	key(enter enter)
 	insert("1;1")
+	key(enter)
+
+^clarity item <user.ini> <number>$:
+	key(f1)
+	insert(";cri {ini} {number}")
+	key(enter)
+
+^category <user.ini> <number>$:
+	key(f1)
+	insert(";cat {ini} {number}")
 	key(enter)
