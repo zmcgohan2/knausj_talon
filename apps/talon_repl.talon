@@ -54,3 +54,6 @@ tag(): user.talon_populate_lists
 ^debug {user.running} windows$:
     insert("actions.user.talon_debug_app_windows('{running}')")
     key(enter)
+^pretty print$: 
+    insert("actions.user.talon_pretty_print()")
+    key(left)

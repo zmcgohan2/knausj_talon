@@ -6,6 +6,7 @@ import time
 from glob import glob
 from itertools import islice
 from pathlib import Path
+import subprocess
 
 import talon
 from talon import Context, Module, actions, app, imgui, resource, ui
@@ -33,11 +34,6 @@ mac_application_directories = [
     "/System/Applications/Utilities",
 ]
 
-# windows_application_directories = [
-#     "%AppData%/Microsoft/Windows/Start Menu/Programs",
-#     "%ProgramData%/Microsoft/Windows/Start Menu/Programs",
-#     "%AppData%/Microsoft/Internet Explorer/Quick Launch/User Pinned/TaskBar",
-# ]
 words_to_exclude = [
     "zero",
     "one",
@@ -64,7 +60,10 @@ words_to_exclude = [
     "windows",
 ]
 
-# windows-specific logic
+# on Windows, WindowsApps are not like normal applications, so
+# we use the shell:AppsFolder to populate the list of applications
+# rather than via e.g. the start menu. This way, all apps, including "modern" apps are
+# launchable. To easily retrieve the apps this makes available, navigate to shell:AppsFolder in Explorer
 if app.platform == "windows":
     import os
     import ctypes
@@ -78,8 +77,7 @@ if app.platform == "windows":
         # Python 2
         import _winreg as winreg
 
-        def bytes(x):
-            return str(buffer(x))
+        bytes = lambda x: str(buffer(x))
 
     from ctypes import wintypes
     from win32com.shell import shell, shellcon
@@ -131,12 +129,8 @@ if app.platform == "windows":
         items_enum = folder_shell_item.BindToHandler(
             None, shell.BHID_EnumItems, shell.IID_IEnumShellItems
         )
-        result = []
         for item in items_enum:
-            # print(item.GetDisplayName(shellcon.SIGDN_NORMALDISPLAY))
-            result.append(item.GetDisplayName(shellcon.SIGDN_NORMALDISPLAY))
-
-        return result
+            yield item
 
     def list_known_folder(folder_id, htoken=None):
         result = []
@@ -144,6 +138,26 @@ if app.platform == "windows":
             result.append(item.GetDisplayName(shellcon.SIGDN_NORMALDISPLAY))
         result.sort(key=lambda x: x.upper())
         return result
+
+    def get_windows_apps():
+        items = {}
+        for item in enum_known_folder(FOLDERID_AppsFolder):
+            try:
+                property_store = item.BindToHandler(
+                    None, shell.BHID_PropertyStore, propsys.IID_IPropertyStore
+                )
+                app_user_model_id = property_store.GetValue(
+                    pscon.PKEY_AppUserModel_ID
+                ).ToString()
+
+            except pywintypes.error:
+                continue
+
+            name = item.GetDisplayName(shellcon.SIGDN_NORMALDISPLAY)
+
+            items[name] = app_user_model_id
+
+        return items
 
 
 @mod.capture(rule="{self.running}")  # | <user.text>)")
@@ -219,7 +233,7 @@ class Actions:
                 app.platform == "windows"
                 and application.exe.split(os.path.sep)[-1] == name
             ):
-                #print("returning something: " + application.name)
+                # print("returning something: " + application.name)
                 return application
         raise RuntimeError(f'App not running: "{name}"')
 
@@ -248,31 +262,12 @@ class Actions:
 
     def switcher_launch(path: str):
         """Launch a new application by path"""
-        if app.platform == "windows":
-            is_valid_path = False
-            try:
-                current_path = Path(path)
-                is_valid_path = current_path.is_file()
-                # print("valid path: {}".format(is_valid_path))
-
-            except:
-                # print("invalid path")
-                is_valid_path = False
-
-            if is_valid_path:
-                # print("path: " + path)
-                ui.launch(path=path)
-
-            else:
-                # print("envelop")
-                actions.key("super-s")
-                actions.sleep("300ms")
-                actions.insert("apps: {}".format(path))
-                actions.sleep("150ms")
-                actions.key("enter")
-
-        else:
+        # print(path)
+        if app.platform != "windows":
             ui.launch(path=path)
+        else:
+            cmd = "explorer.exe shell:AppsFolder\{}".format(path)
+            subprocess.Popen(cmd, shell=False)
 
     def switcher_menu():
         """Open a menu of running apps to switch to"""
@@ -286,21 +281,21 @@ class Actions:
         if app.platform == "windows":
             actions.key("super-d")
         elif app.platform == "mac":
-            actions.key("f11")        
-            
+            actions.key("f11")
+
     def switcher_show_application_windows():
         """shows windows for just the active app"""
-        if app.platform =="mac":
+        if app.platform == "mac":
             actions.key("ctrl-down")
         else:
             if gui_application_windows.showing:
                 gui_application_windows.hide()
             else:
-                gui_application_windows.show()  
+                gui_application_windows.show()
 
     def switcher_hide_application_windows():
         """Hides windows for just the active app"""
-        gui_application_windows.hide()      
+        gui_application_windows.hide()
 
     def switcher_switch_window(index: int):
         """Switches to active window for the app by index"""
@@ -328,10 +323,11 @@ def gui_running(gui: imgui.GUI):
     for line in ctx.lists["self.running"]:
         gui.text(line)
 
+
 @imgui.open()
 def gui_application_windows(gui: imgui.GUI):
     app = ui.active_app()
-    gui.text(f"{app.name} windows" )
+    gui.text(f"{app.name} windows")
     gui.line()
     windows = ui.active_app().windows()
     windows.sort(key=lambda x: x.title)
@@ -346,6 +342,7 @@ def gui_application_windows(gui: imgui.GUI):
     if gui.button("Exit"):
         actions.user.switcher_hide_application_windows()
 
+
 def update_launch_list():
     launch = {}
     if app.platform == "mac":
@@ -357,14 +354,8 @@ def update_launch_list():
                     launch[name] = path
 
     elif app.platform == "windows":
-        shortcuts = enum_known_folder(FOLDERID_AppsFolder)
-        shortcuts.sort()
-        for name in shortcuts:
-            # print("hit: " + name)
-            # print(name)
-            # name = path.rsplit("\\")[-1].split(".")[0].lower()
-            if "install" not in name:
-                launch[name] = name
+        launch = get_windows_apps()
+        # actions.user.talon_pretty_print(launch)
 
     ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_map(
         launch, words_to_exclude
