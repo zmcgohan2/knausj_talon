@@ -180,7 +180,6 @@ def update_running_list():
     running_application_dict = {}
     running = {}
     for cur_app in ui.apps(background=False):
-        # print(f"{cur_app.name}, {cur_app.exe}")
         running_application_dict[cur_app.name] = True
 
         if app.platform == "windows":
@@ -233,7 +232,6 @@ class Actions:
                 app.platform == "windows"
                 and application.exe.split(os.path.sep)[-1] == name
             ):
-                # print("returning something: " + application.name)
                 return application
         raise RuntimeError(f'App not running: "{name}"')
 
@@ -360,7 +358,6 @@ def update_launch_list():
     ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_map(
         launch, words_to_exclude
     )
-    # print(str(ctx.lists["self.launch"]))
 
 
 def ui_event(event, arg):
