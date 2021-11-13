@@ -22,7 +22,8 @@ class UserActions:
         return applescript.run(r"""
             tell application id "com.apple.Finder"
                 if not (exists (front window's target)) then return
-                return ((front window's target) as alias)'s POSIX path
+                if front window's target's class is not in {disk, folder} then return
+                return (front window's target as alias)'s POSIX path
             end tell
         """)
 
