@@ -19,20 +19,28 @@ class UserActions:
     def file_manager_current_path():
         if ui.active_window().title == "":
             return None # likely a modal window
-        return applescript.run(r"""
-            tell application id "com.apple.Finder"
-                if not (exists (front window's target)) then return
-                if front window's target's class is not in {disk, folder} then return
-                return (front window's target as alias)'s POSIX path
-            end tell
-        """)
+        try:
+            applescript.run(r"""
+                tell application id "com.apple.Finder"
+                    with timeout of 0.1 seconds
+                        if not (exists (front window's target)) then return
+                        if front window's target's class is not in {disk, folder} then return
+                        get front window's target
+                        return (result as alias)'s POSIX path
+                    end timeout
+                end tell
+            """)
+        except applescript.ApplescriptErr as e:
+            print(f'Unable to get path of frontmost Finder window: {e}')
 
     def file_manager_terminal_here():
         if ui.active_window().title == "":
             return # likely a modal window
         applescript.run(r"""
             try
-                tell application id "com.apple.Finder" to set theTarget to (front window's target as alias)
+                with timeout of 0.1 seconds
+                    tell application id "com.apple.Finder" to set theTarget to (front window's target as alias)
+                end timeout
             on error -- fails with some windows, e.g. Preferences window
                 return
             end try
