@@ -1,10 +1,6 @@
 app: citrix_viewer
 -
 
-# keys get dropped frequently
-settings():
-	key_wait = 4.0
-
 full screen: user.window_toggle_full_screen()
 
 full screen all: user.citrix_use_all_displays_in_full_screen()
