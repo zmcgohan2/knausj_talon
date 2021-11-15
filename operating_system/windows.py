@@ -9,16 +9,14 @@ os: windows
 ctx.lists["self.launch_command"] = {
     "sound": "control mmsys.cpl sounds",
     "blue tooth": "control bthprops.cpl",
+    "applications": "control appwiz.cpl",
 }
 
 
 @ctx.action_class("user")
 class UserActionsWin:
     def exec(command: str):
-        actions.key("super-r")
-        actions.sleep("650ms")
-        actions.insert(command)
-        actions.key("enter")
+        actions.user.system_command_nb(command)
 
     def system_shutdown():
         shutdown("s")
