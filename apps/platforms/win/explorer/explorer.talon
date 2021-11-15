@@ -9,3 +9,15 @@ go app folder: user.file_manager_open_directory("shell:AppsFolder")
 go cursor less config: user.file_manager_open_directory("%AppData%/Talon/user/cursorless-settings")
 go startup: user.file_manager_open_directory("shell:startup")
 go common startup: user.file_manager_open_directory("shell:common startup")
+extra large view:
+    key(ctrl-shift-1)
+large view:
+    key(ctrl-shift-2)
+medium view:
+    key(ctrl-shift-3)
+small view:
+    key(ctrl-shift-3)
+list view:
+    key(ctrl-shift-5)
+detail view:
+    key(ctrl-shift-6)
