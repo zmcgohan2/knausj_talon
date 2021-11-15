@@ -178,7 +178,7 @@ wipe word [<number_small>]:
     repeat(numb - 1)    
     edit.delete()
 
-wipe start:
+(wipe | bin) start:
     edit.extend_line_start()
     edit.delete()
 
@@ -190,25 +190,25 @@ wipe start:
 #     edit.extend_line_end()
 #     edit.delete()
 
-wipe east:
+(wipe | bin) east:
     edit.extend_line_start()
     edit.extend_line_start()
     edit.delete()
 
-wipe west:
+(wipe | bin) west:
     edit.extend_line_end()
     edit.extend_line_end()
     edit.delete()
 
-wipe north:
+(wipe | bin) north:
     edit.extend_file_start()
     edit.delete()
 
-wipe south:
+(wipe | bin) south:
     edit.extend_file_end()
     edit.delete()
     
-wipe all:
+(wipe | bin) all:
     edit.select_all()
     edit.delete()
 
@@ -325,7 +325,4 @@ snip row:
     edit.select_line()
     edit.cut()
 
-(scrap|drill) [<number_small>]:
-    numb = number_small or 1
-    edit.delete()
-    repeat(numb - 1)    
+
