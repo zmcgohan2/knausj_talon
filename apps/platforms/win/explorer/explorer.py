@@ -148,3 +148,8 @@ class UserActions:
     def file_manager_open_volume(volume: str):
         """file_manager_open_volume"""
         actions.user.file_manager_open_directory(volume)
+
+    def file_manager_copy_path():
+        actions.key("alt-h")
+        actions.sleep("100ms")
+        actions.key("c p")

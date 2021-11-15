@@ -248,6 +248,9 @@ class Actions:
 
             gui_folders.show()
 
+    def file_manager_copy_path():
+        """Copies the path of the selected file"""
+
 
 def is_dir(f):
     try:

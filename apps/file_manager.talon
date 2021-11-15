@@ -41,6 +41,19 @@ parent [<number_small>]:
 ^file {user.file_manager_files}$: user.file_manager_select_file(file_manager_files)
 ^(select|cell) file {user.file_manager_files}$: user.file_manager_select_file(file_manager_files)
 
+copy path {user.file_manager_files}:
+    user.file_manager_select_file(file_manager_files)
+    sleep(200ms)
+    user.file_manager_copy_path()
+
+copy path {user.file_manager_directories}:
+    user.file_manager_select_directory(file_manager_directories)
+    sleep(200ms)
+    user.file_manager_copy_path()
+
+copy path:
+    user.file_manager_copy_path()
+
 #new folder
 folder new [<user.text>]: 
     user.file_manager_new_folder(text  or "")
