@@ -8,12 +8,12 @@ os: windows
 """
 
 # todo: remove this someday when user.paste works on windows!!
-@ctx.action_class("user")
-class Actions:
-    def paste(text: str):
-        """Pastes text and preserves clipboard"""
-        print("overridden bitches")
-        actions.insert(text)
+# @ctx.action_class("user")
+# class Actions:
+#     def paste(text: str):
+#         """Pastes text and preserves clipboard"""
+#         print("overridden bitches")
+#         actions.insert(text)
 
 
 @ctx.action_class("edit")
