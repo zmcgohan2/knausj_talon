@@ -32,7 +32,7 @@ dwell_time = mod.setting(
 auto_hide = mod.setting(
     "clickless_mouse_auto_hide_time",
     type=float,
-    default=0.8,
+    default=1.25,
     desc="The time before the clickless mouse is auto-hidden",
 )
 

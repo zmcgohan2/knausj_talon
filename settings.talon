@@ -29,6 +29,13 @@ settings():
     user.command_history_size = 50
     speech.record_all = 1
     speech.timeout = .4500
+
+    #clickless mouse settings
+    user.clickless_mouse_radius = 35
+    user.clickless_mouse_idle_time_before_display = 0.25
+    user.clickless_mouse_dwell_time = 0.25
+    user.clickless_mouse_idle_time_before_display = 0.25
+    #end clickless mouse settings
     # speech.gain = 6
 # uncomment tag to enable mouse grid
 tag(): user.mouse_grid_enabled
