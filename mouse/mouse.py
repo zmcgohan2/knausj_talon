@@ -164,10 +164,11 @@ class Actions:
     def mouse_drag(button: int):
         """Press and hold/release a specific mouse button for dragging"""
         # Clear any existing drags
-        self.mouse_drag_end()
-
-        # Start drag
-        ctrl.mouse_click(button=button, down=True)
+        if actions.user.mouse_is_dragging():
+            self.mouse_drag_end()
+        else:
+            # Start drag
+            ctrl.mouse_click(button=button, down=True)
 
     def mouse_drag_end():
         """Releases any held mouse buttons"""
@@ -469,17 +470,17 @@ def start_cursor_scrolling():
     gaze_job = cron.interval("60ms", gaze_scroll_cursor)
 
 
-if app.platform == "mac":
-    from talon import tap
+# if app.platform == "mac":
+#     from talon import tap
 
-    def on_move(e):
-        if not config.control_mouse:
-            buttons = ctrl.mouse_buttons_down()
-            # print(str(ctrl.mouse_buttons_down()))
-            if not e.flags & tap.DRAG and buttons:
-                e.flags |= tap.DRAG
-                # buttons is a set now
-                e.button = list(buttons)[0]
-                e.modify()
+#     def on_move(e):
+#         if not config.control_mouse:
+#             buttons = ctrl.mouse_buttons_down()
+#             # print(str(ctrl.mouse_buttons_down()))
+#             if not e.flags & tap.DRAG and buttons:
+#                 e.flags |= tap.DRAG
+#                 # buttons is a set now
+#                 e.button = list(buttons)[0]
+#                 e.modify()
 
-    tap.register(tap.MMOVE | tap.HOOK, on_move)
+#     tap.register(tap.MMOVE | tap.HOOK, on_move)
