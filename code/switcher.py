@@ -156,7 +156,7 @@ if app.platform == "windows":
             name = item.GetDisplayName(shellcon.SIGDN_NORMALDISPLAY)
 
             # exclude anything with install/uninstall...
-            # 'cause we don't want 'em
+            # 'cause I don't think we don't want 'em
             if "install" not in name.lower():
                 items[name] = app_user_model_id
 
@@ -262,8 +262,7 @@ class Actions:
             actions.sleep(0.1)
 
     def switcher_launch(path: str):
-        """Launch a new application by path"""
-        # print(path)
+        """Launch a new application by path (all OSes), or AppUserModel_ID path on Windows"""
         if app.platform != "windows":
             ui.launch(path=path)
         else:
