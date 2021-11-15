@@ -175,6 +175,11 @@ class Actions:
         for button in buttons_held_down:
             ctrl.mouse_click(button=button, up=True)
 
+    def mouse_is_dragging():
+        """Returns whether or not a drag is in progress"""
+        buttons_held_down = list(ctrl.mouse_buttons_down())
+        return len(buttons_held_down) > 0
+
     def mouse_sleep():
         """Disables control mouse, zoom mouse, and re-enables cursor"""
         eye_zoom_mouse.toggle_zoom_mouse(False)
