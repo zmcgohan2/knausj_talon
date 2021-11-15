@@ -1,3 +1,4 @@
+os: windows
 not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 -
 key(scroll_lock): user.toggle_gaze_scroll() 
