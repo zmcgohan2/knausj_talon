@@ -30,6 +30,15 @@ class UserActionsWin:
     def system_lock():
         actions.key("super-l")
 
+    def system_show_desktop():
+        actions.key("super-d")
+
+    def system_task_view():
+        actions.key("super-tab")
+
+    def system_switcher():
+        actions.key("ctrl-alt-tab")
+
 
 def shutdown(flag: str):
     actions.key("super-r")

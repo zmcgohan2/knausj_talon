@@ -26,3 +26,15 @@ class Actions:
 
     def system_lock():
         """Locks the OS"""
+
+    def system_show_desktop():
+        """Reveals the desktop"""
+
+    def system_task_manager():
+        """starts the task manager"""
+
+    def system_task_view():
+        """Mission control/super-tab equivalent"""
+
+    def system_switcher():
+        """Mission control/ctl-alt-tab equivalent"""
