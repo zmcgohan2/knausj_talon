@@ -30,6 +30,7 @@ mod.list("modifier_key", desc="All modifier keys")
 mod.list("function_key", desc="All function keys")
 mod.list("special_key", desc="All special keys")
 mod.list("punctuation", desc="words for inserting punctuation into text")
+mod.list("keypad_keys", desc="words for the keypad")
 
 
 @mod.capture(rule="{self.modifier_key}+")
@@ -80,6 +81,12 @@ def function_key(m) -> str:
     return m.function_key
 
 
+@mod.capture(rule="{self.keypad_keys}")
+def keypad_keys(m) -> str:
+    "One keypad key"
+    return m.keypad_keys
+
+
 @mod.capture(rule="( <self.letter> | <self.number_key> | <self.symbol_key> )")
 def any_alphanumeric_key(m) -> str:
     "any alphanumeric key"
@@ -88,7 +95,7 @@ def any_alphanumeric_key(m) -> str:
 
 @mod.capture(
     rule="( <self.letter> | <self.number_key> | <self.symbol_key> "
-    "| <self.arrow_key> | <self.function_key> | <self.special_key> )"
+    "| <self.arrow_key> | <self.function_key> | <self.special_key> | <self.keypad_keys>)"
 )
 def unmodified_key(m) -> str:
     "A single key with no modifiers"
@@ -207,6 +214,12 @@ symbol_key_words = {
     # "double quote": '"',
 }
 
+
+keypad_keys = {}
+for count, number in enumerate(default_digits):
+    keypad_keys[f"keypad {number}"] = f"keypad_{count}"
+
+ctx.lists["user.keypad_keys"] = keypad_keys
 # duplicate the relevant lists for dragon, and modify as needed
 punctuation_words_dragon = copy.deepcopy(punctuation_words)
 
@@ -225,6 +238,7 @@ ctx.lists["self.symbol_key"] = symbol_key_words
 ctx_dragon.lists["self.symbol_key"] = symbol_key_words_dragon
 
 ctx.lists["self.number_key"] = dict(zip(default_digits, numbers))
+
 ctx.lists["self.arrow_key"] = {
     "down": "down",
     "left": "left",
