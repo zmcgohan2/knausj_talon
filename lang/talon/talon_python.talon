@@ -30,6 +30,15 @@ context matches:
     key(left:3 enter:2 up)
 mod list: user.code_insert_function("mod.list", edit.selected_text())
 mod tag: user.code_insert_function("mod.tag", edit.selected_text())
+application [require] [{user.talon_apps}]: 
+    app = talon_apps or ""
+    user.paste("app: {app}")
+mode require [{user.talon_modes}]: 
+    mode = talon_modes or ""
+    user.paste("mode: {mode}")
+tag require [{user.talon_tags}]: 
+    tag = talon_tags or ""
+    user.paste("tag: {tag}")
 mod setting: 'mod.setting("",type=,default=,desc="",)'
 # requires user.talon_populate_lists tag. do not use with dragon
 (action | fun) {user.talon_actions}:
