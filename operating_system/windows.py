@@ -8,8 +8,15 @@ os: windows
 
 ctx.lists["self.launch_command"] = {
     "sound": "control mmsys.cpl sounds",
-    "blue tooth": "control bthprops.cpl",
+    "bluetooth": "control bthprops.cpl",
     "applications": "control appwiz.cpl",
+    "display": "control desk.cpl",
+    "taskbar": "control /name Microsoft.Taskbar",
+    "programs and features": "control /name Microsoft.ProgramsAndFeatures",
+    "Power": "control powercfg.cpl",
+    "Mouse": "control main.cpl",
+    "Network": "control /name Microsoft.NetworkAndSharingCenter",
+    # "Notifications": "control /name Microsoft.NotificationAreaIcons",
 }
 
 
