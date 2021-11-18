@@ -95,12 +95,9 @@ class Actions:
                 )
             elif app.platform == "windows":
                 splits = device_name.split("(")
-                device_name = splits[1].replace(")", "").strip()
+                device = splits[1].replace(")", "").strip()
                 device_type = splits[0].strip()
-                full_device_path = "{}\Device\{}\Render".format(
-                    device_name, device_type
-                )
-                # print(full_device_path)
+                full_device_path = "{}\Device\{}\Render".format(device, device_type)
                 program_files = os.environ["ProgramFiles"]
                 call(
                     [
