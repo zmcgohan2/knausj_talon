@@ -11,14 +11,17 @@ directories_to_remap = {"": "/Volumes"}
 directories_to_exclude = {}
 
 
-@ctx.action_class('user')
+@ctx.action_class("user")
 class UserActions:
     def file_manager_open_parent():
-        actions.key('cmd-up')
+        actions.key("cmd-up")
+
     def file_manager_go_forward():
-        actions.key('cmd-]')
+        actions.key("cmd-]")
+
     def file_manager_go_back():
-        actions.key('cmd-[')
+        actions.key("cmd-[")
+
     def file_manager_current_path():
         title = ui.active_window().title
 
@@ -78,3 +81,6 @@ class UserActions:
         """selects the file"""
         actions.key("home")
         actions.insert(path)
+
+    def file_manager_copy_path():
+        actions.key("cmd-alt-c")

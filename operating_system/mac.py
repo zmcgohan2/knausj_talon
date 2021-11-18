@@ -67,7 +67,9 @@ class UserActionsMac:
         actions.key("shift-f13")
 
     def system_task_manager():
-        actions.user.exec("Activity Monitor")
+        actions.user.switcher_launch(
+            "/System/Applications/Utilities/Activity Monitor.app"
+        )
 
     def system_task_view():
         actions.key("shift-f11")
