@@ -15,7 +15,17 @@ ctx.lists["self.launch_command"] = {
     "programs and features": "control /name Microsoft.ProgramsAndFeatures",
     "Power": "control powercfg.cpl",
     "Mouse": "control main.cpl",
+    "Keyboard": "control main.cpl keyboard",
     "Network": "control /name Microsoft.NetworkAndSharingCenter",
+    "System Properties": "control sysdm.cpl",
+    "User Accounts": "control userpasswords",
+    "Internet Options": "control inetcpl.cpl",
+    "Date and Time": "control timedate.cpl",
+    "Device Manager": "control /name Microsoft.DeviceManager",
+    "Ease of Access Center": "control /name Microsoft.EaseOfAccessCenter",
+    "Administrative Tools": "control /name Microsoft.AdministrativeTools",
+    "Default Programs": "control /name Microsoft.DefaultPrograms",
+    "Windows Update": "control /name Microsoft.WindowsUpdate"
     # "Notifications": "control /name Microsoft.NotificationAreaIcons",
 }
 
