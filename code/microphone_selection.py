@@ -94,13 +94,20 @@ class Actions:
                     ]
                 )
             elif app.platform == "windows":
+                splits = device_name.split("(")
+                device_name = splits[1].replace(")", "").strip()
+                device_type = splits[0].strip()
+                full_device_path = "{}\Device\{}\Render".format(
+                    device_name, device_type
+                )
+                # print(full_device_path)
                 program_files = os.environ["ProgramFiles"]
                 call(
                     [
-                        f"{program_files}/nircmd/nircmd.exe",
-                        "setdefaultsounddevice",
-                        device_name,
-                        "1",
+                        f"{program_files}/SoundVolumeView/SoundVolumeView.exe",
+                        "/SetDefault",
+                        full_device_path,
+                        "0",
                     ]
                 )
 
