@@ -26,3 +26,4 @@ trash it: key(cmd-backspace)
 
 hide [finder]: key(cmd-h)
 hide others: app.window_hide_others()
+go app folder: user.file_manager_open_directory("/Applications")
