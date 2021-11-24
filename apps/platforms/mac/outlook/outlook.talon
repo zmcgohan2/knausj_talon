@@ -1,6 +1,6 @@
 app.bundle: com.microsoft.Outlook
 -
-archive: key(ctrl-e)
+archive: user.outlook_archive()
 delete: key(cmd-backspace)
 flag: key(ctrl-5)
 unflag: user.outlook_unflag()
