@@ -6,6 +6,7 @@
 tag(): user.talon_populate_lists
 
 talon check updates: menu.check_for_updates()
+talon restart: user.exec("talon-restart")
 talon open log: menu.open_log()
 talon open rebel: menu.open_repl()
 talon home: menu.open_talon_home()
