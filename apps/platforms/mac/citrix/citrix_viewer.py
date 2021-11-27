@@ -14,7 +14,7 @@ app: citrix_viewer
 
 def citrix_view_menu():
 	citrix_viewer = ui.apps(bundle='com.citrix.receiver.icaviewer.mac')[0]
-	menu_bar = citrix_viewer.element.children.find_one(AXRole='AXMenuBar', max_depth=0)
+	menu_bar = citrix_viewer.children.find_one(AXRole='AXMenuBar', max_depth=0)
 	view_menu = menu_bar.children.find_one(AXRole='AXMenuBarItem', AXTitle='View', max_depth=0).children[0]
 	return view_menu
 

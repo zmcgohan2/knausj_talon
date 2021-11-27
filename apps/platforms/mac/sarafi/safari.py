@@ -25,7 +25,7 @@ class BrowserActions:
         except IndexError:
             return ''
         try:
-            address_field = window.element.children.find_one(
+            address_field = window.children.find_one(
                 AXRole='AXTextField', AXIdentifier='WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD')
             address = address_field.AXValue
         except (ui.UIErr, AttributeError):

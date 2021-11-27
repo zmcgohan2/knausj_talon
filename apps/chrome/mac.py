@@ -18,7 +18,7 @@ class BrowserActions:
         except IndexError:
             return ''
         try:
-            web_area = window.element.children.find_one(AXRole='AXWebArea')
+            web_area = window.children.find_one(AXRole='AXWebArea')
             address = web_area.AXURL
         except (ui.UIErr, AttributeError):
             address = applescript.run('''
