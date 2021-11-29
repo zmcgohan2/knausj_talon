@@ -22,7 +22,7 @@ class EditActions:
 		actions.key('cmd-a')
 		actions.sleep('100ms')
 
-@mod.capture(rule="<number_small> | [<number_small>] <user.text>")
+@mod.capture(rule="<number_small> | <number_small> plus <number_small> | [<number_small>] <user.text>")
 def now_entry(m) -> str:
 	return ' '.join(m._unmapped)
 
