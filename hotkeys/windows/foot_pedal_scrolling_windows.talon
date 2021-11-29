@@ -9,3 +9,6 @@ key(scroll_lock): user.system_switcher()
 #blue2
 key(insert): user.mouse_scroll_up()
 key(home): user.mouse_scroll_down()
+
+key(keypad_8): user.mouse_toggle_zoom_mouse()
+key(keypad_9): user.microphone_toggle()
