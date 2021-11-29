@@ -20,7 +20,7 @@ class Actions:
     def talon_mode():
         """For windows and Mac with Dragon, enables Talon commands and Dragon's command mode."""
         actions.speech.enable()
-
+        actions.user.microphone_preferred()
         engine = speech_system.engine.name
         # app.notify(engine)
         if "dragon" in engine:
@@ -59,11 +59,13 @@ class Actions:
     def wake_or_sleep():
         """toggles wake or sleep"""
         modes = scope.get("mode")
-        print(str(modes))
-        if "sleep" in modes:
+        # print(str(modes))
+        if not actions.speech.enabled():
             actions.user.welcome_back()
+            actions.user.microphone_preferred()
         else:
             actions.user.sleep_all()
+            actions.speech.set_microphone("None")
 
     def welcome_back():
         """Enables all things"""
