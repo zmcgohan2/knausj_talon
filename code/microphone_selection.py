@@ -6,7 +6,7 @@ import os
 ctx = cubeb.Context()
 mod = Module()
 
-
+previous_mic = "Microphone (d:vice MMA-A)"
 microphone_device_list = []
 speaker_device_list = []
 # by convention, None and System Default are listed first
@@ -69,6 +69,18 @@ class Actions:
                 "Activating microphone: {}".format(microphone_device_list[index - 1])
             )
             gui_microphone.hide()
+
+    def microphone_toggle():
+        """Toggles the microphone and speech"""
+        global previous_mic
+        if actions.speech.enabled():
+            previous_mic = actions.sound.active_microphone()
+            print(previous_mic)
+            actions.speech.set_microphone("None")
+        else:
+            actions.speech.set_microphone(previous_mic)
+
+        actions.speech.toggle()
 
     def speaker_selection_toggle():
         """"""
