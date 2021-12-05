@@ -59,9 +59,9 @@ class BrowserActions:
     def go_blank():
         actions.key('cmd-n')
     def go_back():
-        actions.key('cmd-left')
+        actions.key('cmd-[')
     def go_forward():
-        actions.key('cmd-right')
+        actions.key('cmd-]')
     def go_home():
         actions.key('cmd-shift-h')
     def open_private_window():
@@ -74,9 +74,9 @@ class BrowserActions:
     #action(browser.show_clear_cache):
     #	key(cmd-shift-delete)
     def show_downloads():
-        actions.key('cmd-shift-j')
-    def show_extensions():
-        actions.key('ctrl-shift-a')
+        actions.key('cmd-alt-l')
+    # def show_extensions():
+    #     actions.key('ctrl-shift-a')
     def show_history():
         actions.key('cmd-y')
     def submit_form():
