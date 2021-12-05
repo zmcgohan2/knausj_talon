@@ -19,6 +19,7 @@ class UserActions:
 
 	def outlook_archive():
 		# Work around bug in which the keyboard shortcut is dead if focus is not in an outline
+		# (old Outlook only)
 		role = outlook_app().focused_element.AXRole
 		if role != "AXOutline":
 			actions.key("ctrl-shift-[")
