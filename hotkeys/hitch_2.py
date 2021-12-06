@@ -15,72 +15,61 @@ and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 
 @mod.action_class
 class Actions:
-    def foot_pedal_left_left():
+    def hitch2_s1():
         """document string goes here"""
 
-    def foot_pedal_left_middle():
+    def hitch2_s2():
         """document string goes here"""
 
-    def foot_pedal_left_right():
+    def hitch2_s3():
         """document string goes here"""
 
-    def foot_pedal_right_left():
+    def hitch2_s4():
         """document string goes here"""
 
-    def foot_pedal_right_middle():
-        """document string goes here"""
-
-    def foot_pedal_right_right():
+    def hitch2_s5():
         """document string goes here"""
 
 @ctx_zoom_mouse_inactive.action_class("user")
 class WindowsZoomMouseInactiveActions:
-    def foot_pedal_left_left():
+    def hitch2_s1():
         """document string goes here"""
         actions.talon_plugins.eye_zoom_mouse.mouse_trigger()
 
-    def foot_pedal_left_middle():
+    def hitch2_s2():
         """document string goes here"""
         actions.user.toggle_gaze_scroll()
 
-    def foot_pedal_left_right():
+    def hitch2_s3():
         """document string goes here"""
         actions.user.system_switcher()
 
-    def foot_pedal_right_left():
+    def hitch2_s4():
         """document string goes here"""
-        actions.key("pageup")
+        actions.user.mouse_toggle_zoom_mouse()
 
-    def foot_pedal_right_middle():
+    def hitch2_s5():
         """document string goes here"""
-        actions.key("pagedown")
-
-    def foot_pedal_right_right():
-        """document string goes here"""
-        actions.user.wake_or_sleep()
+        actions.user.microphone_toggle()
 
 @ctx_zoom_mouse_active.action_class("user")
 class WindowsZoomMouseActiveActions:
-    def foot_pedal_left_left():
+    def hitch2_s1():
         """document string goes here"""
         actions.talon_plugins.eye_zoom_mouse.mouse_trigger()
         
-    def foot_pedal_left_middle():
+    def hitch2_s2():
         """document string goes here"""
         actions.talon_plugins.eye_zoom_mouse.right_click()
 
-    def foot_pedal_left_right():
+    def hitch2_s3():
         """document string goes here"""
         actions.talon_plugins.eye_zoom_mouse.double_click()
 
-    def foot_pedal_right_left():
+    def hitch2_s4():
         """document string goes here"""
         actions.talon_plugins.eye_zoom_mouse.triple_click()
 
-    def foot_pedal_right_middle():
+    def hitch2_s5():
         """document string goes here"""
         actions.talon_plugins.eye_zoom_mouse.mouse_drag()
-
-    def foot_pedal_right_right():
-        """document string goes here"""
-        actions.talon_plugins.eye_zoom_mouse.mouse_move()
