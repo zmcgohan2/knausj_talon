@@ -42,25 +42,25 @@ class user_actions:
 
 @ctx.action_class("browser")
 class browser_actions:
-    def address() -> str:
-        try:
-            window = ui.active_app().windows()[0]
-        except IndexError:
-            return ""
-        try:
-            web_area = window.element.children.find_one(AXRole="AXWebArea")
-            address = web_area.AXURL
-        except (ui.UIErr, AttributeError):
-            address = applescript.run(
-                """
-                tell application id "com.google.Chrome"
-                    if not (exists (window 1)) then return ""
-                    return window 1's active tab's URL
-                end tell
-            """
-            )
+#     def address() -> str:
+#         try:
+#             window = ui.active_app().windows()[0]
+#         except IndexError:
+#             return ""
+#         try:
+#             web_area = window.element.children.find_one(AXRole="AXWebArea")
+#             address = web_area.AXURL
+#         except (ui.UIErr, AttributeError):
+#             address = applescript.run(
+#                 """
+#                 tell application id "com.google.Chrome"
+#                     if not (exists (window 1)) then return ""
+#                     return window 1's active tab's URL
+#                 end tell
+#             """
+#             )
 
-        return address
+#         return address
 
     def go(url: str):
         actions.browser.focus_address()
