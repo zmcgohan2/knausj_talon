@@ -39,7 +39,7 @@ item info: key(home f7)
 	insert(";l")
 	key(enter)
 
-^edit <user.ini>$:
+^chronicles edit <user.ini>$:
 	key(f1)
 	insert("e {ini}")
 	key(enter enter)
