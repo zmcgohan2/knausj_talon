@@ -308,7 +308,7 @@ def custom_zoom_enable(self):
     # noise.register("pop", self.on_pop)
     # noise.register("hiss", self.on_hiss)
 
-    tap.register(tap.MCLICK | tap.KEY | tap.HOOK, self.on_key)
+    tap.register(tap.MCLICK | tap.HOOK, self.on_key)
 
     # app.register('overlay', self.draw_gaze)
     self.enabled = True
