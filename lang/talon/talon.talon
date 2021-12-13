@@ -12,7 +12,7 @@ tag(): user.code_comment
 # see https://github.com/knausj85/knausj_talon/issues/600
 # tag(): user.talon_populate_lists
 
-dot talon: insert(".talon")
+dot talent: insert(".talon")
 #defintion blocks for the context
 action block:
     insert("action():")

@@ -5,68 +5,68 @@
 # see https://github.com/knausj85/knausj_talon/issues/600
 tag(): user.talon_populate_lists
 
-talon check updates: menu.check_for_updates()
-talon restart: user.exec("talon-restart")
-talon open log: menu.open_log()
-talon open rebel: menu.open_repl()
-talon home: menu.open_talon_home()
-talon copy context pie: user.talon_add_context_clipboard_python()
-talon copy context: user.talon_add_context_clipboard()
-talon copy name:
+talent check updates: menu.check_for_updates()
+talent restart: user.exec("talon-restart")
+talent open log: menu.open_log()
+talent open rebel: menu.open_repl()
+talent home: menu.open_talon_home()
+talent copy context pie: user.talon_add_context_clipboard_python()
+talent copy context: user.talon_add_context_clipboard()
+talent copy name:
     name = app.name()
     clip.set_text(name)  
-talon copy executable:
+talent copy executable:
     executable = app.executable()
     clip.set_text(executable)
-talon copy bundle:
+talent copy bundle:
     bundle = app.bundle()
     clip.set_text(bundle)
-talon copy title: 
+talent copy title: 
     title = win.title()
     clip.set_text(title)
-talon dump version: 
+talent dump version: 
     result = user.talon_version_info()
     print(result)
-talon insert version: 
+talent insert version: 
     result = user.talon_version_info()
     user.paste(result)
-talon dump context: 
+talent dump context: 
     result = user.talon_get_active_context()
     print(result)
-^talon test last$:
+^talent test last$:
     phrase = user.history_get(1)
     user.talon_sim_phrase(phrase)
-^talon test numb <number_small>$:
+^talent test numb <number_small>$:
     phrase = user.history_get(number_small)
     user.talon_sim_phrase(phrase)
-^talon test <phrase>$:
+^talent test <phrase>$:
     user.talon_sim_phrase(phrase)
 # requires user.talon_populate_lists tag. do not use with dragon
-^talon debug action {user.talon_actions}$: 
+^talent debug action {user.talon_actions}$: 
     user.talon_action_find("{user.talon_actions}")
 # requires user.talon_populate_lists tag. do not use with dragon
-^talon debug list {user.talon_lists}$:
+^talent debug list {user.talon_lists}$:
     user.talon_debug_list(talon_lists)
 # requires user.talon_populate_lists tag. do not use with dragon
-^talon copy list {user.talon_lists}$:
+^talent copy list {user.talon_lists}$:
     user.talon_copy_list(talon_lists)
-^talon debug tags$:
+^talent debug tags$:
     user.talon_debug_tags()
-^talon debug modes$:
+^talent debug modes$:
     user.talon_debug_modes()
 # requires user.talon_populate_lists tag. do not use with dragon
-^talon debug scope {user.talon_scopes}$:
+^talent debug scope {user.talon_scopes}$:
     user.talon_debug_scope(talon_scopes)
 # requires user.talon_populate_lists tag. do not use with dragon
-^talon debug setting {user.talon_settings}$:
+^talent debug setting {user.talon_settings}$:
     user.talon_debug_setting(talon_settings)
-^talon debug all settings$: 
+^talent debug all settings$: 
     user.talon_debug_all_settings()
-^talon debug active app$: 
+^talent debug active app$: 
     result = user.talon_get_active_application_info()
     print("**** Dumping active application **** ")
     print(result)
     print("***********************")
-^talon copy active app$:
+^talent copy active app$:
     result = user.talon_get_active_application_info()
     clip.set_text(result)

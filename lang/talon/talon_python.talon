@@ -8,7 +8,7 @@ tag: user.talon_python
 # see https://github.com/knausj85/knausj_talon/issues/600
 tag(): user.talon_populate_lists
 
-talon imports:
+talent imports:
     "from talon import ui, Module, Context, registry, actions, imgui, cron\n"
 (context and module | module and context):
     """mod = Module()
