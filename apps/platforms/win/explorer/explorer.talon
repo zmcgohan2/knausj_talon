@@ -24,3 +24,4 @@ list view:
     key(ctrl-shift-5)
 detail view:
     key(ctrl-shift-6)
+address bar: key(alt-d)
