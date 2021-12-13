@@ -23,15 +23,15 @@ class UserActions:
             applescript.run(r"""
                 tell application id "com.apple.Finder"
                     with timeout of 0.1 seconds
-                        if not (exists (front window's target)) then return
-                        if front window's target's class is not in {disk, folder} then return
-                        get front window's target
+                        if not (exists (front Finder window's target)) then return
+                        if front Finder window's target's class is not in {disk, folder} then return
+                        get front Finder window's target
                         return (result as alias)'s POSIX path
                     end timeout
                 end tell
             """)
         except applescript.ApplescriptErr as e:
-            print(f'Unable to get path of frontmost Finder window: {e}')
+            print(f'Unable to get path of frontmost Finder window "{ui.active_window().title}": {e}')
 
     def file_manager_terminal_here():
         if ui.active_window().title == "":
@@ -39,9 +39,9 @@ class UserActions:
         applescript.run(r"""
             try
                 with timeout of 0.1 seconds
-                    tell application id "com.apple.Finder" to set theTarget to (front window's target as alias)
+                    tell application id "com.apple.Finder" to set theTarget to (front Finder window's target as alias)
                 end timeout
-            on error -- fails with some windows, e.g. Preferences window
+            on error -- fails with some windows, e.g. AirDrop window
                 return
             end try
             tell application id "com.apple.Terminal"
