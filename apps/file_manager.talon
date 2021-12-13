@@ -12,7 +12,7 @@ go talon home: user.file_manager_open_directory(path.talon_home())
 go talon user: user.file_manager_open_directory(path.talon_user())
 go talon recordings:
     home_path = path.talon_home()
-    user.file_manager_open_directory(home_path / "recordings")
+    user.file_manager_open_directory("{home_path / 'recordings'}")
 go home: user.file_manager_open_directory(path.user_home())
 go back: user.file_manager_go_back()
 go forward: user.file_manager_go_forward()
