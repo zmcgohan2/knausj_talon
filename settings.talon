@@ -37,8 +37,11 @@ settings():
     user.clickless_mouse_idle_time_before_display = 0.25
     #end clickless mouse settings
     # speech.gain = 6
+    
+# Uncomment this to enable the curse yes/curse no commands (show hide mouse cursor). See issue #688.
+# tag(): user.mouse_cursor_commands_enable
+
 # uncomment tag to enable mouse grid
-tag(): user.mouse_grid_enabled
 tag(): user.cursorless_experimental_snippets
 tag(): talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
 tag(): user.cursorless_experimental_snippets

@@ -67,6 +67,9 @@ mod = Module()
 mod.list(
     "mouse_button", desc="List of mouse button words to mouse_click index parameter"
 )
+mod.tag(
+    "mouse_cursor_commands_enable", desc="Tag enables hide/show mouse cursor commands"
+)
 setting_mouse_enable_pop_click = mod.setting(
     "mouse_enable_pop_click",
     type=int,
@@ -233,7 +236,7 @@ class Actions:
         global continuous_scoll_mode
         continuous_scoll_mode = "gaze scroll"
 
-        start_window_scrolling()
+        start_cursor_scrolling()
         if setting_mouse_hide_mouse_gui.get() == 0:
             gui_wheel.show()
 
@@ -356,11 +359,11 @@ noise.register("hiss", on_hiss)
 def mouse_scroll(amount):
     def scroll():
         global scroll_amount
-        if continuous_scoll_mode and (scroll_amount >= 0) == (amount >= 0):
-            scroll_amount += amount
-        else:
-            scroll_amount = amount
-
+        if continuous_scoll_mode:
+            if (scroll_amount >= 0) == (amount >= 0):
+                scroll_amount += amount
+            else:
+                scroll_amount = amount
         actions.mouse_scroll(y=int(amount))
 
     return scroll
@@ -456,7 +459,7 @@ def stop_scroll():
     #    eye_zoom_mouse.zoom_mouse.sleep(False)
 
 
-def start_window_scrolling():
+def start_cursor_scrolling():
     global scroll_job, gaze_job
     stop_scroll()
     gaze_job = cron.interval("60ms", gaze_scroll)
@@ -464,14 +467,8 @@ def start_window_scrolling():
     #    eye_zoom_mouse.zoom_mouse.sleep(True)
 
 
-def start_cursor_scrolling():
-    global scroll_job, gaze_job
-    stop_scroll()
-    gaze_job = cron.interval("60ms", gaze_scroll_cursor)
-
-
-# if app.platform == "mac":
-#     from talon import tap
+if app.platform == "mac":
+    from talon import tap
 
 #     def on_move(e):
 #         if not config.control_mouse:
