@@ -13,3 +13,5 @@ section up: key(alt-up)
 section down: key(alt-down)
 tab up: key(ctrl-up)
 tab down: key(ctrl-down)
+
+mine: ".njr"
