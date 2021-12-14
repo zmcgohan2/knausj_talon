@@ -1,5 +1,3 @@
-os: windows
--
 # left footpedal
 key(keypad_0): user.foot_pedal_left_left()
 key(keypad_1): user.foot_pedal_left_middle() 
