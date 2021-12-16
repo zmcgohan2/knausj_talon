@@ -16,6 +16,8 @@ go files: key(cmd-3)
 commit: key(cmd-enter)
 push: key(cmd-alt-up)
 pull: key(cmd-alt-down)
+# XXX broken - see https://github.com/sublimehq/sublime_merge/issues/778
+# stage: key(shift-enter)
 stage all:
 	key(cmd-shift-a)
 	sleep(100ms)
