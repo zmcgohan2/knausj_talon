@@ -1,4 +1,8 @@
 from talon import Context, actions
+
+from urllib.parse import quote
+import webbrowser
+
 ctx = Context()
 
 #i don't see a need to restrict the app here, this just defines the actions
@@ -21,3 +25,5 @@ class UserActions:
         actions.key('cmd-e')
     def password_delete():
         actions.key('cmd-backspace')
+    def password_search(text: str):
+        webbrowser.open('onepassword://extension/search/' + quote(text))

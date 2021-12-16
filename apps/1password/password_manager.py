@@ -27,3 +27,6 @@ class Actions:
 
     def password_delete():
         """Delete password"""
+
+    def password_search(text: str):
+        """Search for password"""
