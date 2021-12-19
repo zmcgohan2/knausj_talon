@@ -4,6 +4,7 @@
 # (bracket | brack | left bracket): "{"
 # (rbrack | are bracket | right bracket): "}"
 triple quote: "'''"
+boom: ". "
 # ellipses: "..."
 spamma: ", " 
 # plus: "+"
