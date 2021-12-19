@@ -20,7 +20,7 @@ go forward [<number_small>]:
     number = number_small or 1
     user.file_manager_go_forward()
     repeat(number - 1)
-parent [<number_small>]: 
+root [<number_small>]: 
     number = number_small or 1
     user.file_manager_open_parent()
     repeat(number - 1)

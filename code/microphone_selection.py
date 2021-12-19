@@ -7,6 +7,7 @@ ctx = cubeb.Context()
 mod = Module()
 
 previous_mic = "Microphone (d:vice MMA-A)"
+# previous_mic = "Krisp Microphone (Krisp)"
 microphone_device_list = []
 speaker_device_list = []
 # by convention, None and System Default are listed first
