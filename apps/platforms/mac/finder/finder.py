@@ -20,7 +20,7 @@ class UserActions:
         if ui.active_window().title == "":
             return None # likely a modal window
         try:
-            applescript.run(r"""
+            return applescript.run(r"""
                 tell application id "com.apple.Finder"
                     with timeout of 0.1 seconds
                         if not (exists (front Finder window's target)) then return
