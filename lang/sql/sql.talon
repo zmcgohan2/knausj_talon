@@ -38,3 +38,9 @@ count:
 date:
     "DATE ''"
     key(left)
+
+funk <user.code_functions>:
+    user.code_insert_function(code_functions, "")
+
+funk wrap <user.code_functions>:
+    user.code_insert_function(code_functions, edit.selected_text())

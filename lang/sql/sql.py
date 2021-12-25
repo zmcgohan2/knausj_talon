@@ -6,6 +6,12 @@ mode: user.auto_lang
 and code.language: sql
 """
 
+# these vary by dialect
+ctx.lists["user.code_functions"] = {
+    "min": "Min",
+    "max": "Max"
+}
+
 @ctx.action_class('user')
 class UserActions:
     def code_operator_addition(): actions.auto_insert(' + ')
@@ -36,3 +42,12 @@ class UserActions:
         actions.key('enter')
         actions.insert('*/')
         actions.edit.up()
+
+    def code_insert_function(text: str, selection: str):
+        if selection:
+            text = text + "({})".format(selection)
+        else:
+            text = text + "()"
+
+        actions.user.paste(text)
+        actions.edit.left()
