@@ -155,6 +155,7 @@ abbreviations = {
     "position independent code": "pic",
     "position independent executable": "pie",
     "previous": "prev",
+    "prod": "PRD",
     "production": "PRD",
     "property": "prop",
     "public": "pub",
