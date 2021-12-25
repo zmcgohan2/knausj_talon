@@ -27,6 +27,17 @@ left outer join:
 right outer join:
     "RIGHT OUTER JOIN  ON "
     key(left:4)
+
+with:
+    key(enter up)
+    "WITH  AS ("
+    key(enter tab)
+    "SELECT "
+    key(enter shift-tab)
+    edit.extend_line_end()
+    edit.delete()
+    ") "
+    key(delete up:2 right:3)
     
 column:
     key(return)
