@@ -7,6 +7,7 @@ tag(): user.code_comment
 tag(): user.code_block_comment
 
 select: "SELECT "
+distinct: "DISTINCT "
 from: "FROM "
 select star from: "SELECT *\nFROM "
 where: "WHERE "
@@ -31,9 +32,7 @@ column:
     key(return)
     ", "
 
-count:
-    "Count()"
-    key(left)
+count: user.code_insert_function("Count", "")
 
 date:
     "DATE ''"

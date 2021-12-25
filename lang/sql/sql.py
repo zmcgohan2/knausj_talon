@@ -8,6 +8,7 @@ and code.language: sql
 
 # these vary by dialect
 ctx.lists["user.code_functions"] = {
+    "count": "Count",
     "min": "Min",
     "max": "Max"
 }
