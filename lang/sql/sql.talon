@@ -6,10 +6,10 @@ tag(): user.code_operators
 tag(): user.code_comment
 tag(): user.code_block_comment
 
-select: "SELECT "
+^select$: "SELECT "
 distinct: "DISTINCT "
 from: "FROM "
-select star from: "SELECT *\nFROM "
+^select star from$: "SELECT *\nFROM "
 where: "WHERE "
 order by: "ORDER BY "
 group by: "GROUP BY "
