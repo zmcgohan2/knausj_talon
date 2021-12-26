@@ -51,6 +51,7 @@ abbreviations = {
     "copy": "cpy",
     "count": "cnt",
     "counter": "ctr",
+    "dat": "DAT",
     "database": "db",
     "declare": "decl",
     "declaration": "decl",
