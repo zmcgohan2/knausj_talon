@@ -120,12 +120,12 @@ take south:
     edit.extend_file_end()
 
 # editing
-bill take [<number_small>]:
+bill [take] [<number_small>]:
     numb = number_small or 1
     edit.indent_more()
     repeat(numb - 1)    
 
-rebill take [<number_small>]:
+rebill [take] [<number_small>]:
     numb = number_small or 1
     edit.indent_less()
     repeat(numb - 1)
