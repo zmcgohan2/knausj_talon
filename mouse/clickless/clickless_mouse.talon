@@ -1,1 +1,0 @@
-^click less mouse$: user.clickless_mouse_toggle()
