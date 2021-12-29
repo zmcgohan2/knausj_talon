@@ -94,6 +94,7 @@ class clickless_mouse:
         self.enabled = False
         self.update_cron = None
         self.draw_registered = False
+        self.y_min = self.y_max = self.x_min = self.x_max = 0
 
     def __del__(self):
         self.mcanvas = None
@@ -172,131 +173,313 @@ class clickless_mouse:
                 dwell_button(x + math.ceil(radius.get() * 3.5), y, "lr")
             )
 
-        # to best handle menus and such, we're going to prefer to draw things
-        # downward by default wherever possible
+            self.y_min = y - math.ceil(radius.get() *7) 
+            self.y_max = y + math.ceil(radius.get() *7) 
+            self.x_min = x - math.ceil(radius.get() *7) 
+            self.x_max = x + math.ceil(radius.get() *7)
+
+        # upper left corner
         elif (
             x - self.offset_x <= radius.get() * 3.5
             and y - self.offset_y <= radius.get() * 3.25
         ):
-            # print("case 1")
+            print("case 1")
             # print("x <= 70 and y <= 65")
             self.button_positions.append(
-                dwell_button(x, y + math.ceil(radius.get() * 3.5), "l")
+                dwell_button(x + math.ceil(radius.get() * 2.5), y + math.ceil(radius.get() * 2), "l")
             )
+
             self.button_positions.append(
-                dwell_button(x + math.ceil(radius.get() * 3.25), y, "r")
+                dwell_button(x + math.ceil(radius.get() * 4.75), y + math.ceil(radius.get() * 2), "ld")
             )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 7), y + math.ceil(radius.get() * 2), "lt")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 9.25), y + math.ceil(radius.get() * 2), "lh")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 11.50), y + math.ceil(radius.get() * 2), "r")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 13.75), y + math.ceil(radius.get() * 2), "su")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 16), y + math.ceil(radius.get() * 2), "sd"))
+
+            self.y_min = -2*radius.get() 
+            self.y_max = y + math.ceil(radius.get() * 4) 
+            self.x_min = -2*radius.get() 
+            self.x_max = x + radius.get()*18
+        
+        # upper right corner
         elif (
             x + radius.get() - self.offset_x * 3.5 >= self.width
             and y - self.offset_y <= radius.get() * 3.25
         ):
-            # print("case 2")
+            print("case 2")
             self.button_positions.append(
-                dwell_button(x - math.ceil(radius.get() * 3.5), y, "l")
+                dwell_button(x - math.ceil(radius.get() * 2.5), y + math.ceil(radius.get() * 2), "l")
             )
+
             self.button_positions.append(
-                dwell_button(x, y + math.ceil(radius.get() * 3.25), "r")
+                dwell_button(x - math.ceil(radius.get() * 4.75), y + math.ceil(radius.get() * 2), "ld")
             )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 7), y + math.ceil(radius.get() * 2), "lt")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 9.25), y + math.ceil(radius.get() * 2), "lh")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 11.50), y + math.ceil(radius.get() * 2), "r")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 13.75), y + math.ceil(radius.get() * 2), "su")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 16), y + math.ceil(radius.get() * 2), "sd"))
+
+            self.y_min = -2*radius.get() 
+            self.y_max = y + math.ceil(radius.get() * 4) 
+            self.x_min = x - math.ceil(radius.get() * 18)
+            self.x_max = x + math.ceil(radius.get() * 2)
+        
+        # lower left corner
         elif (
             x - self.offset_x <= radius.get() * 3.5
             and y - self.offset_y + radius.get() * 3.25 >= self.height
         ):
             # print("x <= 70 and y + 65 >= self.height")
-            # print("case 3")
+            print("case 3")
             self.button_positions.append(
-                dwell_button(x + math.ceil(radius.get() * 3.5), y, "r")
+                dwell_button(x + math.ceil(radius.get() * 2.5), y - math.ceil(radius.get() * 2), "l")
             )
+
             self.button_positions.append(
-                dwell_button(x, y - math.ceil(radius.get() * 3.25), "l")
+                dwell_button(x + math.ceil(radius.get() * 4.75), y - math.ceil(radius.get() * 2), "ld")
             )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 7), y - math.ceil(radius.get() * 2), "lt")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 9.25), y - math.ceil(radius.get() * 2), "lh")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 11.50), y - math.ceil(radius.get() * 2), "r")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 13.75), y - math.ceil(radius.get() * 2), "su")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 16), y - math.ceil(radius.get() * 2), "sd"))
+
+            self.y_min = y - math.ceil(radius.get() * 4) 
+            self.y_max = y + math.ceil(radius.get() * 4) 
+            self.x_min = x - math.ceil(radius.get() * 18)
+            self.x_max = x + math.ceil(radius.get() * 18)
+        
+        # lower right corner
         elif (
             x - self.offset_x + radius.get() * 3.5 >= self.width
             and y - self.offset_y + math.ceil(radius.get() * 3.25) >= self.height
         ):
-            # print("case 4")
+            print("case 4")
             # print("x + 70 >= self.width and y + 65 >= self.height")
             self.button_positions.append(
-                dwell_button(x - math.ceil(radius.get() * 3.5), y, "l")
+                dwell_button(x - math.ceil(radius.get() * 2.5), y - math.ceil(radius.get() * 2), "l")
             )
+
             self.button_positions.append(
-                dwell_button(x, y - math.ceil(radius.get() * 3.25), "r")
+                dwell_button(x - math.ceil(radius.get() * 4.75), y - math.ceil(radius.get() * 2), "ld")
             )
-        elif y - self.offset_y + math.ceil(radius.get() * 3.25) >= self.height:
-            # print("case 5")
-            # print("y + 65 >= self.height")
+
             self.button_positions.append(
-                dwell_button(x - math.ceil(radius.get() * 3.5), y, "lh")
+                dwell_button(x - math.ceil(radius.get() * 7), y - math.ceil(radius.get() * 2), "lt")
             )
+
             self.button_positions.append(
-                dwell_button(
-                    x - math.ceil(radius.get() * 2.25),
-                    y - math.ceil(radius.get() * 2),
-                    "l",
-                )
+                dwell_button(x - math.ceil(radius.get() * 9.25), y - math.ceil(radius.get() * 2), "lh")
             )
+
             self.button_positions.append(
-                dwell_button(x, y - math.ceil(radius.get() * 3.25), "ld")
+                dwell_button(x - math.ceil(radius.get() * 11.50), y - math.ceil(radius.get() * 2), "r")
             )
+
             self.button_positions.append(
-                dwell_button(
-                    x + math.ceil(radius.get() * 2.25),
-                    y - math.ceil(radius.get() * 2),
-                    "r",
-                )
+                dwell_button(x - math.ceil(radius.get() * 13.75), y - math.ceil(radius.get() * 2), "su")
             )
-            # self.button_positions.append(dwell_button(x + 70, y, "rh"))
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 16), y - math.ceil(radius.get() * 2), "sd"))
+
+            self.y_min = y - math.ceil(radius.get() * 4) 
+            self.y_max = self.height + math.ceil(radius.get() * 4) 
+            self.x_min = x - math.ceil(radius.get() * 18)
+            self.x_max = x + math.ceil(radius.get() * 4) 
+
+        # bottom edge, sufficient space to draw to the right
+        elif (y - self.offset_y + math.ceil(radius.get() * 3.25) >= self.height 
+            and x - self.offset_x + math.ceil(radius.get() * 16) <= self.width):
+            print("case 5")
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 2.5), y - math.ceil(radius.get() * 2), "l")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 4.75), y - math.ceil(radius.get() * 2), "ld")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 7), y - math.ceil(radius.get() * 2), "lt")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 9.25), y - math.ceil(radius.get() * 2), "lh")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 11.50), y - math.ceil(radius.get() * 2), "r")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 13.75), y - math.ceil(radius.get() * 2), "su")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 16), y - math.ceil(radius.get() * 2), "sd"))
+
+            self.y_min = y - math.ceil(radius.get() * 4) 
+            self.y_max = self.height + math.ceil(radius.get() * 4) 
+            self.x_min = x - math.ceil(radius.get() * 4)
+            self.x_max = x + math.ceil(radius.get() * 18) 
+
+        # bottom edge, imsufficient space to draw to the right
+        elif (y - self.offset_y + math.ceil(radius.get() * 3.25) >= self.height 
+            and x - self.offset_x + math.ceil(radius.get() * 16) >= self.width):
+            print("case 5")
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 2.5), y - math.ceil(radius.get() * 2), "l")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 4.75), y - math.ceil(radius.get() * 2), "ld")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 7), y - math.ceil(radius.get() * 2), "lt")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 9.25), y - math.ceil(radius.get() * 2), "lh")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 11.50), y - math.ceil(radius.get() * 2), "r")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 13.75), y - math.ceil(radius.get() * 2), "su")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 16), y - math.ceil(radius.get() * 2), "sd"))
+
+
+            self.y_min = y - math.ceil(radius.get() * 4) 
+            self.y_max = self.height + math.ceil(radius.get() * 4) 
+            self.x_min = x - math.ceil(radius.get() * 18)
+            self.x_max = x + math.ceil(radius.get() * 2) 
+
         elif x - self.offset_x <= radius.get() * 3.5:
-            # print("case 6")
-            # print("x<= 70")
+            print("case 6")
             self.button_positions.append(
-                dwell_button(x, y + math.ceil(radius.get() * 3.25), "ld")
+                dwell_button(x + math.ceil(radius.get() * 2.5), y + math.ceil(radius.get() * 2), "l")
             )
+
             self.button_positions.append(
-                dwell_button(
-                    x + math.ceil(radius.get() * 2.25),
-                    y + math.ceil(radius.get() * 2),
-                    "r",
-                )
+                dwell_button(x + math.ceil(radius.get() * 4.75), y + math.ceil(radius.get() * 2), "ld")
             )
-            # self.button_positions.append(dwell_button(x + 70, y, "rh"))
+
             self.button_positions.append(
-                dwell_button(
-                    x + math.ceil(radius.get() * 2.25),
-                    y - math.ceil(radius.get() * 2),
-                    "lh",
-                )
+                dwell_button(x + math.ceil(radius.get() * 7), y + math.ceil(radius.get() * 2), "lt")
             )
+
             self.button_positions.append(
-                dwell_button(x, y - math.ceil(radius.get() * 3.25), "l")
+                dwell_button(x + math.ceil(radius.get() * 9.25), y + math.ceil(radius.get() * 2), "lh")
             )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 11.50), y + math.ceil(radius.get() * 2), "r")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 13.75), y + math.ceil(radius.get() * 2), "su")
+            )
+
+            self.button_positions.append(
+                dwell_button(x + math.ceil(radius.get() * 16), y + math.ceil(radius.get() * 2), "sd"))
+
+            self.y_min = y - math.ceil(radius.get() * 4) 
+            self.y_max = y + math.ceil(radius.get() * 4) 
+            self.x_min = x - math.ceil(radius.get() * 2)
+            self.x_max = x + math.ceil(radius.get() * 18) 
+
         elif x - self.offset_x + radius.get() * 3.5 >= self.width:
-            # print("case 7")
+            print("case 7")
             self.button_positions.append(
-                dwell_button(x, y + math.ceil(radius.get() * 3.25), "ld")
+                dwell_button(x - math.ceil(radius.get() * 2.5), y + math.ceil(radius.get() * 2), "l")
             )
+
             self.button_positions.append(
-                dwell_button(
-                    x - math.ceil(radius.get() * 2.25),
-                    y + math.ceil(radius.get() * 2),
-                    "r",
-                )
+                dwell_button(x - math.ceil(radius.get() * 4.75), y + math.ceil(radius.get() * 2), "ld")
             )
-            # self.button_positions.append(dwell_button(x - 70, y, "rh"))
+
             self.button_positions.append(
-                dwell_button(
-                    x - math.ceil(radius.get() * 2.25),
-                    y - math.ceil(radius.get() * 2),
-                    "lh",
-                )
+                dwell_button(x - math.ceil(radius.get() * 7), y + math.ceil(radius.get() * 2), "lt")
             )
+
             self.button_positions.append(
-                dwell_button(x, y - math.ceil(radius.get() * 3.25), "l")
+                dwell_button(x - math.ceil(radius.get() * 9.25), y + math.ceil(radius.get() * 2), "lh")
             )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 11.50), y + math.ceil(radius.get() * 2), "r")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 13.75), y + math.ceil(radius.get() * 2), "su")
+            )
+
+            self.button_positions.append(
+                dwell_button(x - math.ceil(radius.get() * 16), y + math.ceil(radius.get() * 2), "sd"))
+
+    
+            self.y_min = y - math.ceil(radius.get() * 4) 
+            self.y_max = y + math.ceil(radius.get() * 4) 
+            self.x_min = x - math.ceil(radius.get() * 18)
+            self.x_max = x + math.ceil(radius.get() * 2) 
+
         elif (
-            y - self.offset_y + math.ceil(radius.get() * 3.25) <= self.height
+            not y - self.offset_y <= radius.get() * 3.25
             and x - self.offset_x + radius.get() * 3.5 <= self.width
         ):
-            # print("case 8")
+            print("case 8")
             # print("y + 65 < self.height and x + 70 < self.width")
             self.button_positions.append(
                 dwell_button(
@@ -326,9 +509,11 @@ class clickless_mouse:
                     "ld",
                 )
             )
+
             self.button_positions.append(
                 dwell_button(x, y + math.ceil(radius.get() * 3.25), "l")
             )
+
             self.button_positions.append(
                 dwell_button(
                     x + math.ceil(radius.get() * 2.25),
@@ -339,6 +524,118 @@ class clickless_mouse:
             self.button_positions.append(
                 dwell_button(x + math.ceil(radius.get() * 3.5), y, "ka")
             )
+    
+            self.y_min = y - math.ceil(radius.get() * 7) 
+            self.y_max = y + math.ceil(radius.get() * 7) 
+            self.x_min = x - math.ceil(radius.get() * 7)
+            self.x_max = x + math.ceil(radius.get() * 7) 
+
+        elif (x - self.offset_x + radius.get() * 3.5 <= self.width
+            and y - self.offset_y <= radius.get() * 3.25
+            and x - self.offset_x + math.ceil(radius.get() * 13.75)) <= self.width:
+                #print("case 9")
+                self.button_positions.append(
+                    dwell_button(x + math.ceil(radius.get() * 2.5), y + math.ceil(radius.get() * 2), "l")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x + math.ceil(radius.get() * 4.75), y + math.ceil(radius.get() * 2), "ld")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x + math.ceil(radius.get() * 7), y + math.ceil(radius.get() * 2), "lt")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x + math.ceil(radius.get() * 9.25), y + math.ceil(radius.get() * 2), "lh")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x + math.ceil(radius.get() * 11.50), y + math.ceil(radius.get() * 2), "r")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x + math.ceil(radius.get() * 13.75), y + math.ceil(radius.get() * 2), "su")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x + math.ceil(radius.get() * 16), y + math.ceil(radius.get() * 2), "sd"))
+
+                self.y_min = y - math.ceil(radius.get() * 4) 
+                self.y_max = y + math.ceil(radius.get() * 4) 
+                self.x_min = x - math.ceil(radius.get() * 2)
+                self.x_max = x + math.ceil(radius.get() * 18) 
+
+        elif (x - self.offset_x + radius.get() * 3.5 <= self.width
+            and y - self.offset_y <= radius.get() * 3.25
+            and x - self.offset_x + math.ceil(radius.get() * 13.75)) >= self.width:
+                #print("case 10")
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 2.5), y + math.ceil(radius.get() * 2), "l")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 4.75), y + math.ceil(radius.get() * 2), "ld")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 7), y + math.ceil(radius.get() * 2), "lt")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 9.25), y + math.ceil(radius.get() * 2), "lh")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 11.50), y + math.ceil(radius.get() * 2), "r")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 13.75), y + math.ceil(radius.get() * 2), "su")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 16), y + math.ceil(radius.get() * 2), "sd"))
+
+                self.y_min = y - math.ceil(radius.get() * 4) 
+                self.y_max = y + math.ceil(radius.get() * 4) 
+                self.x_min = x - math.ceil(radius.get() * 18)
+                self.x_max = x + math.ceil(radius.get() * 2) 
+
+        elif (x - self.offset_x + radius.get() * 3.5 >= self.width
+            and y - self.offset_y <= radius.get() * 3.25):
+                #print("case 11")
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 2.5), y + math.ceil(radius.get() * 2), "l")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 4.75), y + math.ceil(radius.get() * 2), "ld")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 7), y + math.ceil(radius.get() * 2), "lt")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 9.25), y + math.ceil(radius.get() * 2), "lh")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 11.50), y + math.ceil(radius.get() * 2), "r")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 13.75), y + math.ceil(radius.get() * 2), "su")
+                )
+
+                self.button_positions.append(
+                    dwell_button(x - math.ceil(radius.get() * 16), y + math.ceil(radius.get() * 2), "sd"))
+
+                self.y_min = y - math.ceil(radius.get() * 4) 
+                self.y_max = y + math.ceil(radius.get() * 4) 
+                self.x_min = x - math.ceil(radius.get() * 18)
+                self.x_max = x + math.ceil(radius.get() * 2) 
         else:
             print("not handled: {},{}".format(x, y))
 
@@ -380,7 +677,8 @@ class clickless_mouse:
                     self.height = self.screen.height
                     self.mcanvas = None
                     self.mcanvas = canvas.Canvas.from_screen(self.screen)
-
+                    print(str(screen))
+                    print(str(ctrl.mouse_pos()))
                     self.set_button_positions()
                     self.state = STATE_DISPLAYING_OPTIONS
             else:
@@ -480,10 +778,7 @@ class clickless_mouse:
                     self.state = STATE_MOUSE_IDLE
                     self.scroll_progress = 0
 
-            elif (
-                abs(x - self.x) >= radius.get() * 7
-                or abs(y - self.y) >= radius.get() * 7
-            ):
+            elif (x > self.x_max or x < self.x_min or y > self.y_max or y < self.y_min):
                 draw_options = False
                 self.state = STATE_MOUSE_IDLE
 
@@ -555,8 +850,8 @@ class Actions:
         cm.toggle()
 
 
-# uncomment to enable by default/for quick testing
-# cm.enable(True)
+#uncomment to enable by default/for quick testing
+cm.enable(True)
 
 
 def toggle_clickless_mouse(state):

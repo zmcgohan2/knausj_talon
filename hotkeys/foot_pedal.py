@@ -2,41 +2,52 @@ from talon import ui, Module, Context, registry, actions, imgui, cron, track
 import sys
 
 mod = Module()
-ctx_zoom_mouse_inactive = Context()
-ctx_zoom_mouse_inactive.matches = r"""
-tag: talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
-and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
+ctx_zoom_mouse_enabled_use_pedal = Context()
+ctx_zoom_mouse_enabled_use_pedal.matches = r"""
+mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
+and not mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
+and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
 """
 
-ctx_zoom_mouse_active = Context()
-ctx_zoom_mouse_active.matches = r"""
-tag: talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
-and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
-"""
 
+ctx_zoom_mouse_triggered_use_pedal = Context()
+ctx_zoom_mouse_triggered_use_pedal.matches = r"""
+mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
+and mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
+and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
+"""
 
 @mod.action_class
 class Actions:
     def foot_pedal_left_left():
         """document string goes here"""
+        actions.mouse_click()
 
     def foot_pedal_left_middle():
         """document string goes here"""
+        actions.mouse_click(1)
 
     def foot_pedal_left_right():
         """document string goes here"""
+        actions.mouse_click()
+        actions.mouse_click()
 
     def foot_pedal_right_left():
         """document string goes here"""
+        actions.mouse_click()
+        actions.mouse_click()
+        actions.mouse_click()
 
     def foot_pedal_right_middle():
         """document string goes here"""
+        actions.user.mouse_drag(0)
 
     def foot_pedal_right_right():
         """document string goes here"""
+        
 
 
-@ctx_zoom_mouse_inactive.action_class("user")
+@ctx_zoom_mouse_enabled_use_pedal.action_class("user")
 class WindowsZoomMouseInactiveActions:
     def foot_pedal_left_left():
         """document string goes here"""
@@ -70,7 +81,7 @@ class WindowsZoomMouseInactiveActions:
             print(e)
 
 
-@ctx_zoom_mouse_active.action_class("user")
+@ctx_zoom_mouse_triggered_use_pedal.action_class("user")
 class WindowsZoomMouseActiveActions:
     def foot_pedal_left_left():
         """document string goes here"""

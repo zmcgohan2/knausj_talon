@@ -306,12 +306,14 @@ def custom_zoom_enable(self):
     # print("custom zoom enable hit")
     if self.enabled:
         return
+    actions.mode.enable("talon_plugins.eye_zoom_mouse.zoom_mouse_enabled")
 
     # intentionally don't register pop, handled in on_pop.
     # noise.register("pop", self.on_pop)
     # noise.register("hiss", self.on_hiss)
 
     tap.register(tap.MCLICK | tap.HOOK, self.on_key)
+
 
     # app.register('overlay', self.draw_gaze)
     self.enabled = True
