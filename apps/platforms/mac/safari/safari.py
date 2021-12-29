@@ -38,7 +38,6 @@ class BrowserActions:
                     end timeout
                 end tell
             ''')
-        print(address) # XXX debugging
         return address
     def bookmark():
         actions.key('cmd-d')
