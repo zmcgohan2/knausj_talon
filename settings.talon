@@ -31,10 +31,10 @@ settings():
     speech.timeout = .400
 
     #clickless mouse settings
-    user.clickless_mouse_radius = 35
-    user.clickless_mouse_idle_time_before_display = 0.25
-    user.clickless_mouse_dwell_time = 0.25
-    user.clickless_mouse_idle_time_before_display = 0.25
+    # user.clickless_mouse_radius = 20
+    # user.clickless_mouse_dwell_time = 0.25
+    # user.clickless_mouse_idle_time_before_display = 0.25
+    # user.clickless_mouse_auto_hide_time = 1.0
     #end clickless mouse settings
     # speech.gain = 6
     

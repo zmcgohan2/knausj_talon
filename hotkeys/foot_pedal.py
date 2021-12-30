@@ -17,6 +17,7 @@ and mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
 """
 
+
 @mod.action_class
 class Actions:
     def foot_pedal_left_left():
@@ -44,7 +45,14 @@ class Actions:
 
     def foot_pedal_right_right():
         """document string goes here"""
-        
+        if not actions.speech.enabled():
+            actions.speech.enable()
+            actions.user.microphone_preferred()
+            actions.user.clickless_mouse_enable()
+        else:
+            actions.user.sleep_all()
+            actions.speech.set_microphone("None")
+            actions.user.clickless_mouse_disable()
 
 
 @ctx_zoom_mouse_enabled_use_pedal.action_class("user")
