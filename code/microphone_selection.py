@@ -6,7 +6,10 @@ import os
 ctx = cubeb.Context()
 mod = Module()
 
-previous_mic = "Microphone (d:vice MMA-A)"
+if app.platform == "windows":
+    previous_mic = "Microphone (d:vice MMA-A)"
+else:
+    previous_mic = "d:vice MMA-A"
 # previous_mic = "Krisp Microphone (Krisp)"
 microphone_device_list = []
 speaker_device_list = []
