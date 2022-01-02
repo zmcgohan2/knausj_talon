@@ -25,7 +25,7 @@ tag: user.javascript
 
 @ctx.action_class("user")
 class UserActions:
-    def code_comment():
+    def code_comment_line_prefix():
         actions.auto_insert('//')
 
     def code_insert_is_not_null():

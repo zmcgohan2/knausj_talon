@@ -36,13 +36,7 @@ class UserActions:
     def code_operator_and(): actions.auto_insert('AND ')
     def code_operator_or(): actions.auto_insert('OR ')
     
-    def code_comment(): actions.auto_insert('-- ')
-    def code_block_comment():
-        actions.insert('/*')
-        actions.key('enter')
-        actions.key('enter')
-        actions.insert('*/')
-        actions.edit.up()
+    def code_comment_line_prefix(): actions.auto_insert('-- ')
 
     def code_insert_function(text: str, selection: str):
         if selection:

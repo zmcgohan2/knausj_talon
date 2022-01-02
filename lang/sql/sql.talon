@@ -2,9 +2,9 @@ mode: user.sql
 mode: user.auto_lang
 and code.language: sql
 -
-tag(): user.code_operators
-tag(): user.code_comment
-tag(): user.code_block_comment
+tag(): user.code_operators_math
+tag(): user.code_comment_line
+tag(): user.code_comment_block_c_like
 
 ^select$: "SELECT "
 distinct: "DISTINCT "
