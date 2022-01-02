@@ -46,7 +46,7 @@ class UserActions:
 
     def code_insert_function(text: str, selection: str):
         if selection:
-            text = text + "({})".format(selection)
+            text = f"{text}({selection})"
         else:
             text = text + "()"
 
