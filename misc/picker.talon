@@ -1,0 +1,1 @@
+pick <number_small>: user.pick(number_small)

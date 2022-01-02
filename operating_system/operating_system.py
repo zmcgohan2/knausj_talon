@@ -38,3 +38,6 @@ class Actions:
 
     def system_switcher():
         """Mission control/ctl-alt-tab equivalent"""
+
+    def system_search():
+        """Triggers system search (e.g. spotlight/powerrunner)"""

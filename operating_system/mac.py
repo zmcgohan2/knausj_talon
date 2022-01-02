@@ -75,6 +75,9 @@ class UserActionsMac:
     def system_switcher():
         actions.key("shift-f11")
 
+    def system_search():
+        actions.key("cmd-space")
+
 
 def on_ready():
     update_preferences_list()

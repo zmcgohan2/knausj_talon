@@ -2,7 +2,7 @@ os: mac
 -
 settings():
     # size of the options
-    user.clickless_mouse_radius = 25
+    user.clickless_mouse_radius = 35
     # the time required to dwell on an option before its triggered
     user.clickless_mouse_dwell_time = .35
     # the time the mouse must be idle before the options display

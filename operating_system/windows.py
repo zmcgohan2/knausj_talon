@@ -56,6 +56,9 @@ class UserActionsWin:
     def system_switcher():
         actions.key("ctrl-alt-tab")
 
+    def system_search():
+        actions.key("alt-space")
+
 
 def shutdown(flag: str):
     actions.key("super-r")
