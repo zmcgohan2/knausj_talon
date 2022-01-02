@@ -79,14 +79,7 @@ class WindowsZoomMouseInactiveActions:
 
     def foot_pedal_right_right():
         """document string goes here"""
-        try:
-            actions.user.wake_or_sleep()
-        except track.tobii.EyeClosedErr as e:
-            actions.app.notify("Failed to access eye tracker, restarting Talon")
-            actions.sleep("500ms")
-            actions.user.exec("talon-restart")
-        except Exception as e:
-            print(e)
+        actions.user.wake_or_sleep()
 
 
 @ctx_zoom_mouse_triggered_use_pedal.action_class("user")

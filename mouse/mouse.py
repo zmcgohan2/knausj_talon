@@ -14,6 +14,7 @@ from talon import (
     ui,
     tap,
     registry,
+    track,
 )
 from talon_plugins import eye_mouse, eye_zoom_mouse
 from talon_plugins.eye_mouse import config, toggle_camera_overlay, toggle_control, mouse
@@ -130,7 +131,15 @@ class Actions:
 
     def mouse_wake():
         """Enable control mouse, zoom mouse, and disables cursor"""
-        eye_zoom_mouse.toggle_zoom_mouse(True)
+        try:
+            eye_zoom_mouse.toggle_zoom_mouse(True)
+        except track.tobii.EyeClosedErr as e:
+            actions.app.notify("Failed to access eye tracker, restarting Talon")
+            actions.sleep("500ms")
+            actions.user.exec("talon-restart")
+        except Exception as e:
+            print(e)
+
         # eye_mouse.control_mouse.enable()
         if setting_mouse_wake_hides_cursor.get() >= 1:
             show_cursor_helper(False)
@@ -149,7 +158,14 @@ class Actions:
 
     def mouse_toggle_zoom_mouse():
         """Toggles zoom mouse"""
-        eye_zoom_mouse.toggle_zoom_mouse(not eye_zoom_mouse.zoom_mouse.enabled)
+        try:
+            eye_zoom_mouse.toggle_zoom_mouse(not eye_zoom_mouse.zoom_mouse.enabled)
+        except track.tobii.EyeClosedErr as e:
+            actions.app.notify("Failed to access eye tracker, restarting Talon")
+            actions.sleep("500ms")
+            actions.user.exec("talon-restart")
+        except Exception as e:
+            print(e)
 
     def mouse_cancel_zoom_mouse():
         """Cancel zoom mouse if pending"""
@@ -186,7 +202,9 @@ class Actions:
 
     def mouse_sleep():
         """Disables control mouse, zoom mouse, and re-enables cursor"""
-        eye_zoom_mouse.toggle_zoom_mouse(False)
+        if eye_zoom_mouse.zoom_mouse.enabled:
+            eye_zoom_mouse.toggle_zoom_mouse(False)
+
         toggle_control(False)
         show_cursor_helper(True)
         stop_scroll()
@@ -313,7 +331,6 @@ def custom_zoom_enable(self):
     # noise.register("hiss", self.on_hiss)
 
     tap.register(tap.MCLICK | tap.HOOK, self.on_key)
-
 
     # app.register('overlay', self.draw_gaze)
     self.enabled = True
