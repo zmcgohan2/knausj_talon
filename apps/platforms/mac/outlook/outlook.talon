@@ -21,6 +21,8 @@ forward: key(cmd-j)
 
 hunt all: key(cmd-shift-f)
 
+sidebar: key(cmd-alt-s)
+
 # not working with "new Outlook" due to lack of AppleScript support
 go [to] inbox: user.outlook_set_selected_folder('inbox')
 go to drafts: user.outlook_set_selected_folder('drafts')
