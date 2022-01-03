@@ -5,6 +5,7 @@ and code.language: sql
 tag(): user.code_operators_math
 tag(): user.code_comment_line
 tag(): user.code_comment_block_c_like
+tag(): user.code_data_null
 
 ^select$: "SELECT "
 distinct: "DISTINCT "
@@ -17,8 +18,6 @@ having: "HAVING "
 descending: " DESC"
 ascending: " ASC"
 dot i d: ".id"
-is not null: " IS NOT NULL"
-is null: " IS NULL"
 inner join:
     "INNER JOIN  ON "
     key(left:4)
