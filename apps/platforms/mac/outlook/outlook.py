@@ -36,6 +36,32 @@ class UserActions:
 				end repeat
 			end tell''')
 
+	def outlook_focus_message_list():
+		outlook = outlook_app()
+		focused_element = outlook.focused_element
+		role = focused_element.AXRole
+
+		if role == "AXOutline":
+			# Folder list in new Outlook
+			actions.key("ctrl-shift-]")
+		elif role != "AXTable":
+			actions.key("ctrl-shift-[")
+
+		saw_button = False		
+		for attempt in range(10):
+			focused_element = outlook.focused_element
+			role = focused_element.AXRole
+			if role == "AXTable" and focused_element.get("AXDescription") == "Message List":
+				return
+			if not saw_button:
+				if role == "AXButton" and focused_element.get("AXHelp") == "Hide Task Pane":
+					actions.key("ctrl-shift-[") # not a pane - work around bug
+					saw_button = True
+					continue
+			actions.sleep("50ms")
+
+		raise Exception("Unable to focus Outlook message list")
+
 @mod.action_class
 class Actions:
 	def outlook_set_selected_folder(folder: str):
@@ -46,3 +72,6 @@ class Actions:
 
 	def outlook_unflag():
 		"""Remove flag from selected messages in Outlook"""
+
+	def outlook_focus_message_list():		
+		"""Focus the message list in Outlook"""

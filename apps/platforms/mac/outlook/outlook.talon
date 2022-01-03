@@ -23,7 +23,20 @@ hunt all: key(cmd-shift-f)
 
 sidebar: key(cmd-alt-s)
 
-# not working with "new Outlook" due to lack of AppleScript support
+# not tested in "old Outlook"
+next:
+	user.outlook_focus_message_list()
+	key(down)
+previous:
+	user.outlook_focus_message_list()
+	key(up)
+collapse:
+	user.outlook_focus_message_list()
+	key(left)
+expand:
+	user.outlook_focus_message_list()
+	key(right)
+
 go [to] inbox: user.outlook_set_selected_folder('inbox')
 go [to] archive: user.outlook_set_selected_folder('archive')
 go [to] drafts: user.outlook_set_selected_folder('drafts')
