@@ -15,7 +15,19 @@ def outlook_app():
 @ctx.action_class("user")
 class UserActions:
 	def outlook_set_selected_folder(folder: str):
-		applescript.run(f'tell app id "com.microsoft.Outlook" to set selected folder to {folder}')
+		result = applescript.run(f'''
+			tell application id "com.microsoft.Outlook"
+				if (exists (selected folder)) then
+					set selected folder to {folder}
+					return true
+				end if
+				return false
+			end tell''')
+		if result == 'false':
+			# new Outlook (at least until it gets OSA support)
+			actions.user.outlook_focus_folder_list()
+			actions.insert(folder)
+			actions.user.outlook_focus_message_list()
 
 	def outlook_archive():
 		# Work around bug in which the keyboard shortcut is dead if focus is not in an outline
@@ -41,8 +53,7 @@ class UserActions:
 		focused_element = outlook.focused_element
 		role = focused_element.AXRole
 
-		if role == "AXOutline":
-			# Folder list in new Outlook
+		if role == "AXOutline": # folder list in new Outlook
 			actions.key("ctrl-shift-]")
 		elif role != "AXTable":
 			actions.key("ctrl-shift-[")
@@ -62,6 +73,26 @@ class UserActions:
 
 		raise Exception("Unable to focus Outlook message list")
 
+	def outlook_focus_folder_list():
+		outlook = outlook_app()
+		menu_bar = outlook.children.find_one(AXRole='AXMenuBar', max_depth=0)
+		view_menu = menu_bar.children.find_one(AXRole='AXMenuBarItem', AXTitle='View', max_depth=0).children[0]
+		sidebar_item = view_menu.children.find_one(AXRole='AXMenuItem', AXTitle='Sidebar', max_depth=0)
+		if not sidebar_item.AXSelected:
+			actions.key("cmd-alt-s")
+
+		last_focused_element = None
+		for attempt in range(10):
+			focused_element = outlook.focused_element
+			role = focused_element.AXRole
+			if focused_element != last_focused_element:
+				if role == "AXOutline":
+					return
+				actions.key("ctrl-shift-[")
+			actions.sleep("50ms")
+
+		raise Exception("Unable to focus Outlook folder list")
+
 @mod.action_class
 class Actions:
 	def outlook_set_selected_folder(folder: str):
@@ -75,3 +106,6 @@ class Actions:
 
 	def outlook_focus_message_list():		
 		"""Focus the message list in Outlook"""
+
+	def outlook_focus_folder_list():
+		"""Focus the folder list in Outlook"""

@@ -37,6 +37,11 @@ expand:
 	user.outlook_focus_message_list()
 	key(right)
 
+folder <user.text>:
+	user.outlook_focus_folder_list()
+	insert('{user.formatted_text(text, "ALL_LOWERCASE,NO_SPACES")}')
+	user.outlook_focus_message_list()
+
 go [to] inbox: user.outlook_set_selected_folder('inbox')
 go [to] archive: user.outlook_set_selected_folder('archive')
 go [to] drafts: user.outlook_set_selected_folder('drafts')
