@@ -25,8 +25,9 @@ sidebar: key(cmd-alt-s)
 
 # not working with "new Outlook" due to lack of AppleScript support
 go [to] inbox: user.outlook_set_selected_folder('inbox')
-go to drafts: user.outlook_set_selected_folder('drafts')
-go to sent: user.outlook_set_selected_folder('sent items')
+go [to] archive: user.outlook_set_selected_folder('archive')
+go [to] drafts: user.outlook_set_selected_folder('drafts')
+go [to] sent: user.outlook_set_selected_folder('sent items')
 
 # different implementation in "old Outlook" - replace above if you're using it
 # flag: key(ctrl-5)
