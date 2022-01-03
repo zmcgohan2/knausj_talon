@@ -19,9 +19,9 @@ class UserActions:
 
 	def outlook_archive():
 		# Work around bug in which the keyboard shortcut is dead if focus is not in an outline
-		# (old Outlook only)
+		# (old Outlook) or table (new Outlook)
 		role = outlook_app().focused_element.AXRole
-		if role != "AXOutline":
+		if role not in ("AXOutline", "AXTable"):
 			actions.key("ctrl-shift-[")
 		actions.key("ctrl-e")
 
