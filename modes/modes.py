@@ -56,7 +56,7 @@ class Actions:
         """Switch to dictation mode."""
         show_mode()
         actions.mode.disable("sleep")
-        actions.mode.disable("command")
+        actions.mode.enable("command") # mixed mode
         actions.mode.enable("dictation")
         actions.user.code_clear_language_mode()
         actions.mode.disable("user.gdb")
