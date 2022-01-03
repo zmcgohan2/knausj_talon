@@ -17,6 +17,7 @@ move:
 
 reply: key(cmd-r)
 reply all: key(cmd-shift-r)
+forward: key(cmd-j)
 
 hunt all: key(cmd-shift-f)
 
