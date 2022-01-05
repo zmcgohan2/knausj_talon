@@ -12,8 +12,8 @@ send [this] message: key(cmd-shift-d)
 
 # uses my favorite mailboxes
 go [to] inbox: key(cmd-1)
-go to drafts: key(cmd-4)
-go to sent: key(cmd-2)
+go [to] drafts: key(cmd-4)
+go [to] sent: key(cmd-2)
 
 message (last | lost | lust):
 	key(end)
