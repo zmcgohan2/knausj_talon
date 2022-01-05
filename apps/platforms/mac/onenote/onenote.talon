@@ -63,7 +63,7 @@ page forward [<user.ordinals>]$:
     offset = -1 * offset
     user.onenote_go_recent(offset)
 
-page back [<user.ordinals>]$:
+page back[ward] [<user.ordinals>]$:
     user.onenote_go_recent(ordinals or 1)
 
 key(cmd-ctrl-down): user.onenote_go_recent(1)
