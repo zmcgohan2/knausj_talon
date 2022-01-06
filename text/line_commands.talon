@@ -66,6 +66,11 @@ move down <number> through <number>:
     user.select_range(number_1, number_2)
     edit.line_swap_down()
 clone (line|that): edit.line_clone()
+clone [line] <number>:
+    user.select_range(number, number)
+    edit.select_line()
+    edit.line_clone()
+    key(left)
 
 clear camel left: user.delete_camel_left()
 clear camel right: user.delete_camel_right()
