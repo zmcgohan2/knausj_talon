@@ -45,6 +45,7 @@ folder <user.text>:
 go [to] inbox: user.outlook_set_selected_folder('inbox')
 go [to] archive: user.outlook_set_selected_folder('archive')
 go [to] drafts: user.outlook_set_selected_folder('drafts')
+go [to] junk: user.outlook_set_selected_folder('junk mail')
 go [to] sent: user.outlook_set_selected_folder('sent items')
 
 # different implementation in "old Outlook" - replace above if you're using it
