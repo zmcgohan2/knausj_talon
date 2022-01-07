@@ -27,6 +27,7 @@ hunt all: key(cmd-shift-f)
 sidebar: key(cmd-alt-s)
 
 # not tested in "old Outlook"
+# can use Control-[/] for previous/next though that does not focus the message list
 next:
 	user.outlook_focus_message_list()
 	key(down)
@@ -46,10 +47,12 @@ folder <user.text>:
 	user.outlook_focus_message_list()
 
 go [to] inbox: user.outlook_set_selected_folder('inbox')
-go [to] archive: user.outlook_set_selected_folder('archive')
 go [to] drafts: user.outlook_set_selected_folder('drafts')
 go [to] junk: user.outlook_set_selected_folder('junk mail')
 go [to] sent: user.outlook_set_selected_folder('sent items')
+
+# new Outlook only (not exposed in scripting dictionary)
+go [to] archive: user.outlook_set_selected_folder('archive')
 
 # different implementation in "old Outlook" - replace above if you're using it
 # flag: key(ctrl-5)
