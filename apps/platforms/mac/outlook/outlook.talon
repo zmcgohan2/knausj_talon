@@ -6,6 +6,9 @@ flag: key(ctrl-0)
 unflag: key(cmd-ctrl-0)
 junk: key(cmd-shift-j)
 
+mark [as] read: key(cmd-t)
+mark [as] unread: key(cmd-shift-t)
+
 send [this] message: key(cmd-enter)
 
 move:
