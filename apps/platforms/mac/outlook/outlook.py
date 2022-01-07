@@ -75,10 +75,10 @@ class UserActions:
 
 	def outlook_focus_folder_list():
 		outlook = outlook_app()
-		menu_bar = outlook.children.find_one(AXRole='AXMenuBar', max_depth=0)
-		view_menu = menu_bar.children.find_one(AXRole='AXMenuBarItem', AXTitle='View', max_depth=0).children[0]
-		sidebar_item = view_menu.children.find_one(AXRole='AXMenuItem', AXTitle='Sidebar', max_depth=0)
-		if not sidebar_item.AXSelected:
+		toolbar_split = outlook.active_window.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		sidebar_split = toolbar_split.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		scroll_area_or_button = sidebar_split.children[0]
+		if scroll_area_or_button.AXRole == 'AXButton':
 			actions.key("cmd-alt-s")
 
 		last_focused_element = None
