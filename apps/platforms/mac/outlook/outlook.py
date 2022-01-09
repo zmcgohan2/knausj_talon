@@ -15,6 +15,8 @@ def outlook_app():
 @ctx.action_class("user")
 class UserActions:
 	def outlook_set_selected_folder(folder: str):
+		# for "old Outlook" this uses the scripting dictionary
+		# for "new Outlook" this currently uses the displayed folder name
 		result = applescript.run(f'''
 			tell application id "com.microsoft.Outlook"
 				if (exists (selected folder)) then
