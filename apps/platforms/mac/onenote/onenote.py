@@ -19,7 +19,7 @@ class EditActions:
 				return
 
 	def select_line(n: int=None):
-		actions.key('cmd-a')
+		actions.key('right left cmd-a')
 		actions.sleep('100ms')
 
 @mod.capture(rule="<number_small> | <number_small> plus <number_small> | [<number_small>] <user.text>")
