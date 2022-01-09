@@ -18,6 +18,14 @@ class EditActions:
 			if clip.serial() != serial_start:
 				return
 
+	def cut():
+		serial_start = clip.serial()
+		for attempt in range(10):
+			actions.key("cmd-x")
+			actions.sleep("100ms")
+			if clip.serial() != serial_start:
+				return
+
 	def select_line(n: int=None):
 		actions.key('right left cmd-a')
 		actions.sleep('100ms')
