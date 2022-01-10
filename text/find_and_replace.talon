@@ -1,20 +1,20 @@
 tag: user.find_and_replace
 -
-scout this: user.find("")
-scout this <user.text>: user.find(text)
-scout take:
+scan this: user.find("")
+scan this <user.text>: user.find(text)
+scan take:
     text = edit.selected_text()
     user.find(texti)
-scout all: user.find_everywhere("")
-scout all <user.text>: user.find_everywhere(text)
-scout all take: 
+scan all: user.find_everywhere("")
+scan all <user.text>: user.find_everywhere(text)
+scan all take: 
     text = edit.selected_text()
     user.find_everywhere(text)
-scout case : user.find_toggle_match_by_case()
-scout word : user.find_toggle_match_by_word()
-scout expression : user.find_toggle_match_by_regex()
-scout next: user.find_next()
-scout last: user.find_previous()
+scan case : user.find_toggle_match_by_case()
+scan word : user.find_toggle_match_by_word()
+scan expression : user.find_toggle_match_by_regex()
+scan next: user.find_next()
+scan last: user.find_previous()
 replace this [<user.text>]: user.replace(text or "")
 replace all: user.replace_everywhere("")
 replace <user.text> all: user.replace_everywhere(text)
