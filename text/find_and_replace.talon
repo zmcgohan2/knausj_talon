@@ -2,12 +2,12 @@ tag: user.find_and_replace
 -
 scan this: user.find("")
 scan this <user.text>: user.find(text)
-scan take:
+scan grab:
     text = edit.selected_text()
     user.find(texti)
 scan all: user.find_everywhere("")
 scan all <user.text>: user.find_everywhere(text)
-scan all take: 
+scan all grab: 
     text = edit.selected_text()
     user.find_everywhere(text)
 scan case : user.find_toggle_match_by_case()
@@ -85,10 +85,10 @@ replace next <user.text> [over]:
     user.select_next_occurrence(text)
     sleep(100ms)
     edit.paste()
-take last <user.text> [over]: user.select_previous_occurrence(text)
-take next <user.text> [over]: user.select_next_occurrence(text)
-take last clip: user.select_previous_occurrence(clip.text())
-take next clip: user.select_next_occurrence(clip.text())
+grab last <user.text> [over]: user.select_previous_occurrence(text)
+grab next <user.text> [over]: user.select_next_occurrence(text)
+grab last clip: user.select_previous_occurrence(clip.text())
+grab next clip: user.select_next_occurrence(clip.text())
 
 
 

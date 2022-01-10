@@ -70,31 +70,31 @@ bear pad:
 pad:
     user.paste('   ')
     key(left)
-ring take: 
+ring grab: 
     text = edit.selected_text()
     user.paste("<{text}>")
-pad take: 
+pad grab: 
     text = edit.selected_text()
     user.paste(" {text} ")    
-curly take: 
+curly grab: 
     text = edit.selected_text()
     user.paste("{{{text}}}")
-round take: 
+round grab: 
     text = edit.selected_text()
     user.paste("({text})")
-percy take: 
+percy grab: 
     text = edit.selected_text()
     user.paste("%{text}%")
-quote take:
+quote grab:
     text = edit.selected_text()
     user.paste("'{text}'")
-ditto take:
+ditto grab:
     text = edit.selected_text()
     user.paste('"{text}"')
-ticker take:
+ticker grab:
     text = edit.selected_text()
     user.paste('`{text}`')
-square take:
+square grab:
     text = edit.selected_text()
     user.paste('[{text}]')
 between <user.symbol_key>:

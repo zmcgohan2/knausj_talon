@@ -38,8 +38,8 @@ paste <number> by <number>:
 replace <number> by <number>: 
     user.select_range(number_1, number_2)
     edit.paste()
-take [row] <number>: user.select_range(number, number)
-(take [row] | row) <number> by <number>: user.select_range(number_1, number_2)
+grab [row] <number>: user.select_range(number, number)
+(grab [row] | row) <number> by <number>: user.select_range(number_1, number_2)
 bill [row] <number>:
     edit.jump_line(number)
     edit.indent_more() 

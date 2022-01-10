@@ -64,68 +64,68 @@ go north:
 #     edit.page_up()
 
 # selecting
-take line:
+grab line:
     edit.select_line()
 
-take all:
+grab all:
     edit.select_all()
 
-take left [<number_small>]:
+grab left [<number_small>]:
     numb = number_small or 1
     edit.extend_left()
     repeat(numb - 1)
 
-take right [<number_small>]:
+grab right [<number_small>]:
     numb = number_small or 1
     edit.extend_right()
     repeat(numb - 1)
 
-take up [<number_small>]:
+grab up [<number_small>]:
     numb = number_small or 1
     edit.extend_line_up()
     repeat(numb - 1)
 
-take down [<number_small>]:
+grab down [<number_small>]:
     numb = number_small or 1
     edit.extend_line_down()
     repeat(numb - 1)
 
-take word [<number_small>]:
+grab word [<number_small>]:
     numb = number_small or 1
     edit.select_word()
     repeat(numb - 1)    
 
-take draw [<number_small>]:
+grab draw [<number_small>]:
     numb = number_small or 1
     edit.extend_word_left()
     repeat(numb - 1)
 
-take spring [<number_small>]:
+grab spring [<number_small>]:
     numb = number_small or 1
     edit.extend_word_right()
     repeat(numb - 1)
 
-take east:
+grab east:
     edit.extend_line_start()
     edit.extend_line_start()
 
-take west:
+grab west:
     edit.extend_line_end()
     edit.extend_line_end()
 
-take north:
+grab north:
     edit.extend_file_start()
 
-take south:
+grab south:
     edit.extend_file_end()
 
 # editing
-bill [take] [<number_small>]:
+bill [grab] [<number_small>]:
     numb = number_small or 1
     edit.indent_more()
     repeat(numb - 1)    
 
-rebill [take] [<number_small>]:
+rebill [grab] [<number_small>]:
     numb = number_small or 1
     edit.indent_less()
     repeat(numb - 1)
