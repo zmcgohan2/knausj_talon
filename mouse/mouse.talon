@@ -179,5 +179,5 @@ wheel tiny right here [<number_small>]:
     user.mouse_move_center_active_window()
     mouse_scroll(0, 20)
 	repeat(num)
-copy mouse position: user.copy_mouse_position()
+mouse copy position: user.copy_mouse_position()
 
