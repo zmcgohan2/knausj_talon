@@ -27,12 +27,11 @@ class Actions:
 
     def hitch2_s3():
         """document string goes here"""
-        actions.user.clickless_mouse_toggle()
+        actions.user.mouse_scroll_down()
 
     def hitch2_s4():
         """document string goes here"""
-        actions.user.mouse_toggle_zoom_mouse()
-        actions.user.clickless_mouse_disable()
+        actions.user.mouse_scroll_up()
 
     def hitch2_s5():
         """document string goes here"""
@@ -51,12 +50,11 @@ class WindowsZoomMouseInactiveActions:
 
     def hitch2_s3():
         """document string goes here"""
-        actions.user.system_switcher()
+        actions.user.mouse_scroll_down()
 
     def hitch2_s4():
         """document string goes here"""
-        actions.user.mouse_toggle_zoom_mouse()
-        actions.user.clickless_mouse_disable()
+        actions.user.mouse_scroll_up()
 
     def hitch2_s5():
         """document string goes here"""
