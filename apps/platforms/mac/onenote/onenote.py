@@ -210,3 +210,10 @@ class UserActions:
 		actions.insert(" - ")
 		if entry:
 			actions.mimic(entry)
+
+	def zoom_to_fit_width():
+		onenote = onenote_app()
+		(onenote.children.find_one(AXRole='AXMenuBar', max_depth=0)
+				.children.find_one(AXRole='AXMenuBarItem', AXTitle='View', max_depth=0)
+				.children[0].children.find_one(AXRole='AXMenuItem', AXTitle='Zoom to Page Width', max_depth=0)
+		).perform('AXPress')

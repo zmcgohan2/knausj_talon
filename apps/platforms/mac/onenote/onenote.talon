@@ -116,3 +116,4 @@ tomorrow:
 go progress:
     user.onenote_go_progress()
     user.onenote_hide_navigation()
+    user.zoom_to_fit_width()
