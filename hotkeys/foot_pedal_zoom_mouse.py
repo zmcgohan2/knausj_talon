@@ -6,7 +6,7 @@ ctx_zoom_mouse_enabled_use_pedal = Context()
 ctx_zoom_mouse_enabled_use_pedal.matches = r"""
 mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
 and not mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
-and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
+and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
 and not user.running: Optikey Mouse
 """
 
@@ -15,7 +15,7 @@ ctx_zoom_mouse_triggered_use_pedal = Context()
 ctx_zoom_mouse_triggered_use_pedal.matches = r"""
 mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
 and mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
-and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal
+and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
 and not user.running: Optikey Mouse
 """
 
@@ -36,11 +36,13 @@ class WindowsZoomMouseInactiveActions:
 
     def foot_pedal_right_left():
         """document string goes here"""
-        actions.key("pageup")
+        actions.user.mouse_toggle_zoom_mouse()
+        #actions.key("pageup")
 
     def foot_pedal_right_middle():
         """document string goes here"""
-        actions.key("pagedown")
+        actions.user.microphone_toggle()
+        # actions.key("pagedown")
 
     def foot_pedal_right_right():
         """document string goes here"""

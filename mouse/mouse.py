@@ -137,6 +137,7 @@ class Actions:
             actions.app.notify("Failed to access eye tracker, restarting Talon")
             actions.sleep("500ms")
             actions.user.exec("talon-restart")
+            
         except Exception as e:
             print(e)
 
@@ -357,7 +358,7 @@ def on_pop(active):
     elif (
         eye_zoom_mouse.zoom_mouse.enabled
         and eye_mouse.mouse.attached_tracker is not None
-        and not "talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal" in registry.tags
+        and "talon_plugins.eye_zoom_mouse.zoom_mouse_noise" in registry.tags
     ):
         eye_zoom_mouse.zoom_mouse.on_pop(eye_zoom_mouse.zoom_mouse.state)
 
@@ -366,7 +367,7 @@ def on_hiss(active):
     if (
         eye_zoom_mouse.zoom_mouse.enabled
         and eye_mouse.mouse.attached_tracker is not None
-        and not "talon_plugins.eye_zoom_mouse.zoom_mouse_use_pedal" in registry.tags
+        and "talon_plugins.eye_zoom_mouse.zoom_mouse_noise" in registry.tags
     ):
         eye_zoom_mouse.zoom_mouse.on_hiss(eye_zoom_mouse.zoom_mouse.state)
 
