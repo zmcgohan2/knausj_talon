@@ -32,6 +32,7 @@ project symbol [<user.text>]:
     insert(user.text or "")
 
 complete: key(ctrl-space)
+[un]comment that: code.toggle_comment()
 
 slap: key(cmd-enter)
 
