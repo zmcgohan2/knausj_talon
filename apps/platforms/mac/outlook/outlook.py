@@ -95,6 +95,15 @@ class UserActions:
 
 		raise Exception("Unable to focus Outlook folder list")
 
+	def outlook_download_images():
+		outlook = outlook_app()
+		toolbar_split = outlook.active_window.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		sidebar_split = toolbar_split.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		list_split = sidebar_split.children.find_one(AXRole='AXSplitGroup', max_depth=0)
+		infobar = list_split.children.find_one(AXRole='AXScrollArea', AXTitle='Infobar View', max_depth=0)
+		download_button = infobar.children.find_one(AXRole='AXButton', max_depth=0)
+		download_button.perform('AXPress')
+
 @mod.action_class
 class Actions:
 	def outlook_set_selected_folder(folder: str):
@@ -111,3 +120,6 @@ class Actions:
 
 	def outlook_focus_folder_list():
 		"""Focus the folder list in Outlook"""
+
+	def outlook_download_images():
+		"""Download images in Outlook"""
