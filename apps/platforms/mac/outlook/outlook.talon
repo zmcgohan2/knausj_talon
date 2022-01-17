@@ -41,6 +41,7 @@ collapse:
 expand:
 	user.outlook_focus_message_list()
 	key(right)
+message: user.outlook_focus_message_body()
 
 folder <user.text>:
 	user.outlook_focus_folder_list()

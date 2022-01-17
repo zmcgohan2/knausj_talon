@@ -103,6 +103,38 @@ class UserActions:
 		download_button = infobar.children.find_one(AXRole='AXButton', max_depth=0)
 		download_button.perform('AXPress')
 
+	def outlook_focus_message_body():
+		outlook = outlook_app()
+		role = outlook.focused_element.AXRole
+		message_roles = ("AXGroup", "AXTextArea", "AXWebArea")
+
+		print("Before:", outlook.focused_element, outlook.focused_element.attrs)
+
+		if role in message_roles:
+			return
+
+		if role in ("AXOutline", "AXWindow"): # folder list in new Outlook
+			actions.key("ctrl-shift-[") # wrap around
+		else:
+			actions.key("ctrl-shift-]")
+
+		saw_button = False
+		for attempt in range(10):
+			focused_element = outlook.focused_element
+			role = focused_element.AXRole
+			if role in message_roles:
+				return
+			if not saw_button:
+				if role == "AXButton": # message toolbar / "hide task pane" button
+					actions.key("ctrl-shift-]") # not a pane - work around bug
+					saw_button = True
+					continue
+			actions.sleep("50ms")
+
+		print("After:", focused_element, focused_element.attrs)
+
+		raise Exception("Unable to focus Outlook message body")
+
 @mod.action_class
 class Actions:
 	def outlook_set_selected_folder(folder: str):
@@ -113,6 +145,9 @@ class Actions:
 
 	def outlook_unflag():
 		"""Remove flag from selected messages in Outlook"""
+
+	def outlook_focus_message_body():
+		"""Focus the message body in Outlook"""
 
 	def outlook_focus_message_list():		
 		"""Focus the message list in Outlook"""
