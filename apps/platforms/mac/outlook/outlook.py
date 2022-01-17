@@ -52,8 +52,7 @@ class UserActions:
 
 	def outlook_focus_message_list():
 		outlook = outlook_app()
-		focused_element = outlook.focused_element
-		role = focused_element.AXRole
+		role = outlook.focused_element.AXRole
 
 		if role == "AXOutline": # folder list in new Outlook
 			actions.key("ctrl-shift-]")
