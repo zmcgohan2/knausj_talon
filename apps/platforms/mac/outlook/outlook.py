@@ -59,15 +59,15 @@ class UserActions:
 		elif role != "AXTable":
 			actions.key("ctrl-shift-[")
 
-		saw_button = False		
+		saw_button = False
 		for attempt in range(10):
 			focused_element = outlook.focused_element
 			role = focused_element.AXRole
 			if role == "AXTable" and focused_element.get("AXDescription") == "Message List":
 				return
 			if not saw_button:
-				if role == "AXButton" and focused_element.get("AXHelp") == "Hide Task Pane":
-					actions.key("ctrl-shift-[") # not a pane - work around bug
+				if role == "AXButton": # message toolbar / "hide task pane" button
+					actions.key("ctrl-shift-[")
 					saw_button = True
 					continue
 			actions.sleep("50ms")
