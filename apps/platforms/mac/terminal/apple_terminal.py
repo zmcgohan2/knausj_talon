@@ -1,12 +1,34 @@
-from talon import Context, actions, ui
+from talon import Context, Module, actions, cron, ui
+from appscript import its
 import os
 
+mod = Module()
 ctx = Context()
 ctx.matches = r"""
 app: apple_terminal
 """
 directories_to_remap = {}
 directories_to_exclude = {}
+
+def terminal_app():
+    return ui.apps(bundle="com.apple.Terminal")[0]
+
+@mod.action_class
+class Actions:
+    def apple_terminal_window_focus(settings_set: str) -> bool:
+        """Focus a Terminal window with the specified settings set"""
+        actions.user.launch_or_focus_bundle('com.apple.Terminal')
+        cron.after('200ms', lambda: actions.user.apple_terminal_window_focus(settings_set))
+
+    def apple_terminal_window_open(settings_set: str):
+        """Create a Terminal window with the specified settings set"""
+        actions.user.launch_or_focus_bundle('com.apple.Terminal')
+        cron.after('200ms', lambda: actions.user.apple_terminal_window_open(settings_set))
+
+    def apple_terminal_window_focus_or_open(settings_set: str):
+        """Focus or create a Terminal window with the specified settings set"""
+        actions.user.launch_or_focus_bundle('com.apple.Terminal')
+        cron.after('200ms', lambda: actions.user.apple_terminal_window_focus_or_open(settings_set))
 
 @ctx.action_class('app')
 class AppActions:
@@ -81,3 +103,24 @@ class UserActions:
 
     def tab_overview():
         actions.key('cmd-shift-\\')
+
+    def apple_terminal_window_focus(settings_set: str):
+        terminal = terminal_app().appscript()
+        window = terminal.windows[its.current_settings.name==settings_set][1]
+        if not window.exists():
+            return False
+        window.frontmost.set(True)
+        return True
+
+    def apple_terminal_window_open(settings_set: str):
+        terminal = terminal_app()
+        (terminal.children.find_one(AXRole='AXMenuBar', max_depth=0)
+                 .children.find_one(AXRole='AXMenuBarItem', AXTitle='Shell', max_depth=0)
+                 .children[0].children.find_one(AXRole='AXMenuItem', AXTitle='New Window', max_depth=0)
+                 .children[0].children.find_one(AXRole='AXMenuItem', AXTitle=settings_set, max_depth=0)
+        ).perform('AXPress')
+
+    def apple_terminal_window_focus_or_open(settings_set: str):
+        if actions.user.apple_terminal_window_focus(settings_set):
+            return
+        actions.user.apple_terminal_window_open(settings_set)
