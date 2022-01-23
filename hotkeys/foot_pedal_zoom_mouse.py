@@ -20,33 +20,33 @@ and not user.running: Optikey Mouse
 """
 
 
-@ctx_zoom_mouse_enabled_use_pedal.action_class("user")
-class WindowsZoomMouseInactiveActions:
-    def foot_pedal_left_left():
-        """document string goes here"""
-        actions.talon_plugins.eye_zoom_mouse.mouse_trigger()
+# @ctx_zoom_mouse_enabled_use_pedal.action_class("user")
+# class WindowsZoomMouseInactiveActions:
+#     def foot_pedal_left_left():
+#         """document string goes here"""
+#         actions.talon_plugins.eye_zoom_mouse.mouse_trigger()
 
-    def foot_pedal_left_middle():
-        """document string goes here"""
-        actions.user.toggle_gaze_scroll()
+#     def foot_pedal_left_middle():
+#         """document string goes here"""
+#         actions.user.toggle_gaze_scroll()
 
-    def foot_pedal_left_right():
-        """document string goes here"""
-        actions.user.system_switcher()
+#     def foot_pedal_left_right():
+#         """document string goes here"""
+#         actions.user.system_switcher()
 
-    def foot_pedal_right_left():
-        """document string goes here"""
-        actions.user.mouse_toggle_zoom_mouse()
-        #actions.key("pageup")
+#     def foot_pedal_right_left():
+#         """document string goes here"""
+#         actions.user.mouse_toggle_zoom_mouse()
+#         #actions.key("pageup")
 
-    def foot_pedal_right_middle():
-        """document string goes here"""
-        actions.user.microphone_toggle()
-        # actions.key("pagedown")
+#     def foot_pedal_right_middle():
+#         """document string goes here"""
+#         actions.user.microphone_toggle()
+#         # actions.key("pagedown")
 
-    def foot_pedal_right_right():
-        """document string goes here"""
-        actions.user.wake_or_sleep()
+#     def foot_pedal_right_right():
+#         """document string goes here"""
+#         actions.user.wake_or_sleep()
 
 
 @ctx_zoom_mouse_triggered_use_pedal.action_class("user")

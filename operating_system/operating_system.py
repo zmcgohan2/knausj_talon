@@ -41,3 +41,6 @@ class Actions:
 
     def system_search():
         """Triggers system search (e.g. spotlight/powerrunner)"""
+    
+    def system_last_application():
+        """triggers alt-tab"""

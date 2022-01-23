@@ -37,6 +37,9 @@ class Actions:
         """document string goes here"""
         actions.user.microphone_toggle()
 
+    def hitch2_s6():
+        """document"""
+        actions.user.mouse_toggle_zoom_mouse()
 
 @ctx_zoom_mouse_enabled_use_pedal.action_class("user")
 class WindowsZoomMouseInactiveActions:
@@ -60,6 +63,10 @@ class WindowsZoomMouseInactiveActions:
         """document string goes here"""
         actions.user.microphone_toggle()
 
+    def hitch2_s6():
+        """document"""
+        actions.user.mouse_toggle_zoom_mouse()
+
 
 @ctx_zoom_mouse_triggered_use_pedal.action_class("user")
 class WindowsZoomMouseActiveActions:
@@ -82,3 +89,8 @@ class WindowsZoomMouseActiveActions:
     def hitch2_s5():
         """document string goes here"""
         actions.talon_plugins.eye_zoom_mouse.mouse_drag()
+
+
+    def hitch2_s6():
+        """document"""
+        actions.talon_plugins.eye_zoom_mouse.mouse_move()

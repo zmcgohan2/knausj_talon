@@ -78,6 +78,8 @@ class UserActionsMac:
     def system_search():
         actions.key("cmd-space")
 
+    def system_last_application():
+        actions.key("cmd-tab")
 
 def on_ready():
     update_preferences_list()

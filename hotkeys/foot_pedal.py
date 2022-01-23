@@ -8,16 +8,15 @@ mod = Module()
 class Actions:
     def foot_pedal_left_left():
         """document string goes here"""
-        actions.mouse_click()
+        actions.user.system_switcher()
 
     def foot_pedal_left_middle():
         """document string goes here"""
-        actions.mouse_click(1)
+        actions.user.system_search()
 
     def foot_pedal_left_right():
         """document string goes here"""
-        actions.mouse_click()
-        actions.mouse_click()
+        actions.user.system_last_application()
 
     def foot_pedal_right_left():
         """document string goes here"""

@@ -59,6 +59,9 @@ class UserActionsWin:
     def system_search():
         actions.key("alt-space")
 
+    def system_last_application():
+        actions.key("alt-tab")
+
 
 def shutdown(flag: str):
     actions.key("super-r")
