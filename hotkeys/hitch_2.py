@@ -49,7 +49,7 @@ class WindowsZoomMouseInactiveActions:
 
     def hitch2_s2():
         """document string goes here"""
-        actions.user.toggle_gaze_scroll()
+        #actions.user.toggle_gaze_scroll()
 
     def hitch2_s3():
         """document string goes here"""
