@@ -12,11 +12,11 @@ class Actions:
 
     def foot_pedal_left_middle():
         """document string goes here"""
-        actions.user.system_search()
+        actions.user.system_last_application()
 
     def foot_pedal_left_right():
         """document string goes here"""
-        actions.user.system_last_application()
+        actions.user.system_search()
 
     def foot_pedal_right_left():
         """document string goes here"""

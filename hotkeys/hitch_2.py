@@ -5,7 +5,7 @@ ctx_zoom_mouse_enabled_use_pedal = Context()
 ctx_zoom_mouse_enabled_use_pedal.matches = r"""
 mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
 and not mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
-and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
+#and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
 """
 
 
@@ -13,7 +13,7 @@ ctx_zoom_mouse_triggered_use_pedal = Context()
 ctx_zoom_mouse_triggered_use_pedal.matches = r"""
 mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
 and mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
-and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
+#and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
 """
 
 
