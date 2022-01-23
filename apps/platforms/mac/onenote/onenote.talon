@@ -40,6 +40,8 @@ page new:
 page delete: key(ctrl-cmd-g cmd-delete)
 page previous: key(ctrl-cmd-g up tab)
 page next: key(ctrl-cmd-g down tab)
+page move up: key(ctrl-cmd-g cmd-alt-up)
+page move down: key(ctrl-cmd-g cmd-alt-down)
 page move right: key(cmd-alt-])
 page move left: key(cmd-alt-[)
 
