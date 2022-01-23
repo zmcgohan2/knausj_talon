@@ -24,3 +24,7 @@ stage all:
 stage untracked: key(cmd-k cmd-a)
 
 stash: key(cmd-s)
+
+repository [<user.text>]:
+	key(ctrl-cmd-p)
+	insert('{user.formatted_text(text or "", "ALL_LOWERCASE,NO_SPACES")}')
