@@ -1,4 +1,4 @@
-from talon import Module, Context, actions, ui
+from talon import Module, Context, actions, app, ui
 from talon.mac import applescript
 
 ctx = Context()
@@ -54,6 +54,11 @@ class UserActions:
 		outlook = outlook_app()
 		role = outlook.focused_element.AXRole
 
+
+		if role == "":
+			app.notify("Unable to determine focused element", "Try restarting Outlook")
+			raise Exception('Unable to determined focused element (Outlook bug?)')
+
 		if role == "AXOutline": # folder list in new Outlook
 			actions.key("ctrl-shift-]")
 		elif role != "AXTable":
@@ -72,7 +77,7 @@ class UserActions:
 					continue
 			actions.sleep("50ms")
 
-		raise Exception("Unable to focus Outlook message list")
+		raise Exception(f'Unable to focus Outlook message list, instead focused {focused_element}')
 
 	def outlook_focus_folder_list():
 		outlook = outlook_app()
