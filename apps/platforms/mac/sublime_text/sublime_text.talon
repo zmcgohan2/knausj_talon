@@ -19,7 +19,7 @@ file name <user.text>:
     key(cmd-p)
     insert(user.text)
     
-do [<user.text>]:
+please [<user.text>]:
     key(cmd-shift-p)
     insert(user.text or "")
     

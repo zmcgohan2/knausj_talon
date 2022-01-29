@@ -17,7 +17,7 @@ file name <user.text>:
     key(ctrl-p)
     insert(user.text)
     
-do [<user.text>]:
+please [<user.text>]:
     key(ctrl-shift-p)
     insert(user.text or "")
     
@@ -37,7 +37,7 @@ definition show: key(f12)
 result next: key(f4 f3)
 result previous: key(shift-f4 f3)
 
-[do] repository:
+repository:
     key(ctrl-shift-p)
     insert("Sublime Merge: Open Repository")
     key(enter)
