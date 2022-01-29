@@ -41,7 +41,7 @@ state past: "pass"
 raise {user.python_exception}: user.insert_cursor("raise {python_exception}([|])")
 except {user.python_exception}: "except {python_exception}:"
 
-dock string:
+dock string | dock quote:
     user.code_comment_documentation()
 dock {user.python_docstring_fields}:
     insert("{python_docstring_fields}")
