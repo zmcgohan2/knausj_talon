@@ -1,7 +1,7 @@
 os: windows
 and app.exe: sublime_merge.exe
 -
-do [<user.text>]:
+please [<user.text>]:
 	key(ctrl-shift-p)
 	insert(user.text or "")
 

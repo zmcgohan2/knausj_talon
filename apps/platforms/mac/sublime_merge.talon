@@ -1,6 +1,6 @@
 app.bundle: com.sublimemerge
 -
-do [<user.text>]:
+please [<user.text>]:
 	key(cmd-shift-p)
 	insert(user.text or "")
 
