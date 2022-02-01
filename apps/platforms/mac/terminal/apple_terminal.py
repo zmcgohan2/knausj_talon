@@ -1,5 +1,4 @@
 from talon import Context, Module, actions, cron, ui
-from appscript import its
 import os
 
 mod = Module()
@@ -105,6 +104,8 @@ class UserActions:
         actions.key('cmd-shift-\\')
 
     def apple_terminal_window_focus(settings_set: str):
+        from appscript import its
+
         terminal = terminal_app().appscript()
         window = terminal.windows[its.current_settings.name==settings_set][1]
         if not window.exists():

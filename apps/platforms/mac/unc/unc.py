@@ -1,5 +1,4 @@
 from talon import Module, actions, app, clip, cron, ui
-from talon.mac.ui import Element
 from typing import Optional
 
 mod = Module()
@@ -11,7 +10,7 @@ def unc_app():
 		return None
 	return apps[0]
 
-def unc_alert() -> Optional[Element]:
+def unc_alert():
 	unc = unc_app()
 	if not unc:
 		return
