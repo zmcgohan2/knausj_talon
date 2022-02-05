@@ -1,24 +1,16 @@
 key(keypad_1): 
     user.hitch2_s1()
-    print("1")
 key(keypad_2): 
     user.hitch2_s2()
-    print("2")
 key(keypad_3): 
     user.hitch2_s3()
-    print("3")
 key(keypad_4): 
     user.hitch2_s4()
-    print("4")
 key(keypad_5): 
     user.hitch2_s5()
-    print("5")
 key(keypad_6): 
     user.hitch2_s6()
-    print("6")
 key(keypad_7): 
     user.hitch2_s7()
-    print("7")
 key(keypad_8): 
     user.hitch2_s8()
-    print("8")
