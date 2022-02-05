@@ -12,12 +12,9 @@ tag(): user.tabs
 
 toggle sidebar: key(cmd-k cmd-b)
 
-file:
+file hunt [<user.text>]:
     key(cmd-p)
-    
-file name <user.text>:
-    key(cmd-p)
-    insert(user.text)
+    insert(text or "")
     
 please [<user.text>]:
     key(cmd-shift-p)
