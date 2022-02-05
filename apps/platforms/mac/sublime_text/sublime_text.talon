@@ -18,15 +18,15 @@ file hunt [<user.text>]:
     
 please [<user.text>]:
     key(cmd-shift-p)
-    insert(user.text or "")
+    insert(text or "")
     
 project switch [<user.text>]:
     key(cmd-ctrl-p)
-    insert(user.text or "")
+    insert(text or "")
     
 project symbol [<user.text>]:
     key(cmd-shift-r)
-    insert(user.text or "")
+    insert(text or "")
 
 complete: key(ctrl-space)
 [un]comment that: code.toggle_comment()

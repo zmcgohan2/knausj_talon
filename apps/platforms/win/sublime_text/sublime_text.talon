@@ -16,15 +16,15 @@ file hunt [<user.text>]:
     
 please [<user.text>]:
     key(ctrl-shift-p)
-    insert(user.text or "")
+    insert(text or "")
     
 project switch [<user.text>]:
     key(alt p s)
-    insert(user.text or "")
+    insert(text or "")
     
 project symbol [<user.text>]:
     key(ctrl-shift-r)
-    insert(user.text or "")
+    insert(text or "")
     
 slap: key(ctrl-enter)
 
