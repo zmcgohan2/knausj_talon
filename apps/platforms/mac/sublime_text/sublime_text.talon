@@ -41,7 +41,7 @@ result previous: key(shift-f4 cmd-g)
 go back: key(ctrl--)
 go forward: key(ctrl-shift--)
 
-[do] repository:
+^repository:
     key(cmd-shift-p)
     insert("Sublime Merge: Open Repository")
     key(enter)

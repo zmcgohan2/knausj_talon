@@ -34,7 +34,7 @@ definition show: key(f12)
 result next: key(f4 f3)
 result previous: key(shift-f4 f3)
 
-repository:
+^repository:
     key(ctrl-shift-p)
     insert("Sublime Merge: Open Repository")
     key(enter)
