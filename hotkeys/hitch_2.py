@@ -67,10 +67,13 @@ class WindowsZoomMouseInactiveActions:
 
     def hitch2_s5():
         """document string goes here"""
+        #actions.user.system_task_view()
+        actions.user.system_switcher()
 
     def hitch2_s6():
         """document"""
-
+        actions.user.system_last_application()
+        
     def hitch2_s7():
         """document string goes here"""
         actions.user.mouse_toggle_zoom_mouse()
