@@ -21,11 +21,13 @@ state comment: "// "
 # ]
 # "[state] context: insert("ctx")
 state (funk | func | fun): "func "
-function (Annette | init) [over]: "func init() {\n"
-function <user.text> [over]:
-    insert("func ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-    insert("(")
+
+^funky <user.text>$:
+    insert('func {user.formatted_text(text, "PRIVATE_CAMEL_CASE")}(')
+    sleep(100ms)
+
+^pub funky <user.text>$:
+    insert('func {user.formatted_text(text, "PUBLIC_CAMEL_CASE")}(')
     sleep(100ms)
 
 method <user.text> [over]:
@@ -40,7 +42,7 @@ variable [<user.text>] [over]:
     # insert(" ")
     sleep(100ms)
 
-of type [<user.text>] [over]:
+is type [<user.text>]:
     insert(" ")
     insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
 
