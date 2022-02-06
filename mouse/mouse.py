@@ -136,7 +136,7 @@ class Actions:
         except track.tobii.EyeClosedErr as e:
             actions.app.notify("Failed to access eye tracker, restarting Talon")
             actions.sleep("500ms")
-            actions.user.exec("talon-restart")
+            actions.user.talon_restart()
             
         except Exception as e:
             print(e)
@@ -164,7 +164,7 @@ class Actions:
         except track.tobii.EyeClosedErr as e:
             actions.app.notify("Failed to access eye tracker, restarting Talon")
             actions.sleep("500ms")
-            actions.user.exec("talon-restart")
+            actions.user.talon_restart()
         except Exception as e:
             print(e)
 
