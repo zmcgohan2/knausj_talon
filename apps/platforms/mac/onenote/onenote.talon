@@ -87,8 +87,6 @@ paste link:
     sleep(100ms)
     key(enter cmd-shift-n)
     
-    # user.find_and_replace
-
 # missing shortcut for hiding navigation
 (navigation hide | escape): user.onenote_hide_navigation()
 key(esc): user.onenote_hide_navigation()
