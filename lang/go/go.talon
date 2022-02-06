@@ -4,36 +4,34 @@ mode: command
 and mode: user.auto_lang
 and code.language: go
 -
+tag(): user.code_imperative
+
+tag(): user.code_comment_line
+tag(): user.code_comment_block_c_like
+tag(): user.code_data_bool
+tag(): user.code_data_null
+tag(): user.code_functions
+tag(): user.code_functions_gui
+tag(): user.code_libraries
+tag(): user.code_libraries_gui
+tag(): user.code_operators_array
+tag(): user.code_operators_assignment
+tag(): user.code_operators_bitwise
+tag(): user.code_operators_math
+tag(): user.code_operators_pointer
+
+settings():
+    user.code_private_function_formatter = "PRIVATE_CAMEL_CASE"
+    user.code_protected_function_formatter = "PRIVATE_CAMEL_CASE"
+    user.code_public_function_formatter = "PUBLIC_CAMEL_CASE"
+    user.code_private_variable_formatter = "PRIVATE_CAMEL_CASE"
+    user.code_protected_variable_formatter = "PRIVATE_CAMEL_CASE"
+    user.code_public_variable_formatter = "PUBLIC_CAMEL_CASE"
+
 variadic: "..."
-logical and: " && "
-logical or: " || "
+
 # Many of these add extra terrible spacing under the assumption that
 # gofmt/goimports will erase it.
-state comment: "// "
-[line] comment <user.text>:
-    key("cmd-right")
-    insert(" // ")
-    insert(user.formatted_text(text, "sentence"))
-
-# "add comment <user.text> [over]:
-#     key("cmd-right")
-#     text_with_leading(" // ")
-# ]
-# "[state] context: insert("ctx")
-state (funk | func | fun): "func "
-
-^funky <user.text>$:
-    insert('func {user.formatted_text(text, "PRIVATE_CAMEL_CASE")}(')
-    sleep(100ms)
-
-^pub funky <user.text>$:
-    insert('func {user.formatted_text(text, "PUBLIC_CAMEL_CASE")}(')
-    sleep(100ms)
-
-method <user.text> [over]:
-    insert("meth ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-    sleep(100ms)
 
 state var: "var "
 variable [<user.text>] [over]:
@@ -42,60 +40,16 @@ variable [<user.text>] [over]:
     # insert(" ")
     sleep(100ms)
 
-is type [<user.text>]:
-    insert(" ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-
-# "set <user.text> [over]:
-#     insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-#     insert(" := ")
-#     sleep(100ms)
-# ]
-state break: "break"
 state (chan | channel): " chan "
 state go: "go "
-state if: "if "
-if <user.text> [over]:
-  insert("if ")
-  insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
 spawn <user.text> [over]:
   insert("go ")
   insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-state else if: " else if "
-else if <user.text> [over]:
-    insert(" else if ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-
-state else: " else "
-else <user.text> [over]:
-    insert(" else {")
-    key("enter")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-
-state while: "while "
-while <user.text> [over]:
-    insert("while ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-
-state for: "for "
-for <user.text> [over]:
-    insert("for ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-
-state for range: "forr "
-range <user.text> [over]:
-    insert("forr ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
 
 state format: "fmt"
 format <user.text> [over]:
     insert("fmt.")
     insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))
-
-state switch: "switch "
-switch <user.text> [over]:
-    insert("switch ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
 
 state select: "select "
 # "select <user.text>:insert("select "), insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE")]
@@ -104,18 +58,11 @@ constant <user.text> [over]:
     insert("const ")
     insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))
 
-state case: " case "
-state default: " default:"
-case <user.text> [over]:
-    insert("case ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-
 state type: " type "
 type <user.text> [over]:
     insert("type ")
     insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))
-state true: " true "
-state false: " false "
+
 state (start | struct | struck):
   insert(" struct {")
   key("enter")
@@ -133,12 +80,8 @@ interface <user.text> [over]:
     key("enter")
     insert(user.formatted_text(text, "PUBLIC_CAMEL_CASE"))
 
-state string: " string "
-[state] (int | integer | ant): "int"
 state slice: " []"
 slice of: "[]"
-[state] (no | nil): "nil"
-state (int | integer | ant) 64: " int64 "
 state tag:
   insert(" ``")
   key("left")
@@ -149,11 +92,6 @@ field tag <user.text> [over]:
     insert(user.formatted_text(text, "snake"))
     insert(" ")
     sleep(100ms)
-
-state return: " return "
-return  <user.text> [over]:
-    insert("return ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
 
 map of string to string: " map[string]string "
 map of <user.text> [over]:
@@ -188,14 +126,6 @@ item <user.text> [over]:
 
 value <user.text> [over]:
     insert(": ")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-
-address of [<user.text>] [over]:
-    insert("&")
-    insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
-
-pointer to [<user.text>] [over]:
-    insert("*")
     insert(user.formatted_text(text, "PRIVATE_CAMEL_CASE"))
 
 swipe [<user.text>] [over]:
