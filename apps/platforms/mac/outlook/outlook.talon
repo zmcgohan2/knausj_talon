@@ -25,7 +25,7 @@ forward: key(cmd-j)
 
 hunt all: key(cmd-shift-f)
 
-sidebar: key(cmd-alt-s)
+toggle sidebar: key(cmd-alt-s)
 
 # not tested in "old Outlook"
 # can use Control-[/] for previous/next though that does not focus the message list
