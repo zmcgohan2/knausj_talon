@@ -12,6 +12,15 @@ app.bundle: com.microsoft.Outlook
 def outlook_app():
 	return ui.apps(bundle="com.microsoft.Outlook")[0]
 
+# Temporary workaround for https://github.com/talonvoice/talon/issues/480
+def outlook_focused_element():
+	outlook = outlook_app()
+	element = outlook.focused_element
+	if getattr(element, "role", None):
+		return element
+	element = outlook.element.AXFocusedUIElement
+	return element
+
 @ctx.action_class("user")
 class UserActions:
 	def outlook_set_selected_folder(folder: str):
@@ -34,7 +43,7 @@ class UserActions:
 	def outlook_archive():
 		# Work around bug in which the keyboard shortcut is dead if focus is not in an outline
 		# (old Outlook) or table (new Outlook)
-		role = outlook_app().focused_element.AXRole
+		role = outlook_focused_element().AXRole
 		if role not in ("AXOutline", "AXTable"):
 			actions.key("ctrl-shift-[")
 		actions.key("ctrl-e")
@@ -52,12 +61,7 @@ class UserActions:
 
 	def outlook_focus_message_list():
 		outlook = outlook_app()
-		role = outlook.focused_element.AXRole
-
-
-		if role == "":
-			app.notify("Unable to determine focused element", "Try restarting Outlook")
-			raise Exception('Unable to determined focused element (Outlook bug?)')
+		role = outlook_focused_element().AXRole
 
 		if role == "AXOutline": # folder list in new Outlook
 			actions.key("ctrl-shift-]")
@@ -66,7 +70,7 @@ class UserActions:
 
 		saw_button = False
 		for attempt in range(10):
-			focused_element = outlook.focused_element
+			focused_element = outlook_focused_element()
 			role = focused_element.AXRole
 			if role == "AXTable" and focused_element.get("AXDescription") == "Message List":
 				return
@@ -89,7 +93,7 @@ class UserActions:
 
 		last_focused_element = None
 		for attempt in range(10):
-			focused_element = outlook.focused_element
+			focused_element = outlook_focused_element()
 			role = focused_element.AXRole
 			if focused_element != last_focused_element:
 				if role == "AXOutline":
@@ -110,10 +114,10 @@ class UserActions:
 
 	def outlook_focus_message_body():
 		outlook = outlook_app()
-		role = outlook.focused_element.AXRole
+		role = outlook_focused_element().AXRole
 		message_roles = ("AXGroup", "AXTextArea", "AXWebArea")
 
-		print("Before:", outlook.focused_element, outlook.focused_element.attrs)
+		print("Before:", outlook_focused_element(), outlook_focused_element().attrs)
 
 		if role in message_roles:
 			return
@@ -125,7 +129,7 @@ class UserActions:
 
 		saw_button = False
 		for attempt in range(10):
-			focused_element = outlook.focused_element
+			focused_element = outlook_focused_element()
 			role = focused_element.AXRole
 			if role in message_roles:
 				return
