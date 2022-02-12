@@ -1,5 +1,7 @@
 app.bundle: com.sublimemerge
 -
+tag(): user.tabs
+
 please [<user.text>]:
 	key(cmd-shift-p)
 	insert(user.text or "")
