@@ -59,3 +59,18 @@ go [to] archive: user.outlook_set_selected_folder('archive')
 # different implementation in "old Outlook" - replace above if you're using it
 # flag: key(ctrl-5)
 # unflag: user.outlook_unflag()
+
+# message composition
+bold: key(cmd-b)
+italic: key(cmd-i)
+underline: key(cmd-u)
+strike through: key(cmd-shift-x)
+normal: user.menu_select('Edit|Clear Formatting')
+
+copy style: user.menu_select('Edit|Copy Formatting')
+paste style: user.menu_select('Edit|Paste Formatting')
+
+bullet: user.menu_select('Format|Bulleted List')
+
+move right: key(cmd-])
+move left: key(cmd-[)
