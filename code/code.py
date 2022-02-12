@@ -33,6 +33,7 @@ extension_lang_map = {
     ".talon": "talon",
     ".ts": "typescript",
     ".tsx": "typescript",
+    ".tf": "terraform",
     ".vba": "vba",
     ".vim": "vimscript",
     ".vimrc": "vimscript",

@@ -6,6 +6,7 @@
 ^force type script$: user.code_set_language_mode("typescript")
 ^force markdown$: user.code_set_language_mode("markdown")
 ^force python$: user.code_set_language_mode("python")
+^force terraform$: user.code_set_language_mode("terraform")
 ^force are language$: user.code_set_language_mode("r")
 ^force sequel$: user.code_set_language_mode("sql")
 ^force talon [language]$: user.code_set_language_mode("talon")
