@@ -26,6 +26,9 @@ expand: key(ctrl-shift-+)
 
 ribbon: key(cmd-alt-r)
 
+# cmd-n is "page new", below
+window (new|open): key(ctrl-m)
+
 go (notebook | notebooks): key(ctrl-g)
 
 go (section | sections): key(ctrl-shift-g)
