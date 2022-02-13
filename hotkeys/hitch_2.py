@@ -4,7 +4,7 @@ mod = Module()
 ctx_zoom_mouse_enabled_use_pedal = Context()
 ctx_zoom_mouse_enabled_use_pedal.matches = r"""
 mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
-and not mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
+not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 #and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
 """
 
@@ -12,7 +12,7 @@ and not mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 ctx_zoom_mouse_triggered_use_pedal = Context()
 ctx_zoom_mouse_triggered_use_pedal.matches = r"""
 mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
-and mode: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
+tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 #and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
 """
 
@@ -31,6 +31,7 @@ class Actions:
 
     def hitch2_s4():
         """document string goes here"""
+        #print('scroll up')
         actions.user.mouse_scroll_up()
 
     def hitch2_s5():
@@ -63,6 +64,7 @@ class WindowsZoomMouseInactiveActions:
 
     def hitch2_s4():
         """document string goes here"""
+        #print('scroll up')
         actions.user.mouse_scroll_up()
 
     def hitch2_s5():

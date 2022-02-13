@@ -9,6 +9,7 @@ go app folder: user.file_manager_open_directory("shell:AppsFolder")
 go cursor less config: user.file_manager_open_directory("%AppData%/Talon/user/cursorless-settings")
 go startup: user.file_manager_open_directory("shell:startup")
 go common startup: user.file_manager_open_directory("shell:common startup")
+terminal admin: key(alt f s a)
 address bar: key(alt-d)
 copy address: 
     key(alt-d ctrl-c)
