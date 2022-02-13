@@ -33,12 +33,12 @@ ctx.lists["self.directories"] = {
     'desk': "%UserProfile%\\Desktop", 
     'docks': "%UserProfile%\\Documents", 
     'pictures': "%UserProfile%\\Pictures", 
-    'user': f"{actions.path.user_home()}",
+    'user': "%UserProfile%",
     'profile': '%UserProfile%', 
-    'talent home': f"{actions.path.talon_home()}",
-    'talent user': f"{actions.path.talon_user()}",
+    'talent home': "%AppData%\\Talon",
+    'talent user': "%AppData%\\Talon\\user",
     'talent recordings': "%AppData%\\talon\\recordings", 
-    'talent plugins': "%ProgramFiles%\Talon\\talon_plugins",
+    'talent plugins': "%ProgramFiles%\\Talon\\talon_plugins",
     'root': "\\"
 }
 

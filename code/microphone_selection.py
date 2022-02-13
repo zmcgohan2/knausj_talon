@@ -115,7 +115,7 @@ class Actions:
                 splits = device_name.split("(")
                 device = splits[1].replace(")", "").strip()
                 device_type = splits[0].strip()
-                full_device_path = "{}\Device\{}\Render".format(device, device_type)
+                full_device_path = "{}\Device\\{}\\Render".format(device, device_type)
                 program_files = os.environ["ProgramFiles"]
                 call(
                     [

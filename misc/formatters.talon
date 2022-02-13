@@ -1,4 +1,4 @@
-f#provide both anchored and unachored commands via 'over'
+#provide both anchored and unachored commands via 'over'
 phrase <user.text>$: user.insert_formatted(text, "NOOP")
 phrase <user.text> over: user.insert_formatted(text, "NOOP")
 {user.prose_formatter} <user.prose>$: user.dictation_insert(prose)

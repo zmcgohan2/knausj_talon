@@ -1,9 +1,20 @@
-tag: user.auto_lang
+tag: user.java
 -
-tag(): user.code_operators
-tag(): user.code_comment
-tag(): user.code_block_comment
-tag(): user.code_generic
+tag(): user.code_imperative
+tag(): user.code_object_oriented
+
+tag(): user.code_comment_line
+tag(): user.code_comment_block_c_like
+tag(): user.code_data_bool
+tag(): user.code_data_null
+tag(): user.code_functions
+tag(): user.code_functions_gui
+tag(): user.code_libraries
+tag(): user.code_operators_array
+tag(): user.code_operators_assignment
+tag(): user.code_operators_bitwise
+tag(): user.code_operators_lambda
+tag(): user.code_operators_math
 
 settings():
     user.code_private_function_formatter = "PRIVATE_CAMEL_CASE"
@@ -14,12 +25,12 @@ settings():
     user.code_public_variable_formatter = "PRIVATE_CAMEL_CASE"
 
 # Types Commands
-boxed [type] {user.java_boxed_types}: 
-    insert(user.java_boxed_types)
+boxed [type] {user.java_boxed_type}:
+    insert(user.java_boxed_type)
     key("space")
 
-generic [type] {user.java_generic_data_structures}:
-    insert(java_generic_data_structures)
+generic [type] {user.java_generic_data_structure}:
+    insert(java_generic_data_structure)
     insert("<>")
     key("left")
 
@@ -28,24 +39,12 @@ type {user.code_type} array:
     insert(user.code_type)
     user.code_operator_subscript()
 
-[state] {user.java_access_modifiers}: 
-    insert(user.java_access_modifiers)
+[state] {user.java_modifier}:
+    insert(user.java_modifier)
     key("space")
-
-[state] {user.java_modifiers}: 
-    insert(user.java_modifiers)
-    key("space") 
 
 op array:
     user.code_operator_subscript()
 
 op new:
     insert("new ")
-
-# Methods    
-^method <user.text>$: user.code_default_function(text)
-^pro method <user.text>$: user.code_protected_function(text)
-^pub method <user.text>$: user.code_public_function(text)
-^static method <user.text>$: user.code_private_static_function(text)
-^pro static method <user.text>$: user.code_protected_static_function(text)
-^pub static method <user.text>$: user.code_public_static_function(text)
