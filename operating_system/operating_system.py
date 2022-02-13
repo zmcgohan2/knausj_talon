@@ -4,9 +4,10 @@ import os
 
 mod = Module()
 mod.list("launch_command", desc="List of applications to launch")
-
+mod.list("directories", desc="List of directories")
 ctx = Context()
 ctx.lists["self.launch_command"] = {}
+ctx.lists["self.directories"] = {}
 
 
 @mod.action_class
@@ -44,3 +45,6 @@ class Actions:
     
     def system_last_application():
         """triggers alt-tab"""
+
+    def system_open_directory(path: str):
+        """opens directory in default file manager"""

@@ -29,6 +29,19 @@ ctx.lists["self.launch_command"] = {
     # "Notifications": "control /name Microsoft.NotificationAreaIcons",
 }
 
+ctx.lists["self.directories"] = {
+    'desk': "%UserProfile%\\Desktop", 
+    'docks': "%UserProfile%\\Documents", 
+    'pictures': "%UserProfile%\\Pictures", 
+    'user': f"{actions.path.user_home()}",
+    'profile': '%UserProfile%', 
+    'talent home': f"{actions.path.talon_home()}",
+    'talent user': f"{actions.path.talon_user()}",
+    'talent recordings': "%AppData%\\talon\\recordings", 
+    'talent plugins': "%ProgramFiles%\Talon\\talon_plugins",
+    # 'root':
+}
+
 
 @ctx.action_class("user")
 class UserActionsWin:
@@ -61,6 +74,9 @@ class UserActionsWin:
 
     def system_last_application():
         actions.key("alt-tab")
+
+    def system_open_directory(path):
+        actions.user.exec(f'explorer.exe "{path}"')
 
 
 def shutdown(flag: str):
