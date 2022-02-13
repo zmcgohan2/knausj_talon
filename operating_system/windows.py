@@ -39,7 +39,7 @@ ctx.lists["self.directories"] = {
     'talent user': f"{actions.path.talon_user()}",
     'talent recordings': "%AppData%\\talon\\recordings", 
     'talent plugins': "%ProgramFiles%\Talon\\talon_plugins",
-    # 'root':
+    'root': "\\"
 }
 
 
