@@ -1,8 +1,4 @@
-mode: command
-and mode: user.javascript
-mode: command
-and mode: user.auto_lang
-and code.language: javascript
+tag: user.javascript
 -
 tag(): user.code_operators
 tag(): user.code_comment

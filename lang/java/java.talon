@@ -1,6 +1,4 @@
-mode: user.java
-mode: user.auto_lang
-and code.language: java
+tag: user.auto_lang
 -
 tag(): user.code_operators
 tag(): user.code_comment

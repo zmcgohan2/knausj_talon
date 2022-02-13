@@ -1,8 +1,4 @@
-mode: command
-and mode: user.ruby
-mode: command
-and mode: user.auto_lang
-and code.language: ruby
+tag: user.ruby
 -
 tag(): user.code_operators
 tag(): user.code_comment

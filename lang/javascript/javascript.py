@@ -2,9 +2,7 @@ from talon import Module, Context, actions, ui, imgui, settings
 
 ctx = Context()
 ctx.matches = r"""
-mode: user.javascript
-mode: user.auto_lang 
-and code.language: javascript
+tag: user.javascript
 """
 # tbd
 # ctx.lists["user.code_functions"] = {
