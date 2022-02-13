@@ -1,5 +1,7 @@
-mode: user.sql
-mode: user.auto_lang
+mode: command
+and mode: user.sql
+mode: command
+and mode: user.auto_lang
 and code.language: sql
 -
 tag(): user.code_operators_math
