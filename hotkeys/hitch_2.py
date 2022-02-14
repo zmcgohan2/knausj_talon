@@ -3,16 +3,16 @@ from talon import ui, Module, Context, registry, actions, imgui, cron
 mod = Module()
 ctx_zoom_mouse_enabled_use_pedal = Context()
 ctx_zoom_mouse_enabled_use_pedal.matches = r"""
-mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
-not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
+tag: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
+and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 #and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
 """
 
 
 ctx_zoom_mouse_triggered_use_pedal = Context()
 ctx_zoom_mouse_triggered_use_pedal.matches = r"""
-mode: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
-tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
+tag: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
+and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 #and not tag: talon_plugins.eye_zoom_mouse.zoom_mouse_pedal
 """
 

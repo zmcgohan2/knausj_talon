@@ -325,7 +325,7 @@ def custom_zoom_enable(self):
     # print("custom zoom enable hit")
     if self.enabled:
         return
-    actions.mode.enable("talon_plugins.eye_zoom_mouse.zoom_mouse_enabled")
+    eye_zoom_mouse.ctx.tags = ["talon_plugins.eye_zoom_mouse.zoom_mouse_enabled"]
 
     # intentionally don't register pop, handled in on_pop.
     # noise.register("pop", self.on_pop)
