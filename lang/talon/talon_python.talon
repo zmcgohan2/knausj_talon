@@ -28,6 +28,18 @@ context lists:
 context matches:
     'ctx.matches = r""""""'
     key(left:3 enter:2 up)
+context mac:
+    user.paste('ctx_mac = Context()\nctx_mac.matches = r"""\nos: mac\n"""\n')
+context win:
+    user.paste('ctx_win = Context()\nctx_win.matches = r"""\nos: win\n"""\n')
+context linux:
+    user.paste('ctx_linux = Context()\nctx_linux.matches = r"""\nos: linux\n"""\n\t')
+actions mac:
+    user.paste('@ctx_mac.action_class("user")\nclass UserActionsMac:\n\t')
+actions win:
+    user.paste('@ctx_win.action_class("user")\nclass UserActionsWin:\n\t')
+actions linux:
+    user.paste('@ctx_linux.action_class("user")\nclass UserActionsLinux:\n\t')
 mod list: user.code_insert_function("mod.list", edit.selected_text())
 mod tag: user.code_insert_function("mod.tag", edit.selected_text())
 application [require] [{user.talon_apps}]: 
