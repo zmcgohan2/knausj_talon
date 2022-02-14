@@ -7,8 +7,8 @@ tag(): user.talon_populate_lists
 
 talent check updates: menu.check_for_updates()
 talent restart: user.talon_restart()
-talent open log: menu.open_log()
-talent open rebel: menu.open_repl()
+talent [open] log: menu.open_log()
+talent [open] rebel: menu.open_repl()
 talent home: menu.open_talon_home()
 talent copy context pie: user.talon_add_context_clipboard_python()
 talent copy context: user.talon_add_context_clipboard()
@@ -42,27 +42,27 @@ talent dump context:
 ^talent test <phrase>$:
     user.talon_sim_phrase(phrase)
 # requires user.talon_populate_lists tag. do not use with dragon
-^talent debug action {user.talon_actions}$: 
+^talent dump action {user.talon_actions}$: 
     user.talon_action_find("{user.talon_actions}")
 # requires user.talon_populate_lists tag. do not use with dragon
-^talent debug list {user.talon_lists}$:
+^talent dump list {user.talon_lists}$:
     user.talon_debug_list(talon_lists)
 # requires user.talon_populate_lists tag. do not use with dragon
 ^talent copy list {user.talon_lists}$:
     user.talon_copy_list(talon_lists)
-^talent debug tags$:
+^talent dump tags$:
     user.talon_debug_tags()
-^talent debug modes$:
+^talent dump modes$:
     user.talon_debug_modes()
 # requires user.talon_populate_lists tag. do not use with dragon
-^talent debug scope {user.talon_scopes}$:
+^talent dump scope {user.talon_scopes}$:
     user.talon_debug_scope(talon_scopes)
 # requires user.talon_populate_lists tag. do not use with dragon
-^talent debug setting {user.talon_settings}$:
+^talent dump setting {user.talon_settings}$:
     user.talon_debug_setting(talon_settings)
-^talent debug all settings$: 
+^talent dump all settings$: 
     user.talon_debug_all_settings()
-^talent debug active app$: 
+^talent dump active app$: 
     result = user.talon_get_active_application_info()
     print("**** Dumping active application **** ")
     print(result)

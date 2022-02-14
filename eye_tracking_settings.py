@@ -3,7 +3,7 @@ from talon.track.geom import Point2d
 from talon_plugins import eye_zoom_mouse
 
 
-eye_zoom_mouse.config.center_zoom = False
+eye_zoom_mouse.config.center_zoom = True
 eye_zoom_mouse.config.toggle_speech_when_zoomed = True
 eye_zoom_mouse.config.enable_hiss_for_right_click = True
 eye_zoom_mouse.config.hide_cursor_for_control_mouse = False
