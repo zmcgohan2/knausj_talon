@@ -17,21 +17,22 @@ root [<number_small>]:
     number = number_small or 1
     user.file_manager_open_parent()
     repeat(number - 1)
-folder <number_small>$: 
-    directory = user.file_manager_get_directory_by_index(number_small - 1)
-    user.file_manager_open_directory(directory)
-view {user.file_manager_directories}: user.file_manager_open_directory(file_manager_directories)
-peek {user.file_manager_files}: user.file_manager_open_file(file_manager_files)
+# folder <number_small>$: 
+#     directory = user.file_manager_get_directory_by_index(number_small - 1)
+#     user.file_manager_open_directory(directory)
+skim {user.file_manager_directories}: user.file_manager_open_directory(file_manager_directories)
+file {user.file_manager_files}: user.file_manager_open_file(file_manager_files)
+take file {user.file_manager_files}: user.file_manager_select_file(file_manager_files)
 take folder {user.file_manager_directories}: user.file_manager_select_directory(file_manager_directories)
-file <number_small>: 
-    file = user.file_manager_get_file_by_index(number_small - 1)
-    user.file_manager_open_file(file)
-take folder <number_small>: 
-    directory = user.file_manager_get_directory_by_index(number_small - 1)
-    user.file_manager_select_directory(directory)
-take file <number_small>: 
-    file = user.file_manager_get_file_by_index(number_small - 1)
-    user.file_manager_select_file(file)
+# file <number_small>: 
+#     file = user.file_manager_get_file_by_index(number_small - 1)
+#     user.file_manager_open_file(file)
+# take folder <number_small>: 
+#     directory = user.file_manager_get_directory_by_index(number_small - 1)
+#     user.file_manager_select_directory(directory)
+# take file <number_small>: 
+#     file = user.file_manager_get_file_by_index(number_small - 1)
+#     user.file_manager_select_file(file)
 take file {user.file_manager_files}: user.file_manager_select_file(file_manager_files)
 
 copy path {user.file_manager_files}:
