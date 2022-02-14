@@ -10,6 +10,9 @@ download: user.outlook_download_images()
 mark [as] read: key(cmd-t)
 mark [as] unread: key(cmd-shift-t)
 
+# verb-noun vs noun-verb, retained for consistency with other
+# knausj email apps
+new message: key(cmd-n)
 send [this] message: key(cmd-enter)
 
 move:
@@ -26,6 +29,9 @@ forward: key(cmd-j)
 hunt all: key(cmd-shift-f)
 
 toggle sidebar: key(cmd-alt-s)
+
+# cmd-n is "page new", below
+window (new|open): user.menu_select('File|New|Main Window')
 
 # not tested in "old Outlook"
 # can use Control-[/] for previous/next though that does not focus the message list
