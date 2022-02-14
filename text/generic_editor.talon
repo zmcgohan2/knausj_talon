@@ -172,7 +172,7 @@ wipe word [<number_small>]:
     repeat(numb - 1)    
     edit.delete()
 
-(wipe spring | gobble) [<number_small>]:
+(wipe spring | blow) [<number_small>]:
     numb = number_small or 1
     edit.extend_word_right()
     repeat(numb - 1)    
