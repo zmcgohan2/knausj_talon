@@ -5,7 +5,9 @@ delete: key(cmd-backspace)
 flag: key(ctrl-0)
 unflag: key(cmd-ctrl-0)
 junk: key(cmd-shift-j)
-download: user.outlook_download_images()
+download:
+	user.outlook_download_images()
+	user.outlook_focus_message_body()
 
 mark [as] read: key(cmd-t)
 mark [as] unread: key(cmd-shift-t)
