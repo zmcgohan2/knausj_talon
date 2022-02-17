@@ -7,3 +7,7 @@ settings():
 	key_wait = 3
 
 presenter view: key(esc alt-enter)
+
+please [<user.text>]:
+	user.office_tell_me()
+	insert(user.text or "")
