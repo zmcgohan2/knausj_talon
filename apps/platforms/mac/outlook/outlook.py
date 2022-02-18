@@ -16,7 +16,7 @@ def outlook_app():
 def outlook_focused_element():
 	outlook = outlook_app()
 	element = outlook.focused_element
-	if getattr(element, "role", None):
+	if element and getattr(element, "AXRole", None):
 		return element
 	element = outlook.element.AXFocusedUIElement
 	return element
