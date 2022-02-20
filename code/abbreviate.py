@@ -35,6 +35,7 @@ abbreviations = {
     "centimeter": "cm",
     "char": "chr",
     "character": "char",
+    "chop": "CHOP",
     "class": "cls",
     "client": "cli",
     "command": "cmd",
