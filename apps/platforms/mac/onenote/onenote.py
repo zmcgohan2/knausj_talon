@@ -30,6 +30,13 @@ class EditActions:
 		actions.key('right left cmd-a')
 		actions.sleep('100ms')
 
+	def paste_match_style():
+		text = clip.text()
+		with clip.revert():
+			clip.set_text(text)
+			actions.next()
+			actions.sleep("100ms")
+
 @mod.capture(rule="<number_small> | <number_small> plus <number_small> | [<number_small>] <user.text>")
 def now_entry(m) -> str:
 	return ' '.join(m._unmapped)
