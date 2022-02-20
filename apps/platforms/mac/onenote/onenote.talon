@@ -21,6 +21,20 @@ move down: key(cmd-alt-down)
 move right: key(cmd-])
 move left: key(cmd-[)
 
+cell select: user.menu_select('Format|Table|Select Cell')
+
+column select: user.menu_select('Format|Table|Select Columns')
+column insert left: key(cmd-ctrl-l)
+column insert right: key(cmd-ctrl-r)
+column delete: user.menu_select('Format|Table|Delete Columns')
+
+row select: user.menu_select('Format|Table|Select Rows')
+row insert up: user.menu_select('Format|Table|Insert Rows Above')
+row insert down: key(cmd-enter)
+row delete: user.menu_select('Format|Table|Delete Rows')
+
+table select: user.menu_select('Format|Table|Select Table')
+
 collapse: key(ctrl-shift--)
 expand: key(ctrl-shift-+)
 
