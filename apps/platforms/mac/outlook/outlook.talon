@@ -30,6 +30,8 @@ forward: key(cmd-j)
 
 hunt all: key(cmd-shift-f)
 
+sync: key(cmd-ctrl-k)
+
 toggle sidebar: key(cmd-alt-s)
 
 # cmd-n is "page new", below
