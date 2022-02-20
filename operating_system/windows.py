@@ -32,6 +32,7 @@ ctx.lists["self.launch_command"] = {
 ctx.lists["self.directories"] = {
     'desk': "%UserProfile%\\Desktop", 
     'docks': "%UserProfile%\\Documents", 
+    'downloads': "%UserProfile%\\Downloads", 
     'pictures': "%UserProfile%\\Pictures", 
     'user': "%UserProfile%",
     'profile': '%UserProfile%', 
