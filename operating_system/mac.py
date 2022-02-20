@@ -1,6 +1,7 @@
 from talon import Context, actions, app, ui
 from talon.mac import applescript
 import os
+import subprocess
 
 ctx = Context()
 ctx.matches = r"""
@@ -81,9 +82,28 @@ class UserActionsMac:
     def system_last_application():
         actions.key("cmd-tab")
 
+    def system_open_directory(path):
+        path = os.path.expanduser(path)
+        subprocess.Popen(["open", path])
+
 def on_ready():
     update_preferences_list()
 
-
 if app.platform == "mac":
     app.register("ready", on_ready)
+    
+ctx.lists["self.directories"] = {
+    'desk': os.path.expanduser("~/Desktop"), 
+    'docks': os.path.expanduser("~/Documents"), 
+    'downloads': os.path.expanduser("~/Downloads"), 
+    'pictures': os.path.expanduser("~/Pictures"), 
+    'user': os.path.expanduser("~"),
+    'profile': os.path.expanduser("~"),
+    'talent home': os.path.expanduser("~/.talon"),
+    'talent user': os.path.expanduser("~/.talon/user"),
+    'talent recordings': os.path.expanduser("~/.talon/recordings"), 
+    'talent plugins': "/Applications/Talon Pro.app/Contents/Resources/talon_plugins",
+    'root': "/"
+}
+
+print(ctx.lists["self.directories"])
