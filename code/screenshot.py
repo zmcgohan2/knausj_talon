@@ -96,7 +96,7 @@ os: mac
 @ctx_mac.action_class("user")
 class UserActionsMac:
     def screenshot_selection():
-        actions.key("ctrl-shift-cmd-4")
+        actions.key("cmd-shift-4")
 
 ctx_win = Context()
 ctx_win.matches = r"""

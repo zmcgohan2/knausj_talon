@@ -32,4 +32,4 @@ os: mac
 @ctx_mac.action_class("user")
 class UserActionsMac:
     def pick(number: int):
-        actions.key(f"down:{number - 1} enter")
+        actions.key(f"down:{number} enter")
