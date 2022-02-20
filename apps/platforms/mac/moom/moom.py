@@ -7,7 +7,7 @@ class Actions:
 	def moom_key(key: str):
 		"""Press the corresponding Moom control key."""
 		actions.key('ctrl-alt-m')
-		actions.sleep('50ms')
+		actions.sleep('200ms')
 		actions.key(key)
 
 	def moom_keys(key: str, times: int = 1):
