@@ -105,8 +105,13 @@ paste link:
     key(enter cmd-shift-n)
     
 # missing shortcut for hiding navigation
-(navigation hide | escape): user.onenote_hide_navigation()
-key(esc): user.onenote_hide_navigation()
+(navigation hide | escape):
+    user.onenote_hide_navigation()
+    user.zoom_to_fit_width()
+
+key(esc):
+    user.onenote_hide_navigation()
+    user.zoom_to_fit_width()
 
 today:
     user.onenote_heading_1()
