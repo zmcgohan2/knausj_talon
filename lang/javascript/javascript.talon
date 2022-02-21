@@ -24,8 +24,8 @@ settings():
     user.code_protected_variable_formatter = "PRIVATE_CAMEL_CASE"
     user.code_public_variable_formatter = "PRIVATE_CAMEL_CASE"
 
-(op | is) strict equal: " === "
-(op | is) strict not equal: " !== "
+(do | is) strict equal: " === "
+(do | is) strict not equal: " !== "
 
 state const: "const "
 

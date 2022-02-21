@@ -43,8 +43,8 @@ type {user.code_type} array:
     insert(user.java_modifier)
     key("space")
 
-op array:
+do array:
     user.code_operator_subscript()
 
-op new:
+do new:
     insert("new ")
