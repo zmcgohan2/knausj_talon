@@ -57,3 +57,4 @@ tag(): user.talon_populate_lists
 ^pretty print$: 
     insert("actions.user.talon_pretty_print()")
     key(left)
+events tail: "events.tail('/^((?!win|browser).)*$/')\n"

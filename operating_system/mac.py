@@ -24,7 +24,7 @@ def update_preferences_list():
                 ] = f"open -b com.apple.systempreferences {path}"
 
     ctx.lists["self.launch_command"] = actions.user.create_spoken_forms_from_map(
-        preferences, generate_subsequences=False
+        preferences, generate_subsequences=True
     )
 
 
@@ -93,6 +93,8 @@ if app.platform == "mac":
     app.register("ready", on_ready)
     
 ctx.lists["self.directories"] = {
+    'applications': "/Applications",
+    'bootcamp': "/Volumes/BOOTCAMP",
     'desk': os.path.expanduser("~/Desktop"), 
     'docks': os.path.expanduser("~/Documents"), 
     'downloads': os.path.expanduser("~/Downloads"), 
@@ -105,5 +107,3 @@ ctx.lists["self.directories"] = {
     'talent plugins': "/Applications/Talon Pro.app/Contents/Resources/talon_plugins",
     'root': "/"
 }
-
-print(ctx.lists["self.directories"])
