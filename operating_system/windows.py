@@ -30,12 +30,14 @@ ctx.lists["self.launch_command"] = {
 }
 
 ctx.lists["self.directories"] = {
+    'applications': "shell:Applications",
     'desk': "%UserProfile%\\Desktop", 
     'docks': "%UserProfile%\\Documents", 
     'downloads': "%UserProfile%\\Downloads", 
     'pictures': "%UserProfile%\\Pictures", 
     'user': "%UserProfile%",
     'profile': '%UserProfile%', 
+    'program files': "%ProgramFiles%",
     'talent home': "%AppData%\\Talon",
     'talent user': "%AppData%\\Talon\\user",
     'talent recordings': "%AppData%\\talon\\recordings", 
