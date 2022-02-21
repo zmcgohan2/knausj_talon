@@ -1,6 +1,5 @@
-from pathlib import Path
-
 from talon import Module, Context
+from user.knausj_talon.code.user_settings import get_list_from_csv
 
 # --- Tag definition ---
 mod = Module()
@@ -12,17 +11,15 @@ ctx.matches = """
 tag: user.emoji
 """
 
-# --- Define and implement lists ---
-path = Path(__file__).parents[0]
 
 mod.list("emoticon", desc="Western emoticons (ascii)")
-with open(path / "emoticon.csv", "r") as f:
-    ctx.lists["user.emoticon"] = {k.strip(): v.strip() for k, v in [line.split(",", 1) for line in f]}
-
 mod.list("emoji", desc="Emoji (unicode)")
-with open(path / "emoji.csv", "r") as f:
-    ctx.lists["user.emoji"] = {k.strip(): v.strip() for k, v in [line.split(",", 1) for line in f]}
-
 mod.list("kaomoji", desc="Eastern kaomoji (unicode)")
-with open(path / "kaomoji.csv", "r") as f:
-    ctx.lists["user.kaomoji"] = {k.strip(): v.strip() for k, v in [line.split(",", 1) for line in f]}
+
+emoticons = get_list_from_csv("emoticon.csv", headers=None, spoken_form_first=True)
+emojis = get_list_from_csv("emoji.csv", headers=None, spoken_form_first=True)
+kaomojis = get_list_from_csv("kaomoji.csv", headers=None, spoken_form_first=True)
+
+ctx.lists["user.emoticon"] = emoticons
+ctx.lists["user.emoji"] = emojis
+ctx.lists["user.kaomoji"] = kaomojis
