@@ -48,3 +48,9 @@ spy code [<user.text>]:
     user.system_search()
     sleep(100ms)
     insert("{{{txt}")
+
+spy win [<user.text>]:
+    txt = text or ""   
+    user.system_search()
+    sleep(100ms)
+    insert("<{txt}")
