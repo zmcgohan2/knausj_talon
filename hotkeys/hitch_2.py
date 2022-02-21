@@ -1,4 +1,4 @@
-from talon import ui, Module, Context, registry, actions, imgui, cron
+from talon import ui, Module, Context, registry, actions, imgui, cron, app
 
 mod = Module()
 ctx_zoom_mouse_enabled_use_pedal = Context()
@@ -24,6 +24,10 @@ class Actions:
 
     def hitch2_s2():
         """document string goes here"""
+        if app.platform == "mac":
+            actions.key("ctrl-f")
+        elif app.platform == "windows":
+            actions.key("ctrl-m")
 
     def hitch2_s3():
         """document string goes here"""
@@ -56,7 +60,11 @@ class WindowsZoomMouseInactiveActions:
 
     def hitch2_s2():
         """document string goes here"""
-        #actions.user.toggle_gaze_scroll()
+        if app.platform == "mac":
+            actions.key("ctrl-f")
+        elif app.platform == "windows":
+            actions.key("ctrl-m")
+
 
     def hitch2_s3():
         """document string goes here"""
