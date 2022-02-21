@@ -94,6 +94,7 @@ if app.platform == "mac":
     
 ctx.lists["self.directories"] = {
     'applications': "/Applications",
+    'bootcamp': "/Volumes/BOOTCAMP",
     'desk': os.path.expanduser("~/Desktop"), 
     'docks': os.path.expanduser("~/Documents"), 
     'downloads': os.path.expanduser("~/Downloads"), 
