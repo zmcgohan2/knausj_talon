@@ -3,8 +3,10 @@ import sys
 
 ctx_zoom_mouse_triggered = Context()
 ctx_zoom_mouse_triggered.matches = r"""
-tag: talon_plugins.eye_zoom_mouse.zoom_mouse_triggered
+tag: talon_plugins.eye_zoom_mouse.zoom_mouse_enabled
+and tag: talon_plugins.eye_zoom_mouse.zoom_mouse_activated
 """
+
 
 @ctx_zoom_mouse_triggered.action_class("user")
 class WindowsZoomMouseActiveActions:
@@ -31,5 +33,3 @@ class WindowsZoomMouseActiveActions:
     def foot_pedal_right_right():
         """document string goes here"""
         actions.talon_plugins.eye_zoom_mouse.mouse_move()
-
-
