@@ -120,12 +120,12 @@ grab south:
     edit.extend_file_end()
 
 # editing
-bill [grab] [<number_small>]:
+tabby [grab] [<number_small>]:
     numb = number_small or 1
     edit.indent_more()
     repeat(numb - 1)    
 
-rebill [grab] [<number_small>]:
+retabby [grab] [<number_small>]:
     numb = number_small or 1
     edit.indent_less()
     repeat(numb - 1)
