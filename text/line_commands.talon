@@ -40,17 +40,17 @@ replace <number> by <number>:
     edit.paste()
 grab [row] <number>: user.select_range(number, number)
 (grab [row] | row) <number> by <number>: user.select_range(number_1, number_2)
-tabby [row] <number>:
+tab [row] <number>:
     edit.jump_line(number)
     edit.indent_more() 
-tabby <number> by <number>:
+tab <number> by <number>:
     user.select_range(number_1, number_2)
     edit.indent_more()
-# retabby that: edit.indent_less()
-retabby [row] <number>:
+# retab that: edit.indent_less()
+retab [row] <number>:
     user.select_range(number, number)
     edit.indent_less()
-retabby <number> by <number>:
+retab <number> by <number>:
     user.select_range(number_1, number_2)
     edit.indent_less()
 drag [row] down: edit.line_swap_down()

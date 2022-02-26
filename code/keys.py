@@ -132,11 +132,11 @@ modifier_keys = {
 }
 
 if app.platform == "mac":
-    modifier_keys["command"] = "cmd"
+    modifier_keys["man"] = "cmd"
     modifier_keys["option"] = "alt"
 else:
     modifier_keys["alt"] = "alt"
-    modifier_keys["super"] = "super"
+    modifier_keys["man"] = "super"
 
 ctx.lists["self.modifier_key"] = modifier_keys
 alphabet = dict(zip(default_alphabet, letters_string))
@@ -255,7 +255,7 @@ simple_keys = [
     "pagedown",
     "pageup",
     "space",
-    "tab",
+    # "tab",
 ]
 
 alternate_keys = {
@@ -264,6 +264,7 @@ alternate_keys = {
     # 'junk': 'backspace',
     "tail": "end",
     "head": "home",
+    "next": "tab",
 }
 # mac apparently doesn't have the menu key.
 if app.platform in ("windows", "linux"):
