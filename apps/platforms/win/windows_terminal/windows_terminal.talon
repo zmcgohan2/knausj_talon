@@ -3,6 +3,7 @@ app: windows_terminal
 tag(): user.tabs
 tag(): terminal
 tag(): user.generic_windows_shell
+tag(): user.file_manager
 
 settings open : key(ctrl-,)
 focus left: key(ctrl-alt-shift-left)

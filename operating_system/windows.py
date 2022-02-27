@@ -1,5 +1,5 @@
-from talon import Context, actions
-
+from talon import Context, actions, app
+import os
 
 ctx = Context()
 ctx.matches = r"""
@@ -29,21 +29,50 @@ ctx.lists["self.launch_command"] = {
     # "Notifications": "control /name Microsoft.NotificationAreaIcons",
 }
 
-ctx.lists["self.directories"] = {
-    'applications': "shell:Applications",
-    'desk': "%UserProfile%\\Desktop", 
-    'docks': "%UserProfile%\\Documents", 
-    'downloads': "%UserProfile%\\Downloads", 
-    'pictures': "%UserProfile%\\Pictures", 
-    'user': "%UserProfile%",
-    'profile': '%UserProfile%', 
-    'program files': "%ProgramFiles%",
-    'talent home': "%AppData%\\Talon",
-    'talent user': "%AppData%\\Talon\\user",
-    'talent recordings': "%AppData%\\talon\\recordings", 
-    'talent plugins': "%ProgramFiles%\\Talon\\talon_plugins",
-    'root': "\\"
-}
+if app.platform == "windows":
+    one_drive_path = os.path.expanduser(os.path.join("~", "OneDrive"))
+
+    # this is probably not the correct way to check for onedrive, quick and dirty
+    if os.path.isdir(os.path.expanduser(os.path.join("~", r"OneDrive\Desktop"))):
+        default_folder = os.path.join("~", "Desktop")
+
+        ctx.lists["self.directories"] = {
+            "applications": "shell:Applications",
+            "desk": os.path.join(one_drive_path, "Desktop"),
+            "docks": os.path.join(one_drive_path, "Documents"),
+            "downloads": os.path.expanduser("~/Downloads"),
+            "pictures": os.path.join(one_drive_path, "Pictures"),
+            "one drive": one_drive_path,
+            "user": os.path.expanduser("~"),
+            "profile": os.path.expanduser("~"),
+            "program files": os.path.expandvars("%ProgramFiles%"),
+            "talent home": os.path.expandvars("%AppData%\\Talon"),
+            "talent user": os.path.expandvars("%AppData%\\Talon\\user"),
+            "talent recordings": os.path.expandvars("%AppData%\\talon\\recordings"),
+            "talent plugins": os.path.expandvars(
+                "%ProgramFiles%\\Talon\\talon_plugins"
+            ),
+            "root": "\\",
+        }
+
+    else:
+        ctx.lists["self.directories"] = {
+            "applications": "shell:Applications",
+            "desk": os.path.expanduser("~/Desktop"),
+            "docks": os.path.expanduser("~/Documents"),
+            "downloads": os.path.expanduser("~/Downloads"),
+            "pictures": os.path.expanduser("~/Pictures"),
+            "user": os.path.expanduser("~"),
+            "profile": os.path.expanduser("~"),
+            "program files": os.path.expandvars("%ProgramFiles%"),
+            "talent home": os.path.expandvars("%AppData%\\Talon"),
+            "talent user": os.path.expandvars("%AppData%\\Talon\\user"),
+            "talent recordings": os.path.expandvars("%AppData%\\talon\\recordings"),
+            "talent plugins": os.path.expandvars(
+                "%ProgramFiles%\\Talon\\talon_plugins"
+            ),
+            "root": "/",
+        }
 
 
 @ctx.action_class("user")
