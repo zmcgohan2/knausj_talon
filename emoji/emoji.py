@@ -8,7 +8,7 @@ mod.tag("emoji", desc="Emoji, ascii emoticons and kaomoji")
 # Context matching
 ctx = Context()
 ctx.matches = """
-tag: user.emoji
+#tag: user.emoji
 """
 
 
