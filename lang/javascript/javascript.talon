@@ -24,8 +24,8 @@ settings():
     user.code_protected_variable_formatter = "PRIVATE_CAMEL_CASE"
     user.code_public_variable_formatter = "PRIVATE_CAMEL_CASE"
 
-(do | is) strict equal: " === "
-(do | is) strict not equal: " !== "
+(op | is) strict equal: " === "
+(op | is) strict not equal: " !== "
 
 state const: "const "
 
@@ -40,19 +40,15 @@ state async: "async "
 state await: "await "
 
 state map:
-    insert(".map()")
-    key(left)
+    user.insert_between(".map(", ")")
 
 state filter:
-    insert(".filter()")
-    key(left)
+    user.insert_between(".filter(", ")")
 
 state reduce:
-    insert(".reduce()")
-    key(left)
+    user.insert_between(".reduce(", ")")
 
 state spread: "..."
 
 from import:
-    insert(' from  ""')
-    key("left")
+    user.insert_between(' from  "', '"')
