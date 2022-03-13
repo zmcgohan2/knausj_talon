@@ -254,6 +254,9 @@ def create_spoken_forms_from_regex(source: str, pattern: re.Pattern):
             full_form_spoken_form_years.append(spoken_form)
             full_form_digit_wise.append(spoken_form)
 
+
+    spoken_forms.append(" ".join(full_form_digit_wise).lower())
+
     if has_fancy_number_version:
         spoken_forms.append(" ".join(full_form_fancy_numbers).lower())
 
@@ -261,8 +264,6 @@ def create_spoken_forms_from_regex(source: str, pattern: re.Pattern):
         result = " ".join(full_form_spoken_form_years)
         if result not in spoken_forms:
             spoken_forms.append(result)
-
-    spoken_forms.append(" ".join(full_form_digit_wise).lower())
 
     return spoken_forms
 
@@ -314,11 +315,13 @@ class Actions:
         spoken_forms_without_symbols = create_spoken_forms_from_regex(
             source, REGEX_NO_SYMBOLS
         )
+        # print(spoken_forms_without_symbols)
 
         # todo: this could probably be optimized out if there's no symbols
         spoken_forms_with_symbols = create_spoken_forms_from_regex(
             source, REGEX_WITH_SYMBOLS
         )
+        # print(spoken_forms_with_symbols)
 
         # some may be identical, so ensure the list is reduced
         full_spoken_forms = list(
