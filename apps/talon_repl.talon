@@ -1,6 +1,7 @@
 win.title:/repl/
 win.title:/Talon - REPL/
 -
+tag(): user.python
 tag(): user.talon_python
 
 # uncomment user.talon_populate_lists tag to activate talon-specific lists of actions, scopes, modes etcetera. 
