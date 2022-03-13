@@ -65,15 +65,15 @@ bear ring:
 ring:
     user.paste('<>')
     key(left)
-bear pad:
+bear buffer:
     user.paste('   ')
-pad:
+buffer:
     user.paste('   ')
     key(left)
 ring grab: 
     text = edit.selected_text()
     user.paste("<{text}>")
-pad grab: 
+buffer grab: 
     text = edit.selected_text()
     user.paste(" {text} ")    
 curly grab: 
