@@ -43,12 +43,12 @@ win move <user.compass_direction> <number_signed> at <number_signed>:
     user.win_move_absolute(number_signed_1, number_signed_2, compass_direction)
 
 # move the current win to the position indicated by the mouse pointer
-win move to pointer:
+win dart:
     user.win_move_to_pointer()
 
 # move the current win so that the point indicated by the given direction
 # is positioned at the mouse pointer coordinates.
-win move <user.compass_direction> pointer:
+win <user.compass_direction> dart:
     user.win_move_to_pointer(compass_direction)
 
 # increase both the size and width of the current win simultaneously
