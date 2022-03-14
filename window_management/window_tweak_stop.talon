@@ -10,5 +10,5 @@ tag: user.window_tweak_running
 # move_start()/resize_start() code and containing just the 'stop' command which, when
 # executed, would then restore the original mode after stopping the move/resize operation.
 
-window stop:
+win stop:
     user.win_stop()
