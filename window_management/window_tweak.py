@@ -102,7 +102,7 @@ def win_stop_gui(gui: imgui.GUI) -> None:
     if gui.button("Stop moving/resizing"):
         actions.user.win_stop()
 
-@imgui.open(x=2100, y=40)
+@imgui.open()
 # @imgui.open(x=4000,y=244)
 def _win_show_gui(gui: imgui.GUI) -> None:
     w = ui.active_window()
@@ -131,7 +131,8 @@ def _win_show_gui(gui: imgui.GUI) -> None:
 
     gui.text(f"== Mouse ==")
 
-    gui.text(f"Position: {ctrl.mouse_pos()}")
+    (mouse_x, mouse_y) = ctrl.mouse_pos()
+    gui.text(f"Position: ({mouse_x:.0f}, {mouse_y:.0f})")
 
     gui.line()
 
@@ -370,11 +371,11 @@ app.register("ready", on_ready)
 
 @mod.action_class
 class Actions:
-    def win_show() -> None:
+    def win_show_info() -> None:
         "Shows information about current window position and size"
         _win_show_gui.show()
 
-    def win_hide() -> None:
+    def win_hide_info() -> None:
         "Hides the window information window"
         _win_show_gui.hide()
 

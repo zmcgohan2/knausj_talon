@@ -1,11 +1,11 @@
 
 # show size and position information about the current win
 win traits show:
-    user.win_show()
+    user.win_show_info()
 
 # hide the win information win
 win traits hide:
-    user.win_hide()
+    user.win_hide_info()
 
 # move the current win toward the center of the screen
 win move:
