@@ -1,8 +1,8 @@
 os: windows
 and app: Outlook
 -
-archive: key(alt h o 1)
-new e-mail: key(ctrl-n)
+store: key(alt h o 1)
+new mail: key(ctrl-n)
 calendar: key(ctrl-2)
 inbox: key(ctrl-1)
 Reply: key(ctrl-r)

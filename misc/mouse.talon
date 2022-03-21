@@ -1,4 +1,4 @@
-control mouse: user.mouse_toggle_control_mouse()
+[control] mouse: user.mouse_toggle_control_mouse()
 zoom mouse: user.mouse_toggle_zoom_mouse()
 camera overlay: user.mouse_toggle_camera_overlay()
 run calibration: user.mouse_calibrate()	
@@ -10,12 +10,12 @@ touch:
 	# Touch automatically ends left drags so this is for right drags specifically
 	user.mouse_drag_end()
 
-righty:
+righty | touch right:
 	mouse_click(1)
 	# close the mouse grid if open
 	user.grid_close()
 
-midclick: 
+midclick | touch mid: 
 	mouse_click(2)
 	# close the mouse grid
 	user.grid_close()
@@ -39,12 +39,12 @@ midclick:
 	key("{modifiers}:up")
 	# close the mouse grid
 	user.grid_close()
-(dubclick | duke): 
+(dubclick | duke | touch two): 
 	mouse_click()
 	mouse_click()
 	# close the mouse grid
 	user.grid_close()
-(tripclick | triplick): 
+(tripclick | triplick | touch three): 
 	mouse_click()
 	mouse_click()
 	mouse_click()

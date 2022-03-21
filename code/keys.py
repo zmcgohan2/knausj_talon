@@ -3,13 +3,15 @@ from typing import Set
 from talon import Module, Context, actions, app
 import sys
 
-default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
+default_alphabet = "arm bus cub dip each fly gift harp ice jazz knife loaf maid nerd out phone quiz rat slug toast use vet wind x-ray yen zip ace bill chimp dad eve flip goat hype imp judge kong lamb might nuts orb plan queen rome sage tough urn volt wasp x-man youth zeus".split(
     " "
 )
-letters_string = "abcdefghijklmnopqrstuvwxyz"
+letters_string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-default_digits = "zero one two three four five six seven eight nine".split(" ")
+default_digits = "zero oh one two three four five six seven sev eight nine".split(" ")
 numbers = [str(i) for i in range(10)]
+numbers.insert(0, '0')
+numbers.insert(8, '7')
 default_f_digits = "one two three four five six seven eight nine ten eleven twelve".split(
     " "
 )
@@ -114,7 +116,8 @@ ctx = Context()
 modifier_keys = {
     # If you find 'alt' is often misrecognized, try using 'alter'.
     "alt": "alt",  #'alter': 'alt',
-    "control": "ctrl",  #'troll':   'ctrl',
+    "control": "ctrl",  
+    'troll':   'ctrl',
     "shift": "shift",  #'sky':     'shift',
     "super": "super",
 }
@@ -136,30 +139,38 @@ punctuation_words = {
     "grave": "`",
     "comma": ",",
     "period": ".",
+    "dot": ".",
     "full stop": ".",
     "semicolon": ";",
+    "semi": ";",
     "colon": ":",
     "forward slash": "/",
     "question mark": "?",
+    "queue mark": "?",
     "exclamation mark": "!",
     "exclamation point": "!",
+    "exclaim": "!",
     "asterisk": "*",
+    "star": "*",
     "hash sign": "#",
+    "hash": "#",
     "number sign": "#",
     "percent sign": "%",
     "at sign": "@",
+    "at": "@",
     "and sign": "&",
     "ampersand": "&",
 
     # Currencies
     "dollar sign": "$",
+    "dollar": "$",
     "pound sign": "£",
 }
 symbol_key_words = {
     "dot": ".",
     "point": ".",
-    "quote": "'",
     "apostrophe": "'",
+    "squat": "'",
     "L square": "[",
     "left square": "[",
     "square": "[",
@@ -178,8 +189,10 @@ symbol_key_words = {
     "paren": "(",
     "L paren": "(",
     "left paren": "(",
+    "oh par": "(",
     "R paren": ")",
     "right paren": ")",
+    "clo par": ")",
     "brace": "{",
     "left brace": "{",
     "R brace": "}",
@@ -197,7 +210,9 @@ symbol_key_words = {
     "caret": "^",
     "amper": "&",
     "pipe": "|",
+    "bar": "|",
     "dubquote": '"',
+    "quote": '"',
     "double quote": '"',
 
     # Currencies
@@ -230,9 +245,13 @@ simple_keys = [
 ]
 
 alternate_keys = {
+    "puff": "enter",
+    "scape": "escape",
+    "pee down": "pagedown",
+    "pee up": "pageup",
     "delete": "backspace",
     "forward delete": "delete",
-    #'junk': 'backspace',
+    'junk': 'backspace',
     "page up": "pageup",
     "page down": "pagedown",
 }

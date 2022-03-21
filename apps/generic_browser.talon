@@ -1,6 +1,6 @@
 tag: browser
 -
-address bar | go address | go url: browser.focus_address()
+address bar | go address | go url | go: browser.focus_address()
 address copy | url copy | copy address | copy url:
     browser.focus_address()
     sleep(50ms)
@@ -8,13 +8,13 @@ address copy | url copy | copy address | copy url:
 go home: browser.go_home()
 [go] forward: browser.go_forward()
 go (back | backward): browser.go_back()
-go to {user.website}: browser.go(website)
+go {user.website}: browser.go(website)
 go private: browser.open_private_window()
 
-bookmark it: browser.bookmark()
+bookmark: browser.bookmark()
 bookmark tabs: browser.bookmark_tabs()
-(refresh | reload) it: browser.reload()
-(refresh | reload) it hard: browser.reload_hard()
+fresh: browser.reload()
+fresh hard: browser.reload_hard()
 
 bookmark show: browser.bookmarks()
 bookmark bar [show]: browser.bookmarks_bar()
